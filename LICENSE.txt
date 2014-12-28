@@ -1,0 +1,73 @@
+TestUtil
+Copyright © 2010-2015 Michael 'Tex' Hex 
+All Rights Reserved
+http://www.testutil.com/
+
+"TestUtil" and the "Radar" logo
+Copyright © 2010-2015 Michael 'Tex' Hex 
+All Rights Reserved
+http://www.texhex.info/
+
+Logo by designklima
+http://designklima.com/
+   
+Source code of TestUtil / HeadlessPS / Yamua 
+Copyright © 2010-2015 Michael 'Tex' Hex 
+http://www.texhex.info/
+Licensed under the Apache License, Version 2.0
+   http://www.apache.org/licenses/LICENSE-2.0 
+   The license is distributed with this software as LICENSE-Apache-2.0.txt
+
+   
+   
+TestUtil is a Derivative/Combined Work of other software:
+
+Created with Microsoft Visual Studio Community 2013
+© 2014 Microsoft Corporation
+http://www.visualstudio.com/
+
+
+xUnit
+Copyright 2014 Outercurve Foundation
+http://xunit.github.io/
+Licensed under the Apache License, Version 2.0
+   http://www.apache.org/licenses/LICENSE-2.0 
+   The license is distributed with this software as LICENSE-Apache-2.0.txt
+
+   
+Dave Koelle's Alphanum algorithm (AlphanumComparator.cs)
+Copyright © 1997 - 2010 David Koelle
+http://www.davekoelle.com/alphanum.html
+Licensed under the GNU Lesser General Public License
+   https://www.gnu.org/licenses/lgpl.html 
+   The license is distributed with this software as LICENSE-LGPL-3.0.txt
+
+  
+Html Agility Pack
+http://htmlagilitypack.codeplex.com/
+Licensed under the Microsoft Public License
+   http://www.microsoft.com/en-us/openness/licenses.aspx
+   The license is distributed with this software as LICENSE-MsPL.txt
+   
+
+Bootstrap 
+Copyright 2013 Twitter, Inc
+http://getbootstrap.com/
+Licensed under the Apache License, Version 2.0
+   http://www.apache.org/licenses/LICENSE-2.0 
+   The license is distributed with this software as LICENSE-Apache-2.0.txt
+
+ 
+This product includes software developed by Jon Skeet
+(skeet@pobox.com, http://www.pobox.com/~skeet/).
+Copyright (c) 2004-2006 Jon Skeet. All rights reserved.
+http://codeblog.jonskeet.uk/
+http://www.yoda.arachsys.com/csharp/
+ 
+ 
+ 
+Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks
+of Microsoft Corporation in the United States and/or other countries.
+
+All other product and company names mentioned herein are the trademarks or 
+registered trademarks of their respective owners.
