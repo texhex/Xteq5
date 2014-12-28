@@ -5,14 +5,16 @@ TestUtil
 
 A known issues test framework for Windows
 
+## Description
 
 
-Some text
-
-Some other text
-
+## Copyright and license
+Copyright © 2010-2015 Michael 'Tex' Hex 
+Licensed under the **Apache License, Version 2.0**.
+For details see [_licensetxt]
 
 
 
 [direct-ref-image]: https://my.site.com/image.jpg
 [_logo]:images/testutil_small.png
+[_licensetxt]:LICENSE.txt
