@@ -3,7 +3,7 @@ TestUtil
 
 A known issues test framework for Windows
 
-![A logo](images/testutil_big.png
+![A logo](images/testutil_big.png)
 
 Some text
 
@@ -11,15 +11,15 @@ Some text
 
 Some other text
 
-![A logo ref][_logo_ref]
+![A logo ref][_logo]
 
 Some other text
 
-![A logo ref][_logo_ref]
+![A logo ref][_logo]
 
 Some other text
 
-![A logo ref][_logo_ref]
+![A logo ref][_logo]
 
 [techdocs-image]: https://d3i6fms1cm1j0i.cloudfront.net/github/images/techdocs.png
-[_logo_ref]:images/testutil_big.png
+[_logo]:images/testutil_small.png
