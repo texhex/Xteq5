@@ -6,10 +6,10 @@
  
 IMPROVEMENTS:
 
- * D'oh! [#1](https://github.com/texhex/testutil/issues/1)
+ * D'oh! - [#1](https://github.com/texhex/testutil/issues/1)
   
 BUG FIXES:
 
- * Added changelog.md as documented in [#2]https://github.com/texhex/testutil/issues/2)
+ * Added changelog.md - [#2](https://github.com/texhex/testutil/issues/2)
  
  
