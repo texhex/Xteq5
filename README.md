@@ -19,4 +19,4 @@ For details see [LICENSE.txt][_licensetxt].
 
 [direct-ref-image]: https://my.site.com/image.jpg
 [_logo]:images/testutil_small.png
-[_licensetxt]:LICENSE.txt
+[_licensetxt]:license/LICENSE.txt

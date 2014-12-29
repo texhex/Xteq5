@@ -57,6 +57,15 @@ Licensed under the Apache License, Version 2.0
    http://www.apache.org/licenses/LICENSE-2.0 
    The license is distributed with this software as LICENSE-Apache-2.0.txt
 
+   
+InnoSetup
+Copyright (C) 1997-2014 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2014 Martijn Laan. All rights reserved.
+http://www.jrsoftware.org/isinfo.php
+Licensed under the Inno Setup License
+   http://www.jrsoftware.org/files/is/license.txt
+   The license is distributed with this software as LICENSE-InnoSetup.txt
+
  
 This product includes software developed by Jon Skeet
 (skeet@pobox.com, http://www.pobox.com/~skeet/).
@@ -66,8 +75,9 @@ http://www.yoda.arachsys.com/csharp/
  
  
  
-Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks
-of Microsoft Corporation in the United States and/or other countries.
+Microsoft, PowerShell, Windows, and the Windows logo are trademarks, or 
+registered trademarks of Microsoft Corporation in the United States 
+and/or other countries.
 
 All other product and company names mentioned herein are the trademarks or 
 registered trademarks of their respective owners.
