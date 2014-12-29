@@ -1,0 +1,14 @@
+
+**Installation:**
+
+ start /wait TestUtilSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /CLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /LOG="%TEMP%\TestUtil_Setup_Log.txt"
+  
+**Remove:**
+ 
+ unins000.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /LOG="%TEMP%\TestUtil_Remove_Log.txt"
+ 
+ 
+ 
+ 
+ 
+ 
