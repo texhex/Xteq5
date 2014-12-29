@@ -93,7 +93,7 @@ Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters
 ;Source: "IrfanView\*.*"; DestDir: "{pf}\IrfanView"; Flags: ignoreversion recursesubdirs
 
 ;Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
-;Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilTestModule1
+;Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
 Source: "{#SourcePath}..\..\scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion;
 
 [Dirs]
