@@ -68,7 +68,7 @@ Licensed under the Inno Setup License
 
  
 This product includes software developed by Jon Skeet
-(skeet@pobox.com, http://www.pobox.com/~skeet/).
+http://www.jonskeet.uk/
 Copyright (c) 2004-2006 Jon Skeet. All rights reserved.
 http://codeblog.jonskeet.uk/
 http://www.yoda.arachsys.com/csharp/
