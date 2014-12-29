@@ -1,3 +1,13 @@
+## <a name="1.15">1.15</a> (2014-12-29)
+
+IMPROVEMENTS:
+
+ * Added TestUtilLauncher.exe that launches either the x86 or the x64 version of TestUtilGUI
+ 
+BUG FIXES:
+
+ * Changed several comments inside bootstrap HTML template because of errors reported by Internet Explorer
+ 
 ## <a name="1.14">1.14</a> (2014-12-28)
 
 **BREAKING CHANGES:**
