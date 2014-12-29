@@ -3,6 +3,7 @@
 **BREAKING CHANGES:**
 
  * CHANGELOG.md section ordering is BREAKING, IMPROVMENTS, BUG FIXES
+ * Format of this changelog.md taken from [Chocolatey CHANGELOG.md](https://github.com/chocolatey/chocolatey/blob/master/CHANGELOG.md)
  
 IMPROVEMENTS:
 
