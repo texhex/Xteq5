@@ -15,12 +15,14 @@
   
     
     
-  More information about multi build.
+  **More information about using multi build:**
+ 
   [How to: Configure Projects to Target Multiple Platforms](http://msdn.microsoft.com/en-us/library/ms165408.aspx)
+
   [How to: Build Multiple Configurations Simultaneously](http://msdn.microsoft.com/en-us/library/jj651644.aspx)
+
   [Batch Build Dialog Box](http://msdn.microsoft.com/en-us/library/169az28z%28v=vs.90%29.aspx)
  
-
- 
- - Michael
+  
+ - Michael Hex
    December 2014
