@@ -3,9 +3,13 @@
 #pragma option -v+
 #pragma verboselevel 9
 
+; The main information is the release date
+; This will also be used inside the version info of the resulting Setup.exe
+#define public CurrentDateISO '2014.12.30.01'
+
+; TODO: Extract version from x64\Release\TestUtilEngine.dll
 #define public ProgramVersion '1.15'
-#define public CurrentDateISO '2014-12-29'
-#define public BuildVersion '#01'
+; GetFileVersion(str) 
 
 #define public StartExeName 'TestUtilLauncher.exe'
 
@@ -13,7 +17,7 @@
 
 [Setup]
 AppName=TestUtil 
-AppVersion={#ProgramVersion} ({#CurrentDateISO})
+AppVersion={#CurrentDateISO} ({#ProgramVersion})
 
 ;Better add something to the AppID to avoid a name collision
 AppId=MTHTestUtil
@@ -22,8 +26,8 @@ AppPublisher=Michael 'Tex' Hex
 AppSupportURL=http://www.testutil.com/
 ;AppComments=For support, please contact your local IT department
 
-;VersionInfoCompany=MANN+HUMMEL
-VersionInfoVersion={#ProgramVersion}
+;VersionInfoVersion={#ProgramVersion}
+VersionInfoVersion={#CurrentDateISO}
 VersionInfoCopyright=Copyright © 2010-2015 Michael 'Tex' Hex 
 
 ;Place resulting Setup.exe in the same folder as the ISS file
@@ -45,10 +49,15 @@ DefaultDirName={pf}\TestUtil
 ;Icon inside Add/Remove programs
 UninstallDisplayIcon={app}\{#StartExeName}
 
+;Set source dir to folder above the location of this file.
+;Example: This file is located at C:\dev\gitrepos\testutil\src\Setup\
+;The source dir is in this case C:\dev\gitrepos\testutil\
+SourceDir={#SourcePath}..\..\
+
 ;License is Apache 2.0
-LicenseFile={#SourcePath}..\..\licenses\LICENSE-Apache-2.0.txt
-;Readme is our license
-InfoBeforeFile={#SourcePath}..\..\licenses\LICENSE.txt
+LicenseFile=licenses\LICENSE-Apache-2.0.txt
+;Readme is our license summary
+InfoBeforeFile=licenses\LICENSE.txt
 
 
 ;No cancel during install
@@ -90,11 +99,12 @@ DisableReadyPage=no
 Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
 
 [Files]
-;Source: "IrfanView\*.*"; DestDir: "{pf}\IrfanView"; Flags: ignoreversion recursesubdirs
+;Source: "SomeApp\*.*"; DestDir: "{pf}\SomeApp"; Flags: ignoreversion recursesubdirs
 
 ;Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
+;See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
 ;Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
-Source: "{#SourcePath}..\..\scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion;
+Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion;
 
 [Dirs]
 ;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
@@ -104,9 +114,13 @@ Name: "{commonappdata}\TestUtil"; Permissions: users-modify
 
 
 [Registry]
-;Add testutillauncher.exe to app paths as testutil.exe. This means Windows knows where to find the file when "testutil.exe" is requested somewhere
-;Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
-;Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
+;Add testutillauncher.exe to app paths  This means Windows knows where to find the file when "testutil.exe" is requested somewhere
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutillauncher.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutillauncher.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
+
+;Do the same but with a little cheating: Define TestUtilLauncher.exe as TestUtil.exe 
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
 
 
 
@@ -114,8 +128,8 @@ Name: "{commonappdata}\TestUtil"; Permissions: users-modify
 ;In case this is a left over from a manual installation -> KILL IT! 
 Type: files; Name: "{app}";
 
-;I'm not sure if we should do this
-Type: files; Name: "{commonappdata}\TestUtil";
+;I'm not sure if we should do this?
+;;;Type: files; Name: "{commonappdata}\TestUtil";
 
 
 ;Code Section to determin the language

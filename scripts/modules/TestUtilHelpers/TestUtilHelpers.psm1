@@ -1,6 +1,8 @@
-﻿#TestUtilHelper module
-#Version 1.03
-
+﻿# TestUtilHelper module
+# Version 1.04
+#
+# **THIS FILE WILL BE OVERWRITTEN WITHOUT QUESTION. DO NOT ADD YOUR OWN FUNCTIONS HERE.**
+#
 #require -version 4.0
 
 
@@ -36,7 +38,7 @@ function Get-TUAssetValue {
   .DESCRIPTION
   Return the value of an asset or the provided default value.
 
-  The default value is returned when the script is not executed within TestUtil or the asset does not exist
+  The default value is returned when the script is not executed within TestUtil or the asset does not exist.
 
   .PARAMETER AssetName
   The name of the asset that should be returned 
@@ -46,6 +48,11 @@ function Get-TUAssetValue {
 
   .OUTPUTS
   Value of the asset or the default value
+
+  .EXAMPLE
+  $myValue = Get-TUAssetValue "IsOfficeInstalled" $false
+  
+  $myValue = Get-TUAssetValue "TotalSuperInstallPath" "C:\TotalSuper"
 #>
  param (
  [Parameter(Mandatory=$True,Position=1)]
@@ -72,7 +79,7 @@ function Get-TUAssetValue {
     return $DefaultValue
  }
 
- #  
+ #Done
 }
 
 
