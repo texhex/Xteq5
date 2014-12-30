@@ -1,8 +1,8 @@
 TestUtil
 ========
 
-![TestUtil logo][_logo]
-
+<img src="https://github.com/texhex/testutil/raw/master/images/testutil_small.png" alt="TestUtil logo" title="TestUtil" align="right" />
+ 
 A known issues test framework for Windows
 
 ##<a name="Desciption">Description</a>
