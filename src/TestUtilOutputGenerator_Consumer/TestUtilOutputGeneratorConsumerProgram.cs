@@ -18,8 +18,8 @@ namespace TestUtilOutputGenerator_Consumer
             string basepath = "";
             //basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory();
 
-            basepath = @"C:\dev\gitrepos\testutil\src\ScriptsForTesting\Test1";
-            //basepath = @"C:\dev\gitrepos\testutil\scripts";
+            //basepath = @"C:\dev\gitrepos\testutil\src\ScriptsForTesting\Test1";
+            basepath = @"C:\dev\gitrepos\testutil\scripts";
 
 
             Task<Report> task = RunEngineAsync(runner, basepath);
