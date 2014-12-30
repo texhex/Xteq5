@@ -1,11 +1,11 @@
 ## [1.19](https://github.com/texhex/testutil/releases/tag/v1.19) (2014-12-20)
 
 IMPROVEMENTS:
- * Tests can access asset values without using the exact case of the name. 
+ * Tests can now access asset values ($TestUtilAssets) without using the exact case for the name. A case-insensitive hash table is now used.
  
 BUG FIXES:
 
- * Scripts did not run when PowerShell ExecutionPolicy was undefnied
+ * Scripts did not run when the PowerShell ExecutionPolicy was undefined
  
 ## <a name="1.15">1.15</a> (2014-12-29)
 

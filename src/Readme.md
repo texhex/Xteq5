@@ -1,9 +1,13 @@
 
 **TestUtilSolution Readme**
-   
-  - Before releasing a new version for users, use Build -> Batch Build to create all files. 
+  
+  - Update CHANGELOG.md
+
+  - Commit the latest changes 
+  
+  - Use Build -> Batch Build to create all files. 
     
-	Note: TestUtilLauncher.exe will ALWAYS build for *Any CPU* only. This is on purpose. 
+	- Note: TestUtilLauncher.exe will ALWAYS build for *Any CPU* only. This is on purpose. 
 
   - After that, run Inno Setup from src\Setup to generate "TestUtilSetup.exe".
 
@@ -12,6 +16,8 @@
   - If the file is OK, go to https://github.com/texhex/testutil/releases/new and attach it
      - Tag version should include "v", e.g. "v1.16"
      - Second field is what the user sees, so it's "Version 1.16")
+
+ 
   
     
     
