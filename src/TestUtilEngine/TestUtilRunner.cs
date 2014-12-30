@@ -146,7 +146,8 @@ namespace TestUtil
 
         Hashtable CreateHashtableFromAssetRecords(List<AssetRecord> Assets)
         {
-            Hashtable table = new Hashtable();
+            //Create a case insensitive hashtable
+            Hashtable table = System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable();
 
             foreach (AssetRecord asset in Assets)
             {

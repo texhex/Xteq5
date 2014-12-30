@@ -27,7 +27,7 @@ For details see [LICENSE.txt][1].
 
 
 [_logo]:images/testutil_small.png
-[1]:license/LICENSE.txt
+[1]:licenses/LICENSE.txt
 [2]:https://github.com/texhex/testutil/wiki
 [3]:https://github.com/texhex/testutil/releases
 
