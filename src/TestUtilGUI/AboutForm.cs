@@ -118,7 +118,7 @@ namespace TestUtilGUI
             richTextBox.SelectionLength = 0;
             richTextBox.Refresh();
 
-            MessageBox.Show(buttonClose.Font.ToString());
+            //MessageBox.Show(buttonClose.Font.ToString());
         }
 
         private void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
