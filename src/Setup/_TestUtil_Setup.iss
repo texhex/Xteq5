@@ -30,10 +30,6 @@ AppSupportURL=http://www.testutil.com/
 VersionInfoVersion={#CurrentDateISO}
 VersionInfoCopyright=Copyright © 2010-2015 Michael 'Tex' Hex 
 
-;Place resulting Setup.exe in the same folder as the ISS file
-OutputDir=.
-OutputBaseFilename=TestUtilSetup
-
 ;I really think we should set this to NO...
 Uninstallable=Yes 
 
@@ -48,6 +44,10 @@ DefaultDirName={pf}\TestUtil
 
 ;Icon inside Add/Remove programs
 UninstallDisplayIcon={app}\{#StartExeName}
+
+;Place resulting Setup.exe in the same folder as the ISS file
+OutputDir={#SourcePath}
+OutputBaseFilename=TestUtilSetup
 
 ;Set source dir to folder above the location of this file.
 ;Example: This file is located at C:\dev\gitrepos\testutil\src\Setup\
