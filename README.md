@@ -1,7 +1,7 @@
 TestUtil
 ========
 
-<img src="https://github.com/texhex/testutil/raw/master/images/testutil_big.png" alt="TestUtil logo" title="TestUtil" align="right" />
+<img src="https://github.com/texhex/testutil/raw/master/images/testutil_small.png" alt="TestUtil logo" title="TestUtil" align="right" />
  
 A known issues test framework for Windows
 
@@ -13,11 +13,11 @@ Should be here any minute...
 
 The [most recent version][3] can be found in _releases_. 
 
-##< name="Documentation>Documentation</a>
+##<a name=">Documentation>Documentation</a>
 
 Please see the [TestUtil Wiki][2]
 
-##< name="Copyright>Copyright and License</a>
+##<a name="Copyright>Copyright and License</a>
 Copyright © 2010-2015 Michael 'Tex' Hex 
 
 Licensed under the **Apache License, Version 2.0**.
