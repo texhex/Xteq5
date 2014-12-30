@@ -99,12 +99,14 @@ DisableReadyPage=no
 Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
 
 [Files]
-;Source: "SomeApp\*.*"; DestDir: "{pf}\SomeApp"; Flags: ignoreversion recursesubdirs
-
 ;Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
 ;See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
 ;Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
 Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion;
+
+;Copy all scripts to commonappdata
+Source: "scripts\*.*"; DestDir: "{commonappdata}\TestUtil\"; Flags: ignoreversion recursesubdirs;
+
 
 [Dirs]
 ;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
