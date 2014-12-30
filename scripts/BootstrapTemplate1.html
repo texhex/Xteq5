@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TestUtil Report @@REPORTID@@">
+    <meta name="author" content="http://www.testutil.com/">
+    <title>TestUtil Report @@REPORTID@@</title>
+
+    <!-- [Bootswatch Slate](http://bootswatch.com/slate/) hosted at [Bootstrap CDN](http://www.bootstrapcdn.com/) by [MaxCDN](https://www.maxcdn.com/) -->
+    <!-- Remember to update footer when changing this! -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/slate/bootstrap.min.css" rel="stylesheet">
+
+    <!-- To dark? Try Spacelab:
+        <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/spacelab/bootstrap.min.css" rel="stylesheet">
+    -->
+    <!--
+     Bootstrap defaults to Helvetica Neue which can lead to errors. See https://github.com/twbs/bootstrap/issues/13823
+     Fonts: Open+Sans, Roboto, Lato or Source+Sans+Pro
+     -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        /* Patch glyphicon within table to be a little bigger*/
+        .table tbody > tr > td > span.glyphicon {
+            font-size: 1.2em;
+        }
+
+        /*Apply new font*/
+        body, p, div, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .table tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        /* Because of the fixed nav, add a padding. */
+        body {
+            padding-top: 70px;
+        }
+    </style>
+
+</head>
+
+
+<body role="document">
+    <!-- ============================= -->
+    <!-- ============================= -->
+    <!-- Modal used for displaying script details. CssClass for modal changed from "modal fade" -->
+    <div class="modal" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="modalDetailsTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <!--modal-lg or modal-sm -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--Default
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      -->
+                    <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modalDetailsTitle">Script details</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modalDetailsText">
+                        (No text so far)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ============================= -->
+    <!-- ============================= -->
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.testutil.com/">TestUtil</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#assets">Assets</a></li>
+                    <li><a href="#tests">Tests</a></li>
+                    <!-- Add a badge like this:
+                        <li><a href="#tests">Tests <span class="badge">42</span></a></li>
+                    -->
+                </ul>
+                <p class="navbar-text navbar-right">Report @@REPORTID@@</p>
+                <!--use this for a link <a href="#" class="navbar-link">Link Target</a>-->
+            </div><!--/.nav-collapse -->
+
+        </div>
+    </nav>
+    <!-- ============================= -->
+    <!-- ============================= -->
+    <!-- Content start here -->
+    <a name="overview"></a>
+    <div class="container">
+        <div class="page-header">
+            <h1>Overview <small>@@USERTEXT@@</small></h1>
+        </div>
+
+        <p>This report was generated on UTC <strong><span id="EndDateTimeUTC">@@ENDDATETIMEUTC@@</span></strong> in <strong>@@RUNTIMESECONDS@@</strong> seconds from <strong>@@USERNAME@@</strong> on <strong>@@COMPUTERNAME@@</strong>.</p>
+        <p>The version used was <strong>@@VERSIONSTRING@@</strong>, HTML template version is <strong>1.57</strong>.</p>
+        <p>A total of <strong>@@ASSETS.TOTAL@@</strong> assets and <strong>@@TESTS.TOTAL@@</strong> tests were loaded from <strong>@@SOURCEFOLDER@@</strong>.</p>
+        <p>The unique ID of this report is <strong>@@REPORTID@@</strong>.</p>
+        <p>Thank you for using TestUtil.</p>
+
+
+        <a name="assets"></a>
+
+        <!--Spacer-->
+        <h4>&nbsp;</h4>
+
+        <div class="page-header">
+            <h1>Assets <small>@@ASSETS.TOTAL@@ in total</small></h1>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Quick summary</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        Assets list information about the computer. Click on a status for a detailed description.
+                    </div>
+
+                    <!--<br><br>Recommended action: None-->
+                    <div class="list-group">
+                        <!-- list-group-item-info-->
+                        <a class="list-group-item" data-toggle="popover" data-content="Result: @@RESULTTEXT.DOESNOTAPPLY@@<br><br>@@ASSETTEXT.DOESNOTAPPLY@@.">
+                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                            Assets that did not apply
+                            <span class="badge">@@ASSETS.DOESNOTAPPLY@@</span>
+                        </a>
+
+                        <a class="list-group-item list-group-item-success" data-toggle="popover" data-content="Result: @@RESULTTEXT.SUCCESS@@<br><br>@@ASSETTEXT.SUCCESS@@.">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            Assets with data
+                            <span class="badge">@@ASSETS.SUCCESS@@</span>
+                        </a>
+
+                        <a class="list-group-item list-group-item-danger" data-toggle="popover" data-content="Result: @@RESULTTEXT.FATAL@@<br><br>@@ASSETTEXT.FATAL@@.">
+                            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                            Assets failed to execute
+                            <span class="badge">@@ASSETS.FATAL@@</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Spacer-->
+        <h4>&nbsp;</h4>
+
+        <!-- Table for Assets -->
+        <div class="panel panel-primary">
+            <!--panel-default oder panel-primary-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Click on an asset to see more details</h3>
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Asset / Script</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Generated HTML Start -->
+                    <!--@@ASSETROWS@@-->
+                    <!--Generated HTML End-->
+                </tbody>
+            </table>
+        </div>
+
+
+        <a name="tests"></a>
+
+        <!--Spacer-->
+        <h4>&nbsp;</h4>
+
+        <div class="page-header">
+            <h1>Tests <small>@@TESTS.TOTAL@@ in total</small></h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Quick summary</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        Tests check different aspects of the computer and report when something isn't as expected. Click on a status for a detailed description.
+                    </div>
+
+                    <!-- DoesNotApply - NONE -->
+                    <a class="list-group-item" data-toggle="popover" data-content="Result: @@RESULTTEXT.DOESNOTAPPLY@@<br><br>@@TESTTEXT.DOESNOTAPPLY@@.">
+                        <span class=" glyphicon glyphicon-asterisk" aria-hidden="true">
+                        </span>
+                        Tests that did not apply
+                        <span class="badge">@@TESTS.DOESNOTAPPLY@@</span>
+                    </a>
+
+                    <!-- Inconclusive - NONE -->
+                    <a class="list-group-item" data-toggle="popover" data-content="Result: @@RESULTTEXT.INCONCLUSIVE@@<br><br>@@TESTTEXT.INCONCLUSIVE@@.">
+                        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+                        Tests that are inconclusive
+                        <span class="badge">@@TESTS.INCONCLUSIVE@@</span>
+                    </a>
+
+                    <!-- Success - Success -->
+                    <!-- About the "established parameters": Sorry Mr. Data, I couldn't resist. -->
+                    <a class="list-group-item list-group-item-success" data-toggle="popover" data-content="Result: @@RESULTTEXT.SUCCESS@@<br><br>@@TESTTEXT.SUCCESS@@. Your system is operating within established parameters.">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        Tests succeed
+                        <span class="badge">@@TESTS.SUCCESS@@</span>
+                    </a>
+
+                    <!-- Minor - Info  -->
+                    <a class="list-group-item list-group-item-info" data-toggle="popover" data-content="Result: @@RESULTTEXT.MINOR@@<br><br>@@TESTTEXT.MINOR@@.<br><br>Recommended action: @@TESTACTIONTEXT.MINOR@@.">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        Tests reporting minor issues
+                        <span class="badge">@@TESTS.MINOR@@</span>
+                    </a>
+
+                    <!-- Major - Warning -->
+                    <a class="list-group-item list-group-item-warning" data-toggle="popover" data-content="Result: @@RESULTTEXT.MAJOR@@<br><br>@@TESTTEXT.MAJOR@@.<br><br>Recommended action: @@TESTACTIONTEXT.MAJOR@@.">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        Tests reporting major issues
+                        <span class="badge">@@TESTS.MAJOR@@</span>
+                    </a>
+
+                    <!-- Fatal - Danger -->
+                    <a class="list-group-item list-group-item-danger" data-toggle="popover" data-content="Result: @@RESULTTEXT.FATAL@@<br><br>@@TESTTEXT.FATAL@@.">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                        Tests failed to execute
+                        <span class="badge">@@TESTS.FATAL@@</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Spacer-->
+        <h5>&nbsp;</h5>
+
+        <!-- Table for Tests -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Click on a test to view detailed information</h3>
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Test / Script</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Generated HTML Start -->
+                    <!--@@TESTROWS@@-->
+                    <!--Generated HTML End-->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Spacer -->
+        <h4>&nbsp;</h4>
+        <h4>&nbsp;</h4>
+        <h4>&nbsp;</h4>
+
+
+        <hr>
+        <footer>
+            <p><small>Automatically generated by <a href="http://www.testutil.com/">TestUtil</a>. Copyright &copy; 2010-2015 <a href="http://www.texhex.info/">Michael 'Tex' Hex</a>.</small></p>
+            <p><small>HTML based on <a href="http://getbootstrap.com/">Bootstrap</a>. Bootswatch <a href="http://bootswatch.com/slate/">Slate</a> created by <a href="http://thomaspark.me">Thomas Park</a>, released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</small></p>
+            <p><small>Bootstrap files from <a href="http://www.bootstrapcdn.com/">BootstrapCDN</a> by <a href="https://www.maxcdn.com/">MaxCDN</a>. <a href="https://developers.google.com/speed/libraries/devguide#jquery">jQuery</a> and <a href="http://www.google.com/webfonts">web fonts</a> from <a href="http://www.google.com">Google</a>.</small></p>
+			<!-- My tribute to X-Tracker DMF files -->
+            <p><small>E N D E</small></p>
+        </footer>
+
+    </div> <!-- /container -->
+    <!-- ============================= -->
+    <!-- ============================= -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script>
+        var closeHtml = '<button onclick="$(this).closest(\'div.popover\').popover(\'hide\');" type="button" id="popoverCloseButton" class="btn btn-default btn-sm pull-right">&times;</button>';
+
+        $.fn.popover.Constructor.DEFAULTS.title = "Details" + closeHtml;
+        $.fn.popover.Constructor.DEFAULTS.trigger = 'click';    //On click
+        $.fn.popover.Constructor.DEFAULTS.placement = 'bottom'; //Show below
+        $.fn.popover.Constructor.DEFAULTS.html = true;          //Allow html
+
+
+        $(document).ready(function () {
+            //console.log("ready!");
+
+            //Activate all elements with data-toggle popover
+            $("[data-toggle='popover']").popover();
+
+            //This will pull the data from data-modal-X attributes. Idea from http://stackoverflow.com/a/25060114/612954 by [LostInComputer](http://stackoverflow.com/users/522254/lostincomputer)
+            $('#modalDetails').on('show.bs.modal', function (e) {
+
+                //Get data-modal-X attributes of the clicked element
+                var modalContent = $(e.relatedTarget).data('modal-content');
+                var modalTitle = $(e.relatedTarget).data('modal-title');
+
+                if (typeof modalContent === "undefined") {
+                    modalContent = "(Attribute data-modal-content missing)";
+                }
+
+                if (typeof modalTitle === "undefined") {
+                    modalTitle = "(Attribute data-modal-title missing)";
+                }
+
+                //Debug code to check if we have found the correct element
+                //$(e.currentTarget).find('h4[id="modalDetailsTitle"]').css("background-color", "red");
+                //Set the title
+                $(e.currentTarget).find('h4[id="modalDetailsTitle"]').html(modalTitle);
+
+                //Debug code to check if we have found the correct element
+                //$(e.currentTarget).find('div[id="modalDetailsText"]').css("background-color", "red");
+
+                //Set the text an mark it as example (mono spaced) using <samp> tag.
+                //Bootstrap docs: For indicating blocks sample output from a program use the <samp> tag.
+                $(e.currentTarget).find('div[id="modalDetailsText"]').html("<samp>" + modalContent + "</samp>");
+            });
+
+        });
+    </script>
+
+
+</body>
+</html>
