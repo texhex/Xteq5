@@ -3,9 +3,12 @@
 #pragma option -v+
 #pragma verboselevel 9
 
-; The main information is the release date
+; The main information is the release date. 
+; We generate it from the current date/time upun compliation of this script
+; Example result: 2014.12.30.1401
 ; This will also be used inside the version info of the resulting Setup.exe
-#define public CurrentDateISO '2014.12.30.01'
+#define public CurrentDateISO GetDateTimeString('yyyy/mm/dd.hhnn', '.', '');
+
 
 ; TODO: Extract version from x64\Release\TestUtilEngine.dll
 #define public ProgramVersion '1.15'
@@ -17,14 +20,15 @@
 
 [Setup]
 AppName=TestUtil 
-AppVersion={#CurrentDateISO} ({#ProgramVersion})
+AppVersion={#CurrentDateISO} ({#ProgramVersion}) 
 
 ;Better add something to the AppID to avoid a name collision
 AppId=MTHTestUtil
 
 AppPublisher=Michael 'Tex' Hex
+AppPublisherURL=http://www.testutil.com/
 AppSupportURL=http://www.testutil.com/
-;AppComments=For support, please contact your local IT department
+AppComments=Build with Inno Setup
 
 ;VersionInfoVersion={#ProgramVersion}
 VersionInfoVersion={#CurrentDateISO}
@@ -32,6 +36,9 @@ VersionInfoCopyright=Copyright © 2010-2015 Michael 'Tex' Hex
 
 ;I really think we should set this to NO...
 Uninstallable=Yes 
+
+;We want to write to program files
+PrivilegesRequired=admin
 
 ;Install in x64 mode (when available)
 ArchitecturesInstallIn64BitMode=x64 
