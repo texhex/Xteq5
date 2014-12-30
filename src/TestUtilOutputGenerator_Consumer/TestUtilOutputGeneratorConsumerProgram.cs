@@ -17,7 +17,8 @@ namespace TestUtilOutputGenerator_Consumer
 
             string basepath = "";
             //basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory();
-            basepath=@"C:\dev\TestUtil\current\src\ScriptsForTesting\Test1";
+
+            basepath = @"C:\dev\gitrepos\testutil\src\ScriptsForTesting\Test1";
             //basepath = @"C:\dev\gitrepos\testutil\scripts";
 
 

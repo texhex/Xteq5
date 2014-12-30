@@ -9,11 +9,12 @@
 ; This will also be used inside the version info of the resulting Setup.exe
 #define public CurrentDateISO GetDateTimeString('yyyy/mm/dd.hhnn', '.', '');
 
+; Extract version from x64\Release\TestUtil.Engine.dll
+; SourcePath ({#SourcePath} in scripts) is a pre defined variable that contains 
+; the path where this file is located
+#define public ProgramVersion GetFileVersion(SourcePath +'..\TestUtilEngine\bin\x64\Release\TestUtil.Engine.dll')
 
-; TODO: Extract version from x64\Release\TestUtilEngine.dll
-#define public ProgramVersion '1.15'
-; GetFileVersion(str) 
-
+; Default file to be started
 #define public StartExeName 'TestUtilLauncher.exe'
 
   
@@ -27,7 +28,7 @@ AppId=MTHTestUtil
 
 AppPublisher=Michael 'Tex' Hex
 AppPublisherURL=http://www.testutil.com/
-AppSupportURL=http://www.testutil.com/
+AppSupportURL=https://github.com/texhex/testutil/wiki
 AppComments=Build with Inno Setup
 
 ;VersionInfoVersion={#ProgramVersion}
@@ -103,7 +104,12 @@ DisableReadyPage=no
 
 
 [Icons]
+;Start menu icon
 Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
+
+;Link to folder in commonappdata within the program folder for easier access
+Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\TestUtil\"; Comment: "Files loaded from ProgramData";
+
 
 [Files]
 ;Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
@@ -114,12 +120,28 @@ Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userd
 ;Copy all scripts to commonappdata
 Source: "scripts\*.*"; DestDir: "{commonappdata}\TestUtil\"; Flags: ignoreversion recursesubdirs;
 
+;All license files go to \licenses
+Source: "licenses\*.*"; DestDir: "{app}\licenses"; Flags: ignoreversion recursesubdirs;
+
+;TestUtilLauncher 
+Source: "src\TestUtilLauncher\bin\release\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
+Source: "src\TestUtilLauncher\bin\release\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
+
+;TestUtilGUI (64 bit)
+Source: "src\TestUtilGUI\bin\x64\release\*.exe"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\TestUtilGUI\bin\x64\release\*.dll"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\TestUtilGUI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+
+;TestUtilGUI (32 bit)
+Source: "src\TestUtilGUI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\TestUtilGUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\TestUtilGUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+
 
 [Dirs]
 ;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
 ;Also grant users the modify permission, in case they which to add addtional scripts 
 Name: "{commonappdata}\TestUtil"; Permissions: users-modify
-
 
 
 [Registry]

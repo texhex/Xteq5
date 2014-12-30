@@ -30,7 +30,7 @@ namespace TestUtilLauncher
 
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.ErrorDialog = true;
-            psi.FileName = exeName;
+            psi.FileName = launchEXE;
 
             try
             {
