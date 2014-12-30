@@ -1,0 +1,1 @@
+This folder contains a module KABOOM that will fail PowerShell.

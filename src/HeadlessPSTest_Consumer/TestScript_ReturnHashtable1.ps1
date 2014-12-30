@@ -1,0 +1,1 @@
+Set-StrictMode -version 2.0[hashtable]$Return = @{} $Return.Name="TheName"$Return.Value="TheValue"$Return.Text="MyDescription"#send it to output$Return #this is the same as: write-output $Return#See http://blogs.msdn.com/b/powershell/archive/2006/07/31/suppressing-return-values-in-powershell-functions.aspx
