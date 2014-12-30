@@ -60,6 +60,12 @@ namespace HeadlessPS
              * This is set because if this is FALSE, PowerShell does not report anything about broken modules. 
              */
             _initialSessionState.ThrowOnRunspaceOpenError = true;
+            
+            //Replace PSAuthorizationManager with a null manager which ignores execution policy.
+            //This is required because else no script will be allowed to run if ExecutionPoliy is not at least RemoteSigned.
+            //Because we do not set our own ShellId, the parameter is set to "Microsoft.PowerShell"
+            //Source: [Bypassing Restricted Execution Policy in Code or in Script](http://www.nivot.org/blog/post/2012/02/10/Bypassing-Restricted-Execution-Policy-in-Code-or-in-Script) by Nivot Ink
+            _initialSessionState.AuthorizationManager = new System.Management.Automation.AuthorizationManager("Microsoft.PowerShell"); 
 
             //Import modules if a module path is set
             if (string.IsNullOrWhiteSpace(prefs.ModulePath) == false)

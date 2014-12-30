@@ -24,5 +24,4 @@
   [Batch Build Dialog Box](http://msdn.microsoft.com/en-us/library/169az28z%28v=vs.90%29.aspx)
  
   
- - Michael Hex
-   December 2014
+  Michael Hex,  December 2014
