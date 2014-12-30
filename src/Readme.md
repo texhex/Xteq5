@@ -10,8 +10,8 @@
   - The resulting file then needs to be tested 
    
   - If the file is OK, go to https://github.com/texhex/testutil/releases/new and attach it
-     - First field is just the version number
-     - Second field is what the user sees, so it's "Version X.yy")
+     - Tag version should include "v", e.g. "v1.16"
+     - Second field is what the user sees, so it's "Version 1.16")
   
     
     

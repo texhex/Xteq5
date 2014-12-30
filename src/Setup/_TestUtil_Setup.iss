@@ -3,6 +3,7 @@
 #pragma option -v+
 #pragma verboselevel 9
 
+
 ; The main information is the release date. 
 ; We generate it from the current date/time upun compliation of this script
 ; Example result: 2014.12.30.1401
@@ -163,93 +164,196 @@ Type: files; Name: "{app}";
 ;;;Type: files; Name: "{commonappdata}\TestUtil";
 
 
-;Code Section to determin the language
+
 [Code]
-{
-function GetLanguageDLL(Param: String): String;
+
 var
- iLng:integer;
- iLngGeneral:integer;
+ bDotNetAvailable:boolean;
+ bPowerShellAvailable:boolean;
+ 
+ bComponentMissing:boolean;
+ 
+ sComponentNotFoundWizard_Text:string;
+ pagComponentNotFound:TOutputMsgMemoWizardPage;
+
+ 
+
+//Source: [Check .NET Version with Inno Setup](http://kynosarges.org/DotNetVersion.html) by [Christoph Nahr](http://kynosarges.org/index.html#Contact)
+function IsDotNetDetected(version: string; service: cardinal): boolean;
+// Indicates whether the specified version and service pack of the .NET Framework is installed.
+//
+// version -- Specify one of these strings for the required .NET Framework version:
+//    'v1.1.4322'     .NET Framework 1.1
+//    'v2.0.50727'    .NET Framework 2.0
+//    'v3.0'          .NET Framework 3.0
+//    'v3.5'          .NET Framework 3.5
+//    'v4\Client'     .NET Framework 4.0 Client Profile
+//    'v4\Full'       .NET Framework 4.0 Full Installation
+//    'v4.5'          .NET Framework 4.5
+//
+// service -- Specify any non-negative integer for the required service pack level:
+//    0               No service packs required
+//    1, 2, etc.      Service pack 1, 2, etc. required
+var
+    key: string;
+    install, release, serviceCount: cardinal;
+    check45, success: boolean;
 begin
- //Full list of language identifiers: http://msdn.microsoft.com/en-us/library/dd318693.aspx
-  iLng:=GetUILanguage 
+    // .NET 4.5 installs as update to .NET 4.0 Full
+    if version = 'v4.5' then begin
+        version := 'v4\Full';
+        check45 := true;
+    end else
+        check45 := false;
 
-  //The result contains the EXACT language, e.g. DE-DE. However we are only interested in
-  //the primary language (e.g. "DE") so we do an AND $3FF to extract it
-  iLngGeneral:=iLng and $3FF
+    // installation key group for all .NET versions
+    key := 'SOFTWARE\Microsoft\NET Framework Setup\NDP\' + version;
+    
+    //Debug version. Will fail the test ALWAY
+    //key := 'SOFTWARE\B0RKEN\Microsoft\NET Framework Setup\NDP\' + version;
 
-  case iLngGeneral of 
-  $01:
-    begin 
-      Result:='Arabic';
-    end; 
-  $04:
-    begin 
-      Result:='Chinese_Simp';
-    end; 
-  $05:
-    begin 
-      Result:='Czech1';
-    end; 
-  $07:
-    begin 
-      Result:='Deutsch';
-    end; 
-  $09:
-    begin 
-      Result:='English';
-    end; 
-  $0C:
-    begin 
-      Result:='French';
-    end; 
-  $10:
-    begin 
-      Result:='Italian';
-    end; 
-  $11:
-    begin 
-      Result:='Japanese';
-    end; 
-  $16:
-    begin 
-      Result:='Portugues-Brasil';
-    end; 
-  $19:
-    begin 
-      Result:='Russian';
-    end; 
-  $0A:
-    begin 
-      Result:='Spanish';
-    end; 
+    // .NET 3.0 uses value InstallSuccess in subkey Setup
+    if Pos('v3.0', version) = 1 then begin
+        success := RegQueryDWordValue(HKLM, key + '\Setup', 'InstallSuccess', install);
+    end else begin
+        success := RegQueryDWordValue(HKLM, key, 'Install', install);
+    end;
 
-  else
-    begin 
-       Result:='';
-    end; 
-  end;
+    // .NET 4.0/4.5 uses value Servicing instead of SP
+    if Pos('v4', version) = 1 then begin
+        success := success and RegQueryDWordValue(HKLM, key, 'Servicing', serviceCount);
+    end else begin
+        success := success and RegQueryDWordValue(HKLM, key, 'SP', serviceCount);
+    end;
 
-  //Just for tests:
-  //Result:='Portugues-Brasil';
-     
+    // .NET 4.5 uses additional value Release
+    if check45 then begin
+        success := success and RegQueryDWordValue(HKLM, key, 'Release', release);
+        success := success and (release >= 378389);
+    end;
+
+    result := success and (install = 1) and (serviceCount >= service);
 end;
 
-//Returns TRUE of the .ico file type is set incorrectly (assocaiated with IrfanView - first version of this setup)
-function CheckICOFileTypeIsIncorrect(): Boolean;
+//Checks for a given powershell version
+//See: blogs.technet.com/b/heyscriptingguy/archive/2009/01/05/how-do-i-check-which-version-of-windows-powershell-i-m-using.aspx
+function IsPowerShellDetected(version: string): boolean;
 var
- sFiletype:string;
+    value:string;
 begin
    result:=false;
 
-   if RegQueryStringValue(HKEY_CLASSES_ROOT, '.ico','', sFiletype) then begin
-      if sFileType='IrfanViewDefaultFile' then
-         result:=true;
-   end;      
+   if (RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\PowerShell\3\PowerShellEngine', 'PSCompatibleVersion', value)) then begin
+      if (Pos(version,value)>0) then begin
+          result:=true;
+      end;
+   end;
+
 end;
-}
 
 
+
+
+procedure InitializeWizard();
+begin 
+  //Create custom "Component not found" page
+  pagComponentNotFound := 
+     CreateOutputMsgMemoPage(wpWelcome,
+         'System Requirements not met', 
+         'A component that is required was not found',
+         '',
+         sComponentNotFoundWizard_Text);
+end;
+
+
+function InitializeSetup(): Boolean;
+var
+ sTemp:string;
+begin
+  bComponentMissing:=false;
+  sComponentNotFoundWizard_Text:='';
+  
+  //Check if .NET 4.5 (SP does not count) is available
+  bDotNetAvailable:=IsDotNetDetected('v4.5', 0);
+
+  log('System requirements check:');
+  if bDotNetAvailable then begin
+     log('   .NET 4.5 has been detected');
+  end else begin
+     log('   .NET 4.5 could not be found');
+  end;
+
+  //Check if PowerShell 4.0 is available
+  bPowerShellAvailable:=IsPowerShellDetected('4.0');
+  if bPowerShellAvailable then begin
+     log('   PowerShell 4.0 has been detected');
+  end else begin
+     log('   PowerShell 4.0 could not be found');
+  end;
+
+  if (bDotNetAvailable=false) OR (bPowerShellAvailable=false) then begin
+     bComponentMissing:=true;
+ 
+     //Set the text of the custom page so the user knows what to download.
+     //However, there is a bug with WMF 4.0 that, if .NET 4.5 is NOT Installed, it will report SUCCESS altough PowerShell wasn't installed at all. 
+     //   See: http://blogs.msdn.com/b/powershell/archive/2013/10/29/wmf-4-0-known-issue-partial-installation-without-net-framework-4-5.aspx          
+     //Therefore, prefer the display of .NET and only if this is TRUE then display the download link for WMF
+
+     if (bPowerShellAvailable=false) then begin  
+        sTemp:='';      
+        sTemp:=sTemp + 'PowerShell 4.0 (or a compatible version) was not found.'+#13#10+#13#10;
+        sTemp:=sTemp + 'Please download and install Windows Management Framework 4.0, then re-run setup.'+#13#10+#13#10;
+        sTemp:=sTemp + 'http://www.microsoft.com/en-us/download/details.aspx?id=40855';
+     end;
+
+     if (bDotNetAvailable=false) then begin
+        sTemp:='';      
+        sTemp:=sTemp + '.NET Framework 4.5 (or a compatible version) was not found.'+#13#10+#13#10;
+        sTemp:=sTemp + 'Please download and install it, then re-run setup.'+#13#10+#13#10;
+        sTemp:=sTemp + 'http://www.microsoft.com/en-us/download/details.aspx?id=40773';
+        //sTemp:=sTemp + 'http://go.microsoft.com/?linkid=9831985'; //Offline installer
+     end;
+     
+     sTemp:=sTemp + #13#10 + #13#10 + #13#10 + #13#10 + 'Sorry for the trouble.';         
+     sComponentNotFoundWizard_Text:=sTemp;   
+  end;
+
+
+  result:=true;
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  result := false;
+
+  if PageID=pagComponentNotFound.ID then begin
+     //Skip the "Component missing" it if all components were found
+     if (bComponentMissing=false) then begin
+         result:=true;
+     end;
+  end;
+
+end;
+
+function NextButtonClick(CurPageID: Integer): Boolean;
+begin
+  result:=true;
+
+  //If the component not found page is displayed, do not allow to continue.
+  if CurPageID=pagComponentNotFound.ID then begin     
+     result:=false;
+     WizardForm.Close;
+  end;
+
+end;
+
+procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
+begin
+  if CurPageID=pagComponentNotFound.ID then begin
+     Cancel:=true;
+     Confirm:=false;
+  end;
+end;
 
 
 
