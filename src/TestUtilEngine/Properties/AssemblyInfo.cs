@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // #### Properties for TestUtilEngine - Start #### //
 [assembly: AssemblyTitle("TestUtilEngine")] //Explorer: File description
 [assembly: AssemblyProduct("http://www.testutil.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("1.19.*")]
+[assembly: AssemblyVersion("1.20.*")]
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion
 
 [assembly: AssemblyDescription("For more information, please visit http://www.testutil.com/")] //It's actually a comment: $File.VersionInfo.Comments

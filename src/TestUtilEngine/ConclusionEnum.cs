@@ -50,6 +50,7 @@ namespace TestUtil
             switch (dataLowerCase)
             {
                 case "major":
+                case "fail":
                     {
                         return ConclusionEnum.Major;
                     }

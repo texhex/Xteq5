@@ -1,8 +1,13 @@
 ﻿# TestUtilHelper module
-# Version 1.04
+# Version 1.05
 #
 # **THIS FILE WILL BE OVERWRITTEN WITHOUT QUESTION. DO NOT ADD YOUR OWN FUNCTIONS HERE.**
 #
+# Before adding a new function, please see
+# [Approved Verbs for Windows PowerShell Commands](http://msdn.microsoft.com/en-us/library/ms714428%28v=vs.85%29.aspx)
+#
+
+
 #require -version 4.0
 
 

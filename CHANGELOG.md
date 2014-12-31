@@ -1,13 +1,29 @@
-## [1.19](https://github.com/texhex/testutil/releases/tag/v1.19) (2014-12-20)
+## [Version 1.20](https://github.com/texhex/testutil/releases/tag/v1.20) (2014-12-31)
 
 IMPROVEMENTS:
+
+ * Explained overwrite procedure in %PROGRAMDATA%\TestUtil\readme.txt (Repository source /scripts/readme.txt) better
+ * Added "Fail" as alias for result "Major"
+ * Added MarkdownPad to /licenses/license.txt
+ * Reworked /README.md
+ * Reworked Build Readme
+ * Added test script #825 that uses write-warning (/src/ScriptsForTesting/Test1/tests/)
+ 
+BUG FIXES:
+
+ * Fixed wrong date for v1.19 in this file
+
+## [Version 1.19](https://github.com/texhex/testutil/releases/tag/v1.19) (2014-12-30)
+
+IMPROVEMENTS:
+
  * Tests can now access asset values ($TestUtilAssets) without using the exact case for the name. A case-insensitive hash table is now used.
  
 BUG FIXES:
 
  * Scripts did not run when the PowerShell ExecutionPolicy was undefined
  
-## <a name="1.15">1.15</a> (2014-12-29)
+## <a name="1.15">Version 1.15</a> (2014-12-29)
 
 IMPROVEMENTS:
 
@@ -17,7 +33,7 @@ BUG FIXES:
 
  * Changed several comments inside bootstrap HTML template because of errors reported by Internet Explorer
  
-## <a name="1.14">1.14</a> (2014-12-28)
+## <a name="1.14">Version 1.14</a> (2014-12-28)
 
 **BREAKING CHANGES:**
 

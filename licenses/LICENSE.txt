@@ -73,7 +73,14 @@ Copyright (c) 2004-2006 Jon Skeet. All rights reserved.
 http://codeblog.jonskeet.uk/
 http://www.yoda.arachsys.com/csharp/
  
- 
+
+Markdown files created with MarkdownPad
+Copyright © 2013-2015 Evan Wondrasek / Apricity Software LLC
+All Rights Reserved
+http://markdownpad.com/
+
+
+
  
 Microsoft, PowerShell, Windows, and the Windows logo are trademarks, or 
 registered trademarks of Microsoft Corporation in the United States 

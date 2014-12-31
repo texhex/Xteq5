@@ -295,23 +295,25 @@ begin
      bComponentMissing:=true;
  
      //Set the text of the custom page so the user knows what to download.
-     //However, there is a bug with WMF 4.0 that, if .NET 4.5 is NOT Installed, it will report SUCCESS altough PowerShell wasn't installed at all. 
+
+     //There is a bug with WMF 4.0 that, if .NET 4.5 is NOT Installed, it will report SUCCESS altough PowerShell wasn't installed at all. 
      //   See: http://blogs.msdn.com/b/powershell/archive/2013/10/29/wmf-4-0-known-issue-partial-installation-without-net-framework-4-5.aspx          
-     //Therefore, prefer the display of .NET and only if this is TRUE then display the download link for WMF
+     //Therefore, prefer the display of the .NET download link if both components are missing. 
 
      if (bPowerShellAvailable=false) then begin  
         sTemp:='';      
         sTemp:=sTemp + 'PowerShell 4.0 (or a compatible version) was not found.'+#13#10+#13#10;
         sTemp:=sTemp + 'Please download and install Windows Management Framework 4.0, then re-run setup.'+#13#10+#13#10;
         sTemp:=sTemp + 'http://www.microsoft.com/en-us/download/details.aspx?id=40855';
+        //This download link is also used in /README.md
      end;
 
      if (bDotNetAvailable=false) then begin
         sTemp:='';      
         sTemp:=sTemp + '.NET Framework 4.5 (or a compatible version) was not found.'+#13#10+#13#10;
         sTemp:=sTemp + 'Please download and install it, then re-run setup.'+#13#10+#13#10;
-        sTemp:=sTemp + 'http://www.microsoft.com/en-us/download/details.aspx?id=40773';
-        //sTemp:=sTemp + 'http://go.microsoft.com/?linkid=9831985'; //Offline installer
+        sTemp:=sTemp + 'http://www.microsoft.com/en-us/download/details.aspx?id=40773'; //http://go.microsoft.com/?linkid=9831985' - Offline installer
+        //This download link is also used in /README.md
      end;
      
      sTemp:=sTemp + #13#10 + #13#10 + #13#10 + #13#10 + 'Sorry for the trouble.';         
@@ -349,6 +351,7 @@ end;
 
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
 begin
+  //Allow exit from the "Component not found" page without asking "Are you sure to exit?"
   if CurPageID=pagComponentNotFound.ID then begin
      Cancel:=true;
      Confirm:=false;

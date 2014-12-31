@@ -1,4 +1,0 @@
-
-If this folder is located at "%PROGRAMDATA%\TestUtil\" 
-its content will be overwritten without notice by Setup.exe
-
