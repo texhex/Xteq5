@@ -5,9 +5,9 @@ TestUtil
  
 A known issues testing framework, powered by PowerShell scripts.
 
-Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set to E which should have been done by F”. 
+Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set which should have been done by E”. 
 
-Using TestUtil, you could now write PowerShell script that test A, B, C, D and E. The generated HTML report will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. If another system has a problem, just run TestUtil again and you will be informed in seconds.
+Using TestUtil, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. If another system has a problem, just run TestUtil again and you will be informed in seconds.
 
 **EARLY RELEASE WARNING:** TestUtil is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
 
