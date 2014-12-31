@@ -25,7 +25,7 @@ The most recent version can be downloaded from [Releases][_download].
 * 256MB free memory, ~5 MB free disk space
 * [.NET Framework 4.5][_netfw] (or higher)
 * [PowerShell 4.0][_wmf] (or higher)
-* Download links are provided by Setup.exe if one of these components is not installed
+* Download links are provided by Setup.exe if one of these components are not installed
 
 
 ##<a name="docs">Documentation</a>
