@@ -6,32 +6,49 @@ using System.Threading.Tasks;
 using Yamua;
 
 namespace HeadlessPS
-{
-
-
-    // VariablePlainHashSet : HashSet<VariablePlain>
+{    
 
     /// <summary>
-    /// A minimalistic object for PowerShell variables. Note that trying to add a new VariablePlain with the same name as an existing entry will result in FALSE beeing returned by HashSet.Add() and the new variable will not be added.
+    /// A minimalistic object for PowerShell variables. Note that trying to add a new VariablePlain with the same name as an existing entry 
+    /// will result in FALSE beeing returned by HashSet.Add() and the new variable will not be added.
+    /// To create a collection for VariablePlain, use a hash set like this: HashSet<VariablePlain> variables = new HashSet<VariablePlain>();
     /// </summary>
-    public class VariablePlain : IEquatable<VariablePlain> //IEquatable to make sure that objects with the same .Name are considered to be equal (used by HashSet)
+    public class VariablePlain : IEquatable<VariablePlain> //IEquatable to make sure that objects with the same .Name are considered to be equal (Interface is used by HashSet)
     {
+        /// <summary>
+        /// Create an empty variable
+        /// </summary>
         public VariablePlain()
         {
 
         }
 
+        /// <summary>
+        /// Creates a variable with the given name 
+        /// </summary>
+        /// <param name="Name">Name of the variable</param>
         public VariablePlain(string Name)
         {
             this.Name = Name;
         }
 
+        /// <summary>
+        /// Creates a variable with the given name and value
+        /// </summary>
+        /// <param name="Name">Name of the variable</param>
+        /// <param name="Value">Value of the variable</param>
         public VariablePlain(string Name, Object Value)
         {
             this.Name = Name;
             this.Value = Value;
         }
 
+        /// <summary>
+        /// Creates a read-only variable with the given name and value
+        /// </summary>
+        /// <param name="Name">Name of the variable</param>
+        /// <param name="Value">Value of the variable</param>
+        /// <param name="ReadOnly">TRUE of the variable should be read-only</param>
         public VariablePlain(string Name, Object Value, bool ReadOnly)
         {
             this.Name = Name;
@@ -68,7 +85,7 @@ namespace HeadlessPS
         }
 
         /// <summary>
-        /// Value of the variable. Can be NULL.
+        /// Value of the variable; can be NULL.
         /// </summary>
         public object Value { get; set; }
 

@@ -1,4 +1,4 @@
-## [Version 2015.01.01](https://github.com/texhex/testutil/releases/tag/v2015.01.01) 
+## [WORKING ON Version 2015.01.01](https://github.com/texhex/testutil/releases/tag/v2015.01.01) 
 
 **BREAKING CHANGES:**
 
@@ -9,8 +9,8 @@ IMPROVEMENTS:
 
  * Reworked README.md
  * Reworked /src/README.MD 
- * Reworked function for ConclusionEnum
- * 
+ * Several small code changes
+ *  
  
 BUG FIXES:
 
