@@ -10,11 +10,12 @@ IMPROVEMENTS:
  * Reworked README.md
  * Reworked /src/README.MD 
  * Several small code changes
- *  
+ * Changed About window to monospaced font
+ * Exception handling in TestUtilGUI greatly improved     
  
 BUG FIXES:
 
- * None. 
+ * Strange message when PowerShell assembly can't be found - [#4](https://github.com/texhex/testutil/issues/4)
 
 ## [Version 2014-12-31](https://github.com/texhex/testutil/releases/tag/v1.20) 
 

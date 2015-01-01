@@ -22,7 +22,12 @@ namespace TestUtil
 
         public BootstrapHTMLGenerator(string TemplateHTMLFile)
         {
-            //If the file is not found, this will raise an exception
+            if (File.Exists(TemplateHTMLFile) == false)
+            {
+                throw new TemplateFileNotFoundException(TemplateHTMLFile);
+            }
+
+            //If there is a load error, this will throw an exception
             _templateHTML = new StringBuilder(File.ReadAllText(TemplateHTMLFile, Encoding.UTF8));
         }
 
@@ -39,7 +44,7 @@ namespace TestUtil
             Replace("Computername", Report.ComputerName);
             Replace("UserText", Report.UserText);
             Replace("SourceFolder", Report.SourceFolder);
-            Replace("VersionString", Report.TestUtilVersion.ToString());            
+            Replace("VersionString", Report.TestUtilVersion.ToString());
 
             //Datetime in UTC and ISO 8601 format without fraction of second
             Replace("StartDateTimeUTC", Report.StartedUTC.ToString("s") + "Z");
@@ -84,7 +89,7 @@ namespace TestUtil
             ReplaceHTMLComment("AssetRows", Report.Assets);
             ReplaceHTMLComment("TestRows", Report.Tests);
 
-            string result=_templateHTML.ToString();
+            string result = _templateHTML.ToString();
             return result;
         }
 
@@ -103,7 +108,7 @@ namespace TestUtil
 
             string guidpart = report.ID.ToString("N"); //00000000000000000000000000000000
 
-            string fileName = "TestUtil_Report_" + datepart + "_" + guidpart + ".html"; 
+            string fileName = "TestUtil_Report_" + datepart + "_" + guidpart + ".html";
 
             string fullFilename = Path.Combine(tempPath, fileName);
 

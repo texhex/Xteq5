@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Yamua;
+using HeadlessPS;
 using TestUtil;
-
-
+using Yamua;
 
 namespace TestUtilGUI
 {
@@ -33,11 +32,8 @@ namespace TestUtilGUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Generate default folder 
-            string sPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            _defaultFolderPath = Path.GetFullPath(sPath) + @"\TestUtil";
-
-            //HTML Template
-            //_htmlTemplatePath = ApplicationInformation.Instance.ParentFolder + "BootstrapTemplate1.html";
+            string programDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\TestUtil";
 
             //Check settings
             string folderAppSetting = Properties.Settings.Default.Folder;
@@ -45,7 +41,7 @@ namespace TestUtilGUI
 
             if (string.IsNullOrEmpty(folderAppSetting))
             {
-                //Use user config
+                //Use folderpath from user config
                 string folder = Properties.Settings.Default.FolderUser;
                 if (Directory.Exists(folder))
                 {
@@ -61,9 +57,11 @@ namespace TestUtilGUI
             }
             else
             {
+                //Use folder path from exe.config
                 _folderFromAppSettings = true;
                 labelFolderMessage.Text = "Folder enforced by app.config";
 
+                //Disable buttons so user can not change the folder path
                 buttonSelectFolder.Enabled = false;
                 buttonRevertFolderToDefault.Enabled = false;
 
@@ -88,8 +86,6 @@ namespace TestUtilGUI
                     }
                 }
             }
-
-            this.Text += " (" + TestUtilConstant.AssemblyVersion.ToString() + ")";
 
             string arch = Environment.Is64BitProcess ? "64 bit" : "32 bit";
             SetStatus("Ready. Started as " + arch + " process.");
@@ -129,7 +125,7 @@ namespace TestUtilGUI
 
         private void menuCmdHelpCreate_Click(object sender, EventArgs e)
         {
-            ExecuteAndForget.Execute("https://github.com/texhex/testutil/wiki/");
+            ExecuteAndForget.Execute("https://github.com/texhex/testutil/wiki/_fwLinkScript");
         }
 
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -138,10 +134,20 @@ namespace TestUtilGUI
         }
 
         private void menuCmdHelpAbout_Click(object sender, EventArgs e)
-        {
-            AboutForm about = new AboutForm();
-            about.Text += this.Text;
-            about.ShowDialog();
+        {            
+            //Title of about window
+            string title = "About " + this.Text + " (" + TestUtilConstant.AssemblyVersion.ToString() + ")";
+
+            //Read license.txt
+            string content = "";
+            string filePath = ApplicationInformation.Instance.ParentFolder + @"licenses\license.txt";
+            content = File.Exists(filePath) ? File.ReadAllText(filePath, Encoding.Default) : "Unable to load " + filePath;
+
+
+            MonospacedTextForm mtform = new MonospacedTextForm();
+            mtform.Title=title;
+            mtform.Content=content;
+            mtform.ShowDialog();
         }
 
         private void buttonSelectFolder_Click(object sender, EventArgs e)
@@ -171,9 +177,14 @@ namespace TestUtilGUI
 
         private async void buttonGenerateReport_Click(object sender, EventArgs e)
         {
+            SetStatus("Running...");
+
+            bool failed = true;
+            string failedMessage = "Unknown";
+            Exception failedDetailsException = new Exception("Unknown exception");
+
             try
-            {
-                SetStatus("Running...");
+            {            
                 this.UseWaitCursor = true;
                 Application.DoEvents();
 
@@ -190,20 +201,76 @@ namespace TestUtilGUI
 
                 ExecuteAndForget.Execute(tempFile);
 
-                SetStatus("Done. The report will be displayed in your browser");
+                SetStatus("Done. The report will be displayed in a second.");
+                failed = false;
+            }
+
+            catch (FileNotFoundException fnfe)
+            {
+                //In most cases this means we couldn't load System.Management.Automation. 
+                if (fnfe.Message.Contains("System.Management.Automation"))
+                {
+                    //We need to explain to the user that this means PowerShell is missing. 
+                    failedMessage = "PowerShell is required, but could not be loaded. Please re-run Setup.exe and follow the provided link to install it.";
+                }
+                else
+                {
+                    //In any other case we have no idea what is missing, so use the message from the exception.
+                    failedMessage = fnfe.Message;
+                }
+                
+                failedDetailsException = fnfe;
+            }
+            catch (TemplateFileNotFoundException tfnfe)
+            {
+                //Template file does not exist in folder 
+                failedMessage = "The template file is missing. Please re-run Setup.exe to install it.";
+                failedDetailsException = tfnfe;
+            }
+            catch (PowerShellTestFailedException pstfe)
+            {
+                //The powershell test failed
+                failedMessage = "Testing the PowerShell environment failed. Please see the technical details.";
+                failedDetailsException = pstfe;
+            }
+            catch (DirectoryNotFoundException dnfe)
+            {
+                //The selected folder is missing something. The message already includes all details so we will reuse it. 
+                failedMessage = "The selected folder can't be used: " + dnfe.Message;
+                failedDetailsException = dnfe;
             }
             catch (Exception exc)
             {
-                SetStatus("Failed");
-                //Well, this is embarrassing.
-                MessageBox.Show(string.Format("Sorry it didn't work out.\r\n\r\n{0}", exc.ToString()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                MessageBox.Show(exc.ToString());
+                //No idea what happened. Use the message from the exception.
+                failedMessage = exc.Message;
+                failedDetailsException = exc;
             }
 
             finally
             {
                 this.UseWaitCursor = false;
+            }
+
+
+            //Hopefully failed is not TRUE
+            if (failed)
+            {
+                SetStatus("Failed");
+
+                //Error message from Firefox: Well, this is embarrassing
+                //Error message from Apache server: We're sorry, but something went wrong
+                string title = "We're sorry, but something went wrong";
+
+                string message = string.Format("{0}\r\n\r\n\r\nDo you wish to view technical details?", failedMessage);
+
+                if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    MonospacedTextForm mtform = new MonospacedTextForm();
+                    mtform.Title = "Details";
+                    mtform.Content = failedDetailsException.ToString();
+                    mtform.ShowDialog();
+                }
+
             }
 
         }
