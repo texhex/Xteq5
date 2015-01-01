@@ -37,6 +37,7 @@ BUG FIXES:
 IMPROVEMENTS:
 
  * Tests can now access asset values ($TestUtilAssets) without using the exact case for the name. A case-insensitive hash table is now used.
+ * Setup now checks if PowerShell 4.0 (WMF 4.0) and .NET 4.5 are installed and show a download link if not. 
  
 BUG FIXES:
 
