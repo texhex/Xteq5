@@ -85,11 +85,12 @@ namespace TestUtil
         }
 
         /// <summary>
-        /// Converts a ConclusioEnum to a human friendly string
+        /// Converts a ConclusioEnum to a human friendly string.
+        /// The verb "Humanize" is taken from this great project: [Humanizer](https://github.com/MehdiK/Humanizer)
         /// </summary>
         /// <param name="Conclusion">Conclusion to retrieve a humanized string for</param>
         /// <returns>The humanized string</returns>
-        public static string ConclusionHumanString(ConclusionEnum Conclusion)
+        public static string ConclusionHumanized(ConclusionEnum Conclusion)
         {
             switch (Conclusion)
             {
@@ -121,7 +122,7 @@ namespace TestUtil
         /// </summary>
         /// <param name="Conclusion">Conclusion to return text for</param>
         /// <returns>A sentence describing the conclusiong</returns>
-        public static string TestRecordConclusionDescriptionHumanString(ConclusionEnum Conclusion)
+        public static string TestRecordConclusionDescription(ConclusionEnum Conclusion)
         {
             switch (Conclusion)
             {
@@ -153,11 +154,12 @@ namespace TestUtil
         }
 
         /// <summary>
-        /// Returns a recommended action for the user, based on the conclusion
+        /// Returns a recommended action for the user, based on the conclusion. 
+        /// This exists only for tests, because for assets there is never a recommended action.
         /// </summary>
         /// <param name="Conclusion">Conclusion to get a recommended action for</param>
         /// <returns>An empty string if no recommended action exist, or the recommended action</returns>
-        public static string TestRecordConclusionRecommendedActionHumanString(ConclusionEnum Conclusion)
+        public static string TestRecordConclusionRecommendedAction(ConclusionEnum Conclusion)
         {
             switch (Conclusion)
             {
@@ -183,7 +185,7 @@ namespace TestUtil
         /// </summary>
         /// <param name="Conclusion">Conclusion to return a sentence for</param>
         /// <returns>A sentence describing the conclusion</returns>
-        public static string AssetRecordConclusionDescriptionHumanString(ConclusionEnum Conclusion)
+        public static string AssetRecordConclusionDescription(ConclusionEnum Conclusion)
         {
             switch (Conclusion)
             {

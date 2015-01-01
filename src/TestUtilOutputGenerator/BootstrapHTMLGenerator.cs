@@ -51,33 +51,33 @@ namespace TestUtil
             Replace("Tests", Report.TestStatiscs);
 
             //Replace Result texts (e.g. Success = "OK", Fatal = "Crashed" etc.)
-            Replace("ResultText.DoesNotApply", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.DoesNotApply));
-            Replace("ResultText.Success", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.Success));
-            Replace("ResultText.Fatal", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.Fatal));
-            Replace("ResultText.Inconclusive", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.Inconclusive));
-            Replace("ResultText.Major", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.Major));
-            Replace("ResultText.Minor", ConclusionEnumConverter.ConclusionHumanString(ConclusionEnum.Minor));
+            Replace("ResultText.DoesNotApply", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.DoesNotApply));
+            Replace("ResultText.Success", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.Success));
+            Replace("ResultText.Fatal", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.Fatal));
+            Replace("ResultText.Inconclusive", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.Inconclusive));
+            Replace("ResultText.Major", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.Major));
+            Replace("ResultText.Minor", ConclusionEnumConverter.ConclusionHumanized(ConclusionEnum.Minor));
 
             //Replace text values for assets
-            Replace("AssetText.DoesNotApply", ConclusionEnumConverter.AssetRecordConclusionDescriptionHumanString(ConclusionEnum.DoesNotApply));
-            Replace("AssetText.Success", ConclusionEnumConverter.AssetRecordConclusionDescriptionHumanString(ConclusionEnum.Success));
-            Replace("AssetText.Fatal", ConclusionEnumConverter.AssetRecordConclusionDescriptionHumanString(ConclusionEnum.Fatal));
+            Replace("AssetText.DoesNotApply", ConclusionEnumConverter.AssetRecordConclusionDescription(ConclusionEnum.DoesNotApply));
+            Replace("AssetText.Success", ConclusionEnumConverter.AssetRecordConclusionDescription(ConclusionEnum.Success));
+            Replace("AssetText.Fatal", ConclusionEnumConverter.AssetRecordConclusionDescription(ConclusionEnum.Fatal));
 
             //Replace text values for tests
-            Replace("TestText.DoesNotApply", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.DoesNotApply));
-            Replace("TestText.Success", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.Success));
-            Replace("TestText.Fatal", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.Fatal));
-            Replace("TestText.Inconclusive", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.Inconclusive));
-            Replace("TestText.Major", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.Major));
-            Replace("TestText.Minor", ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(ConclusionEnum.Minor));
+            Replace("TestText.DoesNotApply", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.DoesNotApply));
+            Replace("TestText.Success", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.Success));
+            Replace("TestText.Fatal", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.Fatal));
+            Replace("TestText.Inconclusive", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.Inconclusive));
+            Replace("TestText.Major", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.Major));
+            Replace("TestText.Minor", ConclusionEnumConverter.TestRecordConclusionDescription(ConclusionEnum.Minor));
 
             //Recplace recommended action for tests
-            Replace("TestActionText.DoesNotApply", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.DoesNotApply));
-            Replace("TestActionText.Success", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.Success));
-            Replace("TestActionText.Fatal", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.Fatal));
-            Replace("TestActionText.Inconclusive", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.Inconclusive));
-            Replace("TestActionText.Major", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.Major));
-            Replace("TestActionText.Minor", ConclusionEnumConverter.TestRecordConclusionRecommendedActionHumanString(ConclusionEnum.Minor));
+            Replace("TestActionText.DoesNotApply", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.DoesNotApply));
+            Replace("TestActionText.Success", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.Success));
+            Replace("TestActionText.Fatal", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.Fatal));
+            Replace("TestActionText.Inconclusive", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.Inconclusive));
+            Replace("TestActionText.Major", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.Major));
+            Replace("TestActionText.Minor", ConclusionEnumConverter.TestRecordConclusionRecommendedAction(ConclusionEnum.Minor));
 
 
             //Add entries to tables

@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace TestUtil
 {
     /// <summary>
-    /// Represents primary and secondary result for an item. This differs for assets and tests
+    /// Represents how to display the result of an item (Test or Asset) to a user. 
+    /// For an assets we have the conclusion, data and description, while for a test we have only conclusion and description. Description might be empty if the script does not return anything for .Text.
+    /// Therefore it's not trivial what to display as important information (Primary) and less important (Secondary) information to a user.
+    /// This class tries to solve this. 
     /// </summary>
     internal class ResultPrimarySecondary
     {
@@ -25,41 +28,41 @@ namespace TestUtil
             //Short-circut some values
             Conclusion = Record.Conclusion;
             string description = string.IsNullOrWhiteSpace(Record.Description) ? string.Empty : Record.Description;
-                   
+
             switch (Conclusion)
             {
                 //The primary result for these conclusion is always our pre-set value and (if available) the description from the script as secondary 
                 case ConclusionEnum.Success:
                 case ConclusionEnum.DoesNotApply:
                 case ConclusionEnum.Fatal:
-                    Primary = ConclusionEnumConverter.ConclusionHumanString(Conclusion);
+                    Primary = ConclusionEnumConverter.ConclusionHumanized(Conclusion);
                     if (Record is AssetRecord)
                     {
                         //Assign to secondary either the default conclusion description or the one from the script
-                        Secondary = string.IsNullOrWhiteSpace(description) ? ConclusionEnumConverter.AssetRecordConclusionDescriptionHumanString(Conclusion) : description;
+                        Secondary = string.IsNullOrWhiteSpace(description) ? ConclusionEnumConverter.AssetRecordConclusionDescription(Conclusion) : description;
                     }
                     else
                     {
-                        Secondary = string.IsNullOrWhiteSpace(description) ? ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(Conclusion) : description;
+                        Secondary = string.IsNullOrWhiteSpace(description) ? ConclusionEnumConverter.TestRecordConclusionDescription(Conclusion) : description;
                     }
 
                     break;
 
 
-                //For these conclusions, the text will be promoted to be Primary, and our internal description for the conclusion is secondary
-                //The exception for this rule is if we have text, then the internal value will be used
+                //For these conclusions, the text will be promoted to be Primary, and our internal description for the conclusion is secondary.
+                //The exception for this rule is if we have text, then the value from the script will be used
                 case ConclusionEnum.Inconclusive:
                 case ConclusionEnum.Major:
                 case ConclusionEnum.Minor:
                     if (Record is AssetRecord)
                     {
-                        Primary = string.IsNullOrEmpty(description) ? ConclusionEnumConverter.ConclusionHumanString(Conclusion) : description;
-                        Secondary = ConclusionEnumConverter.AssetRecordConclusionDescriptionHumanString(Conclusion);
+                        Primary = string.IsNullOrEmpty(description) ? ConclusionEnumConverter.ConclusionHumanized(Conclusion) : description;
+                        Secondary = ConclusionEnumConverter.AssetRecordConclusionDescription(Conclusion);
                     }
                     else
                     {
-                        Primary = string.IsNullOrEmpty(description) ? ConclusionEnumConverter.ConclusionHumanString(Conclusion) : description;
-                        Secondary = ConclusionEnumConverter.TestRecordConclusionDescriptionHumanString(Conclusion);
+                        Primary = string.IsNullOrEmpty(description) ? ConclusionEnumConverter.ConclusionHumanized(Conclusion) : description;
+                        Secondary = ConclusionEnumConverter.TestRecordConclusionDescription(Conclusion);
 
                     }
                     break;

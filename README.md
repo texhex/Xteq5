@@ -23,9 +23,9 @@ The most recent version can be downloaded from [Releases][_download].
 
 * Windows 7 SP1 / Windows Server 2008 SP2 (or higher)
 * 256MB free memory, ~5 MB free disk space
-* [.NET Framework 4.5][_netfw] (or higher)
+* [.NET Framework 4.5][_netframework] (or higher)
 * [PowerShell 4.0][_wmf] (or higher)
-* Download links are provided by Setup.exe if one of these components are not installed
+* Download links are provided by Setup.exe if one of the components is not installed
 
 
 ##<a name="docs">Documentation</a>
@@ -45,11 +45,11 @@ If you have created a script you want us to include, please open a new [issue][_
 
 ##<a name="copyright">Copyright and License</a>
 
-Copyright © 2010-2015 [Michael 'Tex' Hex][_texhexhomepage] ([@texhex][_texhexgithub]), licensed under the **Apache License, Version 2.0**.
+Copyright © 2010-2015 [Michael 'Tex' Hex][_texhexhomepage] ([@texhex][_texhexgithub]).
 
-For details, please see [LICENSE.txt][_license].
+Licensed under the **Apache License, Version 2.0**. For details, please see [LICENSE.txt][_license].
 
-*TestUtil* and the *Radar* icon/logo - Copyright © 2010-2015 Michael 'Tex' Hex - All Rights Reserved - Created by [designklima](http://designklima.com/)
+*TestUtil* and the *Radar* logo (Created by [designklima](http://designklima.com/)) - Copyright © 2010-2015 Michael 'Tex' Hex - All Rights Reserved 
 
 
 
@@ -58,7 +58,7 @@ For details, please see [LICENSE.txt][_license].
 [_license]:licenses/LICENSE.txt
 [_wiki]:https://github.com/texhex/testutil/wiki
 [_download]:https://github.com/texhex/testutil/releases
-[_netfw]:http://www.microsoft.com/en-us/download/details.aspx?id=40773
+[_netframework]:http://www.microsoft.com/en-us/download/details.aspx?id=40773
 [_wmf]:http://www.microsoft.com/en-us/download/details.aspx?id=40855
 [_issuenew]:https://github.com/texhex/testutil/issues/new
 [_wiki_newscript]:https://github.com/texhex/testutil/wiki/_fwLinkScript

@@ -1,4 +1,22 @@
-## [Version 1.20](https://github.com/texhex/testutil/releases/tag/v1.20) (2014-12-31)
+## [Version 2015.01.01](https://github.com/texhex/testutil/releases/tag/v2015.01.01) 
+
+**BREAKING CHANGES:**
+
+* CHANGELOG.MD and releases now use the publish date as version tag 
+* Changed previous releases to this new format  
+
+IMPROVEMENTS:
+
+ * Reworked README.md
+ * Reworked /src/README.MD 
+ * Reworked function for ConclusionEnum
+ * 
+ 
+BUG FIXES:
+
+ * None. 
+
+## [Version 2014-12-31](https://github.com/texhex/testutil/releases/tag/v1.20) 
 
 IMPROVEMENTS:
 
@@ -13,7 +31,7 @@ BUG FIXES:
 
  * Fixed wrong date for v1.19 in this file
 
-## [Version 1.19](https://github.com/texhex/testutil/releases/tag/v1.19) (2014-12-30)
+## [Version 2014-12-30](https://github.com/texhex/testutil/releases/tag/v1.19)
 
 IMPROVEMENTS:
 
@@ -23,7 +41,7 @@ BUG FIXES:
 
  * Scripts did not run when the PowerShell ExecutionPolicy was undefined
  
-## <a name="1.15">Version 1.15</a> (2014-12-29)
+## <a name="1.15">Version 2014-12-29</a>
 
 IMPROVEMENTS:
 
@@ -33,7 +51,7 @@ BUG FIXES:
 
  * Changed several comments inside bootstrap HTML template because of errors reported by Internet Explorer
  
-## <a name="1.14">Version 1.14</a> (2014-12-28)
+## <a name="1.14">Version 2014-12-28</a>
 
 **BREAKING CHANGES:**
 

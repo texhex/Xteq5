@@ -48,7 +48,7 @@ ArchitecturesInstallIn64BitMode=x64
 ;Allow to be installed in x32 or x64 mode
 ArchitecturesAllowed=x86 x64
 
-;This should be a good name for the files
+;Store to C:\Program Files\TestUtil by default
 DefaultDirName={pf}\TestUtil
 
 ;Icon inside Add/Remove programs
@@ -90,7 +90,7 @@ Compression=lzma2
 ;We can use solid compression as all files will be installed
 SolidCompression=yes
 
-;Do not allow use to select a folder
+;Do not allow use to select a folder because we want to be installed into the native C:\Program Files folder and 
 DisableDirPage=yes
 
 ;We create a single icon anyway 
