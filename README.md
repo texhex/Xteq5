@@ -1,13 +1,15 @@
-TestUtil
+About TestUtil
 ========
 
 <img src="https://github.com/texhex/testutil/raw/master/images/testutil_small.png" alt="TestUtil logo" title="TestUtil" align="right" style="max-width:100%;" />
  
 A known issues testing framework, powered by PowerShell scripts.
 
-Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set which should have been done by E”. 
+Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set by E”. 
 
-Using TestUtil, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. If another system has a problem, just run TestUtil again and you will be informed in seconds.
+Using TestUtil, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. Just run TestUtil again and you will be informed in seconds.
+
+This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with TestUtil if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
 
 **EARLY RELEASE WARNING:** TestUtil is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
 
