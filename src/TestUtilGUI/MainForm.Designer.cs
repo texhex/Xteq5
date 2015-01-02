@@ -35,6 +35,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCmdHelpHomepage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuCmdHelpWiki = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuCmdHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusContainer = new System.Windows.Forms.StatusStrip();
             this.statusbarLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -49,8 +51,6 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBoxAdditonalText = new System.Windows.Forms.GroupBox();
             this.textBoxUserText = new System.Windows.Forms.TextBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuCmdHelpWiki = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusContainer.SuspendLayout();
             this.groupBoxFolder.SuspendLayout();
@@ -109,6 +109,18 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(219, 6);
             // 
+            // menuCmdHelpWiki
+            // 
+            this.menuCmdHelpWiki.Name = "menuCmdHelpWiki";
+            this.menuCmdHelpWiki.Size = new System.Drawing.Size(222, 24);
+            this.menuCmdHelpWiki.Text = "&Create your own tests...";
+            this.menuCmdHelpWiki.Click += new System.EventHandler(this.menuCmdHelpCreate_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(219, 6);
+            // 
             // menuCmdHelpAbout
             // 
             this.menuCmdHelpAbout.Name = "menuCmdHelpAbout";
@@ -146,7 +158,7 @@
             this.groupBoxFolder.Name = "groupBoxFolder";
             this.groupBoxFolder.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxFolder.Size = new System.Drawing.Size(456, 131);
-            this.groupBoxFolder.TabIndex = 2;
+            this.groupBoxFolder.TabIndex = 0;
             this.groupBoxFolder.TabStop = false;
             this.groupBoxFolder.Text = "Folder to load assets and tests from";
             // 
@@ -155,8 +167,8 @@
             this.buttonRevertFolderToDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRevertFolderToDefault.Location = new System.Drawing.Point(232, 87);
             this.buttonRevertFolderToDefault.Name = "buttonRevertFolderToDefault";
-            this.buttonRevertFolderToDefault.Size = new System.Drawing.Size(216, 28);
-            this.buttonRevertFolderToDefault.TabIndex = 5;
+            this.buttonRevertFolderToDefault.Size = new System.Drawing.Size(216, 32);
+            this.buttonRevertFolderToDefault.TabIndex = 4;
             this.buttonRevertFolderToDefault.Text = "Revert folder to default";
             this.buttonRevertFolderToDefault.UseVisualStyleBackColor = true;
             this.buttonRevertFolderToDefault.Click += new System.EventHandler(this.buttonRevertFolderToDefault_Click);
@@ -165,8 +177,8 @@
             // 
             this.buttonViewFolderInExplorer.Location = new System.Drawing.Point(7, 87);
             this.buttonViewFolderInExplorer.Name = "buttonViewFolderInExplorer";
-            this.buttonViewFolderInExplorer.Size = new System.Drawing.Size(216, 28);
-            this.buttonViewFolderInExplorer.TabIndex = 4;
+            this.buttonViewFolderInExplorer.Size = new System.Drawing.Size(216, 32);
+            this.buttonViewFolderInExplorer.TabIndex = 3;
             this.buttonViewFolderInExplorer.Text = "View folder in Explorer...";
             this.buttonViewFolderInExplorer.UseVisualStyleBackColor = true;
             this.buttonViewFolderInExplorer.Click += new System.EventHandler(this.buttonViewFolderInExplorer_Click);
@@ -183,11 +195,11 @@
             // buttonSelectFolder
             // 
             this.buttonSelectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSelectFolder.Location = new System.Drawing.Point(348, 20);
+            this.buttonSelectFolder.Location = new System.Drawing.Point(347, 18);
             this.buttonSelectFolder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSelectFolder.Name = "buttonSelectFolder";
-            this.buttonSelectFolder.Size = new System.Drawing.Size(100, 28);
-            this.buttonSelectFolder.TabIndex = 1;
+            this.buttonSelectFolder.Size = new System.Drawing.Size(100, 32);
+            this.buttonSelectFolder.TabIndex = 2;
             this.buttonSelectFolder.Text = "...";
             this.buttonSelectFolder.UseVisualStyleBackColor = true;
             this.buttonSelectFolder.Click += new System.EventHandler(this.buttonSelectFolder_Click);
@@ -201,7 +213,7 @@
             this.textBoxFolder.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFolder.Name = "textBoxFolder";
             this.textBoxFolder.Size = new System.Drawing.Size(332, 22);
-            this.textBoxFolder.TabIndex = 0;
+            this.textBoxFolder.TabIndex = 1;
             // 
             // groupBoxReport
             // 
@@ -212,7 +224,7 @@
             this.groupBoxReport.Location = new System.Drawing.Point(16, 231);
             this.groupBoxReport.Name = "groupBoxReport";
             this.groupBoxReport.Size = new System.Drawing.Size(456, 115);
-            this.groupBoxReport.TabIndex = 3;
+            this.groupBoxReport.TabIndex = 7;
             this.groupBoxReport.TabStop = false;
             this.groupBoxReport.Text = "Report";
             // 
@@ -224,7 +236,7 @@
             this.buttonGenerateReport.Location = new System.Drawing.Point(69, 21);
             this.buttonGenerateReport.Name = "buttonGenerateReport";
             this.buttonGenerateReport.Size = new System.Drawing.Size(310, 80);
-            this.buttonGenerateReport.TabIndex = 0;
+            this.buttonGenerateReport.TabIndex = 8;
             this.buttonGenerateReport.Text = "Generate and display report";
             this.buttonGenerateReport.UseVisualStyleBackColor = true;
             this.buttonGenerateReport.Click += new System.EventHandler(this.buttonGenerateReport_Click);
@@ -241,7 +253,7 @@
             this.groupBoxAdditonalText.Location = new System.Drawing.Point(16, 175);
             this.groupBoxAdditonalText.Name = "groupBoxAdditonalText";
             this.groupBoxAdditonalText.Size = new System.Drawing.Size(456, 50);
-            this.groupBoxAdditonalText.TabIndex = 4;
+            this.groupBoxAdditonalText.TabIndex = 5;
             this.groupBoxAdditonalText.TabStop = false;
             this.groupBoxAdditonalText.Text = "Additonal text to be included on the report";
             // 
@@ -252,22 +264,11 @@
             this.textBoxUserText.Location = new System.Drawing.Point(6, 21);
             this.textBoxUserText.Name = "textBoxUserText";
             this.textBoxUserText.Size = new System.Drawing.Size(441, 22);
-            this.textBoxUserText.TabIndex = 0;
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(219, 6);
-            // 
-            // menuCmdHelpWiki
-            // 
-            this.menuCmdHelpWiki.Name = "menuCmdHelpWiki";
-            this.menuCmdHelpWiki.Size = new System.Drawing.Size(222, 24);
-            this.menuCmdHelpWiki.Text = "&Create your own tests...";
-            this.menuCmdHelpWiki.Click += new System.EventHandler(this.menuCmdHelpCreate_Click);
+            this.textBoxUserText.TabIndex = 6;
             // 
             // MainForm
             // 
+            this.AcceptButton = this.buttonGenerateReport;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 373);

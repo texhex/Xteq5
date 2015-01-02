@@ -41,11 +41,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox.Location = new System.Drawing.Point(5, 5);
-            this.richTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.richTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ReadOnly = true;
             this.richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.richTextBox.Size = new System.Drawing.Size(691, 412);
+            this.richTextBox.Size = new System.Drawing.Size(691, 428);
             this.richTextBox.TabIndex = 8;
             this.richTextBox.Text = "";
             this.richTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox_LinkClicked);
@@ -59,17 +59,17 @@
             this.panelRichTextBox.Controls.Add(this.richTextBox);
             this.panelRichTextBox.Location = new System.Drawing.Point(12, 12);
             this.panelRichTextBox.Name = "panelRichTextBox";
-            this.panelRichTextBox.Size = new System.Drawing.Size(702, 423);
+            this.panelRichTextBox.Size = new System.Drawing.Size(702, 439);
             this.panelRichTextBox.TabIndex = 10;
             // 
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonClose.Location = new System.Drawing.Point(560, 446);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonClose.Location = new System.Drawing.Point(560, 459);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(5);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(154, 45);
+            this.buttonClose.Size = new System.Drawing.Size(154, 32);
             this.buttonClose.TabIndex = 9;
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
