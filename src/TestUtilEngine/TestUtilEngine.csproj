@@ -80,6 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AssetRecord.cs" />
     <Compile Include="AssetScriptRunner.cs" />
     <Compile Include="BaseScriptRunner.cs" />
@@ -91,7 +94,6 @@
     <Compile Include="TestUtilConstant.cs" />
     <Compile Include="TestRecord.cs" />
     <Compile Include="TestUtilRunner.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeadlessPS\HeadlessPS.csproj">

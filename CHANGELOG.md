@@ -9,6 +9,7 @@ IMPROVEMENTS:
  * Finished (sort of) https://github.com/texhex/testutil/wiki/Custom-scripts
  * Updatead README.TXT in /src/scripts/
  * Fixed code analysis errors in GlobalAtom.cs
+ * Added SharedAssemblyInfo to all important projects
  * 
  
 BUG FIXES:

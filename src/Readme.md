@@ -26,7 +26,7 @@
   
   - Run Code Analyizes (_Analyze_ > _Run Code Analysis on Solution_)
   
-  - If you make a change to the code, update _TestUtilEngine\Properties\AssemblyInfo.cs_ and increment _AssemblyVersion_. This information is the main indicator for the version of the binary files. 
+  - If you make a change to the code, update _Solution items_ > _SharedAssemblyInfo.cs_ and increment _AssemblyVersion_. This information is uses as version details in all TestUtil projects.
      
   - Update CHANGELOG.md
 
