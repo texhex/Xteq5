@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCmdFileExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCmdHelpHomepage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuCmdHelpWiki = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,51 +51,53 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBoxAdditonalText = new System.Windows.Forms.GroupBox();
             this.textBoxUserText = new System.Windows.Forms.TextBox();
-            this.menuStrip1.SuspendLayout();
+            this.labelHorizontalLine = new System.Windows.Forms.Label();
+            this.menuStrip.SuspendLayout();
             this.statusContainer.SuspendLayout();
             this.groupBoxFolder.SuspendLayout();
             this.groupBoxReport.SuspendLayout();
             this.groupBoxAdditonalText.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(484, 27);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile,
+            this.menuHelp});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Margin = new System.Windows.Forms.Padding(4);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(484, 27);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // menuFile
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCmdFileExit});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 23);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.menuFile.Name = "menuFile";
+            this.menuFile.Size = new System.Drawing.Size(41, 23);
+            this.menuFile.Text = "&File";
             // 
             // menuCmdFileExit
             // 
             this.menuCmdFileExit.Name = "menuCmdFileExit";
-            this.menuCmdFileExit.Size = new System.Drawing.Size(99, 24);
+            this.menuCmdFileExit.Size = new System.Drawing.Size(162, 24);
             this.menuCmdFileExit.Text = "E&xit";
             this.menuCmdFileExit.Click += new System.EventHandler(this.menuCmdFileExit_Click);
             // 
-            // helpToolStripMenuItem
+            // menuHelp
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCmdHelpHomepage,
             this.toolStripMenuItem1,
             this.menuCmdHelpWiki,
             this.toolStripMenuItem2,
             this.menuCmdHelpAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.menuHelp.Name = "menuHelp";
+            this.menuHelp.Size = new System.Drawing.Size(49, 23);
+            this.menuHelp.Text = "&Help";
             // 
             // menuCmdHelpHomepage
             // 
@@ -164,22 +166,22 @@
             // 
             // buttonRevertFolderToDefault
             // 
-            this.buttonRevertFolderToDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRevertFolderToDefault.Location = new System.Drawing.Point(232, 87);
+            this.buttonRevertFolderToDefault.Location = new System.Drawing.Point(7, 87);
             this.buttonRevertFolderToDefault.Name = "buttonRevertFolderToDefault";
             this.buttonRevertFolderToDefault.Size = new System.Drawing.Size(216, 32);
-            this.buttonRevertFolderToDefault.TabIndex = 4;
-            this.buttonRevertFolderToDefault.Text = "Revert folder to default";
+            this.buttonRevertFolderToDefault.TabIndex = 3;
+            this.buttonRevertFolderToDefault.Text = "Revert to default";
             this.buttonRevertFolderToDefault.UseVisualStyleBackColor = true;
             this.buttonRevertFolderToDefault.Click += new System.EventHandler(this.buttonRevertFolderToDefault_Click);
             // 
             // buttonViewFolderInExplorer
             // 
-            this.buttonViewFolderInExplorer.Location = new System.Drawing.Point(7, 87);
+            this.buttonViewFolderInExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonViewFolderInExplorer.Location = new System.Drawing.Point(232, 87);
             this.buttonViewFolderInExplorer.Name = "buttonViewFolderInExplorer";
             this.buttonViewFolderInExplorer.Size = new System.Drawing.Size(216, 32);
-            this.buttonViewFolderInExplorer.TabIndex = 3;
-            this.buttonViewFolderInExplorer.Text = "View folder in Explorer...";
+            this.buttonViewFolderInExplorer.TabIndex = 4;
+            this.buttonViewFolderInExplorer.Text = "View in Explorer...";
             this.buttonViewFolderInExplorer.UseVisualStyleBackColor = true;
             this.buttonViewFolderInExplorer.Click += new System.EventHandler(this.buttonViewFolderInExplorer_Click);
             // 
@@ -223,7 +225,7 @@
             this.groupBoxReport.Controls.Add(this.buttonGenerateReport);
             this.groupBoxReport.Location = new System.Drawing.Point(16, 231);
             this.groupBoxReport.Name = "groupBoxReport";
-            this.groupBoxReport.Size = new System.Drawing.Size(456, 115);
+            this.groupBoxReport.Size = new System.Drawing.Size(456, 106);
             this.groupBoxReport.TabIndex = 7;
             this.groupBoxReport.TabStop = false;
             this.groupBoxReport.Text = "Report";
@@ -235,7 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGenerateReport.Location = new System.Drawing.Point(69, 21);
             this.buttonGenerateReport.Name = "buttonGenerateReport";
-            this.buttonGenerateReport.Size = new System.Drawing.Size(310, 80);
+            this.buttonGenerateReport.Size = new System.Drawing.Size(310, 71);
             this.buttonGenerateReport.TabIndex = 8;
             this.buttonGenerateReport.Text = "Generate and display report";
             this.buttonGenerateReport.UseVisualStyleBackColor = true;
@@ -266,20 +268,32 @@
             this.textBoxUserText.Size = new System.Drawing.Size(441, 22);
             this.textBoxUserText.TabIndex = 6;
             // 
+            // labelHorizontalLine
+            // 
+            this.labelHorizontalLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelHorizontalLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelHorizontalLine.Location = new System.Drawing.Point(0, 26);
+            this.labelHorizontalLine.Name = "labelHorizontalLine";
+            this.labelHorizontalLine.Size = new System.Drawing.Size(484, 10);
+            this.labelHorizontalLine.TabIndex = 0;
+            this.labelHorizontalLine.Text = "HORIZONTAL LINE";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.buttonGenerateReport;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 373);
+            this.Controls.Add(this.labelHorizontalLine);
             this.Controls.Add(this.groupBoxAdditonalText);
             this.Controls.Add(this.groupBoxReport);
             this.Controls.Add(this.groupBoxFolder);
             this.Controls.Add(this.statusContainer);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.830189F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(500, 415);
@@ -289,8 +303,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.statusContainer.ResumeLayout(false);
             this.statusContainer.PerformLayout();
             this.groupBoxFolder.ResumeLayout(false);
@@ -305,12 +319,12 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.StatusStrip statusContainer;
         private System.Windows.Forms.ToolStripStatusLabel statusbarLabel;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuFile;
         private System.Windows.Forms.ToolStripMenuItem menuCmdFileExit;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuHelp;
         private System.Windows.Forms.ToolStripMenuItem menuCmdHelpHomepage;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem menuCmdHelpAbout;
@@ -327,6 +341,7 @@
         private System.Windows.Forms.TextBox textBoxUserText;
         private System.Windows.Forms.ToolStripMenuItem menuCmdHelpWiki;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.Label labelHorizontalLine;
     }
 }
 

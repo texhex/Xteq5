@@ -94,6 +94,13 @@ namespace TestUtilGUI
         private void MainForm_Shown(object sender, EventArgs e)
         {
             FormFontFixer.Fix(this);
+
+            //Convert the horizontal line label to a real line
+            labelHorizontalLine.Text = "";
+            labelHorizontalLine.Height = 2;
+            
+            Point location = labelHorizontalLine.Location;
+            location.Y = menuStrip.Size.Height;             
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

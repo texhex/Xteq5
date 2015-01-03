@@ -1,4 +1,4 @@
-## [WORKING ON Version 2015.xx.xx](https://github.com/texhex/testutil/releases/tag/v2015.xx.xx) 
+## [Version 2015.01.03](https://github.com/texhex/testutil/releases/tag/v2015.01.03) 
 
 IMPROVEMENTS:
 
@@ -11,6 +11,7 @@ IMPROVEMENTS:
  * Setup now creates VERSION.ini in install directory
  * Changed all files in /src/scripts so the filename starts with _ (underscore)
  * Updated README.TXT in /src/scripts/ 
+ * Changed button placement in TestUtilGUI
  
 BUG FIXES:
 
