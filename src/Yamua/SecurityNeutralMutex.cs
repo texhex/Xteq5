@@ -5,7 +5,7 @@ using System.Threading;
 using System.Security.AccessControl;
 using System.Security.Principal;
 
-namespace xsharq.common
+namespace Yamua
 {
     public static class SecurityNeutralMutex
     {

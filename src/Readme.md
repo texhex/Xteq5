@@ -8,8 +8,7 @@
  - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`TestUtilEngine-Consumer` uses `TestUtilEngine`).
  - Projects that end in **xUnitTest** are test assemblies for [xUnit](https://github.com/xunit/xunit)
  - If you get the error __The type or namespace name 'Xunit' could not be found (are you missing a using directive or an assembly reference?)__, xUnit needs to be downloaded using NuGet.
- - Also download _Xunit runners_ using NuGet. This allow you to run all xUnit tests with the build-in Visual Studio Test Explorer (_Test_ > _Windows_ > _Test Explorer_)
-
+ - Also download _Xunit runners_ using NuGet. 
 
 ## Projects
  - `HeadlessPS` is a library to run scripts using PowerShell.
@@ -23,8 +22,12 @@
 
 ## Build procedure
 
-  - If you make a change to the code, update _TestUtilEngine\Properties\AssemblyInfo.cs_ and increment _AssemblyVersion_. This information is the main indicator for the version of the binary files. 
+  - Run all xUnit tests with the build-in Visual Studio Test Explorer (_Test_ > _Windows_ > _Test Explorer_)
   
+  - Run Code Analyizes (_Analyze_ > _Run Code Analysis on Solution_)
+  
+  - If you make a change to the code, update _TestUtilEngine\Properties\AssemblyInfo.cs_ and increment _AssemblyVersion_. This information is the main indicator for the version of the binary files. 
+     
   - Update CHANGELOG.md
 
   - Commit to GitHub
@@ -41,7 +44,7 @@
      
      - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2014-12-31_ than the correct tag is **v2014.12.31**.  
      - Second field is what the user sees, so please use **Version 2014.12.31**
-     - Add **Please see [CHANGELOG.md](CHANGELOG.md) for details**. This will automatically be linked to the changelog for that release using the tag.  
+     - Add `**Please see [CHANGELOG.md](CHANGELOG.md) for details**`. This will automatically be linked to the changelog for that release using the tag.  
    
     
     
@@ -55,5 +58,5 @@
  
   * [ISO 8601](http://xkcd.com/1179/)
   
-  * [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) this time for real 
+  * [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) 
 

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // #### Properties for TestUtilEngine - Start #### //
 [assembly: AssemblyTitle("TestUtilEngine")] //Explorer: File description
 [assembly: AssemblyProduct("http://www.testutil.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("1.21.*")]
+[assembly: AssemblyVersion("1.22.*")]
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion
 
 [assembly: AssemblyDescription("For more information, please visit http://www.testutil.com/")] //It's actually a comment: $File.VersionInfo.Comments
@@ -25,4 +25,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("214032e2-bad1-429d-8344-7b56e30ed4cc")]
+//[assembly: Guid("214032e2-bad1-429d-8344-7b56e30ed4cc")]

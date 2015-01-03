@@ -7,6 +7,9 @@ IMPROVEMENTS:
  * Changed button sizing TestUtilGUI
  * Changed html template
  * Finished (sort of) https://github.com/texhex/testutil/wiki/Custom-scripts
+ * Updatead README.TXT in /src/scripts/
+ * Fixed code analysis errors in GlobalAtom.cs
+ * 
  
 BUG FIXES:
 

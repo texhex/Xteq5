@@ -36,7 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #endregion
 
-namespace RandomGenerator
+namespace Yamua
 {
     /// <summary>
     /// This class is used to store a name and give easy access to the differnt parts of it.
