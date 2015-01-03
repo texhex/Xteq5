@@ -11,5 +11,6 @@ Set-StrictMode -version 2.0
 #Terminate script on errors 
 $ErrorActionPreference = 'Stop'
 
-#Set .Data to "" - this means "Does not apply" $Result = @{Name="OS_Bitness"; Data = ""; Text = "Bitness of the operationg system"}
-if ([Environment]::Is64BitOperatingSystem) {   $Result.Data = "64bit"} else {   $Result.Data= "32bit"}$Result
+
+#Set .Data to "" - this means "Does not apply" $Result = @{Name="OS_Is64Bit"; Data = ""; Text = "Is the operation system 64 bit or not"}
+if ([Environment]::Is64BitOperatingSystem) {   $Result.Data = $true} else {   $Result.Data= $false}$Result

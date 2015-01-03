@@ -11,5 +11,5 @@ Set-StrictMode -version 2.0
 #Terminate script on errors 
 $ErrorActionPreference = 'Stop'
 
-$Result = @{Data = ""; Name = "PowerShell_Version"; Text = "Version of PowerShell used"}
-$Result.Data=$PSVersionTable.PSVersion$Result
+$Result = @{Data = ""; Name = "Memory_Total"; Text = "Total system memory in gigabyte (GB)"}
+$wmi = Get-WMIObject Win32_ComputerSystem -Property "TotalPhysicalMemory"[int]$mem = $wmi.TotalPhysicalMemory / 1gb  #as the value is in bytes$Result.Data=$mem$Result

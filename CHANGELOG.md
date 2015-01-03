@@ -2,7 +2,8 @@
 
 IMPROVEMENTS:
 
- *
+ * Changed script details text in HTML template
+ * Added assets and tests
  
 BUG FIXES:
 

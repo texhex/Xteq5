@@ -18,20 +18,22 @@
     -->
     <!--
      Bootstrap defaults to Helvetica Neue which can lead to errors. See https://github.com/twbs/bootstrap/issues/13823
-     Fonts: Open+Sans, Roboto, Lato or Source+Sans+Pro
+     Alternative fonts: Open+Sans, Roboto, Lato or Source+Sans+Pro
+     All available from Google fonts. 
      -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <style>
-        /* Patch glyphicon within table to be a little bigger*/
+        /* Patch glyphicon within table to be a little bigger */
         .table tbody > tr > td > span.glyphicon {
             font-size: 1.2em;
         }
 
-        /*Apply new font*/
+        /* Apply new font */
         body, p, div, h1, h2, h3, h4, h5, h6 {
             font-family: 'Open Sans', sans-serif;
         }
 
+        /* Make items inside a td centered */
         .table tbody > tr > td {
             vertical-align: middle;
         }
@@ -111,7 +113,7 @@
         </div>
 
         <p>This report was generated on <strong><span id="EndDateTimeUTC">@@ENDDATETIMEUTC@@</span></strong> (UTC) in <strong>@@RUNTIMESECONDS@@</strong> seconds from <strong>@@USERNAME@@</strong> on <strong>@@COMPUTERNAME@@</strong>.</p>
-        <p>The version used was <strong>@@VERSIONSTRING@@</strong>, HTML template version is <strong>1.58</strong>.</p>
+        <p>The version used was <strong>@@VERSIONSTRING@@</strong>, HTML template version is <strong>1.59</strong>.</p>
         <p>A total of <strong>@@ASSETS.TOTAL@@</strong> assets and <strong>@@TESTS.TOTAL@@</strong> tests were loaded from <strong>@@SOURCEFOLDER@@</strong>.</p>
         <p>The unique ID of this report is <strong>@@REPORTID@@</strong>.</p>
         <p>Thank you for using TestUtil.</p>
@@ -171,7 +173,7 @@
         <div class="panel panel-primary">
             <!--panel-default oder panel-primary-->
             <div class="panel-heading">
-                <h3 class="panel-title">Click on an asset to see more details</h3>
+                <h3 class="panel-title">Click on an asset for script details</h3>
             </div>
 
             <table class="table table-hover">
@@ -266,7 +268,7 @@
         <!-- Table for Tests -->
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Click on a test to view detailed information</h3>
+                <h3 class="panel-title">Click on a test for script details</h3>
             </div>
 
             <table class="table table-hover">

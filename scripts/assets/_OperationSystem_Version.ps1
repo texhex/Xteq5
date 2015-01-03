@@ -11,5 +11,5 @@ Set-StrictMode -version 2.0
 #Terminate script on errors 
 $ErrorActionPreference = 'Stop'
 
-$Result = @{Data = ""; Name = "PowerShell_Version"; Text = "Version of PowerShell used"}
-$Result.Data=$PSVersionTable.PSVersion$Result
+$Result = @{Name="OS_Version"; Data = ""; Text = "Internal version of Windows"}
+$wmi = Get-WMIObject Win32_OperatingSystem -Property "Version"[version]$ver=[version]$wmi.Version$Result.Data=$ver$Result

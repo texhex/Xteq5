@@ -11,5 +11,5 @@ Set-StrictMode -version 2.0
 #Terminate script on errors 
 $ErrorActionPreference = 'Stop'
 
-#Set .Data to "" - this means "Does not apply" $Result = @{Name="OS_Bitness"; Data = ""; Text = "Bitness of the operationg system"}
-if ([Environment]::Is64BitOperatingSystem) {   $Result.Data = "64bit"} else {   $Result.Data= "32bit"}$Result
+$Result = @{Name="Processor_Cores"; Data = ""; Text = "Number of logical cores the processor (CPU) offers"}
+$wmi = Get-WMIObject Win32_Processor -Property "NumberOfLogicalProcessors"[int]$cores= $wmi.NumberOfLogicalProcessors$Result.Data=$cores$Result
