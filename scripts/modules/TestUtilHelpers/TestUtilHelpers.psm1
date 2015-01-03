@@ -1,5 +1,5 @@
 ﻿# TestUtilHelper module
-# Version 1.05
+# Version 1.06
 #
 # **THIS FILE WILL BE OVERWRITTEN WITHOUT QUESTION. DO NOT ADD YOUR OWN FUNCTIONS HERE.**
 #
@@ -61,10 +61,12 @@ function Get-TUAssetValue {
 #>
  param (
  [Parameter(Mandatory=$True,Position=1)]
+ [ValidateNotNullOrEmpty()]
  [string]$AssetName, 
  
  [Parameter(Mandatory=$True,Position=2)]
- $DefaultValue)
+ $DefaultValue
+ )
 
  #Better set strict mode on function scope than on module level to avoid side effects
  Set-StrictMode -version 2.0

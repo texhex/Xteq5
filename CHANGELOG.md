@@ -7,14 +7,14 @@ IMPROVEMENTS:
  * Changed button sizing TestUtilGUI
  * Changed html template
  * Finished (sort of) https://github.com/texhex/testutil/wiki/Custom-scripts
- * Updatead README.TXT in /src/scripts/
- * Fixed code analysis errors in GlobalAtom.cs
- * Added SharedAssemblyInfo to all important projects
- * 
+ * Added SharedAssemblyInfo to all release projects
+ * Setup now creates VERSION.ini in install directory
+ * Changed all files in /src/scripts so the filename starts with _ (underscore)
+ * Updated README.TXT in /src/scripts/ 
  
 BUG FIXES:
 
- * None
+ * Fixed code analysis errors in GlobalAtom.cs
 
 ## [Version 2015.01.01](https://github.com/texhex/testutil/releases/tag/v2015.01.01) 
 

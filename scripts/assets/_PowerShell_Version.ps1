@@ -10,5 +10,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Data = ""; Text = "Version of PowerShell used"}
+$Result = @{Data = ""; Name = "PowerShell_Version"; Text = "Version of PowerShell used"}
 $Result.Data=$PSVersionTable.PSVersion$Result

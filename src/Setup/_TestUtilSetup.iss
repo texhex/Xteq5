@@ -8,11 +8,11 @@
 ; We generate it from the current date/time upun compliation of this script
 ; Example result: 2014.12.30.1401
 ; This will also be used inside the version info of the resulting Setup.exe
+; Unfortunately, I dot find a way to use UTC.
 #define public CurrentDateISO GetDateTimeString('yyyy/mm/dd.hhnn', '.', '');
 
 ; Extract version from x64\Release\TestUtil.Engine.dll
-; SourcePath ({#SourcePath} in scripts) is a pre defined variable that contains 
-; the path where this file is located
+; SourcePath ({#SourcePath} in scripts) is a pre-defined variable that contains the path where the ISS file is located
 #define public ProgramVersion GetFileVersion(SourcePath +'..\TestUtilEngine\bin\x64\Release\TestUtil.Engine.dll')
 
 ; Default file to be started
@@ -109,7 +109,22 @@ DisableReadyPage=no
 Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
 
 ;Link to folder in commonappdata within the program folder for easier access
-Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\TestUtil\"; Comment: "Files loaded from ProgramData";
+Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\TestUtil\"; Comment: "Files in ProgramData";
+
+
+[Dirs]
+;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
+;Also grant users the modify permission, in case they which to add addtional scripts 
+Name: "{commonappdata}\TestUtil"; Permissions: users-modify
+
+
+[InstallDelete]
+;Upon installation, delete all files in the dest path to make sure there are no leftovers
+Type: files; Name: "{app}";
+
+;Also, clean the default assets and test from any file we might have deleted in the meantime
+Type: files; Name: "{commonappdata}\TestUtil\assets\_*.ps1";
+Type: files; Name: "{commonappdata}\TestUtil\tests\_*.ps1";
 
 
 [Files]
@@ -139,10 +154,10 @@ Source: "src\TestUtilGUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: 
 Source: "src\TestUtilGUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 
 
-[Dirs]
-;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
-;Also grant users the modify permission, in case they which to add addtional scripts 
-Name: "{commonappdata}\TestUtil"; Permissions: users-modify
+[Ini]
+;Create VERSION.ini to allow the user to easily see the version currently installed. 
+Filename: "{app}\VERSION.ini"; Section: "Version"; Key: "Version"; String: "{#CurrentDateISO}"
+Filename: "{app}\VERSION.ini"; Section: "Version"; Key: "BinaryVersion"; String: "{#ProgramVersion}"
 
 
 [Registry]
@@ -156,12 +171,8 @@ Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testuti
 
 
 
-[InstallDelete]
-;In case this is a left over from a manual installation -> KILL IT! 
-Type: files; Name: "{app}";
 
-;I'm not sure if we should do this?
-;;;Type: files; Name: "{commonappdata}\TestUtil";
+
 
 
 

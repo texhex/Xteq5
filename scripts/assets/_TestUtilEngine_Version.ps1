@@ -10,5 +10,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Data = ""; Text = "Version of TestUtil engine used"}
+$Result = @{Data = ""; Name = "TestUtil_Version"; Text = "Version of TestUtil engine used"}
 $Result.Data=$TestUtilEngineVersion$Result

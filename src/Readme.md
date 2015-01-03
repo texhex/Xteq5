@@ -22,9 +22,9 @@
 
 ## Build procedure
 
-  - Run all xUnit tests with the build-in Visual Studio Test Explorer (_Test_ > _Windows_ > _Test Explorer_)
+  - Switch the project configuration to _Debug_ / _Any CPU_ then **run all xUnit tests** with the build-in Visual Studio Test Explorer (_Test_ > _Windows_ > _Test Explorer_)
   
-  - Run Code Analyizes (_Analyze_ > _Run Code Analysis on Solution_)
+  - Run **Code Analyizes** (_Analyze_ > _Run Code Analysis on Solution_)
   
   - If you make a change to the code, update _Solution items_ > _SharedAssemblyInfo.cs_ and increment _AssemblyVersion_. This information is uses as version details in all TestUtil projects.
      
