@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("TestUtil")] //Explorer: File description
 [assembly: AssemblyProduct("http://www.testutil.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("1.24.*")] //Explorer: Product version
+[assembly: AssemblyVersion("1.25.*")] //Explorer: Product version
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion. Explorer: File version
 
 

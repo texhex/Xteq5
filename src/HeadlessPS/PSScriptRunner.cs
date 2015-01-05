@@ -37,7 +37,8 @@ namespace HeadlessPS
     {
         PSScriptRunnerPreferences _prefs;
 
-        InitialSessionState _initialSessionState = InitialSessionState.CreateDefault(); //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.runspaces.initialsessionstate(v=vs.85).aspx
+        //The only difference I found between CreateDefault() and CreateDefault2() is inside "Notes" of Get-Module: http://technet.microsoft.com/en-us/library/hh849700.aspx
+        InitialSessionState _initialSessionState = InitialSessionState.CreateDefault2(); //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.runspaces.initialsessionstate(v=vs.85).aspx
         PowerShell _psInstance = null; //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.powershell(v=vs.85).aspx
         PSDataCollection<PSObject> _outputStreamCollection = null; //Docs: http://msdn.microsoft.com/en-us/library/dd144531%28v=vs.85%29.aspx
 

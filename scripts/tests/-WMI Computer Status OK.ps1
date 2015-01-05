@@ -1,4 +1,4 @@
-#v1.02
+#v1.03
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -9,4 +9,5 @@
 Set-StrictMode -version 2.0
 
 #Terminate script on errors 
-$ErrorActionPreference = 'Stop'$Return = @{Data = "OK"; Name="WMI Computer status is healty"; Text= "Windows Management Instrumentation (WMI) reports this system is healthy"}$wmi = Get-WMIObject Win32_ComputerSystem -Property "Status"[string]$status= $wmi.Status#$status="arg!"if ($status -ne "OK") {   $Return.Data="Fail"   $Return.Text="Windows Management Instrumentation (WMI) class Win32_ComputerSystem reported status [$status]"}$Return
+$ErrorActionPreference = 'Stop'$Result = @{Data = "OK"; Name="WMI Computer status is healty"; Text= "Windows Management Instrumentation (WMI) reports this system is healthy"}$wmi = Get-WMIObject Win32_ComputerSystem -Property "Status"[string]$status= $wmi.Status#$status="arg!"if ($status -ne "OK") {   $Result.Data="Fail"   $Result.Text="Windows Management Instrumentation (WMI) class Win32_ComputerSystem reported status [$status]"}
+$Result

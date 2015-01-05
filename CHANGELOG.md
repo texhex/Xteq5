@@ -1,14 +1,17 @@
-## IN PROGRESS
+## [Version 2015.01.05](https://github.com/texhex/testutil/releases/tag/v2015.01.05) 
 
 IMPROVEMENTS:
 
  * Changed script details text in HTML template
  * Added assets and tests
- * Changed all filenames in /src/scripts - files now start with "-" (minus), because "_" (underscore) caused issues in markdown
+ * Changed all filenames in /src/scripts - files now start with "-" (minus), because "_" (underscore) did not work with markdown
+ * Started to include non-TestUtil related functions to scripts/MPXModule/MPXModule.psm1 (My PowerShell eXtensions)
+ * Changed HTML template
+ * Added option in src/setup/Setup.iss to copy modules from TestUtil to personal PS modules path (unchecked by default)
  
 BUG FIXES:
 
- * None
+ * Returning n/a from an asset did not set status to DoesNotApply
  
 ## [Version 2015.01.03](https://github.com/texhex/testutil/releases/tag/v2015.01.03) 
 

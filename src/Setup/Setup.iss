@@ -104,6 +104,7 @@ DisableReadyPage=no
 
 
 
+
 [Icons]
 ;Start menu icon
 Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
@@ -131,12 +132,25 @@ Type: files; Name: "{commonappdata}\TestUtil\tests\-*.ps1";
 Type: files; Name: "{commonappdata}\TestUtil\assets\_*.ps1";
 Type: files; Name: "{commonappdata}\TestUtil\tests\_*.ps1";
 
+;[Types]
+;Name: "full"; Description: "TestUtil files"
+;Name: "full_dev"; Description: "TestUtil and additional custom modules (not required)"
+
+;[Components]
+;Name: "full"; Description: "Full app"; 
+;Name: "devstuff"; Description: "Also install custom modules in personal  "; 
+;Types: full;
+
 
 [Files]
-;Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
-;See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
-;Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
-Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion;
+;If selected by the user: 
+; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
+; See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
+; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
+Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
+;Do the same for the MPX module
+Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 
+
 
 ;Copy all scripts to commonappdata
 Source: "scripts\*.*"; DestDir: "{commonappdata}\TestUtil\"; Flags: ignoreversion recursesubdirs;
@@ -192,6 +206,8 @@ var
  sComponentNotFoundWizard_Text:string;
  pagComponentNotFound:TOutputMsgMemoWizardPage;
 
+ pagInstallModules:TInputOptionWizardPage;
+ bInstallModules:boolean;
  
 
 //Source: [Check .NET Version with Inno Setup](http://kynosarges.org/DotNetVersion.html) by [Christoph Nahr](http://kynosarges.org/index.html#Contact)
@@ -272,13 +288,24 @@ end;
 
 procedure InitializeWizard();
 begin 
-  //Create custom "Component not found" page
+  //Create custom "Component not found" page after welcome page
   pagComponentNotFound := 
      CreateOutputMsgMemoPage(wpWelcome,
          'System Requirements not met', 
          'A component that is required was not found',
          '',
          sComponentNotFoundWizard_Text);
+
+  pagInstallModules :=
+      CreateInputOptionPage(wpSelectComponents,
+         'Install custom PowerShell modules', 
+         '',
+         'If you plan to create your own assets and tests, the custom PowerShell modules of TestUtil should also be copied to your personal modules path.'+#13#10+#13#10+
+         'This is NOT required if you just want to run TestUtil.'+#13#10,
+          False, False);
+
+       pagInstallModules.Add('Install modules to %UserProfile%\Documents\WindowsPowerShell\Modules');
+       pagInstallModules.Values[0] := False;
 end;
 
 
@@ -288,6 +315,9 @@ var
 begin
   bComponentMissing:=false;
   sComponentNotFoundWizard_Text:='';
+
+  bInstallModules:=false;
+
   
   //Check if .NET 4.5 (SP does not count) is available
   bDotNetAvailable:=IsDotNetDetected('v4.5', 0);
@@ -340,12 +370,18 @@ begin
   result:=true;
 end;
 
+function InstallModulesToUserModules(): Boolean;
+begin
+  result:=bInstallModules;
+end;
+
+
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
   result := false;
 
   if PageID=pagComponentNotFound.ID then begin
-     //Skip the "Component missing" it if all components were found
+     //Skip the "Component missing" if all components were found
      if (bComponentMissing=false) then begin
          result:=true;
      end;
@@ -357,10 +393,16 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 begin
   result:=true;
 
-  //If the component not found page is displayed, do not allow to continue.
+  //If the "component not found" page is displayed, do not allow to continue.
   if CurPageID=pagComponentNotFound.ID then begin     
      result:=false;
      WizardForm.Close;
+  end;
+
+  //Read the value the user has selected 
+  if CurPageID=pagInstallModules.ID then begin
+     result:=true;
+     bInstallModules:=pagInstallModules.Values[0];   
   end;
 
 end;

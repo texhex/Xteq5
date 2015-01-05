@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
@@ -32,6 +33,8 @@ namespace TestUtil
 
                 try
                 {
+                    Debug.WriteLine("Executing script " + scriptFilename);
+
                     using (ExecutionResult execResult = await ScriptRunner.RunScriptFileAsync(scriptFilename))
                     {
                         record.ProcessMessages = execResult.ToString();
@@ -127,7 +130,19 @@ namespace TestUtil
                 }
                 else
                 {
-                    ProcessNonEmptyData(Record, Table, data);
+                    //The data key contains something. First try if the result is maybe the string "n/a"
+                    ConclusionEnum conclusion = ConclusionEnumConverter.ParseConclusion(data);
+                    if (conclusion == ConclusionEnum.DoesNotApply)
+                    {
+                        //The script returned n/a (DoesNotApply), so it can be processed as empty record
+                        Record.Conclusion = ConclusionEnum.DoesNotApply;
+                        ProcessEmptyData(Record, Table);
+                    }
+                    else
+                    {
+                        //The result was something else. Let the implementation decide.
+                        ProcessNonEmptyData(Record, Table, data);
+                    }
                 }
 
 

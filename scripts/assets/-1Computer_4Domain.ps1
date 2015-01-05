@@ -1,4 +1,4 @@
-#Version 1.01
+#Version 1.02
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -11,5 +11,5 @@ Set-StrictMode -version 2.0
 #Terminate script on errors 
 $ErrorActionPreference = 'Stop'
 
-$Result = @{Data = ""; Name = "Computer_Domain"; Text = "NetBIOS name of the domain the computer is member of"}
-$wmi = Get-WMIObject Win32_ComputerSystem -Property "PartOfDomain, Domain"#Only list the domain if the computer is member of a domain, not for workgroupsif ($wmi.PartOfDomain) {   $Result.Data=$wmi.Domain}$Result
+$Result = @{Data = ""; Name = "Computer_Domain"} #Text = "Computer is not member of a domain"
+$wmi = Get-WMIObject Win32_ComputerSystem -Property "PartOfDomain, Domain"#Only list the domain if the computer is member of a domain, not for workgroupsif ($wmi.PartOfDomain) {   $Result.Data=$wmi.Domain   $Result.Text="NetBIOS name of the domain the computer is member of"}$Result

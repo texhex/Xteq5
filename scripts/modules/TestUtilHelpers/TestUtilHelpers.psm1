@@ -1,11 +1,15 @@
 ﻿# TestUtilHelper module
-# Version 1.06
+# Version 1.07
+#
+# Copyright © 2010-2015 Michael 'Tex' Hex 
+# Licensed under the Apache License, Version 2.0. 
+# For details, please see licenses/LICENSE.txt.
+#
 #
 # **THIS FILE WILL BE OVERWRITTEN WITHOUT QUESTION. DO NOT ADD YOUR OWN FUNCTIONS HERE.**
 #
 # Before adding a new function, please see
 # [Approved Verbs for Windows PowerShell Commands](http://msdn.microsoft.com/en-us/library/ms714428%28v=vs.85%29.aspx)
-#
 
 
 #require -version 4.0
@@ -88,36 +92,4 @@ function Get-TUAssetValue {
 
  #Done
 }
-
-
-function Test-TUWoW {
-<#
-  .SYNOPSIS
-  Returns $true if the script is affected by WoW64
-
-  .PARAMETER 
-  None
-
-  .OUTPUTS
-  $true if the script is virtualized with WoW64, $false otherwise
-#>
- 
- #Better set strict mode on function scope than on module level
- Set-StrictMode -version 2.0
-
- if ([Environment]::Is64BitOperatingSystem) {
-    if ([Environment]::Is64BitProcess) {
-       #We are running as 64 bit process on a 64 bit OS. No WOW.
-       return $false
-    } else {
-       #We are not running as a 32 bit process so WoW is active
-       return $true 
-    }    
- } else {
-   #WoW64 is only active on a 64 bit OS 
-   return $false
- }
-}
-
-
 
