@@ -119,10 +119,15 @@ Name: "{commonappdata}\TestUtil"; Permissions: users-modify
 
 
 [InstallDelete]
-;Upon installation, delete all files in the dest path to make sure there are no leftovers
+;Upon installation, delete all files in the APP path (C:\Program Files\TestUtil) to make sure we have a clean state
 Type: files; Name: "{app}";
 
-;Also, clean the default assets and test from any file we might have deleted in the meantime
+;Also, clean \assets and \tests to make sure scripts we have deleted from the repo in the meantime are deleted
+Type: files; Name: "{commonappdata}\TestUtil\assets\-*.ps1";
+Type: files; Name: "{commonappdata}\TestUtil\tests\-*.ps1";
+
+
+;Up to version 2015.01.03 we have used "_" instead of "-"
 Type: files; Name: "{commonappdata}\TestUtil\assets\_*.ps1";
 Type: files; Name: "{commonappdata}\TestUtil\tests\_*.ps1";
 

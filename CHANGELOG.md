@@ -1,13 +1,14 @@
-## [WORKING ON Version 2015.xx.xx](https://github.com/texhex/testutil/releases/tag/v2015.xx.xx) 
+## IN PROGRESS
 
 IMPROVEMENTS:
 
  * Changed script details text in HTML template
  * Added assets and tests
+ * Changed all filenames in /src/scripts - files now start with "-" (minus), because "_" (underscore) caused issues in markdown
  
 BUG FIXES:
 
- *
+ * None
  
 ## [Version 2015.01.03](https://github.com/texhex/testutil/releases/tag/v2015.01.03) 
 
