@@ -2,7 +2,7 @@
 
 IMPROVEMENTS:
 
- * Added assets
+ * Added assets and tests
  
 BUG FIXES:
 

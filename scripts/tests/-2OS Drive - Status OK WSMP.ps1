@@ -1,4 +1,4 @@
-#v1.01
+#v1.02
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -12,7 +12,7 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'$wmi = Get-WMIObject Win32_OperatingSystem -Property "SystemDrive"$sysdrive=$wmi.SystemDrive"SysDrive is $sysdrive"#Because we need the module storage that is maybe not available, set to n/a by default$Result = @{Name="Operating System drive is healthy (WSMP)"; Data = "n/a"; Text = "Windows Storage Management Provider is not supported on this computer"}#check if module Storage is available
 if (Test-MPXModuleAvailable "Storage") {
    
-   $Result.Text="Operating system drive ($sysdrive) is, according to Windows Storage Management Provider, healthy"
+   $Result.Text="Drive ($sysdrive) is, according to Windows Storage Management Provider, healthy"
 
    #Get a list of drive to partition to volume to know on which physical drive the sysdrive is located
    $info=Get-MPXDrivePartionVolume | where-object {$_.Volume_DeviceID -eq $sysdrive}   
