@@ -1,5 +1,5 @@
 ﻿# Michael PowerShell eXtension module
-# Version 1.06
+# Version 1.07
 #
 # Copyright © 2010-2015 Michael 'Tex' Hex 
 # Licensed under the Apache License, Version 2.0. 
@@ -194,8 +194,17 @@ Function Test-MPXModuleAvailable {
      # return $false      
      #}
 
-     #However, this function is a performance killer! Therefore we will simply try to import
-     #the module using import-module on local level and then return if this has worked
+     #However, this function is a performance killer as it read every cmdlet, dll, and whatever
+     #from any module that is available. 
+     #
+     #Therefore we will simply try to import the module using import-module on local level 
+     #and then return if this has worked. This way, only the module requested is fully loaded.
+     #Since we only load it to the local level, we make sure not to change the calling level
+     #if the caller does not want that module to be loaded. 
+     #
+     #Given that the script (that has called us) will the use a cmdlet from the module,
+     #the module is already loaded in the runspace and the next call to this function will be
+     #a lot faster.
 
      $mod=Import-Module $name -PassThru -ErrorAction SilentlyContinue -Scope Local
      if ($mod -ne $null) {

@@ -1,3 +1,13 @@
+## WORKING ON
+
+IMPROVEMENTS:
+
+ * Added assets
+ 
+BUG FIXES:
+
+ * None
+ 
 ## [Version 2015.01.05](https://github.com/texhex/testutil/releases/tag/v2015.01.05) 
 
 IMPROVEMENTS:

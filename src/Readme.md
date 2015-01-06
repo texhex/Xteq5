@@ -36,15 +36,19 @@
   
   - Use _Build_ > _Batch Build_ > _Build_ to create all files. _TestUtilLauncher.exe_ will build for **Any CPU** only. This is on purpose. 
 
-  - Run Inno Setup and run `src\Setup\_TestUtilSetup.iss` to generate `TestUtilSetup.exe`.
+  - Run Inno Setup and run `src\Setup\Setup.iss` to generate `TestUtilSetup.exe`.
 
   - Verify that the setup is working correctly
    
   - If the file looks good, go to https://github.com/texhex/testutil/releases/new and attach it  
      
-     - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2014-12-31_ than the correct tag is **v2014.12.31**.  
-     - Second field is what the user sees, so please use **Version 2014.12.31**
-     - Add `**Please see [CHANGELOG.md](CHANGELOG.md) for details**`. This will automatically be linked to the changelog for that release using the tag.  
+     - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2015-12-31_ than the correct tag is 
+	    `v2015.12.31`.  
+     - Second field is what the user sees, so please use 
+	    `Version 2015.12.31`
+     - Add 
+	    `**Please see [CHANGELOG.md](CHANGELOG.md) for details**`
+	 - This will automatically be linked to the changelog for that release using the tag.  
    
     
     
