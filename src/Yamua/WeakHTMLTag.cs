@@ -46,7 +46,7 @@ namespace Yamua
     /// <summary>
     /// A minified version to create HTML tags on the fly. Uses XElement from System.Xml.Linq for tags and attributes.
     /// This class is missing a LOT of features. If you need something better, please use HtmlAgilityPack.
-    /// .HTML gets the RAW html including everything in angle brackets. When you set it, no encoding is done
+    /// .HTML gets the RAW html including everything in angle brackets. When you set it, no encoding is done.
     /// .Text assumes normal text and hence when this value is set, the string will be HTML Encoded. 
     /// Attributes you set are ALWAYS HTML encoded. 
     /// </summary>
@@ -181,11 +181,11 @@ namespace Yamua
         {
             get
             {
-                return WebUtility.HtmlDecode(_content);
+                return WeakHTMLTag.HTMLDecode(_content);
             }
             set
             {
-                _content = WebUtility.HtmlEncode(value);
+                _content = WeakHTMLTag.HTMLEncode(value);
             }
         }
 
@@ -340,7 +340,7 @@ namespace Yamua
 
             set
             {
-                string val = WebUtility.HtmlEncode(value);
+                string val = WeakHTMLTag.HTMLEncode(value);
                 _element.SetAttributeValue(Name, val);
             }
         }

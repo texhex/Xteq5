@@ -1,15 +1,15 @@
-## WORKING ON
+## [Version 2015.01.07](https://github.com/texhex/testutil/releases/tag/v2015.01.07) 
 
 IMPROVEMENTS:
 
  * Added assets and tests
  * Added functions to MPXmodule
  * Updated HTML template
- * Added WeakHTMLTag
+ * Changed script output from HeadlessPS to not include object type if's a string
  
 BUG FIXES:
 
- * Generated script output (attribute) in HTML template was not HTML encoded. Exchanged HtmlAgilityPack with custom class.
+ * Generated script output (attribute) in HTML template was not HTML encoded. Exchanged HtmlAgilityPack with custom class WeakHTMLTag.
   
 ## [Version 2015.01.05](https://github.com/texhex/testutil/releases/tag/v2015.01.05) 
 

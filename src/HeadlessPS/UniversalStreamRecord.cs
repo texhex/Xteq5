@@ -98,12 +98,20 @@ namespace HeadlessPS
                                 (sb, x) => sb.Append(" ").Append(x.Key.ToString()).Append(": ").Append(x.Value).Append(";"),
                                 sb => sb.ToString());
 
-                    return Obj.GetType().ToString() + " =>" + entries;
+                    return "(" + Obj.GetType().ToString() + ") =>" + entries;
                 }
                 else
                 {
-                    //"No idea how to display it better" format...
-                    return string.Format("{0} ({1})", Obj.ToString(), Obj.GetType().ToString());
+                    if (Obj is string)
+                    {
+                        //If it's a string, display as is without type description
+                        return Obj.ToString();
+                    }
+                    else
+                    {
+                        //"No idea how to display it better" format...
+                        return string.Format("{0} ({1})", Obj.ToString(), Obj.GetType().ToString());
+                    }
                 }
             }
             else

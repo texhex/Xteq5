@@ -200,7 +200,7 @@ namespace HeadlessPS
                             /* MTH: There are two functions to read variables from PowerShell:
                              * PSVariable psv = PSInstance.Runspace.SessionStateProxy.PSVariable.Get("aTestVar"); //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.runspaces.sessionstateproxy.psvariable%28v=vs.85%29.aspx
                              * Object obj = PSInstance.Runspace.SessionStateProxy.GetVariable("aTestVar"); //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.runspaces.sessionstateproxy.getvariable%28v=vs.85%29.aspx
-                             * I assume that the second one is short-circuit version of the first one. Since we only want the value, we use that method.
+                             * I assume that the second one is the short-circuit version of the first one. Since we only want the value, we use it.
                              */
 
                             Object value = PSInstance.Runspace.SessionStateProxy.GetVariable(var.Name);
@@ -212,8 +212,6 @@ namespace HeadlessPS
                 }
 
             }
-
-
 
 
 
