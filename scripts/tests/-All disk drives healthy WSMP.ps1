@@ -1,4 +1,4 @@
-#v1.02
+#v1.03
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -9,11 +9,11 @@
 Set-StrictMode -version 2.0
 
 #Terminate script on errors 
-$ErrorActionPreference = 'Stop'#Because we need the module storage that is maybe not available, set to n/a by default$Result = @{Name="All disk drives are healthy (WSMP)"; Data = "n/a"; Text = "Windows Storage Management Provider is not supported on this computer"}#check if module Storage is available
+$ErrorActionPreference = 'Stop'#Because we need the module storage that is maybe not available, set to n/a by default$Result = @{Name="All disk drives healthy (WSMP)"; Data = "n/a"; Text = "Windows Storage Management Provider is not supported on this computer"}#check if module Storage is available
 if (Test-MPXModuleAvailable "Storage") {
    
    $Result.Data="OK"
-   $Result.Text="All drives are healthy according to Windows Storage Management Provider (WSMP)"
+   $Result.Text="All disk drives are healthy according to Windows Storage Management Provider (WSMP)"
 
    #Retrieve a list of disks where HealthStatus is not Healthy.
    #We will only use the first non-healthy drive      
@@ -51,8 +51,8 @@ if (Test-MPXModuleAvailable "Storage") {
          [string]$driveletter=$vol.Volume_DeviceID
          $Result.Text="Windows Storage Management Provider reports status [$status] for $volname ($driveletter) - S/N $serial"
       } else {
-        #no volume or drive data found. Output what we have
-        $Result.Text="Windows Storage Management Provider reports status [$status] for $diskname (S/N $serial)"
+         #no volume or drive data found. Output what we have
+         $Result.Text="Windows Storage Management Provider reports status [$status] for $diskname (S/N $serial)"
       }
    }
    

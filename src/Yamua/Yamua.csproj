@@ -89,6 +89,7 @@
     <Compile Include="Singelton.cs" />
     <Compile Include="StringFilter.cs" />
     <Compile Include="StringTokenizer.cs" />
+    <Compile Include="WeakHTMLTag.cs" />
     <Compile Include="Yamua.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

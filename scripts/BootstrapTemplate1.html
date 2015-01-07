@@ -113,7 +113,7 @@
         </div>
 
         <p>This report was generated on <strong><span id="EndDateTimeUTC">@@ENDDATETIMEUTC@@</span></strong> (UTC) in <strong>@@RUNTIMESECONDS@@</strong> seconds from <strong>@@USERNAME@@</strong> on <strong>@@COMPUTERNAME@@</strong>.</p>
-        <p>The version used was <strong>@@VERSIONSTRING@@</strong>, HTML template version is <strong>1.60</strong>.</p>
+        <p>The version used was <strong>@@VERSIONSTRING@@</strong>, HTML template version is <strong>1.61</strong>.</p>
         <p>A total of <strong>@@ASSETS.TOTAL@@</strong> assets and <strong>@@TESTS.TOTAL@@</strong> tests were loaded from <strong>@@SOURCEFOLDER@@</strong>.</p>
         <p>The unique ID of this report is <strong>@@REPORTID@@</strong>.</p>
         <p>Thank you for using TestUtil.</p>
@@ -339,6 +339,17 @@
                 if (typeof modalTitle === "undefined") {
                     modalTitle = "(Attribute data-modal-title missing)";
                 }
+
+                //Modal-* is HTML encoded, so we need to convert it back
+                //Trick from this answer on [StackOverflow](http://stackoverflow.com/a/2419664/612954) by [tom](http://stackoverflow.com/users/290831/tom)
+                var temp;
+
+                temp = $("<div/>").html(modalContent).text();
+                modalContent = temp;
+
+                temp = $("<div/>").html(modalTitle).text();
+                modalTitle = temp;
+
 
                 //Debug code to check if we have found the correct element
                 //$(e.currentTarget).find('h4[id="modalDetailsTitle"]').css("background-color", "red");

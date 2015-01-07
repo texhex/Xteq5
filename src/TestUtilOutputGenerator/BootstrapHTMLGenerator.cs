@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
+//using HtmlAgilityPack;
+using Yamua;
 
 namespace TestUtil
 {
@@ -18,7 +19,7 @@ namespace TestUtil
         }
 
         StringBuilder _templateHTML = new StringBuilder();
-        HtmlDocument _doc = new HtmlDocument();
+        //HtmlDocument _doc = new HtmlDocument();
 
         public BootstrapHTMLGenerator(string TemplateHTMLFile)
         {
@@ -105,11 +106,8 @@ namespace TestUtil
             string tempPath = Path.GetTempPath();
 
             string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", report.EndedUTC); //2014-12-02_1458
-
             string guidpart = report.ID.ToString("N"); //00000000000000000000000000000000
-
             string fileName = "TestUtil_Report_" + datepart + "_" + guidpart + ".html";
-
             string fullFilename = Path.Combine(tempPath, fileName);
 
             File.WriteAllText(fullFilename, html);
@@ -186,6 +184,7 @@ namespace TestUtil
 
         string CreateTableRow(BaseRecord Record, string PrimaryData)
         {
+            /*
             HtmlNode tr = _doc.CreateElement("tr");
 
             //If the conclusion is MAJOR or FATAL, add a class to the TR so the entire row is colored
@@ -201,10 +200,10 @@ namespace TestUtil
             tr.Attributes.Add("data-modal-content", ConvertProcessMessagesToHTML(Record.ProcessMessages));
 
             //Create <td> for Status
-            string tdStatus = CreateTd_GlyphSpan(Record.Conclusion);
+            string tdStatus = CreateHTMLElement_TdGlyphSpan(Record.Conclusion);
 
             //Create <td> for Name and Script file
-            string tdName = CreateTd_Text_SmallText(Record.Name, Record.ScriptFilename);
+            string tdName = CreateHTMLElement_TdTextSmallText(Record.Name, Record.ScriptFilename);
 
             //Prepare the data for primary and secondary data
             ResultPrimarySecondary rps = new ResultPrimarySecondary(Record);
@@ -215,29 +214,67 @@ namespace TestUtil
                 rps.Primary = PrimaryData;
             }
 
-            string tdValue = CreateTd_Text_SmallText(rps.Primary, rps.Secondary);
+            string tdValue = CreateHTMLElement_TdTextSmallText(rps.Primary, rps.Secondary);
 
 
             tr.InnerHtml = tdStatus + tdName + tdValue;
             return tr.OuterHtml + "\r\n";
+            */
+
+            WeakHTMLTag tr = new WeakHTMLTag("tr");
+
+            //If the conclusion is MAJOR or FATAL, add a class to the TR so the entire row is colored
+            if ((Record.Conclusion == ConclusionEnum.Major) || (Record.Conclusion == ConclusionEnum.Fatal))
+            {
+                tr.CSSClass = ConclusionToCSSModifier(Record.Conclusion);
+            }
+
+            //Add parameter for script details modal
+            tr.Attributes["data-toggle"] = "modal";
+            tr.Attributes["data-target"] = "#modalDetails";
+            tr.Attributes["data-modal-title"] = WeakHTMLTag.HTMLEncode(Record.ScriptFilename);
+            tr.Attributes["data-modal-content"] = ConvertProcessMessagesToHTML(Record.ProcessMessages);
+
+            //Create <td> for Status
+            string tdStatus = CreateHTMLElement_TdGlyphSpan(Record.Conclusion);
+
+            //Create <td> for Name and Script file
+            string tdName = CreateHTMLElement_TdTextSmallText(Record.Name, Record.ScriptFilename);
+
+            //Prepare the data for primary and secondary data
+            ResultPrimarySecondary rps = new ResultPrimarySecondary(Record);
+
+            //If the caller gave us PrimaryData, we will use that in any case.
+            if (string.IsNullOrWhiteSpace(PrimaryData) == false)
+            {
+                rps.Primary = PrimaryData;
+            }
+
+            string tdValue = CreateHTMLElement_TdTextSmallText(rps.Primary, rps.Secondary);
+            tr.HTML = tdStatus + tdName + tdValue;
+
+            return tr.ToString() + "\r\n";
         }
 
         string ConvertProcessMessagesToHTML(string ProcessMessages)
         {
-            string htmlEncoded = HtmlDocument.HtmlEncode(ProcessMessages);
+            /*
+              string htmlEncoded = HtmlDocument.HtmlEncode(ProcessMessages);
+             */
+
+            string htmlEncoded = WeakHTMLTag.HTMLEncode(ProcessMessages);
 
             StringBuilder sb = new StringBuilder(htmlEncoded);
             sb.Replace("\r\n", "<br/>");
             sb.Replace("\n", "<br/>");
 
-            //Do do not add <samp> tags anymore because it it easier to set this using jQuery
-            //return "<samp>" + sb.ToString() + "</samp>";
             return sb.ToString();
         }
 
-        string CreateTd_GlyphSpan(ConclusionEnum Conclusion)
+        string CreateHTMLElement_TdGlyphSpan(ConclusionEnum Conclusion)
         {
             //<td class="success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            /*
             HtmlNode td = _doc.CreateElement("td");
 
             string cssClass = ConclusionToCSSModifier(Conclusion);
@@ -246,36 +283,48 @@ namespace TestUtil
                 td.Attributes.Add("class", cssClass);
             }
 
-            td.InnerHtml = CreateSpan_Glyphicon(Conclusion);
+            td.InnerHtml = CreateHTMLElement_SpanGlyphicon(Conclusion);
             return td.OuterHtml;
+            */
+
+            WeakHTMLTag td = new WeakHTMLTag("td");
+
+            string cssClass = ConclusionToCSSModifier(Conclusion);
+            if (string.IsNullOrWhiteSpace(cssClass) == false)
+            {
+                td.Attributes["class"] = cssClass;
+            }
+
+            td.HTML = CreateHTMLElement_SpanGlyphicon(Conclusion);
+            return td.ToString();
         }
 
-        /*
-        string CreateTd_GlyphSpan_SmallText(ConclusionEnum Conclusion, string SmallText)
-        {
-            string smalltext = CreateEm_SmallText(SmallText);
-
-            string span = CreateSpan_Glyphicon(Conclusion);
-
-            HtmlNode td = _doc.CreateElement("td");
-            td.InnerHtml = span + "<br/>" + smalltext;
-
-            return td.OuterHtml;
-        }
-        */
-        string CreateTd_Text_SmallText(string Text, string SmallText)
+        string CreateHTMLElement_TdTextSmallText(string Text, string SmallText)
         {
             //<td>NAME<br><small><em>SMALLTEXT</em></small></td>      
-            string smalltext = CreateEm_SmallText(SmallText);
+
+            /*
+            string smalltext = CreateHTMLElement_EmSmallText(SmallText);
 
             HtmlNode td = _doc.CreateElement("td");
             td.InnerHtml = HtmlDocument.HtmlEncode(Text) + "<br/>" + smalltext;
 
             return td.OuterHtml;
+             */
+
+            string smalltext = CreateHTMLElement_EmSmallText(SmallText);
+
+            WeakHTMLTag td = new WeakHTMLTag("td");
+            td.Text = Text;
+            td.HTML += "<br/>";
+            td.HTML += smalltext;
+
+            return td.ToString();
         }
 
-        string CreateEm_SmallText(string Text)
+        string CreateHTMLElement_EmSmallText(string Text)
         {
+            /*
             HtmlNode em = _doc.CreateElement("em");
             em.InnerHtml = HtmlDocument.HtmlEncode(Text);
 
@@ -283,18 +332,32 @@ namespace TestUtil
             small.InnerHtml = em.OuterHtml;
 
             return small.OuterHtml;
+             */
+            WeakHTMLTag em = new WeakHTMLTag("em");
+            em.Text = Text;
+
+            WeakHTMLTag small = new WeakHTMLTag("small", em);
+
+            return small.ToString();
         }
 
-        string CreateSpan_Glyphicon(ConclusionEnum Conclusion)
+        string CreateHTMLElement_SpanGlyphicon(ConclusionEnum Conclusion)
         {
             //<span class="glyphicon glyphicon-ok" aria-hidden="true">
             string glyphicon = ConclusionToGlyphicon(Conclusion);
 
+            WeakHTMLTag span = new WeakHTMLTag("span");
+            span.CSSClass = "glyphicon " + glyphicon;
+            span.Attributes["aria-hidden"] = "true";
+            return span.ToString();
+
+            /*
             HtmlNode span = _doc.CreateElement("span");
             span.Attributes.Add("class", "glyphicon " + glyphicon);
             span.Attributes.Add("aria-hidden", "true");
 
             return span.OuterHtml;
+             */
         }
 
         string ConclusionToGlyphicon(ConclusionEnum Conclusion)

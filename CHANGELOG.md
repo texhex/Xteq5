@@ -4,11 +4,13 @@ IMPROVEMENTS:
 
  * Added assets and tests
  * Added functions to MPXmodule
+ * Updated HTML template
+ * Added WeakHTMLTag
  
 BUG FIXES:
 
- * None
- 
+ * Generated script output (attribute) in HTML template was not HTML encoded. Exchanged HtmlAgilityPack with custom class.
+  
 ## [Version 2015.01.05](https://github.com/texhex/testutil/releases/tag/v2015.01.05) 
 
 IMPROVEMENTS:
