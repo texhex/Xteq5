@@ -6,43 +6,43 @@ using System.Xml.Linq;
 
 namespace Yamua
 {
-    
-            /*
-            //From inner to outer            
-            WeakHTMLTag em = new WeakHTMLTag("em");
-            em.Text = "My EM Text";
 
-            WeakHTMLTag small = new WeakHTMLTag("small", em);
+    /*
+    //From inner to outer            
+    WeakHTMLTag em = new WeakHTMLTag("em");
+    em.Text = "My EM Text";
 
-            WeakHTMLTag td = new WeakHTMLTag("td", small);
-            td.CSSClass = "light-green";
+    WeakHTMLTag small = new WeakHTMLTag("small", em);
+
+    WeakHTMLTag td = new WeakHTMLTag("td", small);
+    td.CSSClass = "light-green";
             
-            htmloutput = td.ToString();
-            */
-             
-            /*
-            //From outer to inner
+    htmloutput = td.ToString();
+    */
+
+    /*
+    //From outer to inner
             
-            WeakHTMLTag table=new WeakHTMLTag("table");
-            table.CSSClass = "dark-grey";
-            table.Text = "Table text";
+    WeakHTMLTag table=new WeakHTMLTag("table");
+    table.CSSClass = "dark-grey";
+    table.Text = "Table text";
 
-            WeakHTMLTag td = new WeakHTMLTag("td");
-            td.CSSClass = "light-green";
+    WeakHTMLTag td = new WeakHTMLTag("td");
+    td.CSSClass = "light-green";
 
-            WeakHTMLTag small = new WeakHTMLTag("small");
-            small.Attributes["small-attribute"] = "da value";
+    WeakHTMLTag small = new WeakHTMLTag("small");
+    small.Attributes["small-attribute"] = "da value";
 
-            WeakHTMLTag em = new WeakHTMLTag("em");
-            em.Text = "My EM Text;
+    WeakHTMLTag em = new WeakHTMLTag("em");
+    em.Text = "My EM Text;
 
-            WeakHTMLTag result = WeakHTMLTag.Concat(table, td, small, em);
+    WeakHTMLTag result = WeakHTMLTag.Concat(table, td, small, em);
 
-            htmloutput = result.ToString();
-            */
+    htmloutput = result.ToString();
+    */
 
     //XElement performance http://blogs.msdn.com/b/codejunkie/archive/2013/12/09/8992094.aspx
-    
+
     /// <summary>
     /// A minified version to create HTML tags on the fly. Uses XElement from System.Xml.Linq for tags and attributes.
     /// This class is missing a LOT of features. If you need something better, please use HtmlAgilityPack.
@@ -165,7 +165,7 @@ namespace Yamua
                 //This HTML tag has a value set, so combine those two
                 this.HTML += EnclosedTag.ToString();
             }
- 
+
         }
 
 
@@ -226,19 +226,12 @@ namespace Yamua
         /// <returns>This tag in HTML syntax</returns>
         public override string ToString()
         {
-            if (_xelem == null)
-            {
-                throw new InvalidOperationException("Base XElement is null");
-            }
-            else
-            {
-                StringBuilder sb = new StringBuilder(_xelem.ToString());
+            StringBuilder sb = new StringBuilder(_xelem.ToString());
 
-                //Replace the content with our internal value
-                sb.Replace(GUID_REPLACE, _content);
+            //Replace the content with our internal value
+            sb.Replace(GUID_REPLACE, _content);
 
-                return sb.ToString();
-            }
+            return sb.ToString();
         }
 
 
@@ -264,7 +257,7 @@ namespace Yamua
                 else
                 {
                     WeakHTMLTag current = null;
-                 
+
                     //Loop all objects, starting with the last
                     for (int i = Tags.Length - 1; i >= 0; i--)
                     {
@@ -305,7 +298,7 @@ namespace Yamua
         {
             return WebUtility.HtmlDecode(Data);
         }
-         
+
     }
 
 
