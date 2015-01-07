@@ -42,14 +42,7 @@ http://www.davekoelle.com/alphanum.html
 Licensed under the GNU Lesser General Public License
    https://www.gnu.org/licenses/lgpl.html 
    The license is distributed with this software as LICENSE-LGPL-3.0.txt
-
   
-Html Agility Pack
-http://htmlagilitypack.codeplex.com/
-Licensed under the Microsoft Public License
-   http://www.microsoft.com/en-us/openness/licenses.aspx
-   The license is distributed with this software as LICENSE-MsPL.txt
-   
 
 Bootstrap 
 Copyright 2013 Twitter, Inc
