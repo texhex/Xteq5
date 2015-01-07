@@ -179,7 +179,6 @@ namespace HeadlessPS
         //TODO: Write test when script is empty - should throw exception
         //TODO: Write test when function is called second time if there is something executing 
 
-
         /// <summary>
         /// Executes a script file.
         /// This function can throw an exception if there is a problem with PowerShell or this object itself, but not for any script related error (e.g. Syntax Errors). 

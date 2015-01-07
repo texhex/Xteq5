@@ -1,4 +1,4 @@
-#v1.09
+#v1.10
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -32,7 +32,7 @@ $ErrorActionPreference = 'Stop'$Result = @{Data = "OK"; Name="No changes pen
   $pendingfilerename=$false
   $test = Get-ItemProperty "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager" -Name "PendingFileRenameOperations" -ErrorAction Ignore
   if($test -ne $null) {
-    write-output "Windos Session Manager has PendingFileRenameOperations set"
+    write-output "Windows Session Manager has PendingFileRenameOperations set"
     $pendingfilerename=$true
   }   if ($cbsrebootpending -eq $true -or $wsusbootpending -eq $true -or $pendingfilerename -eq $true) {     $Result.Data ="Fail"     $Result.Text = "A restart is required in order to finish an operation"  }
 $Result

@@ -9,7 +9,6 @@ using Yamua;
 
 namespace TestUtil
 {
-    //TODO: Maybe switch to HtmlBuilders? https://github.com/amoerie/htmlbuilders
     //TODO: Create a base class to generate other format, e.g. Markdown, XML, Text etc.?
     public class BootstrapHTMLGenerator
     {

@@ -11,8 +11,8 @@ http://www.texhex.info/
 Logo by designklima
 http://designklima.com/
    
-Source code of:
-TestUtil, HeadlessPS, Yamua, TestUtilhelper and MPXmodule
+Source code of TestUtil, HeadlessPS, Yamua
+and the PS modules TestUtilHelpers, MPXmodule
 Copyright © 2010-2015 Michael 'Tex' Hex 
 http://www.texhex.info/
 Licensed under the Apache License, Version 2.0

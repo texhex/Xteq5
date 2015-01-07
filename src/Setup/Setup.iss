@@ -34,7 +34,7 @@ AppComments=Build with Inno Setup
 
 ;VersionInfoVersion={#ProgramVersion}
 VersionInfoVersion={#CurrentDateISO}
-VersionInfoCopyright=Copyright © 2010-2015 Michael 'Tex' Hex 
+VersionInfoCopyright=Copyright © 2010-2015 Michael Hex 
 
 ;I really think we should set this to NO...
 Uninstallable=Yes 
