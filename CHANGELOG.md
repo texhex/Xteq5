@@ -3,6 +3,7 @@
 IMPROVEMENTS:
 
  * Added assets and tests
+ * Added functions to MPXmodule
  
 BUG FIXES:
 

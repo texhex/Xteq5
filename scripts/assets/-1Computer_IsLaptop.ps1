@@ -1,4 +1,4 @@
-#Version 1.02
+#Version 1.03
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -14,7 +14,7 @@ $ErrorActionPreference = 'Stop'
 $Result = @{Name="IsLaptop"; Data = $false; Text = "Is this computer a laptop"}
 
 
-$isLaptop = $false
+[bool]$isLaptop = $false
 
 
 #Orginal code from http://blogs.technet.com/b/heyscriptingguy/archive/2010/05/15/hey-scripting-guy-weekend-scripter-how-can-i-use-wmi-to-detect-laptops.aspx

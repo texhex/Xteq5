@@ -1,5 +1,5 @@
 ﻿# Michael PowerShell eXtension module
-# Version 1.07
+# Version 1.08
 #
 # Copyright © 2010-2015 Michael 'Tex' Hex 
 # Licensed under the Apache License, Version 2.0. 
@@ -35,13 +35,52 @@
        #We are running as 64 bit process on a 64 bit OS. No WOW.
        return $false
     } else {
-       #We are NOT running as a 64 bit process on a 64 bit PS. WoW is active.
+       #We are running as a 32 bit process on a 64 bit OS - WoW is automatically enabled
        return $true 
     }    
  } else {
    #WoW64 is only active on a 64 bit OS 
    return $false
  }
+}
+
+
+function Test-OS32bit {
+<#
+  .SYNOPSIS
+  Returns $true if Windows is a 32 bit version
+
+  .PARAMETER 
+  None
+
+  .OUTPUTS
+  Returns $true if Windows is 32 bit, $false otherwise
+#>
+ 
+ #Better set strict mode on function scope than on module level
+ Set-StrictMode -version 2.0
+
+ if ([Environment]::Is64BitOperatingSystem) {
+    return $false
+ } else {
+   return $true
+ }
+}
+
+
+function Test-OS64bit {
+<#
+  .SYNOPSIS
+  Returns $true if Windows is a 64 bit version
+
+  .PARAMETER 
+  None
+
+  .OUTPUTS
+  Returns $true if Windows is 64 bit, $false otherwise
+#>
+ 
+ return [Environment]::Is64BitOperatingSystem
 }
 
 
@@ -194,7 +233,7 @@ Function Test-MPXModuleAvailable {
      # return $false      
      #}
 
-     #However, this function is a performance killer as it read every cmdlet, dll, and whatever
+     #However, this function is a performance killer as it reads every cmdlet, dll, and whatever
      #from any module that is available. 
      #
      #Therefore we will simply try to import the module using import-module on local level 
@@ -204,7 +243,7 @@ Function Test-MPXModuleAvailable {
      #
      #Given that the script (that has called us) will the use a cmdlet from the module,
      #the module is already loaded in the runspace and the next call to this function will be
-     #a lot faster.
+     #a lot faster since get-module will then return $TRUE.
 
      $mod=Import-Module $name -PassThru -ErrorAction SilentlyContinue -Scope Local
      if ($mod -ne $null) {
