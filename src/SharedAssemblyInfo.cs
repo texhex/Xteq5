@@ -6,15 +6,15 @@ using System.Runtime.InteropServices;
 //[Sharing assembly version across projects in a solution](http://weblogs.asp.net/ashishnjain/sharing-assembly-version-across-projects-in-a-solution) by Ashish Jain
 
 
-[assembly: AssemblyTitle("TestUtil")] //Explorer: File description
-[assembly: AssemblyProduct("http://www.testutil.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("1.26.*")] //Explorer: Product version
+[assembly: AssemblyTitle("Xteq5")] //Explorer: File description
+[assembly: AssemblyProduct("http://www.Xteq5.com/")] //Explorer: Product name
+[assembly: AssemblyVersion("2.02.*")] //Explorer: Product version
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion. Explorer: File version
 
 
-[assembly: AssemblyDescription("For more information, please visit http://www.testutil.com/")] //It's actually a comment: $File.VersionInfo.Comments
-[assembly: AssemblyCopyright("Copyright © 2010-2015, Michael 'Tex' Hex")]
-[assembly: AssemblyCompany("TestUtil")]
+[assembly: AssemblyDescription("For more information, please visit http://www.Xteq5.com/")] //It's actually a comment: $File.VersionInfo.Comments
+[assembly: AssemblyCopyright("Copyright © 2010-2015, Michael Hex")]
+[assembly: AssemblyCompany("Xteq5")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
