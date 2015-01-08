@@ -1,4 +1,4 @@
-#Version 1.02
+#Version 1.03
 #https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
 
@@ -12,5 +12,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Data = ""; Name = "Xteq5_Version"; Text = "Version of Xteq5 engine used"}
+$Result = @{Data = ""; Name = "Xteq5_Version"; Text = "Version of Xteq5 used"}
 $Result.Data=$Xteq5EngineVersion$Result

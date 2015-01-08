@@ -56,7 +56,7 @@ UninstallDisplayIcon={app}\{#StartExeName}
 
 ;Place resulting Setup.exe in the same folder as the ISS file
 OutputDir={#SourcePath}
-OutputBaseFilename=Xteq5_Setup
+OutputBaseFilename=Xteq5Setup
 
 ;Set source dir to folder above the location of this file.
 ;Example: This file is located at C:\dev\git\xteq5\src\Setup\

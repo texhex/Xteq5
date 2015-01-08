@@ -1,20 +1,19 @@
 Xteq5
-Copyright © 2010-2015 Michael 'Tex' Hex 
+Copyright © 2010-2015 Michael Hex 
 All Rights Reserved
-http://www.Xteq5.com/
+http://www.xteq5.com/
 
 "Xteq5" and the "Radar" logo
-Copyright © 2010-2015 Michael 'Tex' Hex 
+Copyright © 2010-2015 Michael Hex 
 All Rights Reserved
 http://www.texhex.info/
 
 Logo by designklima
 http://designklima.com/
    
-Source code of Xteq5, HeadlessPS, Yamua
-and the PS modules Xteq5Helpers, MPXmodule
-Copyright © 2010-2015 Michael 'Tex' Hex 
-http://www.Xteq5.info/
+Source code of Xteq5, HeadlessPS, Yamua, Xteq5Helpers and MPXmodule
+Copyright © 2010-2015 Michael Hex 
+http://www.xteq5.com/
 Licensed under the Apache License, Version 2.0
    http://www.apache.org/licenses/LICENSE-2.0 
    The license is distributed with this software as LICENSE-Apache-2.0.txt
