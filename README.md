@@ -1,7 +1,7 @@
 About Xteq5
 ===========
 
-<img src="https://github.com/texhex/xteq5/raw/master/images/xteq5_small.png" alt="TestUtil logo" title="TestUtil" align="right" style="max-width:100%;" />
+<img src="https://github.com/texhex/Xteq5/raw/master/images/Xteq5_small.png" alt="Xteq5 logo" title="Xteq5" align="right" style="max-width:100%;" />
  
 A known issues testing framework, powered by PowerShell scripts.
 
