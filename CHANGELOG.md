@@ -1,3 +1,17 @@
+## WORKING ON
+
+**BREAKING CHANGES:**
+
+* The name TestUtil has proven to be too generic to use. Because I couldn’t come up with anything better, the project will use the name **Xteq5** again.   
+
+IMPROVEMENTS:
+
+* None
+
+BUG FIXES:
+
+* None
+
 ## [Version 2015.01.07](https://github.com/texhex/testutil/releases/tag/v2015.01.07) 
 
 IMPROVEMENTS:
