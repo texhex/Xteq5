@@ -1,4 +1,4 @@
-#Version 1.01
+#Version 1.02
 #https://github.com/texhex/testutil/wiki/_fwLinkScript
 
 
@@ -12,5 +12,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Data = ""; Name = "TestUtil_Version"; Text = "Version of TestUtil engine used"}
-$Result.Data=$TestUtilEngineVersion$Result
+$Result = @{Data = ""; Name = "Xteq5_Version"; Text = "Version of Xteq5 engine used"}
+$Result.Data=$Xteq5EngineVersion$Result

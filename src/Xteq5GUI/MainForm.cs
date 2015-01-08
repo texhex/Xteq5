@@ -33,7 +33,7 @@ namespace Xteq5GUI
         {
             //Generate default folder 
             string programDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\" + Xteq5Constant.FolderNameCommonAppData;
+            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\" + Xteq5Constant.DirectoryNameCommonApplicationData;
 
             //Check settings
             string folderAppSetting = Properties.Settings.Default.Folder;

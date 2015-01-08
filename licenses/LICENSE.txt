@@ -1,9 +1,9 @@
-TestUtil
+Xteq5
 Copyright © 2010-2015 Michael 'Tex' Hex 
 All Rights Reserved
-http://www.testutil.com/
+http://www.Xteq5.com/
 
-"TestUtil" and the "Radar" logo
+"Xteq5" and the "Radar" logo
 Copyright © 2010-2015 Michael 'Tex' Hex 
 All Rights Reserved
 http://www.texhex.info/
@@ -11,17 +11,17 @@ http://www.texhex.info/
 Logo by designklima
 http://designklima.com/
    
-Source code of TestUtil, HeadlessPS, Yamua
-and the PS modules TestUtilHelpers, MPXmodule
+Source code of Xteq5, HeadlessPS, Yamua
+and the PS modules Xteq5Helpers, MPXmodule
 Copyright © 2010-2015 Michael 'Tex' Hex 
-http://www.texhex.info/
+http://www.Xteq5.info/
 Licensed under the Apache License, Version 2.0
    http://www.apache.org/licenses/LICENSE-2.0 
    The license is distributed with this software as LICENSE-Apache-2.0.txt
 
    
    
-TestUtil is a Derivative/Combined Work of other software:
+Xteq5 is a Derivative/Combined Work of other software:
 
 Created with Microsoft Visual Studio Community 2013
 © 2014 Microsoft Corporation

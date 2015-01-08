@@ -23,11 +23,11 @@ namespace Xteq5
         public static readonly string DirectoryNameTests = "tests";
         public static readonly string DirectoryNameModules = "modules";
 
-        public static readonly string VariableNameEngineVersion = "TestUtilEngineVersion";
-        public static readonly string VariableNameAssets = "TestUtilAssets";
-        public static readonly string VariableNameTestUtilActive = "TestUtilActive";
+        public static readonly string VariableNameEngineVersion = "Xteq5EngineVersion";
+        public static readonly string VariableNameAssets = "Xteq5Assets";
+        public static readonly string VariableNameIsActive = "Xteq5Active";
 
-        public static readonly string FolderNameCommonAppData = "Xteq5";
+        public static readonly string DirectoryNameCommonApplicationData = "Xteq5";
 
         //These are const because nobody outside this assembly can use them anyway
         internal const string ReturnedHashtableKeyName = "Name";

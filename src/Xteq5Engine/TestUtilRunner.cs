@@ -72,7 +72,7 @@ namespace Xteq5
             //Add Xteq5EngineVersion read-only variable
             prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameEngineVersion, Xteq5Constant.AssemblyVersion, true));
             //Add Xteq5Running read-only variable
-            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameTestUtilActive, true, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameIsActive, true, true));
 
             
             //Execute all assets
