@@ -1,7 +1,7 @@
-About TestUtil
-========
+About Xteq5
+===========
 
-<img src="https://github.com/texhex/testutil/raw/master/images/testutil_small.png" alt="TestUtil logo" title="TestUtil" align="right" style="max-width:100%;" />
+<img src="https://github.com/texhex/xteq5/raw/master/images/xteq5_small.png" alt="TestUtil logo" title="TestUtil" align="right" style="max-width:100%;" />
  
 A known issues testing framework, powered by PowerShell scripts.
 
@@ -21,7 +21,7 @@ The most recent version can be downloaded from [Releases][_download].
 
 ##<a name="sysrequirements">System Requirements</a>
 
-<!-- These links are also used in /src/setup/_TestUtil.iss -->
+<!-- These links are also used in /src/setup/_Setup.iss -->
 
 * Windows 7 SP1 / Windows Server 2008 SP2 (or higher)
 * 256MB free memory, ~5 MB free disk space
@@ -32,7 +32,7 @@ The most recent version can be downloaded from [Releases][_download].
 
 ##<a name="docs">Documentation</a>
 
-Please see the [TestUtil Wiki][_wiki]
+Please see the [Xteq5 Wiki][_wiki]
 
 ##<a name="contribute">Contributions</a>
 
@@ -47,23 +47,24 @@ If you have created a script you want us to include, please open a new [issue][_
 
 ##<a name="copyright">Copyright and License</a>
 
-Copyright © 2010-2015 [Michael 'Tex' Hex][_texhexhomepage] ([@texhex][_texhexgithub]).
+Copyright © 2010-2015 [Michael Hex][_texhexhomepage] ([@texhex][_texhexgithub]).
 
 Licensed under the **Apache License, Version 2.0**. For details, please see [LICENSE.txt][_license].
 
-*TestUtil* and the *Radar* logo (Created by [designklima](http://designklima.com/)) - Copyright © 2010-2015 Michael 'Tex' Hex - All Rights Reserved 
+*Xteq5* and the *Radar* logo (Created by [designklima](http://designklima.com/)) - Copyright © 2010-2015 Michael Hex - All Rights Reserved 
 
 
 
 
 [_logo]:images/testutil_small.png
 [_license]:licenses/LICENSE.txt
-[_wiki]:https://github.com/texhex/testutil/wiki
-[_download]:https://github.com/texhex/testutil/releases
+[_wiki]:https://github.com/texhex/xteq5/wiki
+[_download]:https://github.com/texhex/Xteq5/releases
 [_netframework]:http://www.microsoft.com/en-us/download/details.aspx?id=40773
 [_wmf]:http://www.microsoft.com/en-us/download/details.aspx?id=40855
-[_issuenew]:https://github.com/texhex/testutil/issues/new
-[_wiki_newscript]:https://github.com/texhex/testutil/wiki/_fwLinkScript
+[_issuenew]:https://github.com/texhex/Xteq5/issues/new
+[_wiki_newscript]:https://github.com/texhex/xteq5/wiki/_fwLinkScript
 [_texhexgithub]:https://github.com/texhex/
 [_texhexhomepage]:http://www.texhex.info/
-[_examplereport]:http://texhex.github.io/testutil/examplereport.html
+[_examplereport]:http://texhex.github.io/xteq5/examplereport.html
+
