@@ -7,16 +7,16 @@
 ; The main information is the release date. 
 ; We generate it from the current date/time upun compliation of this script
 ; Example result: 2014.12.30.1401
-; This will also be used inside the version info of the resulting Setup.exe
+; This will also be used inside the version info of the resulting SetupXteq5.exe
 ; Unfortunately, I dot find a way to use UTC.
 #define public CurrentDateISO GetDateTimeString('yyyy/mm/dd.hhnn', '.', '');
 
-; Extract version from x64\Release\TestUtil.Engine.dll
+; Extract version from x64\Release\Xteq5.Engine.dll
 ; SourcePath ({#SourcePath} in scripts) is a pre-defined variable that contains the path where the ISS file is located
-#define public ProgramVersion GetFileVersion(SourcePath +'..\TestUtilEngine\bin\x64\Release\TestUtil.Engine.dll')
+#define public ProgramVersion GetFileVersion(SourcePath +'..\Xteq5Engine\bin\x64\Release\Xteq5.Engine.dll')
 
 ; Default file to be started
-#define public StartExeName 'TestUtilLauncher.exe'
+#define public StartExeName 'Xteq5Launcher.exe'
 
   
 
@@ -28,8 +28,8 @@ AppVersion={#CurrentDateISO} ({#ProgramVersion})
 AppId=MTHTestUtil
 
 AppPublisher=Michael 'Tex' Hex
-AppPublisherURL=http://www.testutil.com/
-AppSupportURL=https://github.com/texhex/testutil/wiki
+AppPublisherURL=http://www.Xteq5.com/
+AppSupportURL=https://github.com/texhex/Xteq5/wiki
 AppComments=Build with Inno Setup
 
 ;VersionInfoVersion={#ProgramVersion}
@@ -56,7 +56,7 @@ UninstallDisplayIcon={app}\{#StartExeName}
 
 ;Place resulting Setup.exe in the same folder as the ISS file
 OutputDir={#SourcePath}
-OutputBaseFilename=TestUtilSetup
+OutputBaseFilename=Xteq5_Setup
 
 ;Set source dir to folder above the location of this file.
 ;Example: This file is located at C:\dev\gitrepos\testutil\src\Setup\
@@ -107,16 +107,16 @@ DisableReadyPage=no
 
 [Icons]
 ;Start menu icon
-Name: "{commonprograms}\TestUtil"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
+Name: "{commonprograms}\Xteq5"; Filename: "{app}\{#StartExeName}"; Parameters: ""; IconFilename: "{app}\{#StartExeName}"
 
 ;Link to folder in commonappdata within the program folder for easier access
-Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\TestUtil\"; Comment: "Files in ProgramData";
+Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\Xteq5\"; Comment: "Files in ProgramData";
 
 
 [Dirs]
 ;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
 ;Also grant users the modify permission, in case they which to add addtional scripts 
-Name: "{commonappdata}\TestUtil"; Permissions: users-modify
+Name: "{commonappdata}\Xteq5"; Permissions: users-modify
 
 
 [InstallDelete]
@@ -124,13 +124,13 @@ Name: "{commonappdata}\TestUtil"; Permissions: users-modify
 Type: files; Name: "{app}";
 
 ;Also, clean \assets and \tests to make sure scripts we have deleted from the repo in the meantime are deleted
-Type: files; Name: "{commonappdata}\TestUtil\assets\-*.ps1";
-Type: files; Name: "{commonappdata}\TestUtil\tests\-*.ps1";
+Type: files; Name: "{commonappdata}\Xteq5\assets\-*.ps1";
+Type: files; Name: "{commonappdata}\Xteq5\tests\-*.ps1";
 
 
 ;Up to version 2015.01.03 we have used "_" instead of "-"
-Type: files; Name: "{commonappdata}\TestUtil\assets\_*.ps1";
-Type: files; Name: "{commonappdata}\TestUtil\tests\_*.ps1";
+Type: files; Name: "{commonappdata}\Xteq5\assets\_*.ps1";
+Type: files; Name: "{commonappdata}\Xteq5\tests\_*.ps1";
 
 ;[Types]
 ;Name: "full"; Description: "TestUtil files"
@@ -147,7 +147,7 @@ Type: files; Name: "{commonappdata}\TestUtil\tests\_*.ps1";
 ; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
 ; See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
 ; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
-Source: "scripts\modules\TestUtilHelpers\TestUtilHelpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\TestUtilHelpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
+Source: "scripts\modules\Xteq5Helpers\Xteq5Helpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\Xteq5Helpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
 ;Do the same for the MPX module
 Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 
 
@@ -159,18 +159,18 @@ Source: "scripts\*.*"; DestDir: "{commonappdata}\TestUtil\"; Flags: ignoreversio
 Source: "licenses\*.*"; DestDir: "{app}\licenses"; Flags: ignoreversion recursesubdirs;
 
 ;TestUtilLauncher 
-Source: "src\TestUtilLauncher\bin\release\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
-Source: "src\TestUtilLauncher\bin\release\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5Launcher\bin\release\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5Launcher\bin\release\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
 
 ;TestUtilGUI (64 bit)
-Source: "src\TestUtilGUI\bin\x64\release\*.exe"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
-Source: "src\TestUtilGUI\bin\x64\release\*.dll"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
-Source: "src\TestUtilGUI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x64\release\*.exe"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x64\release\*.dll"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
 
 ;TestUtilGUI (32 bit)
-Source: "src\TestUtilGUI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
-Source: "src\TestUtilGUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
-Source: "src\TestUtilGUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5GUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 
 
 [Ini]
@@ -181,12 +181,12 @@ Filename: "{app}\VERSION.ini"; Section: "Version"; Key: "BinaryVersion"; String:
 
 [Registry]
 ;Add testutillauncher.exe to app paths  This means Windows knows where to find the file when "testutil.exe" is requested somewhere
-Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutillauncher.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
-Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutillauncher.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5launcher.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5launcher.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
 
 ;Do the same but with a little cheating: Define TestUtilLauncher.exe as TestUtil.exe 
-Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
-Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\testutil.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
 
 
 

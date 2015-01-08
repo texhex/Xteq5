@@ -1,22 +1,22 @@
-## TestUtil Source code (/src) README
+## Xteq5 source code (/src) README
 
 
 ## General
 
  - The scripts (Assets, tests and modules) that will be installed during setup are in _/scripts_.
  - Scripts for testing are located in _/src/ScriptsForTesting/Test1_
- - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`TestUtilEngine-Consumer` uses `TestUtilEngine`).
+ - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`Xteq5Engine-Consumer` uses `Xteq5Engine`).
  - Projects that end in **xUnitTest** are test assemblies for [xUnit](https://github.com/xunit/xunit)
  - If you get the error __The type or namespace name 'Xunit' could not be found (are you missing a using directive or an assembly reference?)__, xUnit needs to be downloaded using NuGet.
  - Also download _Xunit runners_ using NuGet. 
 
 ## Projects
  - `HeadlessPS` is a library to run scripts using PowerShell.
- - `TestUtilEngine` is the main library and uses HeadlessPS to run assets and tests.
- - `TestUtilOutputGenerator` is used to generate the resulting report.
- - `TestUtilGUI` (TestUtil.exe) is the GUI used to operate TestUtil, it uses all three libraries above.
- - `TestUtilLauncher` launches TestUtilGUI in the matching bitness (32 or 64 bit) for the computer. 
- - `src/setup/_TestUtilSetup.iss` is used to create **TestUtilSetup.exe**. Inside the solution the link to this file is in _Solution items_. 
+ - `Xteq5Engine` is the main library and uses HeadlessPS to run assets and tests.
+ - `Xteq5OutputGenerator` is used to generate the resulting report.
+ - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all three libraries above.
+ - `Xteq5Launcher` launches Xteq5GUI in the matching bitness (32 or 64 bit) for the computer. 
+ - `src/setup/_Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
  - You need to download and install [Inno Setup Unicode](http://www.jrsoftware.org/isdl.php) in order to open *.ISS files.
   
 
@@ -26,7 +26,7 @@
   
   - Run **Code Analyizes** (_Analyze_ > _Run Code Analysis on Solution_)
   
-  - If you make a change to the code, update _Solution items_ > _SharedAssemblyInfo.cs_ and increment _AssemblyVersion_. This information is uses as version details in all TestUtil projects.
+  - If you make a change to the code, update _Solution items_ > _SharedAssemblyInfo.cs_ and increment _AssemblyVersion_. This information is uses as version details in all Xteq5 projects.
      
   - Update CHANGELOG.md
 
@@ -34,13 +34,13 @@
   
   - Verifiy everything looks good. If not: Repeat.  
   
-  - Use _Build_ > _Batch Build_ > _Build_ to create all files. _TestUtilLauncher.exe_ will build for **Any CPU** only. This is on purpose. 
+  - Use _Build_ > _Batch Build_ > _Build_ to create all files. _Xteq5Launcher.exe_ will build for **Any CPU** only. This is on purpose. 
 
-  - Run Inno Setup and run `src\Setup\Setup.iss` to generate `TestUtilSetup.exe`.
+  - Run Inno Setup and run `src\Setup\Setup.iss` to generate `Xteq5Setup.exe`.
 
   - Verify that the setup is working correctly
    
-  - If the file looks good, go to https://github.com/texhex/testutil/releases/new and attach it  
+  - If the file looks good, go to https://github.com/texhex/xteq5/releases/new and attach it  
      
      - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2015-12-31_ than the correct tag is 
 	    `v2015.12.31`.  

@@ -8,5 +8,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Name = "ExecutedFromTestUtil"; Data = ""; Text = "Asset #525: Is this script executed with TestUtil or not"}
-if (test-path variable:TestUtilActive) {   #Executed within TestUtil   $Result.Data="Running in TestUtil" } else {   #Not running within TestUtil   $Result.Data= "TestUtil is nowhere to be seen"}$Result
+$Result = @{Name = "ExecutedFromXteq5"; Data = ""; Text = "Asset #525: Is this script executed with Xteq5 or not"}
+if (test-path variable:Xteq5Active) {   #Executed within TestUtil   $Result.Data="Running in Xteq5" } else {   #Not running within TestUtil   $Result.Data= "Xteq5 is nowhere to be seen"}$Result

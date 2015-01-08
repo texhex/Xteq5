@@ -93,7 +93,7 @@
     <Compile Include="TestScriptRunner.cs" />
     <Compile Include="Xteq5Constant.cs" />
     <Compile Include="TestRecord.cs" />
-    <Compile Include="TestUtilRunner.cs" />
+    <Compile Include="Xteq5Runner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeadlessPS\HeadlessPS.csproj">

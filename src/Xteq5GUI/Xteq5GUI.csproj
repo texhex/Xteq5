@@ -73,7 +73,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TestUtil_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Xteq5_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestUtil_Icon.ico" />
+    <Content Include="Xteq5_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeadlessPS\HeadlessPS.csproj">

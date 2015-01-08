@@ -8,5 +8,5 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = 'Stop'
 
 
-$Result = @{Name = "TestUtilEngine_Version"; Data = ""; Text = "Asset #520: Version of TestUtil"}
-$Result.Data=$TestUtilEngineVersion$Result
+$Result = @{Name = "Xteq5Engine_Version"; Data = ""; Text = "Asset #520: Version of Xteq5"}
+$Result.Data=$Xteq5EngineVersion$Result
