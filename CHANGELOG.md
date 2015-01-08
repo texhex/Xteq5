@@ -1,12 +1,14 @@
-## WORKING ON
+## [Version 2015.01.08](https://github.com/texhex/xteq5/releases/tag/v2015.01.08)
 
 **BREAKING CHANGES:**
 
-* The name TestUtil has proven to be too generic to use. Because I couldn’t come up with anything better, the project will use the name **Xteq5** again.   
+* The name TestUtil has proven to be too generic to use. Because I couldn’t come up with anything better, the project will use the name **Xteq5** again.  
 
 IMPROVEMENTS:
 
-* Name changes in nearly all files
+* Updated all links and files to use the new name
+* Updated binary version to 2.12 to reflect this change
+* Updated HTML template to 2.10  
 
 BUG FIXES:
 

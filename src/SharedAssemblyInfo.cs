@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Xteq5")] //Explorer: File description
 [assembly: AssemblyProduct("http://www.Xteq5.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("2.02.*")] //Explorer: Product version
+[assembly: AssemblyVersion("2.12.*")] //Explorer: Product version
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion. Explorer: File version
 
 
