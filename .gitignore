@@ -1,5 +1,5 @@
 #Ignore generated Setup.exe
-src/setup/TestUtilSetup.exe
+src/setup/Xteq5Setup.exe
 
 #Ignore preposser output
 src/setup/zz_Temp_Preprocessed.iss

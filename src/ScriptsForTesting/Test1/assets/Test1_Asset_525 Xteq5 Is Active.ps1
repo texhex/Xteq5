@@ -9,4 +9,4 @@ $ErrorActionPreference = 'Stop'
 
 
 $Result = @{Name = "ExecutedFromXteq5"; Data = ""; Text = "Asset #525: Is this script executed with Xteq5 or not"}
-if (test-path variable:Xteq5Active) {   #Executed within TestUtil   $Result.Data="Running in Xteq5" } else {   #Not running within TestUtil   $Result.Data= "Xteq5 is nowhere to be seen"}$Result
+if (test-path variable:Xteq5Active) {   #Executed within Xteq5   $Result.Data="Running in Xteq5" } else {   #Not running within Xteq5   $Result.Data= "Xteq5 is nowhere to be seen"}$Result

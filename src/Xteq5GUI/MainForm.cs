@@ -132,7 +132,7 @@ namespace Xteq5GUI
 
         private void menuCmdHelpCreate_Click(object sender, EventArgs e)
         {
-            ExecuteAndForget.Execute("https://github.com/texhex/Xteq5/wiki/_fwLinkScript");
+            ExecuteAndForget.Execute("https://github.com/texhex/Xteq5/wiki/");
         }
 
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)

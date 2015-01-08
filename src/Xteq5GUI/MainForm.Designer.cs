@@ -83,7 +83,7 @@
             // menuCmdFileExit
             // 
             this.menuCmdFileExit.Name = "menuCmdFileExit";
-            this.menuCmdFileExit.Size = new System.Drawing.Size(162, 24);
+            this.menuCmdFileExit.Size = new System.Drawing.Size(99, 24);
             this.menuCmdFileExit.Text = "E&xit";
             this.menuCmdFileExit.Click += new System.EventHandler(this.menuCmdFileExit_Click);
             // 
@@ -102,31 +102,31 @@
             // menuCmdHelpHomepage
             // 
             this.menuCmdHelpHomepage.Name = "menuCmdHelpHomepage";
-            this.menuCmdHelpHomepage.Size = new System.Drawing.Size(222, 24);
+            this.menuCmdHelpHomepage.Size = new System.Drawing.Size(182, 24);
             this.menuCmdHelpHomepage.Text = "&Homepage...";
             this.menuCmdHelpHomepage.Click += new System.EventHandler(this.homepageToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(219, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
             // 
             // menuCmdHelpWiki
             // 
             this.menuCmdHelpWiki.Name = "menuCmdHelpWiki";
-            this.menuCmdHelpWiki.Size = new System.Drawing.Size(222, 24);
-            this.menuCmdHelpWiki.Text = "&Create your own tests...";
+            this.menuCmdHelpWiki.Size = new System.Drawing.Size(182, 24);
+            this.menuCmdHelpWiki.Text = "&Documentation...";
             this.menuCmdHelpWiki.Click += new System.EventHandler(this.menuCmdHelpCreate_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(219, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(179, 6);
             // 
             // menuCmdHelpAbout
             // 
             this.menuCmdHelpAbout.Name = "menuCmdHelpAbout";
-            this.menuCmdHelpAbout.Size = new System.Drawing.Size(222, 24);
+            this.menuCmdHelpAbout.Size = new System.Drawing.Size(182, 24);
             this.menuCmdHelpAbout.Text = "&About...";
             this.menuCmdHelpAbout.Click += new System.EventHandler(this.menuCmdHelpAbout_Click);
             // 

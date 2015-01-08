@@ -1,5 +1,5 @@
 #Version 1.02
-#https://github.com/texhex/testutil/wiki/_fwLinkScript
+#https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
 
 #This script requires PowerShell 4.0 or higher 

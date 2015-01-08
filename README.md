@@ -72,5 +72,5 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 [_wiki_newscript]:https://github.com/texhex/xteq5/wiki/_fwLinkScript
 [_texhexgithub]:https://github.com/texhex/
 [_texhexhomepage]:http://www.texhex.info/
-[_examplereport]:http://texhex.github.io/xteq5/examplereport.html
+[_examplereport]:http://texhex.github.io/Xteq5/examplereport.html
 

@@ -10,5 +10,5 @@ $ErrorActionPreference = 'Stop'
 
 $daReturn = @{Data = ""; Text = "Asset #915 Text"}
 
-$daReturn.Data=Get-TestUtilTestString "From Asset"
+$daReturn.Data=Get-TestModuleTestString "From Asset"
 $daReturn

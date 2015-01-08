@@ -1,5 +1,5 @@
 ﻿# Xteq5Helpers module
-# Version 1.08
+# Version 1.10
 #
 # Copyright © 2010-2015 Michael Hex 
 # Licensed under the Apache License, Version 2.0. 
@@ -18,13 +18,13 @@
 function Test-XQActive {
 <#
   .SYNOPSIS
-  Return $true if the script is running within TestUtil
+  Return $true if the script is running within Xteq5
 
   .PARAMETER 
   None
 
   .OUTPUTS
-  $true if the script is running within TestUtil, $false otherwise
+  $true if the script is running within Xteq5, $false otherwise
 #>
  
  #Better set strict mode on function scope than on module level
@@ -47,13 +47,13 @@ function Get-XQAssetValue {
   .DESCRIPTION
   Return the value of an asset or the provided default value.
 
-  The default value is returned when the script is not executed within TestUtil or the asset does not exist.
+  The default value is returned when the script is not executed within Xteq5 or the asset does not exist.
 
   .PARAMETER AssetName
   The name of the asset that should be returned 
 
   .PARAMETER DefaultValue
-  The value that should be returned if the asset could not be found or TestUtil is not active
+  The value that should be returned if the asset could not be found or Xteq5 is not active
 
   .OUTPUTS
   Value of the asset or the default value
@@ -86,7 +86,7 @@ function Get-XQAssetValue {
      } 
  } 
  else {
-    #TestUtil is not active
+    #Xteq5 is not active
     return $DefaultValue
  }
 

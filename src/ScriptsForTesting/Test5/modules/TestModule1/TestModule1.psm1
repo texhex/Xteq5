@@ -1,13 +1,11 @@
 ﻿
-function Get-TestUtilTestString {
+function Get-TestModuleTestString {
  param ([string]$inString)
 
  $ModPath=[Environment]::GetEnvironmentVariable("PSModulePath")
- $result="Get-TestUtilTestString - In: [$inString] - ModPath: $ModPath"
+ $result="Get-TestModuleTestString - In: [$inString] - ModPath: $ModPath"
  return $result
 }
 
 
-
-#Get-TestUtilTest1
 
