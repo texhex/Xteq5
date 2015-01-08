@@ -21,11 +21,11 @@
   
 
 [Setup]
-AppName=TestUtil 
+AppName=Xteq5 
 AppVersion={#CurrentDateISO} ({#ProgramVersion}) 
 
-;Better add something to the AppID to avoid a name collision
-AppId=MTHTestUtil
+;Internal AppId. DO NOT CHANGE! 
+AppId=Xteq5
 
 AppPublisher=Michael 'Tex' Hex
 AppPublisherURL=http://www.Xteq5.com/
@@ -48,8 +48,8 @@ ArchitecturesInstallIn64BitMode=x64
 ;Allow to be installed in x32 or x64 mode
 ArchitecturesAllowed=x86 x64
 
-;Store to C:\Program Files\TestUtil by default
-DefaultDirName={pf}\TestUtil
+;Store to C:\Program Files\Xteq5 
+DefaultDirName={pf}\Xteq5
 
 ;Icon inside Add/Remove programs
 UninstallDisplayIcon={app}\{#StartExeName}
@@ -59,8 +59,8 @@ OutputDir={#SourcePath}
 OutputBaseFilename=Xteq5_Setup
 
 ;Set source dir to folder above the location of this file.
-;Example: This file is located at C:\dev\gitrepos\testutil\src\Setup\
-;The source dir is in this case C:\dev\gitrepos\testutil\
+;Example: This file is located at C:\dev\git\xteq5\src\Setup\
+;The source dir is in this case C:\dev\git\xteq5\
 SourceDir={#SourcePath}..\..\
 
 ;License is Apache 2.0
@@ -72,10 +72,10 @@ InfoBeforeFile=licenses\LICENSE.txt
 ;No cancel during install
 AllowCancelDuringInstall=False
 
-;If TestUtil is running, close it without question if running silently
+;If program is running, close it without question if running silently
 CloseApplications=yes
 
-;Do not restart if TestUtil was closed
+;Do not restart the program was closed
 RestartApplications=no
 
 ;Do not warn if we install into a folder that already exists
@@ -114,13 +114,13 @@ Name: "{app}\Files in ProgramData"; Filename: "{commonappdata}\Xteq5\"; Comment:
 
 
 [Dirs]
-;Create a folder in common app data (C:\ProgramData\TestUtil) to store the scripts there
+;Create a folder in common app data (C:\ProgramData\Xteq5) to store the scripts there
 ;Also grant users the modify permission, in case they which to add addtional scripts 
 Name: "{commonappdata}\Xteq5"; Permissions: users-modify
 
 
 [InstallDelete]
-;Upon installation, delete all files in the APP path (C:\Program Files\TestUtil) to make sure we have a clean state
+;Upon installation, delete all files in the APP path (C:\Program Files\Xteq5) to make sure we have a clean state
 Type: files; Name: "{app}";
 
 ;Also, clean \assets and \tests to make sure scripts we have deleted from the repo in the meantime are deleted
@@ -132,42 +132,33 @@ Type: files; Name: "{commonappdata}\Xteq5\tests\-*.ps1";
 Type: files; Name: "{commonappdata}\Xteq5\assets\_*.ps1";
 Type: files; Name: "{commonappdata}\Xteq5\tests\_*.ps1";
 
-;[Types]
-;Name: "full"; Description: "TestUtil files"
-;Name: "full_dev"; Description: "TestUtil and additional custom modules (not required)"
-
-;[Components]
-;Name: "full"; Description: "Full app"; 
-;Name: "devstuff"; Description: "Also install custom modules in personal  "; 
-;Types: full;
-
 
 [Files]
 ;If selected by the user: 
-; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside TestUtil as well
+; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside Xteq5 as well
 ; See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
-; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\TestUtilHelpers
+; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\Xteq5Helpers
 Source: "scripts\modules\Xteq5Helpers\Xteq5Helpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\Xteq5Helpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
 ;Do the same for the MPX module
 Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 
 
 
-;Copy all scripts to commonappdata
-Source: "scripts\*.*"; DestDir: "{commonappdata}\TestUtil\"; Flags: ignoreversion recursesubdirs;
+;Copy entire scripts folder to commonappdata
+Source: "scripts\*.*"; DestDir: "{commonappdata}\Xteq5\"; Flags: ignoreversion recursesubdirs;
 
 ;All license files go to \licenses
 Source: "licenses\*.*"; DestDir: "{app}\licenses"; Flags: ignoreversion recursesubdirs;
 
-;TestUtilLauncher 
+;Xteq5Launcher 
 Source: "src\Xteq5Launcher\bin\release\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5Launcher\bin\release\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
 
-;TestUtilGUI (64 bit)
+;Xteq5GUI (64 bit)
 Source: "src\Xteq5GUI\bin\x64\release\*.exe"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x64\release\*.dll"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
 
-;TestUtilGUI (32 bit)
+;Xteq5GUI (32 bit)
 Source: "src\Xteq5GUI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
@@ -180,11 +171,11 @@ Filename: "{app}\VERSION.ini"; Section: "Version"; Key: "BinaryVersion"; String:
 
 
 [Registry]
-;Add testutillauncher.exe to app paths  This means Windows knows where to find the file when "testutil.exe" is requested somewhere
+;Add xteq5launcher.exe to app paths  This means Windows knows where to find the file when "xteq5.exe" is requested somewhere
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5launcher.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5launcher.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
 
-;Do the same but with a little cheating: Define TestUtilLauncher.exe as TestUtil.exe 
+;Do the same but with a little cheating: Define Xteq5Launcher.exe as Xteq5.exe 
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5.exe"; ValueType: string; ValueName: ; ValueData: "{app}\{#StartExeName}";
 Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\xteq5.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app}";
 
@@ -300,8 +291,8 @@ begin
       CreateInputOptionPage(wpSelectComponents,
          'Install custom PowerShell modules', 
          '',
-         'If you plan to create your own assets and tests, the custom PowerShell modules of TestUtil should also be copied to your personal modules path.'+#13#10+#13#10+
-         'This is NOT required if you just want to run TestUtil.'+#13#10,
+         'If you plan to create your own assets and tests, the custom PowerShell modules of Xteq5 should also be copied to your personal modules path.'+#13#10+#13#10+
+         'This is NOT required if you just want to execute Xteq5.'+#13#10,
           False, False);
 
        pagInstallModules.Add('Install modules to %UserProfile%\Documents\WindowsPowerShell\Modules');

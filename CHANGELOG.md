@@ -6,7 +6,7 @@
 
 IMPROVEMENTS:
 
-* Change references to the old name in all files.
+* Name changes in nearly all files
 
 BUG FIXES:
 

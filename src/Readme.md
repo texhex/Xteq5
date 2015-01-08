@@ -5,7 +5,7 @@
 
  - The scripts (Assets, tests and modules) that will be installed during setup are in _/scripts_.
  - Scripts for testing are located in _/src/ScriptsForTesting/Test1_
- - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`Xteq5Engine-Consumer` uses `Xteq5Engine`).
+ - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`Xteq5Engine_Consumer` uses `Xteq5Engine`).
  - Projects that end in **xUnitTest** are test assemblies for [xUnit](https://github.com/xunit/xunit)
  - If you get the error __The type or namespace name 'Xunit' could not be found (are you missing a using directive or an assembly reference?)__, xUnit needs to be downloaded using NuGet.
  - Also download _Xunit runners_ using NuGet. 
