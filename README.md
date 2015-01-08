@@ -1,4 +1,4 @@
-<img src="https://github.com/texhex/Xteq5/raw/master/images/Xteq5_NameLogo2.png" alt="Xteq5 logo" title="Xteq5" style="max-width:100%;" />
+<img src="https://github.com/texhex/Xteq5/raw/master/images/Xteq5_NameLogo3.png" alt="Xteq5 logo" title="Xteq5" style="max-width:100%;" />
 
 <!--
 About Xteq5
@@ -10,13 +10,13 @@ A known issues testing framework, powered by PowerShell scripts.
 
 Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set by E”. 
 
-Using TestUtil, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report ([Example][_examplereport]) will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. Just run TestUtil again and you will be informed in seconds.
+Using Xteq5, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report ([Example][_examplereport]) will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. Just run Xteq5 again and you will be informed in seconds.
 
-This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with TestUtil if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
+This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with Xteq5 if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
 
 <!-- I THINK THIS IS NO LONGER TRUE
 
-**EARLY RELEASE WARNING:** TestUtil is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
+**EARLY RELEASE WARNING:** Xteq5 is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
 -->
 
 
@@ -62,7 +62,7 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 
 
 
-[_logo]:images/testutil_small.png
+[_logo]:images/Xteq5_small.png
 [_license]:licenses/LICENSE.txt
 [_wiki]:https://github.com/texhex/xteq5/wiki
 [_download]:https://github.com/texhex/Xteq5/releases
