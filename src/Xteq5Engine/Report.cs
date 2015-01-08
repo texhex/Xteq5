@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Xteq5
 {
     /// <summary>
-    /// Represents the result of TestUtilRunner.Run()
+    /// Represents the result of Xteq5Runner.Run()
     /// </summary>
     public class Report
     {
@@ -88,9 +88,9 @@ namespace Xteq5
         public string ComputerName { get; internal set; }
 
         /// <summary>
-        /// Version of TestUtil that generated this report
+        /// Version of Xteq5 that generated this report
         /// </summary>
-        public Version TestUtilVersion { get; internal set; }
+        public Version Xteq5Version { get; internal set; }
 
         /// <summary>
         /// Additonal text provided by the user to distinguish this report

@@ -44,7 +44,7 @@ namespace Xteq5
             Replace("Computername", Report.ComputerName);
             Replace("UserText", Report.UserText);
             Replace("SourceFolder", Report.SourceFolder);
-            Replace("VersionString", Report.TestUtilVersion.ToString());
+            Replace("VersionString", Report.Xteq5Version.ToString());
 
             //Datetime in UTC and ISO 8601 format without fraction of second
             Replace("StartDateTimeUTC", Report.StartedUTC.ToString("s") + "Z");
@@ -106,7 +106,7 @@ namespace Xteq5
 
             string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", report.EndedUTC); //2014-12-02_1458
             string guidpart = report.ID.ToString("N"); //00000000000000000000000000000000
-            string fileName = "TestUtil_Report_" + datepart + "_" + guidpart + ".html";
+            string fileName = "Xteq5_Report_" + datepart + "_" + guidpart + ".html";
             string fullFilename = Path.Combine(tempPath, fileName);
 
             File.WriteAllText(fullFilename, html);

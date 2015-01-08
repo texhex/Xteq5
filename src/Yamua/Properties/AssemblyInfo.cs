@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 
 // #### Properties for Yamua - Start #### //
 [assembly: AssemblyTitle("Yamua")] //Explorer: File description
-[assembly: AssemblyProduct("http://www.testutil.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("1.5.*")]
+[assembly: AssemblyProduct("http://www.Xteq5.com/")] //Explorer: Product name
+[assembly: AssemblyVersion("1.54.*")]
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion
 
-[assembly: AssemblyDescription("For more information, please visit http://www.testutil.com/")] //It's actually a comment: $File.VersionInfo.Comments
-[assembly: AssemblyCopyright("Copyright © 2010-2015, Michael 'Tex' Hex")]
-[assembly: AssemblyCompany("TestUtil")]
+[assembly: AssemblyDescription("For more information, please visit http://www.Xteq5.com/")] //It's actually a comment: $File.VersionInfo.Comments
+[assembly: AssemblyCopyright("Copyright © 2010-2015, Michael Hex")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]

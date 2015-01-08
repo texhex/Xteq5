@@ -15,10 +15,10 @@ namespace Xteq5
     /// <summary>
     /// This allows to run a test suite (Assets and Tests).
     /// </summary>
-    public class TestUtilRunner // : DisposableObject
+    public class Xteq5Runner 
     {
 
-        public TestUtilRunner()
+        public Xteq5Runner()
         {
         }
         
@@ -44,13 +44,13 @@ namespace Xteq5
             string rootfolder = Path.GetFullPath(BasePath);
             CheckDirectoryExists(BasePath);
 
-            string assetScriptsPath = Path.Combine(rootfolder, TestUtilConstant.DirectoryNameAssets);
+            string assetScriptsPath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameAssets);
             CheckDirectoryExists(assetScriptsPath);
 
-            string testScriptsPath = Path.Combine(rootfolder, TestUtilConstant.DirectoryNameTests);
+            string testScriptsPath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameTests);
             CheckDirectoryExists(testScriptsPath);
 
-            string modulePath = Path.Combine(rootfolder, TestUtilConstant.DirectoryNameModules);
+            string modulePath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameModules);
             CheckDirectoryExists(modulePath);
 
 
@@ -69,10 +69,10 @@ namespace Xteq5
             //Load modules from this path
             prefs.ModulePath = modulePath;
 
-            //Add TestUtilEngineVersion read-only variable
-            prefs.Variables.Add(new VariablePlain(TestUtilConstant.VariableNameEngineVersion, TestUtilConstant.AssemblyVersion, true));
-            //Add TestUtilRunning read-only variable
-            prefs.Variables.Add(new VariablePlain(TestUtilConstant.VariableNameTestUtilActive, true, true));
+            //Add Xteq5EngineVersion read-only variable
+            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameEngineVersion, Xteq5Constant.AssemblyVersion, true));
+            //Add Xteq5Running read-only variable
+            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameTestUtilActive, true, true));
 
             
             //Execute all assets
@@ -88,9 +88,9 @@ namespace Xteq5
             }
 
 
-            //Add TestUtilAssets read-only variable
+            //Add Xteq5Assets read-only variable
             Hashtable hashtableAssets = CreateHashtableFromAssetRecords(assets);
-            prefs.Variables.Add(new VariablePlain(TestUtilConstant.VariableNameAssets, hashtableAssets, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameAssets, hashtableAssets, true));
             
             //Execute all tests
             List<TestRecord> tests;
@@ -109,7 +109,7 @@ namespace Xteq5
 
             report.UserName = Environment.UserName;
             report.ComputerName = Environment.MachineName;
-            report.TestUtilVersion = TestUtilConstant.AssemblyVersion;
+            report.Xteq5Version = Xteq5Constant.AssemblyVersion;
 
 
             report.Finish();            

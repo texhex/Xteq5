@@ -16,11 +16,11 @@ namespace DebugOnlyHelper
         public static string TestingScriptDirectory(int TestFolderID = 1)
         {
             //This function should return the path of "TestingScripts\TestX", e.g. 
-            //   C:\dev\TestUtil\current\src\TestingScripts\Test1)
+            //   C:\dev\xteq5\current\src\TestingScripts\Test1)
             //based from the path of this assembly, e.g. 
-            //   C:\dev\TestUtil\current\src\TestUtilEngine_Consumer\bin\x86\Debug\
+            //   C:\dev\xteq5\current\src\Xteq5Engine_Consumer\bin\x86\Debug\
             //   or
-            //   C:\dev\TestUtil\current\src\TestUtilEngine_Consumer\bin\Debug\
+            //   C:\dev\xteq5\current\src\Xteq5Engine_Consumer\bin\Debug\
 
             string concat = "";
             string dir = "";

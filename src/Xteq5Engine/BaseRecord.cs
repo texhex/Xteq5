@@ -77,7 +77,7 @@ namespace Xteq5
         /// <param name="message"></param>
         internal void AddLineToProcessMessages(string message)
         {
-            ProcessMessages = "TestUtil: " + message + "\r\n\r\n" + ProcessMessages;
+            ProcessMessages = "Xteq5: " + message + "\r\n\r\n" + ProcessMessages;
         }
 
         /// <summary>

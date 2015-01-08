@@ -11,13 +11,13 @@ namespace Xteq5Launcher
     static class Program
     {
         /// <summary>
-        /// Checks if the system is x86 (32 bit) or x64 (64 bit) and then tries to execute TestUtil.exe 
-        /// from either the subfolder \32bit or \64bit.
+        /// Checks if the system is x86 (32 bit) or x64 (64 bit) and then tries 
+        /// to execute Xteq5.exe from either the subfolder \32bit or \64bit.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            string exeName = @"\TestUtil.exe";
+            string exeName = @"\Xteq5.exe";
             string folderNameX86= "32bit";
             string folderNameX64="64bit";
 

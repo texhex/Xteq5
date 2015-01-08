@@ -75,8 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BootstrapHTMLGenerator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultPrimarySecondary.cs" />
     <Compile Include="TemplateFileNotFoundException.cs" />
   </ItemGroup>

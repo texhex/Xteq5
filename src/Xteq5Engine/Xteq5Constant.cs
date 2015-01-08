@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Xteq5
 {
 
-    public static class TestUtilConstant
+    public static class Xteq5Constant
     {
         public static Version AssemblyVersion
         {
@@ -27,6 +27,7 @@ namespace Xteq5
         public static readonly string VariableNameAssets = "TestUtilAssets";
         public static readonly string VariableNameTestUtilActive = "TestUtilActive";
 
+        public static readonly string FolderNameCommonAppData = "Xteq5";
 
         //These are const because nobody outside this assembly can use them anyway
         internal const string ReturnedHashtableKeyName = "Name";

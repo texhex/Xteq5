@@ -91,7 +91,7 @@
     <Compile Include="RecordsStatistics.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="TestScriptRunner.cs" />
-    <Compile Include="TestUtilConstant.cs" />
+    <Compile Include="Xteq5Constant.cs" />
     <Compile Include="TestRecord.cs" />
     <Compile Include="TestUtilRunner.cs" />
   </ItemGroup>

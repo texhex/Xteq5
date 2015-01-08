@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 using Xteq5;
 using Yamua;
 
-namespace Xteq5lOutputGenerator_Consumer
+namespace Xteq5OutputGenerator_Consumer
 {
-    class TestUtilOutputGeneratorConsumerProgram
+    class Xteq5OutputGeneratorConsumerProgram
     {
         static void Main(string[] args)
         {
-            TestUtilRunner runner = new TestUtilRunner();
+            Xteq5Runner runner = new Xteq5Runner();
 
             string basepath = "";
 
-            //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
-            basepath = @"C:\dev\git\xteq5\scripts";
+            basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
+            //basepath = @"C:\dev\git\xteq5\scripts";
 
 
             Task<Report> task = RunEngineAsync(runner, basepath);
@@ -50,7 +50,7 @@ namespace Xteq5lOutputGenerator_Consumer
 
 
         //This function allows use to use await - see http://blogs.msdn.com/b/pfxteam/archive/2012/04/12/10293335.aspx
-        private static async Task<Report> RunEngineAsync(TestUtilRunner Runner, string BasePath)
+        private static async Task<Report> RunEngineAsync(Xteq5Runner Runner, string BasePath)
         {
             Report result;
             result = await Runner.RunAsync(BasePath);

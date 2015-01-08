@@ -13,10 +13,9 @@ namespace Xteq5EngineConsumer
 
         static void Main(string[] args)
         {
-            TestUtilRunner runner = new TestUtilRunner();
+            Xteq5Runner runner = new Xteq5Runner();
 
             string basepath="";
-            //basepath = @"C:\dev\TestUtil\current\TestingScripts\Test1";
             basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory();
             basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory(9);
 
@@ -39,7 +38,7 @@ namespace Xteq5EngineConsumer
 
 
         //This function allows use to use await - see http://blogs.msdn.com/b/pfxteam/archive/2012/04/12/10293335.aspx
-        private static async Task<Report> RunEngineAsync(TestUtilRunner Runner, string BasePath)
+        private static async Task<Report> RunEngineAsync(Xteq5Runner Runner, string BasePath)
         {
             Report result;
             result = await Runner.RunAsync(BasePath);

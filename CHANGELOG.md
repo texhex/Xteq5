@@ -12,7 +12,7 @@ BUG FIXES:
 
 * None
 
-## [Version 2015.01.07](https://github.com/texhex/testutil/releases/tag/v2015.01.07) 
+## [Version 2015.01.07](https://github.com/texhex/xteq5/releases/tag/v2015.01.07) 
 
 IMPROVEMENTS:
 
@@ -25,7 +25,7 @@ BUG FIXES:
 
  * Generated script output (attribute) in HTML template was not HTML encoded. Exchanged HtmlAgilityPack with custom class WeakHTMLTag.
   
-## [Version 2015.01.05](https://github.com/texhex/testutil/releases/tag/v2015.01.05) 
+## [Version 2015.01.05](https://github.com/texhex/xteq5/releases/tag/v2015.01.05) 
 
 IMPROVEMENTS:
 
@@ -40,7 +40,7 @@ BUG FIXES:
 
  * Returning n/a from an asset did not set status to DoesNotApply
  
-## [Version 2015.01.03](https://github.com/texhex/testutil/releases/tag/v2015.01.03) 
+## [Version 2015.01.03](https://github.com/texhex/xteq5/releases/tag/v2015.01.03) 
 
 IMPROVEMENTS:
 
@@ -48,7 +48,7 @@ IMPROVEMENTS:
  * Changed README.MD
  * Changed button sizing TestUtilGUI
  * Changed html template
- * Finished (sort of) https://github.com/texhex/testutil/wiki/Custom-scripts
+ * Finished (sort of) https://github.com/texhex/xteq5/wiki/Custom-scripts
  * Added SharedAssemblyInfo to all release projects
  * Setup now creates VERSION.ini in install directory
  * Changed all files in /src/scripts so the filename starts with _ (underscore)
@@ -59,7 +59,7 @@ BUG FIXES:
 
  * Fixed code analysis errors in GlobalAtom.cs
 
-## [Version 2015.01.01](https://github.com/texhex/testutil/releases/tag/v2015.01.01) 
+## [Version 2015.01.01](https://github.com/texhex/xteq5/releases/tag/v2015.01.01) 
 
 **BREAKING CHANGES:**
 
@@ -76,9 +76,9 @@ IMPROVEMENTS:
  
 BUG FIXES:
 
- * Strange message when PowerShell assembly can't be found - [#4](https://github.com/texhex/testutil/issues/4)
+ * Strange message when PowerShell assembly can't be found - [#4](https://github.com/texhex/xteq5/issues/4)
 
-## [Version 2014-12-31](https://github.com/texhex/testutil/releases/tag/v1.20) 
+## [Version 2014-12-31](https://github.com/texhex/xteq5/releases/tag/v1.20) 
 
 IMPROVEMENTS:
 
@@ -93,7 +93,7 @@ BUG FIXES:
 
  * Fixed wrong date for v1.19 in this file
 
-## [Version 2014-12-30](https://github.com/texhex/testutil/releases/tag/v1.19)
+## [Version 2014-12-30](https://github.com/texhex/xteq5/releases/tag/v1.19)
 
 IMPROVEMENTS:
 
@@ -123,10 +123,10 @@ BUG FIXES:
  
 IMPROVEMENTS:
 
- * D'oh! - [#1](https://github.com/texhex/testutil/issues/1)
+ * D'oh! - [#1](https://github.com/texhex/xteq5/issues/1)
   
 BUG FIXES:
 
- * Added changelog.md - [#2](https://github.com/texhex/testutil/issues/2)
+ * Added changelog.md - [#2](https://github.com/texhex/xteq5/issues/2)
  
  

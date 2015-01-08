@@ -17,7 +17,6 @@ namespace Xteq5Engine_xUnitTest
     {
         private string GetTestingScriptsFolder()
         {
-            //This function should return the path of "TestingScripts\Test1" (e.g. C:\dev\TestUtil\current\TestingScripts\Test1)
             return DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory(1);
         }
 
@@ -40,7 +39,7 @@ namespace Xteq5Engine_xUnitTest
             }
             else
             {
-                TestUtilRunner runner = new TestUtilRunner();
+                Xteq5Runner runner = new Xteq5Runner();
 
                 Task<Report> task = runner.RunAsync(baseFolder);
                 Report result = task.Result;

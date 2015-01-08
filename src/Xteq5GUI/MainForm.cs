@@ -33,7 +33,7 @@ namespace Xteq5GUI
         {
             //Generate default folder 
             string programDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\TestUtil";
+            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\" + Xteq5Constant.FolderNameCommonAppData;
 
             //Check settings
             string folderAppSetting = Properties.Settings.Default.Folder;
@@ -132,18 +132,18 @@ namespace Xteq5GUI
 
         private void menuCmdHelpCreate_Click(object sender, EventArgs e)
         {
-            ExecuteAndForget.Execute("https://github.com/texhex/testutil/wiki/_fwLinkScript");
+            ExecuteAndForget.Execute("https://github.com/texhex/Xteq5/Wiki/_fwLinkScript");
         }
 
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExecuteAndForget.Execute("http://www.testutil.com/");
+            ExecuteAndForget.Execute("http://www.Xteq5.com/");
         }
 
         private void menuCmdHelpAbout_Click(object sender, EventArgs e)
         {            
             //Title of about window
-            string title = "About " + this.Text + " (" + TestUtilConstant.AssemblyVersion.ToString() + ")";
+            string title = "About " + this.Text + " (" + Xteq5Constant.AssemblyVersion.ToString() + ")";
 
             //Read license.txt
             string content = "";
@@ -195,7 +195,7 @@ namespace Xteq5GUI
                 this.UseWaitCursor = true;
                 Application.DoEvents();
 
-                TestUtilRunner runner = new TestUtilRunner();
+                Xteq5Runner runner = new Xteq5Runner();
                 Report report = await runner.RunAsync(textBoxFolder.Text);
 
                 report.UserText = textBoxUserText.Text;
