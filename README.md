@@ -11,7 +11,10 @@ Using TestUtil, you could now write PowerShell scripts that test A, B, C, D and 
 
 This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with TestUtil if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
 
+<!-- I THINK THIS IS NO LONGER TRUE
+
 **EARLY RELEASE WARNING:** TestUtil is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
+-->
 
 
 ##<a name="download">Download</a>
