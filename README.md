@@ -38,7 +38,7 @@ The most recent version can be downloaded from [Releases][_download].
 
 ##<a name="docs">Documentation</a>
 
-Please see the [Xteq5 Wiki][_wiki]
+Please see the [Xteq5 Wiki][_wiki] for [How to use][_wiki_howto] and about creating [custom scripts][_wiki_customscripts].
 
 ##<a name="contribute">Contributions</a>
 
@@ -66,7 +66,7 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 [_netframework]:http://www.microsoft.com/en-us/download/details.aspx?id=40773
 [_wmf]:http://www.microsoft.com/en-us/download/details.aspx?id=40855
 
-[_wiki]:https://github.com/texhex/xteq5/wiki
+
 [_issuenew]:https://github.com/texhex/Xteq5/issues/new
 [_wiki_newscript]:https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
@@ -82,5 +82,7 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 [_texhexgithub]:https://github.com/texhex/
 [_texhexhomepage]:http://www.texhex.info/
 [_examplereport]:http://texhex.github.io/Xteq5/examplereport.html
-
+[_wiki]: https://github.com/texhex/xteq5/wiki
+[_wiki_howto]: https://github.com/texhex/xteq5/wiki/How-to-use
+[_wiki_customscripts]: https://github.com/texhex/xteq5/wiki/Custom-scripts
 
