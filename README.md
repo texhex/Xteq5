@@ -63,14 +63,24 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 
 
 [_logo]:images/Xteq5_small.png
-[_license]:licenses/LICENSE.txt
-[_wiki]:https://github.com/texhex/xteq5/wiki
-[_download]:https://github.com/texhex/Xteq5/releases
 [_netframework]:http://www.microsoft.com/en-us/download/details.aspx?id=40773
 [_wmf]:http://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+[_wiki]:https://github.com/texhex/xteq5/wiki
 [_issuenew]:https://github.com/texhex/Xteq5/issues/new
 [_wiki_newscript]:https://github.com/texhex/xteq5/wiki/_fwLinkScript
+
+
+<!-- List of links from Home.md-->
+[_readme_requirements]:https://github.com/texhex/Xteq5/blob/master/README.md#system-requirements
+[_readme_contribute]:https://github.com/texhex/Xteq5/blob/master/README.md#contributions
+[_downloads]: https://github.com/texhex/Xteq5/releases
+[_license]: https://github.com/texhex/Xteq5/blob/master/licenses/LICENSE.txt
+[_projecthome]: https://github.com/texhex/Xteq5/
+[_example1ise]:https://raw.githubusercontent.com/texhex/Xteq5/master/images/example1_ise.png
+[_example1report]:https://raw.githubusercontent.com/texhex/Xteq5/master/images/example1_report.png
 [_texhexgithub]:https://github.com/texhex/
 [_texhexhomepage]:http://www.texhex.info/
 [_examplereport]:http://texhex.github.io/Xteq5/examplereport.html
+
 

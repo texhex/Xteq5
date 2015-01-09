@@ -15,6 +15,7 @@
  - `Xteq5Engine` is the main library and uses HeadlessPS to run assets and tests.
  - `Xteq5OutputGenerator` is used to generate the resulting report.
  - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all three libraries above.
+ - `Xteq5CLI` (Xteq5Cli.exe) is a command line interface for Xteq5, it uses all three libraries above.
  - `Xteq5Launcher` launches Xteq5GUI in the matching bitness (32 or 64 bit) for the computer. 
  - `src/setup/Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
  - You need to download and install [Inno Setup Unicode](http://www.jrsoftware.org/isdl.php) in order to open *.ISS files.

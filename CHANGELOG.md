@@ -1,7 +1,8 @@
 
 IMPROVEMENTS:
 
-* None
+* Add Xteq5CLI
+
 
 BUG FIXES:
 
