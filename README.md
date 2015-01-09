@@ -22,7 +22,7 @@ This procedure can lead to cost savings if you have separated 1st and 2nd level 
 
 ##<a name="download">Download</a>
 
-The most recent version can be downloaded from [Releases][_download].
+The most recent version can be downloaded from [Releases][_downloads].
 
 
 ##<a name="sysrequirements">System Requirements</a>
