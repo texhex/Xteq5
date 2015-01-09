@@ -1,3 +1,12 @@
+
+IMPROVEMENTS:
+
+* None
+
+BUG FIXES:
+
+* Fixed bug in all scripts, #requires was missing the _s_ at the end
+
 ## [Version 2015.01.08](https://github.com/texhex/xteq5/releases/tag/v2015.01.08)
 
 **BREAKING CHANGES:**

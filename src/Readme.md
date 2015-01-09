@@ -16,7 +16,7 @@
  - `Xteq5OutputGenerator` is used to generate the resulting report.
  - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all three libraries above.
  - `Xteq5Launcher` launches Xteq5GUI in the matching bitness (32 or 64 bit) for the computer. 
- - `src/setup/_Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
+ - `src/setup/Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
  - You need to download and install [Inno Setup Unicode](http://www.jrsoftware.org/isdl.php) in order to open *.ISS files.
   
 
@@ -36,7 +36,7 @@
   
   - Use _Build_ > _Batch Build_ > _Build_ to create all files. _Xteq5Launcher.exe_ will build for **Any CPU** only. This is on purpose. 
 
-  - Run Inno Setup and run `src\Setup\Setup.iss` to generate `Xteq5Setup.exe`.
+  - Run Inno Setup and run `src/Setup/Setup.iss` to generate `Xteq5Setup.exe`.
 
   - Verify that the setup is working correctly
    

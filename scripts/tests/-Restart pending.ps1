@@ -1,9 +1,9 @@
-#v1.10
+#v1.11
 #https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
 
 #This script requires PowerShell 4.0 or higher 
-#require -version 4.0
+#requires -version 4.0
 
 #Guard against common code errors
 Set-StrictMode -version 2.0
@@ -32,7 +32,9 @@ $ErrorActionPreference = 'Stop'$Result = @{Data = "OK"; Name="No changes pen
   $pendingfilerename=$false
   $test = Get-ItemProperty "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager" -Name "PendingFileRenameOperations" -ErrorAction Ignore
   if($test -ne $null) {
-    write-output "Windows Session Manager has PendingFileRenameOperations set"
-    $pendingfilerename=$true
-  }   if ($cbsrebootpending -eq $true -or $wsusbootpending -eq $true -or $pendingfilerename -eq $true) {     $Result.Data ="Fail"     $Result.Text = "A restart is required in order to finish an operation"  }
+     write-output "Windows Session Manager has PendingFileRenameOperations set"
+     write-output "Files to be renamed or deleted upon reboot:" 
+     write-output $test.PendingFileRenameOperations
+     $pendingfilerename=$true
+  }     if ($cbsrebootpending -eq $true -or $wsusbootpending -eq $true -or $pendingfilerename -eq $true) {     $Result.Data ="Fail"     $Result.Text = "A restart is required in order to finish an operation"  }
 $Result

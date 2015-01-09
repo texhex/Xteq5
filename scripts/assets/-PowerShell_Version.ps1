@@ -3,7 +3,7 @@
 
 
 #This script requires PowerShell 4.0 or higher 
-#require -version 4.0
+#requires -version 4.0
 
 #Guard against common code errors
 Set-StrictMode -version 2.0

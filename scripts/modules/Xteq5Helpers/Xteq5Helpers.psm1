@@ -1,5 +1,5 @@
 ﻿# Xteq5Helpers module
-# Version 1.10
+# Version 1.11
 #
 # Copyright © 2010-2015 Michael Hex 
 # Licensed under the Apache License, Version 2.0. 
@@ -12,7 +12,7 @@
 # [Approved Verbs for Windows PowerShell Commands](http://msdn.microsoft.com/en-us/library/ms714428%28v=vs.85%29.aspx)
 
 
-#require -version 4.0
+#requires -version 4.0
 
 
 function Test-XQActive {

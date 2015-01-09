@@ -17,8 +17,9 @@ namespace Xteq5OutputGenerator_Consumer
 
             string basepath = "";
 
-            //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
+            
             //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test5";
+            //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
             basepath = @"C:\dev\git\xteq5\scripts";
 
 
