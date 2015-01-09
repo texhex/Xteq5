@@ -138,9 +138,9 @@ Type: files; Name: "{commonappdata}\Xteq5\tests\_*.ps1";
 ; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside Xteq5 as well
 ; See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
 ; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\Xteq5Helpers
-Source: "scripts\modules\Xteq5Helpers\Xteq5Helpers.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\Xteq5Helpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
+Source: "scripts\modules\Xteq5Helpers\Xteq5Helpers.psm1"; DestDir: "{code:PowerShellUserModulesPath}\Xteq5Helpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
 ;Do the same for the MPX module
-Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{userdocs}\WindowsPowerShell\Modules\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 
+Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{code:PowerShellUserModulesPath}\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 
 
 
 ;Copy entire scripts folder to commonappdata
@@ -199,7 +199,14 @@ var
 
  pagInstallModules:TInputOptionWizardPage;
  bInstallModules:boolean;
- 
+
+
+//Returns the path where PowerShell modules for the current user should be installed
+//Example Output: C:\Users\JohnDoe\WindowsPowerShell\Modules
+function PowerShellUserModulesPath(Param: String): String;
+begin
+   Result := ExpandConstant('{userdocs}') + '\WindowsPowerShell\Modules';
+end; 
 
 //Source: [Check .NET Version with Inno Setup](http://kynosarges.org/DotNetVersion.html) by [Christoph Nahr](http://kynosarges.org/index.html#Contact)
 function IsDotNetDetected(version: string; service: cardinal): boolean;
@@ -295,7 +302,7 @@ begin
          'This is NOT required if you just want to execute Xteq5.'+#13#10,
           False, False);
 
-       pagInstallModules.Add('Install modules to %UserProfile%\Documents\WindowsPowerShell\Modules');
+       pagInstallModules.Add('Install modules to ' + PowerShellUserModulesPath(''));
        pagInstallModules.Values[0] := False;
 end;
 

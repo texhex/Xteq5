@@ -1,7 +1,9 @@
 
 IMPROVEMENTS:
 
-* Add Xteq5CLI
+* Added Xteq5CLI
+* Reworked Wiki for creating custom scripts
+* Setup does now show the full path where the modules are installed
 
 
 BUG FIXES:

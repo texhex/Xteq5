@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xteq5CLI
 {
-    class Program
+    class Xteq5CLIMain
     {
         static void Main(string[] args)
         {
