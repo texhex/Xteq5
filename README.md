@@ -30,7 +30,7 @@ The most recent version can be downloaded from [Releases][_downloads].
 <!-- These links are also used in /src/setup/_Setup.iss -->
 
 * Windows 7 SP1 / Windows Server 2008 SP2 (or higher)
-* 256MB free memory, ~5 MB free disk space
+* 256MB free memory, 5 MB free disk space
 * [.NET Framework 4.5][_netframework] (or higher)
 * [PowerShell 4.0][_wmf] (or higher)
 * Download links are provided by Setup.exe if one of the components is not installed
