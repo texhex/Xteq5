@@ -84,7 +84,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Xteq5CLIMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
