@@ -8,7 +8,7 @@ Copyright © 2010-2015 Michael Hex
 All Rights Reserved
 http://www.texhex.info/
 
-Logo by designklima
+"Radar" logo by designklima
 http://designklima.com/
    
 Source code of Xteq5, HeadlessPS, Yamua, Xteq5Helpers and MPXmodule
@@ -41,8 +41,16 @@ http://www.davekoelle.com/alphanum.html
 Licensed under the GNU Lesser General Public License
    https://www.gnu.org/licenses/lgpl.html 
    The license is distributed with this software as LICENSE-LGPL-3.0.txt
-  
 
+
+Lightweight C# Command Line Parser  
+Copyright 2009 Christian Bolterauer
+http://www.codeproject.com/Articles/39120/Lightweight-C-Command-Line-Parser
+Licensed under the Code Project Open License (CPOL) 
+  http://www.codeproject.com/info/cpol10.aspx 
+  The license is distributed with this software as LICENSE-CPOL.htm
+ 
+  
 Bootstrap 
 Copyright 2013 Twitter, Inc
 http://getbootstrap.com/

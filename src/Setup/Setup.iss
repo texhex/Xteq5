@@ -27,14 +27,14 @@ AppVersion={#CurrentDateISO} ({#ProgramVersion})
 ;Internal AppId. DO NOT CHANGE! 
 AppId=Xteq5
 
-AppPublisher=Michael 'Tex' Hex
-AppPublisherURL=http://www.Xteq5.com/
+AppPublisher=Michael Hex
+AppPublisherURL=http://www.xteq5.com/
 AppSupportURL=https://github.com/texhex/Xteq5/wiki
 AppComments=Build with Inno Setup
 
 ;VersionInfoVersion={#ProgramVersion}
 VersionInfoVersion={#CurrentDateISO}
-VersionInfoCopyright=Copyright © 2010-2015 Michael Hex 
+VersionInfoCopyright=Copyright © 2010-2015 Michael 'Tex' Hex 
 
 ;I really think we should set this to NO...
 Uninstallable=Yes 

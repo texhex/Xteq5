@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Xteq5")] //Explorer: File description
 [assembly: AssemblyProduct("http://www.Xteq5.com/")] //Explorer: Product name
-[assembly: AssemblyVersion("2.12.*")] //Explorer: Product version
+[assembly: AssemblyVersion("2.14.*")] //Explorer: Product version
 //[assembly: AssemblyFileVersion("1.0.0.0")] //If not set, AssemblyVersion is also used for AssemblyFileVersion. Explorer: File version
 
 
-[assembly: AssemblyDescription("For more information, please visit http://www.Xteq5.com/")] //It's actually a comment: $File.VersionInfo.Comments
+[assembly: AssemblyDescription("For more information, please visit http://www.xteq5.com/")] //It's actually a comment: $File.VersionInfo.Comments
 [assembly: AssemblyCopyright("Copyright © 2010-2015, Michael Hex")]
 [assembly: AssemblyCompany("Xteq5")]
 [assembly: AssemblyTrademark("")]

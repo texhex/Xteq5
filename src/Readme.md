@@ -14,9 +14,13 @@
  - `HeadlessPS` is a library to run scripts using PowerShell.
  - `Xteq5Engine` is the main library and uses HeadlessPS to run assets and tests.
  - `Xteq5OutputGenerator` is used to generate the resulting report.
- - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all three libraries above.
- - `Xteq5CLI` (Xteq5Cli.exe) is a command line interface for Xteq5, it uses all three libraries above.
+ - `Xteq5UserInterface` contains helper functions when creating a user interface, e.g. default path for compilation etc. 
+
+ - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all four libraries above.
+ - `Xteq5CLI` (Xteq5Cli.exe) is a command line interface for Xteq5, it uses all four libraries above.
+
  - `Xteq5Launcher` launches Xteq5GUI in the matching bitness (32 or 64 bit) for the computer. 
+
  - `src/setup/Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
  - You need to download and install [Inno Setup Unicode](http://www.jrsoftware.org/isdl.php) in order to open *.ISS files.
   
@@ -43,10 +47,10 @@
    
   - If the file looks good, go to https://github.com/texhex/xteq5/releases/new and attach it  
      
-     - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2015-12-31_ than the correct tag is 
-	    `v2015.12.31`.  
+     - Tag is the current date in **ISO 8601** format with "." instead of "-". Hence, if you release on _2014-12-31_ than the correct tag is 
+	    `v2014.12.31`.  
      - Second field is what the user sees, so please use 
-	    `Version 2015.12.31`
+	    `Version 2014.12.31`
      - Add 
 	    `**Please see [CHANGELOG.md](CHANGELOG.md) for details**`
 	 - This will automatically be linked to the changelog for that release using the tag.  

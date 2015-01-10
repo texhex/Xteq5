@@ -6,7 +6,8 @@ namespace Xteq5
 
     public static class Xteq5Constant
     {
-        public static Version AssemblyVersion
+
+        public static Version EngineVersion
         {
             get
             {
@@ -27,7 +28,6 @@ namespace Xteq5
         public static readonly string VariableNameAssets = "Xteq5Assets";
         public static readonly string VariableNameIsActive = "Xteq5Active";
 
-        public static readonly string DirectoryNameCommonApplicationData = "Xteq5";
 
         //These are const because nobody outside this assembly can use them anyway
         internal const string ReturnedHashtableKeyName = "Name";

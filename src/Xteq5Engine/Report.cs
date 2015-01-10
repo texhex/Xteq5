@@ -52,8 +52,6 @@ namespace Xteq5
             TimeSpan ts = EndedUTC - StartedUTC;                       
             RuntimeSeconds = ts.TotalSeconds.ToString("0");
             
-            //Runtime += " seconds";
-            
             IsFinished = true;            
         }
 
@@ -100,6 +98,6 @@ namespace Xteq5
         /// <summary>
         /// Source folder where scripts were loaded from
         /// </summary>
-        public string SourceFolder { get; internal set; }
+        public string CompilationFolder { get; internal set; }
     }
 }

@@ -31,9 +31,8 @@ namespace Xteq5GUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //Generate default folder 
-            string programDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            _defaultFolderPath = Path.GetFullPath(programDataFolder) + @"\" + Xteq5Constant.DirectoryNameCommonApplicationData;
+            //Default compilation folder 
+            _defaultFolderPath = UserInterface.Instance.DefaultCompilationFolder;
 
             //Check settings
             string folderAppSetting = Properties.Settings.Default.Folder;
@@ -77,7 +76,7 @@ namespace Xteq5GUI
                     //This might throw an NoSupportedException if the path is invalid                    
                     try
                     {
-                        textBoxFolder.Text = Path.GetFullPath(path);
+                        textBoxFolder.Text = PathExtension.FullPath(path);
                     }
                     catch
                     {
@@ -95,12 +94,13 @@ namespace Xteq5GUI
         {
             FormFontFixer.Fix(this);
 
-            //Convert the horizontal line label to a real line
+            //Convert the horizontal line label to a real line by chaning it's size to 2
             labelHorizontalLine.Text = "";
             labelHorizontalLine.Height = 2;
-            
+
+            //Position it directly below the menu strip
             Point location = labelHorizontalLine.Location;
-            location.Y = menuStrip.Size.Height;             
+            location.Y = menuStrip.Size.Height;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -132,18 +132,20 @@ namespace Xteq5GUI
 
         private void menuCmdHelpCreate_Click(object sender, EventArgs e)
         {
+            //TODO: Move this UI assembly
             ExecuteAndForget.Execute("https://github.com/texhex/Xteq5/wiki/");
         }
 
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //TODO: Move this UI assembly
             ExecuteAndForget.Execute("http://www.Xteq5.com/");
         }
 
         private void menuCmdHelpAbout_Click(object sender, EventArgs e)
-        {            
+        {
             //Title of about window
-            string title = "About " + this.Text + " (" + Xteq5Constant.AssemblyVersion.ToString() + ")";
+            string title = "About " + this.Text + " (" + Xteq5Constant.EngineVersion.ToString() + ")";
 
             //Read license.txt
             string content = "";
@@ -152,8 +154,8 @@ namespace Xteq5GUI
 
 
             MonospacedTextForm mtform = new MonospacedTextForm();
-            mtform.Title=title;
-            mtform.Content=content;
+            mtform.Title = title;
+            mtform.Content = content;
             mtform.ShowDialog();
         }
 
@@ -184,101 +186,44 @@ namespace Xteq5GUI
 
         private async void buttonGenerateReport_Click(object sender, EventArgs e)
         {
-            SetStatus("Running...");
+            SetStatus("Running, please wait...");
 
-            bool failed = true;
-            string failedMessage = "Unknown";
-            Exception failedDetailsException = new Exception("Unknown exception");
+            this.UseWaitCursor = true;
+            Application.DoEvents();
 
-            try
-            {            
-                this.UseWaitCursor = true;
-                Application.DoEvents();
+            SimplifiedXteq5Runner simpleRunner = new SimplifiedXteq5Runner(textBoxFolder.Text, textBoxUserText.Text);
+            
+            bool result = await simpleRunner.RunAsync();
 
-                Xteq5Runner runner = new Xteq5Runner();
-                Report report = await runner.RunAsync(textBoxFolder.Text);
+            this.UseWaitCursor = false;
+            Application.DoEvents();
 
-                report.UserText = textBoxUserText.Text;
-
-                SetStatus("Generating report...");
-
-                string htmlTemplatePath = Path.Combine(textBoxFolder.Text, "BootstrapTemplate1.html");
-                BootstrapHTMLGenerator generator = new BootstrapHTMLGenerator(htmlTemplatePath);
-                string tempFile = generator.GenerateAndSaveFile(report);
-
-                ExecuteAndForget.Execute(tempFile);
-
+            if (result == true)
+            {
+                //All good. Show the report.
+                ExecuteAndForget.Execute(simpleRunner.ReportFilepath);
                 SetStatus("Done. The report will be displayed in a second.");
-                failed = false;
             }
-
-            catch (FileNotFoundException fnfe)
+            else
             {
-                //In most cases this means we couldn't load System.Management.Automation. 
-                if (fnfe.Message.Contains("System.Management.Automation"))
-                {
-                    //We need to explain to the user that this means PowerShell is missing. 
-                    failedMessage = "PowerShell is required, but could not be loaded. Please re-run Setup.exe and follow the provided link to install it.";
-                }
-                else
-                {
-                    //In any other case we have no idea what is missing, so use the message from the exception.
-                    failedMessage = fnfe.Message;
-                }
-                
-                failedDetailsException = fnfe;
-            }
-            catch (TemplateFileNotFoundException tfnfe)
-            {
-                //Template file does not exist in folder 
-                failedMessage = "The template file is missing. Please re-run Setup.exe to install it.";
-                failedDetailsException = tfnfe;
-            }
-            catch (PowerShellTestFailedException pstfe)
-            {
-                //The powershell test failed
-                failedMessage = "Testing the PowerShell environment failed. Please see the technical details.";
-                failedDetailsException = pstfe;
-            }
-            catch (DirectoryNotFoundException dnfe)
-            {
-                //The selected folder is missing something. The message already includes all details so we will reuse it. 
-                failedMessage = "The selected folder can't be used: " + dnfe.Message;
-                failedDetailsException = dnfe;
-            }
-            catch (Exception exc)
-            {
-                //No idea what happened. Use the message from the exception.
-                failedMessage = exc.Message;
-                failedDetailsException = exc;
-            }
-
-            finally
-            {
-                this.UseWaitCursor = false;
-            }
-
-
-            //Hopefully failed is not TRUE
-            if (failed)
-            {
+                //An error during execution was detected
                 SetStatus("Failed");
 
                 //Error message from Firefox: Well, this is embarrassing
                 //Error message from Apache server: We're sorry, but something went wrong
                 string title = "We're sorry, but something went wrong";
 
-                string message = string.Format("{0}\r\n\r\n\r\nDo you wish to view technical details?", failedMessage);
+                string message = string.Format("{0}\r\n\r\n\r\nDo you wish to view technical details?", simpleRunner.FailedMessage);
 
                 if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
                     MonospacedTextForm mtform = new MonospacedTextForm();
                     mtform.Title = "Details";
-                    mtform.Content = failedDetailsException.ToString();
+                    mtform.Content = simpleRunner.FailedException.ToString();
                     mtform.ShowDialog();
                 }
-
             }
+
 
         }
 

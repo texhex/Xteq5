@@ -87,6 +87,7 @@
     <Compile Include="AssetScriptRunner.cs" />
     <Compile Include="BaseScriptRunner.cs" />
     <Compile Include="BaseRecord.cs" />
+    <Compile Include="CompilationFolderException.cs" />
     <Compile Include="ConclusionEnum.cs" />
     <Compile Include="RecordsStatistics.cs" />
     <Compile Include="Report.cs" />

@@ -15,21 +15,21 @@ namespace Xteq5
     /// <summary>
     /// This allows to run a test suite (Assets and Tests).
     /// </summary>
-    public class Xteq5Runner 
+    public class Xteq5Runner
     {
 
         public Xteq5Runner()
         {
         }
-        
+
 
         /// <summary>
-        /// Executes all assets and tests found in BasePath asynchronously
+        /// Executes all assets and tests found in CompilationPath asynchronously
         /// </summary>
-        /// <param name="BasePath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
-        public Report Run(string BasePath)
+        /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
+        public Report Run(string CompilationPath)
         {
-            Task<Report> task = RunAsync(BasePath);
+            Task<Report> task = RunAsync(CompilationPath);
             task.Wait();
             return task.Result;
         }
@@ -37,28 +37,33 @@ namespace Xteq5
         /// <summary>
         /// Executes all assets and tests found in BasePath asynchronously
         /// </summary>
-        /// <param name="BasePath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
-        public async Task<Report> RunAsync(string BasePath)
+        /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
+        public async Task<Report> RunAsync(string CompilationPath)
         {
+            if (string.IsNullOrWhiteSpace(CompilationPath))
+                throw new ArgumentException("Compilation path is not set");
+            
             //Check if all folders are present
-            string rootfolder = Path.GetFullPath(BasePath);
-            CheckDirectoryExists(BasePath);
+            string rootfolder = PathExtension.FullPath(CompilationPath);
+            if (PathExtension.DirectoryExists(rootfolder) == false)
+                throw new CompilationFolderException(rootfolder);
 
-            string assetScriptsPath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameAssets);
-            CheckDirectoryExists(assetScriptsPath);
+            //Check subfolders
+            string assetScriptsPath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameAssets);
+            CheckCompilationSubfolder(assetScriptsPath);
 
-            string testScriptsPath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameTests);
-            CheckDirectoryExists(testScriptsPath);
+            string testScriptsPath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameTests);
+            CheckCompilationSubfolder(testScriptsPath);
 
-            string modulePath = Path.Combine(rootfolder, Xteq5Constant.DirectoryNameModules);
-            CheckDirectoryExists(modulePath);
+            string modulePath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameModules);
+            CheckCompilationSubfolder(modulePath);
 
 
             //Create the result object
             Report report = new Report();
 
             //Set source folder
-            report.SourceFolder = BasePath;
+            report.CompilationFolder = CompilationPath;
 
             //Everything looks fine so far. Let's go. 
             PSScriptRunnerPreferences prefs = new PSScriptRunnerPreferences();
@@ -70,11 +75,11 @@ namespace Xteq5
             prefs.ModulePath = modulePath;
 
             //Add Xteq5EngineVersion read-only variable
-            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameEngineVersion, Xteq5Constant.AssemblyVersion, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameEngineVersion, Xteq5Constant.EngineVersion, true));
             //Add Xteq5Running read-only variable
             prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameIsActive, true, true));
 
-            
+
             //Execute all assets
             List<AssetRecord> assets;
             using (PSScriptRunner psScriptRunnerAssets = new PSScriptRunner(prefs))
@@ -91,7 +96,7 @@ namespace Xteq5
             //Add Xteq5Assets read-only variable
             Hashtable hashtableAssets = CreateHashtableFromAssetRecords(assets);
             prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameAssets, hashtableAssets, true));
-            
+
             //Execute all tests
             List<TestRecord> tests;
             using (PSScriptRunner psScriptRunnerTests = new PSScriptRunner(prefs))
@@ -104,22 +109,22 @@ namespace Xteq5
             //Contstruct the final result            
             report.Assets = assets;
             report.Tests = tests;
-            
+
             CalculateRecordStatistics(report, assets, tests);
 
             report.UserName = Environment.UserName;
             report.ComputerName = Environment.MachineName;
-            report.Xteq5Version = Xteq5Constant.AssemblyVersion;
+            report.Xteq5Version = Xteq5Constant.EngineVersion;
 
 
-            report.Finish();            
+            report.Finish();
             return report;
         }
 
 
         private void CalculateRecordStatistics(Report Report, List<AssetRecord> Assets, List<TestRecord> Tests)
         {
-            List<BaseRecord> assetBaseRecords= new List<BaseRecord>();
+            List<BaseRecord> assetBaseRecords = new List<BaseRecord>();
             foreach (AssetRecord asset in Assets)
             {
                 assetBaseRecords.Add(asset);
@@ -136,11 +141,11 @@ namespace Xteq5
         }
 
 
-        private void CheckDirectoryExists(string DirectoryPath)
+        private void CheckCompilationSubfolder(string SubfolderPath)
         {
-            if (Directory.Exists(DirectoryPath) == false)
+            if (PathExtension.DirectoryExists(SubfolderPath) == false)
             {
-                throw new DirectoryNotFoundException(string.Format("Directory {0} not found", DirectoryPath));
+                throw new CompilationSubFolderException(SubfolderPath);
             }
         }
 

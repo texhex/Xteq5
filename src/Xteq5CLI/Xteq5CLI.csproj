@@ -84,10 +84,30 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CMDLineParser.cs" />
+    <Compile Include="WorkInstruction.cs" />
     <Compile Include="Xteq5CLIMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xteq5Engine\Xteq5Engine.csproj">
+      <Project>{fe4ec01c-0d75-4f7c-a0a2-30eca4c13c29}</Project>
+      <Name>Xteq5Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xteq5OutputGenerator\Xteq5OutputGenerator.csproj">
+      <Project>{16e3b642-e9b3-48d9-ae06-b42e36ef6032}</Project>
+      <Name>Xteq5OutputGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xteq5UserInterface\Xteq5UserInterface.csproj">
+      <Project>{9aef257a-5d9d-4b79-953a-2dd412dab959}</Project>
+      <Name>Xteq5UserInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yamua\Yamua.csproj">
+      <Project>{9726cd0b-9823-4381-936d-98392bdab7c2}</Project>
+      <Name>Yamua</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -43,7 +43,7 @@ namespace Xteq5
             Replace("UserName", Report.UserName);
             Replace("Computername", Report.ComputerName);
             Replace("UserText", Report.UserText);
-            Replace("SourceFolder", Report.SourceFolder);
+            Replace("SourceFolder", Report.CompilationFolder);
             Replace("VersionString", Report.Xteq5Version.ToString());
 
             //Datetime in UTC and ISO 8601 format without fraction of second

@@ -162,7 +162,7 @@
             this.groupBoxFolder.Size = new System.Drawing.Size(456, 131);
             this.groupBoxFolder.TabIndex = 0;
             this.groupBoxFolder.TabStop = false;
-            this.groupBoxFolder.Text = "Folder to load assets and tests from";
+            this.groupBoxFolder.Text = "Compilation folder to load assets and tests from";
             // 
             // buttonRevertFolderToDefault
             // 
@@ -245,6 +245,7 @@
             // 
             // folderBrowserDialog
             // 
+            this.folderBrowserDialog.Description = "Please select a compilation folder";
             this.folderBrowserDialog.ShowNewFolderButton = false;
             // 
             // groupBoxAdditonalText

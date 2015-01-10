@@ -157,6 +157,10 @@
       <Project>{16e3b642-e9b3-48d9-ae06-b42e36ef6032}</Project>
       <Name>Xteq5OutputGenerator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xteq5UserInterface\Xteq5UserInterface.csproj">
+      <Project>{9aef257a-5d9d-4b79-953a-2dd412dab959}</Project>
+      <Name>Xteq5UserInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Yamua\Yamua.csproj">
       <Project>{9726cd0b-9823-4381-936d-98392bdab7c2}</Project>
       <Name>Yamua</Name>

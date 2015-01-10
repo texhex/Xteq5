@@ -25,7 +25,7 @@ namespace HeadlessPS
     /// <summary>
     /// A slim API around System.Automation.PowerShell which hopefully makes things a little bit easier to interact with PowerShell if the following use case is given:
     /// - A bunch of scripts (*.ps1) should mainly be executed
-    /// - An instance of this object is used in a loop to do execute the scripts
+    /// - An instance of this object is used in a loop to execute the scripts
     /// - Modules are stored in one path and all modules should be loaded 
     /// - Required PowerShell version is at least 4.0
     /// - A human-readable abstract is required 
@@ -39,6 +39,7 @@ namespace HeadlessPS
 
         //The only difference I found between CreateDefault() and CreateDefault2() is inside "Notes" of Get-Module: http://technet.microsoft.com/en-us/library/hh849700.aspx
         InitialSessionState _initialSessionState = InitialSessionState.CreateDefault2(); //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.runspaces.initialsessionstate(v=vs.85).aspx
+        
         PowerShell _psInstance = null; //Docs: http://msdn.microsoft.com/en-us/library/system.management.automation.powershell(v=vs.85).aspx
         PSDataCollection<PSObject> _outputStreamCollection = null; //Docs: http://msdn.microsoft.com/en-us/library/dd144531%28v=vs.85%29.aspx
 
@@ -77,7 +78,7 @@ namespace HeadlessPS
             //Set variables (if any)
             foreach (VariablePlain var in _prefs.Variables)
             {
-                //Variables are always created with AllScope because it should be visible and writable even if a script runs an other script using: & "otherscript.ps1"
+                //Variables are always created with AllScope because it should be visible and writable even if a script runs another script using: & "otherscript.ps1"
                 ScopedItemOptions scopeOptions = ScopedItemOptions.AllScope; //Docs: http://msdn.microsoft.com/query/dev12.query?appId=Dev12IDEF1&l=EN-US&k=k%28System.Management.Automation.ScopedItemOptions%29;k%28TargetFrameworkMoniker-.NETFramework
 
                 if (var.ReadOnly)
