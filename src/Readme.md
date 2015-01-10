@@ -8,20 +8,17 @@
  - Any project that ends in **Consumer** is a debug project that uses the project it contains in the name (`Xteq5Engine_Consumer` uses `Xteq5Engine`).
  - Projects that end in **xUnitTest** are test assemblies for [xUnit](https://github.com/xunit/xunit)
  - If you get the error __The type or namespace name 'Xunit' could not be found (are you missing a using directive or an assembly reference?)__, xUnit needs to be downloaded using NuGet.
- - Also download _xunit.runner.visualstudio_ using NuGet to be able to use the _Test Explorer_. **IMPORTANT**: You need to select "Include prereleases" to find this package.
+ - Also download _xunit.runner.visualstudio_ using NuGet to be able to use the _Test Explorer_. **IMPORTANT**: You need to select "Include prereleases" to find this package ([Source](http://xunit.github.io/docs/running-tests-in-vs.html)).
   
 
 ## Projects
  - `HeadlessPS` is a library to run scripts using PowerShell.
  - `Xteq5Engine` is the main library and uses HeadlessPS to run assets and tests.
- - `Xteq5OutputGenerator` is used to generate the resulting report.
- - `Xteq5UserInterface` contains helper functions when creating a user interface, e.g. default path for compilation etc. 
-
+ - `Xteq5OutputGenerator` is used to generate output files (HTML, XML) from a report
+ - `Xteq5UserInterface` contains helper functions for a program that interacts with a user 
  - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all four libraries above.
  - `Xteq5CLI` (Xteq5Cli.exe) is a command line interface for Xteq5, it uses all four libraries above.
-
  - `Xteq5Launcher` launches Xteq5GUI in the matching bitness (32 or 64 bit) for the computer. 
-
  - `src/setup/Setup.iss` is used to create **Xteq5Setup.exe**. Inside the solution the link to this file is in _Solution items_. 
  - You need to download and install [Inno Setup Unicode](http://www.jrsoftware.org/isdl.php) in order to open *.ISS files.
   
