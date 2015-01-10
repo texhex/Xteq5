@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,13 +40,15 @@ namespace Xteq5OutputGenerator_Consumer
 
             string templateFile = basepath + @"\BootstrapTemplate1.html";
 
-            BootstrapHTMLGenerator generator = new BootstrapHTMLGenerator(templateFile);
-            //string html = generator.Generate(report);
-            string tempFile = generator.GenerateAndSaveFile(report);
-
-            Process.Start(tempFile);
+            BootstrapHTMLGenerator2 generator = new BootstrapHTMLGenerator2();
             
+            string result = generator.Generate(report, templateFile);            
+            
+            string filename = Path.Combine(Path.GetTempPath(), "Xteq5_DebugConsumerReport.html");
+            File.WriteAllText(filename, result);
 
+            Process.Start(filename);
+            
             //Console.WriteLine("Press return to exit...");
             //Console.ReadLine();
         }

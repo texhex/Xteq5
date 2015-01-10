@@ -46,13 +46,34 @@ namespace Xteq5
         /// <returns>Filepath of the generated and saved output</returns>
         public static string GenerateReportOutputFile(Report Report, OutputFormatEnum Format, string Filepath)
         {
+            string fileExtension = "";
+
+            switch (Format)
+            {
+                case OutputFormatEnum.HTML:
+                    fileExtension=".html";
+                    break;
+
+                default:
+                    throw new NotImplementedException("Only HTML is supported at this time");
+            }
+
             string source = GenerateReportOutput(Report, Format);
 
+            string fullFilename = Filepath;
+            if (string.IsNullOrWhiteSpace(fullFilename))
+            {
+                string tempPath = Path.GetTempPath();
+                string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", Report.EndedUTC); //2014-12-02_1458
+                string guidpart = Report.ID.ToString("N"); //00000000000000000000000000000000
+                string fileName = "Xteq5_Report_" + datepart + "_" + guidpart + fileExtension;
+                
+                fullFilename = PathExtension.Combine(tempPath, fileName);
+            }
 
-            throw new NotImplementedException("Code is still missing");
+            File.WriteAllText(fullFilename, source);
 
-            //Filename generation from BootstrapHTMLGenerator!
-            //Wir brauchen noch File Extension!
+            return fullFilename;
 
         }
     }

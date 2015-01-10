@@ -19,7 +19,9 @@ using CMDLine;
    -Run -Path "C:\ProgramData\Xteq5" -Format HTML -Filename "C:\Temp\batchresult.htm"
    -Run -Path "C:\ProgramData\Xteq5" -Format HTML -Filename "C:\Temp\batchresult.htm" -Text 
    -Run -Path "C:\ProgramData\Xteq5" -Format HTML -Filename "C:\Temp\batchresult.htm" -Text "My comment"
-
+   -Run -Filename "C:\Temp\batchresult.htm" 
+   -Run -Filename "C:\Temp\daresult.xml" -Format XML
+   -Run -Filename "C:\Temp\daresult.xml" -Format XML -Text "blah BLUB"
 */
 namespace Xteq5CLI
 {
@@ -57,11 +59,13 @@ namespace Xteq5CLI
 
                 if (instruction.GenerateReport)
                 {
-                    Console.WriteLine("Report file: " + instruction.ReportFilepath);
-                    Console.WriteLine("Report format: " + instruction.ReportFormat.ToString());
+                    Console.WriteLine("Destination file  : " + instruction.DestinationFilepath);
+                    Console.WriteLine("Destination format: " + instruction.DestinationFormat.ToString());
+                    
+                    if (string.IsNullOrWhiteSpace(instruction.UserText)==false)
+                       Console.WriteLine("Additional text   : " + instruction.UserText);
 
-                    //TODO: !!!FIX THIS!!! Options missing!
-                    simpleRunner = new SimplifiedXteq5Runner(instruction.CompilationPath, instruction.ReportText);
+                    simpleRunner = new SimplifiedXteq5Runner(instruction.CompilationPath, instruction.UserText, instruction.DestinationFormat, instruction.DestinationFilepath);
                 }
 
                 //Start the runner
@@ -72,7 +76,7 @@ namespace Xteq5CLI
                 if (result == true)
                 {
                     //Execution finished
-                    Console.WriteLine("...Done!");
+                    Console.WriteLine("Finished.");
                     Console.WriteLine();
 
                     //Check if these is an issue in order to set the return code correctly
@@ -91,10 +95,11 @@ namespace Xteq5CLI
                 {
                     //This did not work at all
                     Console.WriteLine();
-                    Console.WriteLine(simpleRunner.FailedMessage);
+                    Console.WriteLine("Error: ");
+                    Console.WriteLine("  " + simpleRunner.FailedMessage);
                     Console.WriteLine();
                     Console.WriteLine("Details:");
-                    Console.WriteLine("  " + simpleRunner.FailedException.Message);
+                    Console.WriteLine("  " + simpleRunner.FailedException.GetType().ToString() + " - " + simpleRunner.FailedException.Message);
                 }
 
                 //All done

@@ -24,8 +24,8 @@ namespace Xteq5CLI
             //Set default values
             this.Execute = false;
             this.GenerateReport = false;
-            this.ReportFilepath = "";            
-            this.ReportFormat = OutputFormatEnum.Unknown;
+            this.DestinationFilepath = "";            
+            this.DestinationFormat = OutputFormatEnum.Unknown;
 
 
             CMDLineParser parser = new CMDLineParser();
@@ -98,15 +98,15 @@ namespace Xteq5CLI
                         if (OptionIsMatchedAndNotEmpty(FilenameParameter))
                         {
                             this.GenerateReport = true;
-                            this.ReportFilepath = FilenameParameter.Value.ToString();
+                            this.DestinationFilepath = FilenameParameter.Value.ToString();
 
                             //Check for the FORMAT parameter and use HTML if not set
                             string reportFormatString = OptionIsMatchedAndNotEmpty(FormatParameter) ? FormatParameter.Value.ToString() : "HTML";
                             //This direct cast without any error checking is OK because FORMATPARAMETER already tried to parse it and will only be set if the value is OK
-                            this.ReportFormat = OutputFormatConverter.ParseReportFormat(reportFormatString);
+                            this.DestinationFormat = OutputFormatConverter.ParseReportFormat(reportFormatString);
 
 
-                            this.ReportText = OptionIsMatchedAndNotEmpty(TextParameter) ? TextParameter.Value.ToString() : "";                           
+                            this.UserText = OptionIsMatchedAndNotEmpty(TextParameter) ? TextParameter.Value.ToString() : "";                           
 
                         }
 
@@ -159,17 +159,17 @@ namespace Xteq5CLI
         /// <summary>
         /// Filename of the report that should be generated
         /// </summary>
-        public string ReportFilepath { get; private set; }
+        public string DestinationFilepath { get; private set; }
 
         /// <summary>
         /// Type of format that should be generated
         /// </summary>
-        public OutputFormatEnum ReportFormat { get; private set; }
+        public OutputFormatEnum DestinationFormat { get; private set; }
 
         /// <summary>
         /// Additional text to be added to the report
         /// </summary>
-        public string ReportText { get; private set; }
+        public string UserText { get; private set; }
 
     }
 

@@ -27,17 +27,9 @@ namespace Xteq5
         }
 
         string _compilationPath = "";
-
-
-        private void ClearAllVariables()
-        {
-            _compilationPath = "";
-            
-            _reportFormat = OutputFormatEnum.Unknown;
-            _userText = "";
-
-            ClearRunVariables();
-        }
+        string _userText = "";
+        OutputFormatEnum _reportFormat = OutputFormatEnum.Unknown;
+        string _destFilename = "";
 
         private void ClearRunVariables()
         {
@@ -56,28 +48,49 @@ namespace Xteq5
         /// <param name="CompilationPath">Path to the compilation folder</param>
         public SimplifiedXteq5Runner(string CompilationPath)
         {
-            ClearAllVariables();
-
             _compilationPath = CompilationPath;
+            _reportFormat = OutputFormatEnum.Unknown;
+            _userText = "";
+            _destFilename = "";
+
+            ClearRunVariables();            
         }
-
-        string _userText = "";
-        OutputFormatEnum _reportFormat = OutputFormatEnum.Unknown;
-
-        /// <param name="UserText">Optional text that should appear on the report</param> //ReportFormatEnum ReportFormat
-        //_reportFormat = ReportFormat; //This will later on checked by the object, so no need to check this here
 
 
         /// <summary>
         /// Executes Xteq5 and generates a HTML report for it
         /// </summary>
         /// <param name="CompilationPath">Path to the compilation folder</param>        
-        /// <param name="UserText">Additopnal text to be added to the generated HTML file</param>        
+        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
         public SimplifiedXteq5Runner(string CompilationPath, string UserText)
             : this(CompilationPath)
         {
             _userText = UserText;
-            _reportFormat = OutputFormatEnum.HTML;        
+            _reportFormat = OutputFormatEnum.HTML;
+        }
+
+        /// <summary>
+        /// Executes Xteq5 and generates a report in the given format for it. 
+        /// </summary>
+        /// <param name="CompilationPath">Path to the compilation folder</param>        
+        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
+        /// <param name="ReportFormat">Format the report should have</param>
+        public SimplifiedXteq5Runner(string CompilationPath, string UserText, OutputFormatEnum ReportFormat)
+            : this(CompilationPath, UserText)
+        {            
+            _reportFormat = ReportFormat; //This will later on checked by OutputGenerator anyway, so no need to check this here
+        }
+
+        /// <summary>
+        /// Executes Xteq5, generates a report in the given format for it and save to the result in the filename provided.
+        /// </summary>
+        /// <param name="CompilationPath">Path to the compilation folder</param>        
+        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
+        /// <param name="ReportFormat">Format the report should have</param>
+        public SimplifiedXteq5Runner(string CompilationPath, string UserText, OutputFormatEnum ReportFormat, string Filename)
+            : this(CompilationPath, UserText, ReportFormat)
+        {
+            _destFilename = Filename;
         }
 
 
@@ -129,10 +142,10 @@ namespace Xteq5
         /// <returns>TRUE if execution was successful</returns>
         public async Task<bool> RunAsync()
         {
-            ClearRunVariables();  
+            ClearRunVariables();
 
-            bool successful = false;            
-                                                
+            bool successful = false;
+
             try
             {
                 Xteq5Runner runner = new Xteq5Runner();
@@ -140,16 +153,10 @@ namespace Xteq5
 
                 this.Report.UserText = _userText;
 
-                //TODO: !!!!FIX ME!!!!
-                this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, OutputFormatEnum.HTML, "");
-
-                /*
-                string htmlTemplatePath = Path.Combine(_compilationPath, "BootstrapTemplate1.html");
-                BootstrapHTMLGenerator generator = new BootstrapHTMLGenerator(htmlTemplatePath);
-                string tempFile = generator.GenerateAndSaveFile(this.Report);
-
-                this.ReportFilepath = tempFile;
-                 */
+                if (_reportFormat != OutputFormatEnum.Unknown)
+                {
+                    this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, _reportFormat, _destFilename);
+                }
 
                 //Set IssuesFound
                 IssuesFound = false;
@@ -159,7 +166,7 @@ namespace Xteq5
                 itemp += this.Report.TestStatiscs.FatalCount + this.Report.TestStatiscs.MajorCount + this.Report.TestStatiscs.MinorCount;
                 if (itemp > 0)
                 {
-                    IssuesFound=true;
+                    IssuesFound = true;
                 }
 
                 successful = true;

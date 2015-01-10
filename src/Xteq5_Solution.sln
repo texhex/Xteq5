@@ -9,14 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yamua", "Yamua\Yamua.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xteq5Engine", "Xteq5Engine\Xteq5Engine.csproj", "{FE4EC01C-0D75-4F7C-A0A2-30ECA4C13C29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadlessPSTest_Consumer", "HeadlessPSTest_Consumer\HeadlessPSTest_Consumer.csproj", "{E0CCB471-179B-42B4-A329-63BCCA7D5542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadlessPS_Consumer", "HeadlessPS_Consumer\HeadlessPS_Consumer.csproj", "{E0CCB471-179B-42B4-A329-63BCCA7D5542}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xteq5Engine_Consumer", "Xteq5Engine_Consumer\Xteq5Engine_Consumer.csproj", "{712B98DD-743A-4FCE-9454-AE38E479A312}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{21A842DC-8961-49C3-AC64-A75CAE2EAB84}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yamua_xUnitTest", "Yamua_xUnitTest\Yamua_xUnitTest.csproj", "{9EB85277-5719-4570-919A-B331DA3A2E1D}"
 EndProject

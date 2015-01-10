@@ -7,8 +7,8 @@
     <ProjectGuid>{E0CCB471-179B-42B4-A329-63BCCA7D5542}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeadlessPSTestConsumer</RootNamespace>
-    <AssemblyName>HeadlessPSTestConsumer</AssemblyName>
+    <RootNamespace>HeadlessPSConsumer</RootNamespace>
+    <AssemblyName>HeadlessPS_Consumer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

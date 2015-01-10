@@ -139,7 +139,7 @@ namespace Xteq5GUI
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO: Move this UI assembly
-            ExecuteAndForget.Execute("http://www.Xteq5.com/");
+            ExecuteAndForget.Execute("http://www.xteq5.com/");
         }
 
         private void menuCmdHelpAbout_Click(object sender, EventArgs e)

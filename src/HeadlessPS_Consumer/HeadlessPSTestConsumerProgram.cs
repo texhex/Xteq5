@@ -9,7 +9,7 @@ using HeadlessPS;
 using System.Management.Automation;
 using Yamua;
 
-namespace HeadlessPSTestConsumer
+namespace HeadlessPSConsumer
 {
     class HeadlessPSTestConsumerProgram
     {
