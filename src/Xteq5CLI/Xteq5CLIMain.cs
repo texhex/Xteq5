@@ -22,6 +22,8 @@ using CMDLine;
    -Run -Filename "C:\Temp\batchresult.htm" 
    -Run -Filename "C:\Temp\daresult.xml" -Format XML
    -Run -Filename "C:\Temp\daresult.xml" -Format XML -Text "blah BLUB"
+   -Run -Path "C:\dev\git\Xteq5\scripts" -Format XML -Filename "C:\Temp\result.xml" -Text "My comment"
+ 
 */
 namespace Xteq5CLI
 {
@@ -107,7 +109,7 @@ namespace Xteq5CLI
 
 
             Console.WriteLine();
-            Console.WriteLine("Exiting. Return code {0}", returnCode);
+            Console.WriteLine("Exiting, return code is {0}.", returnCode);
 #if DEBUG
             Console.ReadLine();
 #endif

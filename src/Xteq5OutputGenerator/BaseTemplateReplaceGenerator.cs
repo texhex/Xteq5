@@ -54,7 +54,9 @@ namespace Xteq5
             foreach (AssetRecord asset in Report.Assets)
             {
                 BaseRecord baseRec = asset as BaseRecord;
-                ProcessAsset(sbAssets, asset, baseRec);
+                ResultPrimarySecondary rps = new ResultPrimarySecondary(baseRec);
+                
+                ProcessAsset(sbAssets, asset, baseRec, rps);
             }
             EndAssetDetails(sbAssets);
 
@@ -68,7 +70,9 @@ namespace Xteq5
             foreach (TestRecord test in Report.Tests)
             {
                 BaseRecord baseRec = test as BaseRecord;
-                ProcessTest(sbTests, test, baseRec);
+                ResultPrimarySecondary rps = new ResultPrimarySecondary(baseRec);
+
+                ProcessTest(sbTests, test, baseRec, rps);
             }
             EndTestDetails(sbAssets);
 
@@ -231,7 +235,7 @@ namespace Xteq5
         protected abstract void StartAssetDetails(StringBuilder sbAssets);
 
         //Called by this class for each asset that exists. Imlementation must add the content to the given stringbuilder.
-        protected abstract void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec);
+        protected abstract void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond);
 
         //Called once when the imlementation should end the asset replacement. Can be used to add a footer to the given StringBuilder
         protected abstract void EndAssetDetails(StringBuilder sbAssets);
@@ -247,7 +251,7 @@ namespace Xteq5
         protected abstract void StartTestDetails(StringBuilder sbTests);
 
         //Called by this class for each test that exists. Imlementation must add the content to the given stringbuilder.
-        protected abstract void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec);
+        protected abstract void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond);
 
         //Called once when the imlementation should end the test replacement. Can be used to add a footer to the given StringBuilder
         protected abstract void EndTestDetails(StringBuilder sbTests);

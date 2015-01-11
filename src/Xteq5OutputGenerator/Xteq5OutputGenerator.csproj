@@ -87,6 +87,7 @@
     <Compile Include="OutputFormat.cs" />
     <Compile Include="ResultPrimarySecondary.cs" />
     <Compile Include="TemplateFileNotFoundException.cs" />
+    <Compile Include="XMLGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeadlessPS\HeadlessPS.csproj">

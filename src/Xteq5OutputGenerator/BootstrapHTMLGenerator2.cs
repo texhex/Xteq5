@@ -64,16 +64,10 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec)
+        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
         {
-            if (Asset.Conclusion == ConclusionEnum.Success)
-            {
-                sbAssets.AppendLine(CreateTableRow(BaseRec, Asset.Data));
-            }
-            else
-            {
-                sbAssets.AppendLine(CreateTableRow(BaseRec, ""));
-            }
+
+            sbAssets.AppendLine(CreateTableRow(BaseRec, ResultPrimSecond));
         }
 
         protected override void EndAssetDetails(StringBuilder sbAssets)
@@ -97,9 +91,9 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec)
+        protected override void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
         {
-            sbTests.AppendLine(CreateTableRow(BaseRec, ""));
+            sbTests.AppendLine(CreateTableRow(BaseRec, ResultPrimSecond));
         }
 
         protected override void EndTestDetails(StringBuilder sbTests)
@@ -129,7 +123,7 @@ namespace Xteq5
 
 
         //Bootstrap helper function
-        string CreateTableRow(BaseRecord Record, string PrimaryData)
+        string CreateTableRow(BaseRecord Record, ResultPrimarySecondary PrimarySecondary)
         {
             WeakHTMLTag tr = new WeakHTMLTag("tr");
 
@@ -151,16 +145,7 @@ namespace Xteq5
             //Create <td> for Name and Script file
             string tdName = CreateHTMLElement_TdTextSmallText(Record.Name, Record.ScriptFilename);
 
-            //Prepare the data for primary and secondary data
-            ResultPrimarySecondary rps = new ResultPrimarySecondary(Record);
-
-            //If the caller gave us PrimaryData, we will use that in any case.
-            if (string.IsNullOrWhiteSpace(PrimaryData) == false)
-            {
-                rps.Primary = PrimaryData;
-            }
-
-            string tdValue = CreateHTMLElement_TdTextSmallText(rps.Primary, rps.Secondary);
+            string tdValue = CreateHTMLElement_TdTextSmallText(PrimarySecondary.Primary, PrimarySecondary.Secondary);
             tr.HTML = tdStatus + tdName + tdValue;
 
             return tr.ToString() + "\r\n";

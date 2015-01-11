@@ -26,11 +26,13 @@ namespace Xteq5
             {
                 case OutputFormatEnum.HTML:
                     string htmlTemplatePath = PathExtension.Combine(Report.CompilationFolder, "BootstrapTemplate.html");
-
-                    BootstrapHTMLGenerator2 htmlGenerator = new BootstrapHTMLGenerator2();
-                    
+                    BootstrapHTMLGenerator2 htmlGenerator = new BootstrapHTMLGenerator2();                    
                     return htmlGenerator.Generate(Report, htmlTemplatePath);
 
+                case OutputFormatEnum.XML:
+                    string xmlTemplate = PathExtension.Combine(Report.CompilationFolder, "XMLtemplate.xml");
+                    XMLGenerator xmlGenerator = new XMLGenerator();
+                    return xmlGenerator.Generate(Report, xmlTemplate);
 
                 default:
                     throw new NotImplementedException("Only HTML is currently supported");

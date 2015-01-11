@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Xteq5 XML template version 1.06
+     
+     It is assumed that this file will be used for automatic processing.
+     Therefore it contains only the minimum required information in order to reduce the file size. 
+ -->
+
+<report xmlns="http://www.xteq5.com/xmlreport/v1">
+
+  <summary>
+    <id>@@REPORTID@@</id>
+    <compilationfolder>@@SOURCEFOLDER@@</compilationfolder>
+    <engineversion>@@VERSIONSTRING@@</engineversion>
+    <username>@@USERNAME@@</username>
+    <computer>@@COMPUTERNAME@@</computer>
+    <text>@@USERTEXT@@</text>
+    <starttime>@@STARTDATETIMEUTC@@</starttime>
+    <endtime>@@ENDDATETIMEUTC@@</endtime>
+    <runtimeseconds>@@RUNTIMESECONDS@@</runtimeseconds>
+  </summary>
+
+  <issuesfound>
+    <any>@@ISSUESFOUND@@</any>
+    <assets>@@ASSETISSUESFOUND@@</assets>
+    <tests>@@TESTISSUESFOUND@@</tests>
+  </issuesfound>
+
+  <statistics>
+    <assets>
+      <total>@@ASSETS.TOTAL@@</total>
+      <doesnotapply>@@ASSETS.DOESNOTAPPLY@@</doesnotapply>
+      <success>@@ASSETS.SUCCESS@@</success>
+      <inconclusive>@@ASSETS.INCONCLUSIVE@@</inconclusive>
+      <minor>@@ASSETS.MINOR@@</minor>
+      <major>@@ASSETS.MAJOR@@</major>
+      <fatal>@@ASSETS.FATAL@@</fatal>
+    </assets>
+
+    <tests>
+      <total>@@TESTS.TOTAL@@</total>
+      <doesnotapply>@@TESTS.DOESNOTAPPLY@@</doesnotapply>
+      <success>@@TESTS.SUCCESS@@</success>
+      <inconclusive>@@TESTS.INCONCLUSIVE@@</inconclusive>
+      <minor>@@TESTS.MINOR@@</minor>
+      <major>@@TESTS.MAJOR@@</major>
+      <fatal>@@TESTS.FATAL@@</fatal>
+    </tests>
+  </statistics>
+
+  
+  <assets>
+<!--@@ASSETROWS@@-->
+  </assets>
+
+  
+  <tests>
+<!--@@TESTROWS@@-->
+  </tests>
+
+  
+  <!-- E N D E -->
+</report>
