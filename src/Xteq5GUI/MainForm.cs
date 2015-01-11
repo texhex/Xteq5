@@ -28,6 +28,7 @@ namespace Xteq5GUI
 
         string _defaultFolderPath = "";
         bool _folderFromAppSettings = false;
+        OutputFormatEnum _outputFormat = OutputFormatEnum.HTML;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -86,6 +87,14 @@ namespace Xteq5GUI
                 }
             }
 
+            //Disable all output format
+            DisableAllFormatCheckboxes();
+
+            //Set HTML as the default option
+            menuFormatHTML.Checked = true;
+            _outputFormat = OutputFormatEnum.HTML;
+
+
             string arch = Environment.Is64BitProcess ? "64 bit" : "32 bit";
             SetStatus("Ready. Started as " + arch + " process.");
         }
@@ -130,12 +139,19 @@ namespace Xteq5GUI
             this.Close();
         }
 
-        private void menuCmdHelpCreate_Click(object sender, EventArgs e)
+
+        private void menuCmdHelpDocumentation_Click(object sender, EventArgs e)
         {
-            ExecuteAndForget.Execute(Xteq5UIConstant.ProjectURL);
+            ExecuteAndForget.Execute(Xteq5UIConstant.DocumentationURL);
         }
 
-        private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuHelpHowtoUse_Click(object sender, EventArgs e)
+        {
+            ExecuteAndForget.Execute(Xteq5UIConstant.HowtoUseURL);
+        }
+
+        
+        private void menuCmdHelpHomepage_Click(object sender, EventArgs e)
         {
             ExecuteAndForget.Execute(Xteq5UIConstant.HomepageURL);
         }
@@ -145,11 +161,7 @@ namespace Xteq5GUI
             //Title of about window
             string title = "About " + this.Text + " (" + Xteq5EngineConstant.Version.ToString() + ")";
 
-            //Read license.txt
-            string content = "";
-            string filePath = ApplicationInformation.Instance.ParentFolder + @"licenses\license.txt";
-            content = File.Exists(filePath) ? File.ReadAllText(filePath, Encoding.Default) : "Unable to load " + filePath;
-
+            string content = Xteq5UIConstant.LicenseTxtContent;
 
             MonospacedTextForm mtform = new MonospacedTextForm();
             mtform.Title = title;
@@ -189,8 +201,8 @@ namespace Xteq5GUI
             this.UseWaitCursor = true;
             Application.DoEvents();
 
-            SimplifiedXteq5Runner simpleRunner = new SimplifiedXteq5Runner(textBoxFolder.Text, textBoxUserText.Text);
-            
+            SimplifiedXteq5Runner simpleRunner = new SimplifiedXteq5Runner(textBoxFolder.Text, textBoxUserText.Text, _outputFormat);
+
             bool result = await simpleRunner.RunAsync();
 
             this.UseWaitCursor = false;
@@ -224,6 +236,51 @@ namespace Xteq5GUI
 
 
         }
+
+        private void DisableAllFormatCheckboxes()
+        {
+            menuFormatHTML.Checked = false;
+            menuFormatXML.Checked = false;
+            menuFormatJSON.Checked = false;
+        }
+
+        private void DisableAllFormatCheckboxes(ToolStripMenuItem DoNotChange)
+        {
+            if (menuFormatHTML != DoNotChange)
+                menuFormatHTML.Checked = false;
+
+            if (menuFormatXML != DoNotChange)
+                menuFormatXML.Checked = false;
+
+            if (menuFormatJSON != DoNotChange)
+                menuFormatJSON.Checked = false;
+
+        }
+
+        private void menuFormatHTML_Click(object sender, EventArgs e)
+        {
+            DisableAllFormatCheckboxes(sender as ToolStripMenuItem);
+            _outputFormat = OutputFormatEnum.HTML;
+        }
+
+        private void menuFormatXML_Click(object sender, EventArgs e)
+        {
+            DisableAllFormatCheckboxes(sender as ToolStripMenuItem);
+            _outputFormat = OutputFormatEnum.XML;
+        }
+
+        private void menuFormatJSON_Click(object sender, EventArgs e)
+        {
+            DisableAllFormatCheckboxes(sender as ToolStripMenuItem);
+            _outputFormat = OutputFormatEnum.JSON;
+        }
+
+
+
+
+
+
+
 
 
 

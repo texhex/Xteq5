@@ -32,10 +32,15 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCmdFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormat = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatHTML = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatJSON = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCmdHelpHomepage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuCmdHelpWiki = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelpHowtoUse = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCmdHelpDocumentation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuCmdHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusContainer = new System.Windows.Forms.StatusStrip();
@@ -63,6 +68,7 @@
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFile,
+            this.menuFormat,
             this.menuHelp});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Margin = new System.Windows.Forms.Padding(4);
@@ -87,12 +93,53 @@
             this.menuCmdFileExit.Text = "E&xit";
             this.menuCmdFileExit.Click += new System.EventHandler(this.menuCmdFileExit_Click);
             // 
+            // menuFormat
+            // 
+            this.menuFormat.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormatHTML,
+            this.menuFormatXML,
+            this.menuFormatJSON});
+            this.menuFormat.Name = "menuFormat";
+            this.menuFormat.Size = new System.Drawing.Size(65, 23);
+            this.menuFormat.Text = "F&ormat";
+            // 
+            // menuFormatHTML
+            // 
+            this.menuFormatHTML.Checked = true;
+            this.menuFormatHTML.CheckOnClick = true;
+            this.menuFormatHTML.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuFormatHTML.Name = "menuFormatHTML";
+            this.menuFormatHTML.Size = new System.Drawing.Size(115, 24);
+            this.menuFormatHTML.Text = "&HTML";
+            this.menuFormatHTML.Click += new System.EventHandler(this.menuFormatHTML_Click);
+            // 
+            // menuFormatXML
+            // 
+            this.menuFormatXML.Checked = true;
+            this.menuFormatXML.CheckOnClick = true;
+            this.menuFormatXML.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuFormatXML.Name = "menuFormatXML";
+            this.menuFormatXML.Size = new System.Drawing.Size(115, 24);
+            this.menuFormatXML.Text = "&XML";
+            this.menuFormatXML.Click += new System.EventHandler(this.menuFormatXML_Click);
+            // 
+            // menuFormatJSON
+            // 
+            this.menuFormatJSON.Checked = true;
+            this.menuFormatJSON.CheckOnClick = true;
+            this.menuFormatJSON.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuFormatJSON.Name = "menuFormatJSON";
+            this.menuFormatJSON.Size = new System.Drawing.Size(115, 24);
+            this.menuFormatJSON.Text = "&JSON";
+            this.menuFormatJSON.Click += new System.EventHandler(this.menuFormatJSON_Click);
+            // 
             // menuHelp
             // 
             this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuCmdHelpHomepage,
             this.toolStripMenuItem1,
-            this.menuCmdHelpWiki,
+            this.menuHelpHowtoUse,
+            this.menuCmdHelpDocumentation,
             this.toolStripMenuItem2,
             this.menuCmdHelpAbout});
             this.menuHelp.Name = "menuHelp";
@@ -104,19 +151,26 @@
             this.menuCmdHelpHomepage.Name = "menuCmdHelpHomepage";
             this.menuCmdHelpHomepage.Size = new System.Drawing.Size(182, 24);
             this.menuCmdHelpHomepage.Text = "&Homepage...";
-            this.menuCmdHelpHomepage.Click += new System.EventHandler(this.homepageToolStripMenuItem_Click);
+            this.menuCmdHelpHomepage.Click += new System.EventHandler(this.menuCmdHelpHomepage_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
             // 
-            // menuCmdHelpWiki
+            // menuHelpHowtoUse
             // 
-            this.menuCmdHelpWiki.Name = "menuCmdHelpWiki";
-            this.menuCmdHelpWiki.Size = new System.Drawing.Size(182, 24);
-            this.menuCmdHelpWiki.Text = "&Documentation...";
-            this.menuCmdHelpWiki.Click += new System.EventHandler(this.menuCmdHelpCreate_Click);
+            this.menuHelpHowtoUse.Name = "menuHelpHowtoUse";
+            this.menuHelpHowtoUse.Size = new System.Drawing.Size(182, 24);
+            this.menuHelpHowtoUse.Text = "H&ow to use...";
+            this.menuHelpHowtoUse.Click += new System.EventHandler(this.menuHelpHowtoUse_Click);
+            // 
+            // menuCmdHelpDocumentation
+            // 
+            this.menuCmdHelpDocumentation.Name = "menuCmdHelpDocumentation";
+            this.menuCmdHelpDocumentation.Size = new System.Drawing.Size(182, 24);
+            this.menuCmdHelpDocumentation.Text = "&Documentation...";
+            this.menuCmdHelpDocumentation.Click += new System.EventHandler(this.menuCmdHelpDocumentation_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -340,9 +394,14 @@
         private System.Windows.Forms.Button buttonGenerateReport;
         private System.Windows.Forms.GroupBox groupBoxAdditonalText;
         private System.Windows.Forms.TextBox textBoxUserText;
-        private System.Windows.Forms.ToolStripMenuItem menuCmdHelpWiki;
+        private System.Windows.Forms.ToolStripMenuItem menuCmdHelpDocumentation;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.Label labelHorizontalLine;
+        private System.Windows.Forms.ToolStripMenuItem menuFormat;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatHTML;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatXML;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatJSON;
+        private System.Windows.Forms.ToolStripMenuItem menuHelpHowtoUse;
     }
 }
 

@@ -90,7 +90,8 @@ Compression=lzma2
 ;We can use solid compression as all files will be installed
 SolidCompression=yes
 
-;Do not allow use to select a folder because we want to be installed into the native C:\Program Files folder and 
+;Do not allow to select a folder because we want to be installed into the native C:\Program Files folder 
+;and even admins sometimes select the wrong folder. 
 DisableDirPage=yes
 
 ;We create a single icon anyway 
@@ -101,7 +102,6 @@ DisableReadyPage=no
 
 ;;If we change file associations this flag will instruct InnoSetup at the end to refresh all Explorer icons
 ;ChangesAssociations=yes
-
 
 
 
@@ -132,12 +132,16 @@ Type: files; Name: "{commonappdata}\Xteq5\tests\-*.ps1";
 Type: files; Name: "{commonappdata}\Xteq5\assets\_*.ps1";
 Type: files; Name: "{commonappdata}\Xteq5\tests\_*.ps1";
 
+;Before version 2015.01.11, there was a file bootstraptemplate1.html
+Type: files; Name: "{commonappdata}\Xteq5\bootstraptemplate1.html";
+
+
 
 [Files]
-;If selected by the user: 
-; Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside Xteq5 as well
-; See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
-; Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\Xteq5Helpers
+;If the option is activated by the user: 
+;  Copy helper module to PS Modules path of the current user to make sure the user is able to use them outside Xteq5 as well
+;  See MSDN: http://msdn.microsoft.com/en-us/library/dd878350%28v=vs.85%29.aspx
+;  Path: C:\Users\<<USERNAME>>\Documents\WindowsPowerShell\Modules\Xteq5Helpers
 Source: "scripts\modules\Xteq5Helpers\Xteq5Helpers.psm1"; DestDir: "{code:PowerShellUserModulesPath}\Xteq5Helpers\"; Flags: ignoreversion; Check: InstallModulesToUserModules;
 ;Do the same for the MPX module
 Source: "scripts\modules\MPXmodule\MPXmodule.psm1"; DestDir: "{code:PowerShellUserModulesPath}\MPXmodule\"; Flags: ignoreversion; Check: InstallModulesToUserModules; 

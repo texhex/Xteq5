@@ -11,6 +11,7 @@ IMPROVEMENTS:
 * Renamed HTML template to "BootstrapTemplate.html"
 * Added XML and JSON output formats
 * Improvments for Xteq5Engine
+* Added output formats to Xteq5GUI
 
 BUG FIXES:
 

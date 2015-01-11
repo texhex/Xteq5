@@ -20,8 +20,8 @@ namespace Xteq5OutputGenerator_Consumer
 
             
             //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test5";
-            //basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
-            basepath = @"C:\dev\git\xteq5\scripts";
+            basepath = @"C:\dev\git\xteq5\src\ScriptsForTesting\Test1";
+            //basepath = @"C:\dev\git\xteq5\scripts";
 
 
             Task<Report> task = RunEngineAsync(runner, basepath);
