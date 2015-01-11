@@ -23,6 +23,9 @@ using CMDLine;
    -Run -Filename "C:\Temp\daresult.xml" -Format XML
    -Run -Filename "C:\Temp\daresult.xml" -Format XML -Text "blah BLUB"
    -Run -Path "C:\dev\git\Xteq5\scripts" -Format XML -Filename "C:\Temp\result.xml" -Text "My comment"
+   -Run -Path "C:\dev\git\Xteq5\scripts" -Format JSON -Filename "C:\Temp\result.json" -Text "My comment"
+   -Run -Path "C:\dev\git\Xteq5\src\ScriptsForTesting\Test1" -Format JSON -Filename "C:\Temp\result.json" -Text "My comment"
+ 
  
 */
 namespace Xteq5CLI

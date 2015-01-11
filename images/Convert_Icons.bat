@@ -11,4 +11,7 @@ SET EXE_CONVERT=C:\_Tools\ImageMagick-6.9.0-2\convert.exe
 REM -colors 256 
 "%EXE_CONVERT%" Xteq5_Icon_16x16.ico Xteq5_Icon_32x32.ico Xteq5_Icon_48x48.ico Xteq5_Icon.ico
 
+"%EXE_CONVERT%" Xteq5_Icon_Secondary_16x16.ico Xteq5_Icon_Secondary_32x32.ico Xteq5_Icon_Secondary_48x48.ico Xteq5_Icon_Secondary.ico
+
+
 pause

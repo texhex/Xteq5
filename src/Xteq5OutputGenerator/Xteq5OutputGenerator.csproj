@@ -81,8 +81,10 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BaseGenerator.cs" />
     <Compile Include="BaseTemplateReplaceGenerator.cs" />
     <Compile Include="BootstrapHTMLGenerator2.cs" />
+    <Compile Include="JSONGenerator.cs" />
     <Compile Include="OutputGenerator.cs" />
     <Compile Include="OutputFormat.cs" />
     <Compile Include="ResultPrimarySecondary.cs" />

@@ -13,7 +13,7 @@ using System.Reflection;
 namespace Xteq5
 {
     /// <summary>
-    /// This allows to run a test suite (Assets and Tests).
+    /// This processes an compilation folder (Assets and Tests)
     /// </summary>
     public class Xteq5Runner
     {
@@ -35,7 +35,7 @@ namespace Xteq5
         }
 
         /// <summary>
-        /// Executes all assets and tests found in BasePath asynchronously
+        /// Executes all assets and tests found in CompilationPath asynchronously
         /// </summary>
         /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
         public async Task<Report> RunAsync(string CompilationPath)

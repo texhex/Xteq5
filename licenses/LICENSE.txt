@@ -67,7 +67,15 @@ Licensed under the Inno Setup License
    http://www.jrsoftware.org/files/is/license.txt
    The license is distributed with this software as LICENSE-InnoSetup.txt
 
- 
+   
+JSON.NET
+Copyright (c) 2007 James Newton-King
+http://james.newtonking.com/json
+Licensed under the MIT License
+   https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+   The license is distributed with this software as LICENSE-JSON.NET.txt
+   
+
 This product includes software developed by Jon Skeet
 http://www.jonskeet.uk/
 Copyright (c) 2004-2006 Jon Skeet. All rights reserved.

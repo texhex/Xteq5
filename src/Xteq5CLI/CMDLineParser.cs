@@ -789,6 +789,7 @@ namespace CMDLine
         /// <summary>
         /// Command line parsing Exception.
         /// </summary>
+        [Serializable]
         public class CMDLineParserException : Exception
         {
             public CMDLineParserException(string message)
@@ -798,6 +799,7 @@ namespace CMDLine
         /// <summary>
         /// Thrown when required option was not detected
         /// </summary>
+        [Serializable]
         public class MissingRequiredOptionException : CMDLineParserException
         {
             public MissingRequiredOptionException(string message)
@@ -807,6 +809,7 @@ namespace CMDLine
         /// <summary>
         /// Thrown when invalid (not registered) options have been detected
         /// </summary>
+        [Serializable]
         public class InvalidOptionsException : CMDLineParserException
         {
             public InvalidOptionsException(string message)
@@ -816,6 +819,7 @@ namespace CMDLine
         /// <summary>
         /// Thrown when duplicate option was detected
         /// </summary>
+        [Serializable]
         public class DuplicateOptionException : CMDLineParserException
         {
             public DuplicateOptionException(string message)
@@ -825,6 +829,7 @@ namespace CMDLine
         /// <summary>
         /// Thrown when parameter value conversion to specified type failed 
         /// </summary>
+        [Serializable]
         public class ParameterConversionException : CMDLineParserException
         {
             public ParameterConversionException(string message)

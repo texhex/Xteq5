@@ -14,7 +14,7 @@
 ## Projects
  - `HeadlessPS` is a library to run scripts using PowerShell.
  - `Xteq5Engine` is the main library and uses HeadlessPS to run assets and tests.
- - `Xteq5OutputGenerator` is used to generate output files (HTML, XML) from a report
+ - `Xteq5OutputGenerator` is used to generate output files (HTML, XML, JSON) from a report
  - `Xteq5UserInterface` contains helper functions for a program that interacts with a user 
  - `Xteq5GUI` (Xteq5.exe) is the GUI used to operate Xteq5, it uses all four libraries above.
  - `Xteq5CLI` (Xteq5Cli.exe) is a command line interface for Xteq5, it uses all four libraries above.

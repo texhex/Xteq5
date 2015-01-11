@@ -8,9 +8,9 @@ About Xteq5
  
 A known issues testing framework, powered by PowerShell scripts.
 
-Why you want to use it: Computer systems today are complex. Some years ago, if software A did not run, the reason was “A requires B and B is not installed”. Today it’s more like “A does not run because B is not working as the value C in D is not set by E”. 
+Computer systems today are complex. Some years ago, if software A did not run, the reason was "A requires B and B is not installed". Today it’s more like "A does not run because B is not working as the value C in D is not set by E". 
 
-Using Xteq5, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report ([Example][_examplereport]) will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. Just run Xteq5 again and you will be informed in seconds.
+Using Xteq5, you could now write PowerShell scripts that test A, B, C, D and E. The generated HTML report ([Example][_examplereport]) will then inform you if, and what, isn’t right. From that time on, you don’t have to remember this case anymore. Just run Xteq5 again and you will be informed in seconds. This can also be done silently using the command line, resulting in a XML or JSON report for further automated processing. 
 
 This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with Xteq5 if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
 
@@ -30,7 +30,7 @@ The most recent version can be downloaded from [Releases][_downloads].
 <!-- These links are also used in /src/setup/_Setup.iss -->
 
 * Windows 7 SP1 / Windows Server 2008 SP2 (or higher)
-* 256MB free memory, 5 MB free disk space
+* 256MB free memory, 6 MB free disk space
 * [.NET Framework 4.5][_netframework] (or higher)
 * [PowerShell 4.0][_wmf] (or higher)
 * Download links are provided by Setup.exe if one of the components is not installed
@@ -38,7 +38,7 @@ The most recent version can be downloaded from [Releases][_downloads].
 
 ##<a name="docs">Documentation</a>
 
-Please see the [Xteq5 Wiki][_wiki] for [How to use][_wiki_howto] and about creating [custom scripts][_wiki_customscripts].
+Please see the [Xteq5 Wiki][_wiki] for [How to use][_wiki_howto] it, creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
 
 ##<a name="contribute">Contributions</a>
 
@@ -85,4 +85,6 @@ Licensed under the **Apache License, Version 2.0**. For details, please see [LIC
 [_wiki]: https://github.com/texhex/xteq5/wiki
 [_wiki_howto]: https://github.com/texhex/xteq5/wiki/How-to-use
 [_wiki_customscripts]: https://github.com/texhex/xteq5/wiki/Custom-scripts
+[_wiki_setup]: https://github.com/texhex/xteq5/wiki/Setup-customization
+[_wiki_cli]: https://github.com/texhex/xteq5/wiki/Command-line-interface
 

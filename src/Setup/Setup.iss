@@ -149,7 +149,7 @@ Source: "scripts\*.*"; DestDir: "{commonappdata}\Xteq5\"; Flags: ignoreversion r
 ;All license files go to \licenses
 Source: "licenses\*.*"; DestDir: "{app}\licenses"; Flags: ignoreversion recursesubdirs;
 
-;Xteq5Launcher 
+;Xteq5Launcher (Does not use ann DLLs)
 Source: "src\Xteq5Launcher\bin\release\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5Launcher\bin\release\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs;
 
@@ -162,6 +162,17 @@ Source: "src\Xteq5GUI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: 
 Source: "src\Xteq5GUI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
 Source: "src\Xteq5GUI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+
+;Xteq5CLI (64 bit)
+Source: "src\Xteq5CLI\bin\x64\release\*.exe"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5CLI\bin\x64\release\*.dll"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5CLI\bin\x64\release\*.config"; DestDir: "{app}\64bit"; Flags: ignoreversion recursesubdirs;
+
+;Xteq5CLI (32 bit)
+Source: "src\Xteq5CLI\bin\x86\release\*.exe"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5CLI\bin\x86\release\*.dll"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+Source: "src\Xteq5CLI\bin\x86\release\*.config"; DestDir: "{app}\32bit"; Flags: ignoreversion recursesubdirs;
+
 
 
 [Ini]

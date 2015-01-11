@@ -11,7 +11,7 @@ namespace Xteq5
     /// <summary>
     /// A base class for class that reads a template file and then replaces the content with the actual values.
     /// </summary>
-    public abstract class BaseTemplateReplaceGenerator
+    public abstract class BaseTemplateReplaceGenerator : BaseGenerator
     {
         protected StringBuilder _content = new StringBuilder();
 
@@ -27,6 +27,12 @@ namespace Xteq5
 
             //If there is a load error, this will throw an exception
             _content = new StringBuilder(File.ReadAllText(TemplateFilepath, Encoding.UTF8));
+        }
+
+        //Because we require a template, this function can't be used
+        public override string Generate(Report Report)
+        {
+            throw new NotImplementedException();
         }
 
         //Base function that is called by a consumer of an implementation of this class

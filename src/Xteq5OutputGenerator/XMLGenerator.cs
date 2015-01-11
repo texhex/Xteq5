@@ -9,7 +9,13 @@ namespace Xteq5
 {
     public class XMLGenerator : BaseTemplateReplaceGenerator
     {
-
+      
+        /// <summary>
+        /// Generates XML based on the given Xteq5 Report object
+        /// </summary>
+        /// <param name="Report">The Report which should be converted to XML</param>
+        /// <param name="TemplateFilepath">Templatefile to be used</param>
+        /// <returns>XML string</returns>
         public override string Generate(Report Report, string TemplateFilepath)
         {
             ReadTemplate(TemplateFilepath);
@@ -112,8 +118,6 @@ namespace Xteq5
         {
             _content.Replace("<!--@@" + ValueName + "@@-->", Value);
         }
-
-
 
         string CreateRecordDetails(string TagName, BaseRecord Record, ResultPrimarySecondary ResultPrimSecond)
         {

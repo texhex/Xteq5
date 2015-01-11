@@ -31,32 +31,34 @@ namespace Xteq5CLI
             CMDLineParser parser = new CMDLineParser();
             parser.throwInvalidOptionsException = true;
 
+            //Until further notice, no aliases are supported except for HELP. 
+
             //Add -Help option
             CMDLineParser.Option HelpOption = parser.AddBoolSwitch("-Help", "Displays help");
             HelpOption.AddAlias("/?");
 
             //Add -Run option
             CMDLineParser.Option RunOption = parser.AddBoolSwitch("-Run", "Required. Execute all files in compilation path");
-            RunOption.AddAlias("/Run");
+            //RunOption.AddAlias("/Run");
 
             //Add -Path parameter
             CompilationPathOption PathParameter = new CompilationPathOption("-Path", "Compilation path to load scripts from", false);
-            PathParameter.AddAlias("/Path");
+            //PathParameter.AddAlias("/Path");
             parser.AddOption(PathParameter);
 
             //Add -Format parameter
             ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated (HTML, XML ...)", false);
-            FormatParameter.AddAlias("/Format");
+            //FormatParameter.AddAlias("/Format");
             parser.AddOption(FormatParameter);
 
             //Add -Filename parameter
             FilenameOption FilenameParameter = new FilenameOption("-Filename", "Filename of the generated report", false);
-            FilenameParameter.AddAlias("/Filename");
+            //FilenameParameter.AddAlias("/Filename");
             parser.AddOption(FilenameParameter);
 
             //Add -Text parameter
-            CMDLineParser.Option TextParameter = parser.AddStringParameter("-Text", "Additonal text to be included in generated report", false);
-            FilenameParameter.AddAlias("/Text");
+            CMDLineParser.Option TextParameter = parser.AddStringParameter("-Text", "Additional text to be included in generated report", false);
+            //FilenameParameter.AddAlias("/Text");
 
             bool commandLineParsed = false;
 
@@ -102,9 +104,9 @@ namespace Xteq5CLI
 
                             //Check for the FORMAT parameter and use HTML if not set
                             string reportFormatString = OptionIsMatchedAndNotEmpty(FormatParameter) ? FormatParameter.Value.ToString() : "HTML";
+                            
                             //This direct cast without any error checking is OK because FORMATPARAMETER already tried to parse it and will only be set if the value is OK
                             this.DestinationFormat = OutputFormatConverter.ParseReportFormat(reportFormatString);
-
 
                             this.UserText = OptionIsMatchedAndNotEmpty(TextParameter) ? TextParameter.Value.ToString() : "";                           
 

@@ -7,9 +7,9 @@ using Yamua;
 
 namespace Xteq5
 {
-    public class BootstrapHTMLGenerator2 : BaseTemplateReplaceGenerator
+    public class BootstrapHTMLGenerator : BaseTemplateReplaceGenerator
     {
-        public BootstrapHTMLGenerator2()
+        public BootstrapHTMLGenerator()
         {
 
         }

@@ -26,7 +26,7 @@ namespace Xteq5
             {
                 case OutputFormatEnum.HTML:
                     string htmlTemplatePath = PathExtension.Combine(Report.CompilationFolder, "BootstrapTemplate.html");
-                    BootstrapHTMLGenerator2 htmlGenerator = new BootstrapHTMLGenerator2();                    
+                    BootstrapHTMLGenerator htmlGenerator = new BootstrapHTMLGenerator();                    
                     return htmlGenerator.Generate(Report, htmlTemplatePath);
 
                 case OutputFormatEnum.XML:
@@ -34,8 +34,13 @@ namespace Xteq5
                     XMLGenerator xmlGenerator = new XMLGenerator();
                     return xmlGenerator.Generate(Report, xmlTemplate);
 
+                case OutputFormatEnum.JSON:
+                    //JSONGenerator does not use a template
+                    JSONGenerator jsonGenerator = new JSONGenerator();
+                    return jsonGenerator.Generate(Report);
+
                 default:
-                    throw new NotImplementedException("Only HTML is currently supported");
+                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", Format.ToString()));
             }
              
         }
@@ -67,7 +72,7 @@ namespace Xteq5
                     break;
 
                 default:
-                    throw new ArgumentException("Not supported OutputFormat " + Format.ToString());
+                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", Format.ToString()));
             }
 
             string source = GenerateReportOutput(Report, Format);
