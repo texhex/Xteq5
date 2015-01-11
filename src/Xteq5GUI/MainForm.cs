@@ -32,7 +32,7 @@ namespace Xteq5GUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Default compilation folder 
-            _defaultFolderPath = UserInterface.Instance.DefaultCompilationFolder;
+            _defaultFolderPath = Xteq5UIConstant.DefaultCompilationFolder;
 
             //Check settings
             string folderAppSetting = Properties.Settings.Default.Folder;
@@ -132,20 +132,18 @@ namespace Xteq5GUI
 
         private void menuCmdHelpCreate_Click(object sender, EventArgs e)
         {
-            //TODO: Move this UI assembly
-            ExecuteAndForget.Execute("https://github.com/texhex/Xteq5/wiki/");
+            ExecuteAndForget.Execute(Xteq5UIConstant.ProjectURL);
         }
 
         private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO: Move this UI assembly
-            ExecuteAndForget.Execute("http://www.xteq5.com/");
+            ExecuteAndForget.Execute(Xteq5UIConstant.HomepageURL);
         }
 
         private void menuCmdHelpAbout_Click(object sender, EventArgs e)
         {
             //Title of about window
-            string title = "About " + this.Text + " (" + Xteq5Constant.EngineVersion.ToString() + ")";
+            string title = "About " + this.Text + " (" + Xteq5EngineConstant.Version.ToString() + ")";
 
             //Read license.txt
             string content = "";

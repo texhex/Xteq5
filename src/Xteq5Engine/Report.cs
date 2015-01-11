@@ -56,6 +56,11 @@ namespace Xteq5
         }
 
         /// <summary>
+        /// Source folder where scripts were loaded from
+        /// </summary>
+        public string CompilationFolder { get; internal set; }
+
+        /// <summary>
         /// Assets in this report
         /// </summary>
         public List<AssetRecord> Assets { get; internal set; }
@@ -88,16 +93,28 @@ namespace Xteq5
         /// <summary>
         /// Version of Xteq5 that generated this report
         /// </summary>
-        public Version Xteq5Version { get; internal set; }
+        public Version EngineVersion { get; internal set; }
 
         /// <summary>
-        /// Additonal text provided by the user to distinguish this report
+        /// Returns TRUE if at least one asset or test has the status MINOR, MAJOR or FATAL
+        /// </summary>
+        public bool IssuesFound { get; internal set; }
+
+        /// <summary>
+        /// Returns TRUE if at least one asset has the status FATAL
+        /// </summary>
+        public bool AssetIssuesFound { get; internal set; }
+
+        /// <summary>
+        /// Returns TRUE if at least one test has the status MINOR, MAJOR or FATAL
+        /// </summary>
+        public bool TestIssuesFound { get; internal set; }
+
+
+        /// <summary>
+        /// Additonal text provided by the user to distinguish this report. Can be set at any time
         /// </summary>
         public string UserText { get; set; }
 
-        /// <summary>
-        /// Source folder where scripts were loaded from
-        /// </summary>
-        public string CompilationFolder { get; internal set; }
     }
 }

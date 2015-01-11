@@ -79,7 +79,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="SimplifiedXteq5Runner.cs" />
-    <Compile Include="UserInterface.cs" />
+    <Compile Include="Xteq5UIConstant.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeadlessPS\HeadlessPS.csproj">

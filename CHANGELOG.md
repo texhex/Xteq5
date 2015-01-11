@@ -1,13 +1,15 @@
 
 IMPROVEMENTS:
 
-* Added Xteq5CLI
 * Reworked Wiki for creating custom scripts
 * Setup does now show the full path where the modules are installed
 * Added Lightweight C# Command Line Parser for Xteq5CLI (http://www.codeproject.com/Articles/39120/Lightweight-C-Command-Line-Parser)
+* Added Xteq5CLI
 * Added Xteq5UserInterface library
 * Added SimplifiedXteq5Runner for *UI programs (Xteq5GUI and Xteq5CLI)
 * Rewritten HTMLBootstrapGenerator using new BaseTemplateReplaceGenerator class
+* Renamed HTML template to "BootstrapTemplate.html"
+* Improvments for Xteq5Engine
 
 
 BUG FIXES:

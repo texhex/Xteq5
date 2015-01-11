@@ -29,7 +29,7 @@ namespace Xteq5
             _content = new StringBuilder(File.ReadAllText(TemplateFilepath, Encoding.UTF8));
         }
 
-        //Base function that is called by a consumer
+        //Base function that is called by a consumer of an implementation of this class
         public abstract string Generate(Report Report, string TemplateFilepath);
 
 
@@ -37,19 +37,44 @@ namespace Xteq5
         protected void StartGenerating(Report Report)
         {
             ReplaceHeaderValuesInternal(Report);
-            
+
             ReplaceAssetStatisticsInternal(Report);
             ReplaceTestStatisticsInternal(Report);
 
-            ReplaceResultTextInternal();            
+            ReplaceResultTextInternal();
             ReplaceAssetConclusionTextInternal();
             ReplaceTestConclusionTextInternal();
-            
+
             ReplaceTestRecommendedActionTextInternal();
 
-            //Sorry, but I can't help you with those. 
-            ReplaceAssetList("AssetRows".ToUpper(), Report.Assets);
-            ReplaceTestList("TestRows".ToUpper(), Report.Tests);
+            //Begin details replacement for assets
+            StringBuilder sbAssets = new StringBuilder();
+
+            StartAssetDetails(sbAssets);
+            foreach (AssetRecord asset in Report.Assets)
+            {
+                BaseRecord baseRec = asset as BaseRecord;
+                ProcessAsset(sbAssets, asset, baseRec);
+            }
+            EndAssetDetails(sbAssets);
+
+            ReplaceAssetList("AssetRows".ToUpper(), sbAssets.ToString());
+
+
+            //Begin details replacment for tests
+            StringBuilder sbTests = new StringBuilder();
+
+            StartTestDetails(sbTests);
+            foreach (TestRecord test in Report.Tests)
+            {
+                BaseRecord baseRec = test as BaseRecord;
+                ProcessTest(sbTests, test, baseRec);
+            }
+            EndTestDetails(sbAssets);
+
+            ReplaceTestList("TestRows".ToUpper(), sbTests.ToString());
+
+
         }
 
 
@@ -61,7 +86,12 @@ namespace Xteq5
             ReplaceHeaderValueInternal("Computername", Report.ComputerName);
             ReplaceHeaderValueInternal("UserText", Report.UserText);
             ReplaceHeaderValueInternal("SourceFolder", Report.CompilationFolder);
-            ReplaceHeaderValueInternal("VersionString", Report.Xteq5Version.ToString());
+            ReplaceHeaderValueInternal("VersionString", Report.EngineVersion.ToString());
+
+            //Currently not used by any report
+            ReplaceHeaderValueInternal("AssetIssuesFound", Report.AssetIssuesFound.ToString());
+            ReplaceHeaderValueInternal("TestIssuesFound", Report.TestIssuesFound.ToString());
+            ReplaceHeaderValueInternal("IssuesFound", Report.IssuesFound.ToString());
 
             //Datetime in UTC and ISO 8601 format without fraction of second
             ReplaceHeaderValueInternal("StartDateTimeUTC", Report.StartedUTC.ToString("s") + "Z");
@@ -151,6 +181,7 @@ namespace Xteq5
             ReplaceAssetConclusionText(ValueName.ToUpper(), Value);
         }
 
+        //Called from this class to replace a Conclusion with a human readable string (OK = The asset successfully retrieved data)
         protected abstract void ReplaceAssetConclusionText(string ValueName, string Value);
 
 
@@ -170,6 +201,7 @@ namespace Xteq5
             ReplaceTestConclusionText(ValueName.ToUpper(), Value);
         }
 
+        //Called from this class to replace a Conclusion with a human readable string (OK = The test found no issues)
         protected abstract void ReplaceTestConclusionText(string ValueName, string Value);
 
 
@@ -189,12 +221,43 @@ namespace Xteq5
             ReplaceTestRecommendedActionText(ValueName.ToUpper(), Value);
         }
 
+        //Called from this class to replace a text what the user should do when a test has a given value (Fail = Fix the issue immediately)
         protected abstract void ReplaceTestRecommendedActionText(string ValueName, string Value);
 
 
-        //The list of the individual items highly depends on the template format, so this base class can not help there.
-        protected abstract void ReplaceAssetList(string ValueName, List<AssetRecord> Assets);
-        protected abstract void ReplaceTestList(string ValueName, List<TestRecord> Tests);
+
+
+        //Called once when the imlementation should start to begin asset value replacement. Can be used to add a header to the given StringBuilder
+        protected abstract void StartAssetDetails(StringBuilder sbAssets);
+
+        //Called by this class for each asset that exists. Imlementation must add the content to the given stringbuilder.
+        protected abstract void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec);
+
+        //Called once when the imlementation should end the asset replacement. Can be used to add a footer to the given StringBuilder
+        protected abstract void EndAssetDetails(StringBuilder sbAssets);
+
+        //Called once to replace the generated details in the template
+        protected abstract void ReplaceAssetList(string ValueName, string AssetList);
+
+
+
+
+
+        //Called once when the imlementation should start to begin asset value replacement. Can be used to add a header to the given StringBuilder
+        protected abstract void StartTestDetails(StringBuilder sbTests);
+
+        //Called by this class for each test that exists. Imlementation must add the content to the given stringbuilder.
+        protected abstract void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec);
+
+        //Called once when the imlementation should end the test replacement. Can be used to add a footer to the given StringBuilder
+        protected abstract void EndTestDetails(StringBuilder sbTests);
+
+        //Called once to replace the generated details in the template
+        protected abstract void ReplaceTestList(string ValueName, string TestList);
+
+
+
+
 
     }
 }

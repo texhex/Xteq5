@@ -48,7 +48,7 @@ namespace Xteq5
             assetRecord.Data = DataKeyValue;
 
             //Check the object that was returned and copy it to .DataNative (if we support the type)
-            object dataObjectFromHashtable = GetObjectFromHashtable(Table, Xteq5Constant.ReturnedHashtableKeyData);
+            object dataObjectFromHashtable = GetObjectFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyData);
 
             if (dataObjectFromHashtable is string)
             {

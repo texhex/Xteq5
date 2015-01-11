@@ -58,39 +58,62 @@ namespace Xteq5
             Replace(ValueName, Value);
         }
 
-
-        protected override void ReplaceAssetList(string ValueName, List<AssetRecord> Assets)
+        #region Asset details replacement
+        protected override void StartAssetDetails(StringBuilder sbAssets)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (AssetRecord asset in Assets)
-            {
-                BaseRecord baseRec = asset as BaseRecord;
-
-                //If we have a value, use this a primary data
-                if (asset.Conclusion == ConclusionEnum.Success)
-                {
-                    sb.AppendLine(CreateTableRow(baseRec, asset.Data));
-                }
-                else
-                {
-                    sb.AppendLine(CreateTableRow(baseRec, ""));
-                }
-            }
-
-            ReplaceHTMLComment(ValueName, sb.ToString());
+            //We do not need any header, it's all in the template file
         }
 
-        protected override void ReplaceTestList(string ValueName, List<TestRecord> Tests)
+        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (TestRecord test in Tests)
+            if (Asset.Conclusion == ConclusionEnum.Success)
             {
-                BaseRecord baseRec = test as BaseRecord;
-                sb.AppendLine(CreateTableRow(baseRec, ""));
+                sbAssets.AppendLine(CreateTableRow(BaseRec, Asset.Data));
             }
-            
-            ReplaceHTMLComment(ValueName, sb.ToString());
+            else
+            {
+                sbAssets.AppendLine(CreateTableRow(BaseRec, ""));
+            }
         }
+
+        protected override void EndAssetDetails(StringBuilder sbAssets)
+        {
+            //We do not need any footer, it's all in the template file
+        }
+
+        protected override void ReplaceAssetList(string ValueName, string AssetList)
+        {
+            ReplaceHTMLComment(ValueName, AssetList);
+        }
+
+        #endregion
+
+
+
+        #region Test details replacement
+
+        protected override void StartTestDetails(StringBuilder sbTests)
+        {
+            //We do not need any header, it's all in the template file
+        }
+
+        protected override void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec)
+        {
+            sbTests.AppendLine(CreateTableRow(BaseRec, ""));
+        }
+
+        protected override void EndTestDetails(StringBuilder sbTests)
+        {
+            //We do not need a footer, it's all in the template file
+        }
+
+        protected override void ReplaceTestList(string ValueName, string TestList)
+        {
+            ReplaceHTMLComment(ValueName, TestList);
+        }
+
+        #endregion
+
 
 
         private void Replace(string ValueName, string Value)

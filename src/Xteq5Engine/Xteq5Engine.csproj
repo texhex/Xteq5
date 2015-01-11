@@ -92,7 +92,7 @@
     <Compile Include="RecordsStatistics.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="TestScriptRunner.cs" />
-    <Compile Include="Xteq5Constant.cs" />
+    <Compile Include="Xteq5EngineConstant.cs" />
     <Compile Include="TestRecord.cs" />
     <Compile Include="Xteq5Runner.cs" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace Xteq5
         protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory)
         {
 
-            string[] allScripts = Directory.GetFiles(ScriptDirectory, Xteq5Constant.ScriptFilePattern);
+            string[] allScripts = Directory.GetFiles(ScriptDirectory, Xteq5EngineConstant.ScriptFilePattern);
             NaturalSort.Sort(allScripts);
 
             foreach (string scriptFilename in allScripts)
@@ -99,7 +99,7 @@ namespace Xteq5
         void ProcessHashtableOutputInternal(BaseRecord Record, Hashtable Table)
         {
             //We need a a key "Data" or this is considered to be fatal. The value of this key can still be NULL. 
-            if (Table.ContainsKey(Xteq5Constant.ReturnedHashtableKeyData) == false)
+            if (Table.ContainsKey(Xteq5EngineConstant.ReturnedHashtableKeyData) == false)
             {
                 Record.Conclusion = ConclusionEnum.Fatal;
                 Record.AddLineToProcessMessages("Data key missing from returned hashtable");
@@ -108,19 +108,19 @@ namespace Xteq5
             }
             else
             {
-                string name = GetStringFromHashtable(Table, Xteq5Constant.ReturnedHashtableKeyName);
+                string name = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyName);
                 if (string.IsNullOrEmpty(name) == false) 
                 {
                     Record.Name = name;
                 }
 
-                string text = GetStringFromHashtable(Table, Xteq5Constant.ReturnedHashtableKeyText);
+                string text = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyText);
                 if (string.IsNullOrEmpty(text) == false)
                 {
                     Record.Description = text;
                 }
 
-                string data = GetStringFromHashtable(Table, Xteq5Constant.ReturnedHashtableKeyData);
+                string data = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyData);
                 if (string.IsNullOrEmpty(data))
                 {
                     //Empty data means DoesNotApply

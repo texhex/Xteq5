@@ -25,13 +25,15 @@ namespace Xteq5
             switch (Format)
             {
                 case OutputFormatEnum.HTML:
-                    string htmlTemplatePath = PathExtension.Combine(Report.CompilationFolder, "BootstrapTemplate1.html");
+                    string htmlTemplatePath = PathExtension.Combine(Report.CompilationFolder, "BootstrapTemplate.html");
 
                     BootstrapHTMLGenerator2 htmlGenerator = new BootstrapHTMLGenerator2();
+                    
                     return htmlGenerator.Generate(Report, htmlTemplatePath);
 
+
                 default:
-                    throw new NotImplementedException("Only HTML is supported at this time");
+                    throw new NotImplementedException("Only HTML is currently supported");
             }
              
         }
@@ -54,8 +56,16 @@ namespace Xteq5
                     fileExtension=".html";
                     break;
 
+                case OutputFormatEnum.XML:
+                    fileExtension = ".xml";
+                    break;
+
+                case OutputFormatEnum.JSON:
+                    fileExtension = ".json";
+                    break;
+
                 default:
-                    throw new NotImplementedException("Only HTML is supported at this time");
+                    throw new ArgumentException("Not supported OutputFormat " + Format.ToString());
             }
 
             string source = GenerateReportOutput(Report, Format);
@@ -63,11 +73,12 @@ namespace Xteq5
             string fullFilename = Filepath;
             if (string.IsNullOrWhiteSpace(fullFilename))
             {
-                string tempPath = Path.GetTempPath();
-                string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", Report.EndedUTC); //2014-12-02_1458
+                                
+                string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", Report.EndedUTC); //2014-12-31_1458
                 string guidpart = Report.ID.ToString("N"); //00000000000000000000000000000000
                 string fileName = "Xteq5_Report_" + datepart + "_" + guidpart + fileExtension;
-                
+
+                string tempPath = Path.GetTempPath();
                 fullFilename = PathExtension.Combine(tempPath, fileName);
             }
 

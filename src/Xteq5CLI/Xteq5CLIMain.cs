@@ -80,7 +80,7 @@ namespace Xteq5CLI
                     Console.WriteLine();
 
                     //Check if these is an issue in order to set the return code correctly
-                    if (simpleRunner.IssuesFound)
+                    if (simpleRunner.Report.IssuesFound)
                     {
                         Console.WriteLine("There is at least one asset or test that reports an issue");
                         returnCode = ERROR_INVALID_DATA;

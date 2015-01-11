@@ -4,10 +4,10 @@ using System.Reflection;
 namespace Xteq5
 {
 
-    public static class Xteq5Constant
+    public static class Xteq5EngineConstant
     {
 
-        public static Version EngineVersion
+        public static Version Version
         {
             get
             {

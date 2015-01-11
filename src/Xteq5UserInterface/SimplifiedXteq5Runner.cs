@@ -37,7 +37,6 @@ namespace Xteq5
             this.ReportFilepath = "";
 
             this.ExecutionSuccessful = false;
-            this.IssuesFound = false;
             this.FailedMessage = "UNKNOWN";
             this.FailedException = new Exception("Unknown exception");
         }
@@ -105,11 +104,6 @@ namespace Xteq5
         public Report Report { get; private set; }
 
         /// <summary>
-        /// Returns TRUE if at least one asset or test has the starus MINOR, MAJOR or FATAL
-        /// </summary>
-        public bool IssuesFound { get; private set; }
-
-        /// <summary>
         /// Returns a user-friendly description what went wrong when ExecutionSuccessful=FALSE
         /// </summary>
         public string FailedMessage { get; private set; }
@@ -156,17 +150,6 @@ namespace Xteq5
                 if (_reportFormat != OutputFormatEnum.Unknown)
                 {
                     this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, _reportFormat, _destFilename);
-                }
-
-                //Set IssuesFound
-                IssuesFound = false;
-
-                int itemp = 0;
-                itemp += this.Report.AssetStatiscs.FatalCount + this.Report.AssetStatiscs.MajorCount + this.Report.AssetStatiscs.MinorCount;
-                itemp += this.Report.TestStatiscs.FatalCount + this.Report.TestStatiscs.MajorCount + this.Report.TestStatiscs.MinorCount;
-                if (itemp > 0)
-                {
-                    IssuesFound = true;
                 }
 
                 successful = true;

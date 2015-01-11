@@ -42,20 +42,20 @@ namespace Xteq5
         {
             if (string.IsNullOrWhiteSpace(CompilationPath))
                 throw new ArgumentException("Compilation path is not set");
-            
+
             //Check if all folders are present
             string rootfolder = PathExtension.FullPath(CompilationPath);
             if (PathExtension.DirectoryExists(rootfolder) == false)
                 throw new CompilationFolderException(rootfolder);
 
             //Check subfolders
-            string assetScriptsPath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameAssets);
+            string assetScriptsPath = PathExtension.Combine(rootfolder, Xteq5EngineConstant.DirectoryNameAssets);
             CheckCompilationSubfolder(assetScriptsPath);
 
-            string testScriptsPath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameTests);
+            string testScriptsPath = PathExtension.Combine(rootfolder, Xteq5EngineConstant.DirectoryNameTests);
             CheckCompilationSubfolder(testScriptsPath);
 
-            string modulePath = PathExtension.Combine(rootfolder, Xteq5Constant.DirectoryNameModules);
+            string modulePath = PathExtension.Combine(rootfolder, Xteq5EngineConstant.DirectoryNameModules);
             CheckCompilationSubfolder(modulePath);
 
 
@@ -75,9 +75,9 @@ namespace Xteq5
             prefs.ModulePath = modulePath;
 
             //Add Xteq5EngineVersion read-only variable
-            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameEngineVersion, Xteq5Constant.EngineVersion, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5EngineConstant.VariableNameEngineVersion, Xteq5EngineConstant.Version, true));
             //Add Xteq5Running read-only variable
-            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameIsActive, true, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5EngineConstant.VariableNameIsActive, true, true));
 
 
             //Execute all assets
@@ -95,7 +95,7 @@ namespace Xteq5
 
             //Add Xteq5Assets read-only variable
             Hashtable hashtableAssets = CreateHashtableFromAssetRecords(assets);
-            prefs.Variables.Add(new VariablePlain(Xteq5Constant.VariableNameAssets, hashtableAssets, true));
+            prefs.Variables.Add(new VariablePlain(Xteq5EngineConstant.VariableNameAssets, hashtableAssets, true));
 
             //Execute all tests
             List<TestRecord> tests;
@@ -107,14 +107,28 @@ namespace Xteq5
 
 
             //Contstruct the final result            
+            report.UserName = Environment.UserName;
+            report.ComputerName = Environment.MachineName;
+            report.EngineVersion = Xteq5EngineConstant.Version;
+
             report.Assets = assets;
             report.Tests = tests;
 
             CalculateRecordStatistics(report, assets, tests);
 
-            report.UserName = Environment.UserName;
-            report.ComputerName = Environment.MachineName;
-            report.Xteq5Version = Xteq5Constant.EngineVersion;
+            //Set IssuesFound
+            report.IssuesFound = false;
+            report.TestIssuesFound = false;
+            report.AssetIssuesFound = false;
+
+            if ((report.AssetStatiscs.FatalCount + report.AssetStatiscs.MajorCount + report.AssetStatiscs.MinorCount) > 0)
+                report.AssetIssuesFound = true;
+
+            if ((report.TestStatiscs.FatalCount + report.TestStatiscs.MajorCount + report.TestStatiscs.MinorCount) > 0)
+                report.TestIssuesFound = true;
+
+            if (report.AssetIssuesFound || report.TestIssuesFound)
+                report.IssuesFound = true;
 
 
             report.Finish();

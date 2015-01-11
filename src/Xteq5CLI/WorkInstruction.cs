@@ -11,7 +11,7 @@ using Yamua;
 namespace Xteq5CLI
 {
     /// <summary>
-    /// A representation what the CLI should do
+    /// A representation what the CLI should do by parsing the arguments passed to it
     /// </summary>
     public class WorkInstruction
     {
@@ -45,7 +45,7 @@ namespace Xteq5CLI
             parser.AddOption(PathParameter);
 
             //Add -Format parameter
-            ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated", false);
+            ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated (HTML, XML ...)", false);
             FormatParameter.AddAlias("/Format");
             parser.AddOption(FormatParameter);
 
@@ -92,7 +92,7 @@ namespace Xteq5CLI
                         this.Execute = true;
 
                         //Check for PATH parameter is set and use default path if not
-                        this.CompilationPath = OptionIsMatchedAndNotEmpty(PathParameter) ? PathParameter.Value.ToString() : UserInterface.Instance.DefaultCompilationFolder;
+                        this.CompilationPath = OptionIsMatchedAndNotEmpty(PathParameter) ? PathParameter.Value.ToString() : Xteq5UIConstant.DefaultCompilationFolder;
 
                         //Check for FILENAME parameter if we should generate a report. Only if this is set, check the additonal parameters for the report
                         if (OptionIsMatchedAndNotEmpty(FilenameParameter))
