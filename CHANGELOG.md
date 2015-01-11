@@ -1,3 +1,14 @@
+## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+
+IMPROVEMENTS:
+
+* None
+
+BUG FIXES:
+
+* None
+
+## [Version 2015.01.11](https://github.com/texhex/xteq5/releases/tag/v2015.01.11)
 
 IMPROVEMENTS:
 

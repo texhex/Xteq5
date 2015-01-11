@@ -47,7 +47,7 @@ namespace Xteq5CLI
             parser.AddOption(PathParameter);
 
             //Add -Format parameter
-            ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated (HTML, XML ...)", false);
+            ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated (HTML, XML, JSON)", false);
             //FormatParameter.AddAlias("/Format");
             parser.AddOption(FormatParameter);
 
