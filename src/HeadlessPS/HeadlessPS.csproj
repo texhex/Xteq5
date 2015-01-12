@@ -85,7 +85,7 @@
     <Compile Include="HeadlessPSConstant.cs" />
     <Compile Include="PSScriptRunner.cs" />
     <Compile Include="PSScriptRunnerPreferences.cs" />
-    <Compile Include="PowerShellTestFailedException.cs" />
+    <Compile Include="PSTestFailedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VariablePlain.cs" />
     <Compile Include="UniversalStreamRecord.cs" />

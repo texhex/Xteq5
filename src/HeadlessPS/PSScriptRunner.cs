@@ -124,12 +124,12 @@ namespace HeadlessPS
 
                     if (outputCollection.Count != 1)
                     {
-                        throw new PowerShellTestFailedException("Return count is not 1");
+                        throw new PSTestFailedException("Return count is not 1");
                     }
 
                     if (outputCollection[0].BaseObject.ToString() != "42")
                     {
-                        throw new PowerShellTestFailedException("Return value is not 42");
+                        throw new PSTestFailedException("Return value is not 42");
                     }
 
                     //Test #2: Check the compatible version
@@ -140,7 +140,7 @@ namespace HeadlessPS
 
                     if (outputCollection.Count < 2)
                     {
-                        throw new PowerShellTestFailedException("Return count is smaller than 2");
+                        throw new PSTestFailedException("Return count is smaller than 2");
                     }
 
                     currentPosition = "PSCompatibleVersions return";
@@ -159,19 +159,19 @@ namespace HeadlessPS
 
                     if (compatibleVersionDetected == false)
                     {
-                        throw new PowerShellTestFailedException("No compatible PowerShell version ({0}.x) found", _prefs.RequiredPSVersion);
+                        throw new PSTestFailedException("No compatible PowerShell version ({0}.x) found", _prefs.RequiredPSVersion);
                     }
 
                 }
 
             }
-            catch (PowerShellTestFailedException exp)
+            catch (PSTestFailedException exp)
             {
-                throw new PowerShellTestFailedException("PowerShellTest failed at [{0}]: {1}", currentPosition, exp.Message);
+                throw new PSTestFailedException("PowerShellTest failed at [{0}]: {1}", currentPosition, exp.Message);
             }
             catch (Exception ex) //MTH: Catch any is bad, but only that way we can pass "currentPosition" to get an idea where the problem is located. 
             {
-                throw new PowerShellTestFailedException("PowerShellTest failed at [{0}]: {1}", ex, currentPosition, ex.Message);
+                throw new PSTestFailedException("PowerShellTest failed at [{0}]: {1}", ex, currentPosition, ex.Message);
             }
         }
 
@@ -253,7 +253,8 @@ namespace HeadlessPS
 
                 /* MTH: There is a known (and confirmed) memory leak within PowerShell when creating a RunSpace manually in PowerShell 3.0:
                  * [Use RunSpacePool instead of RunSpace because of MemoryLeak](http://stackoverflow.com/questions/23234170/memory-leak-using-powershell-remote-calls-in-c-sharp)
-                 * I was able to confirm that this still happens when using PowerShell 4.0 from within a script but *not* when using PowerShell from C# although this will also create a RunSpace for each RunXXScriptXXX() method we receive.
+                 * I was able to confirm that this still happens when using PowerShell 4.0 from within a script but *not* when using PowerShell from C# 
+                 * although this will also create a RunSpace for each RunXXScriptXXX() method we receive.
                  * The only solution seems to be to create a runspace pool like this:
                  * using (RunspacePool rsp = RunspaceFactory.CreateRunspacePool()) {
                  *   rsp.Open();

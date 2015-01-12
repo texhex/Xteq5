@@ -2,7 +2,7 @@
 
 IMPROVEMENTS:
 
-* None
+* Added EngineVersionString to JSON File
 
 BUG FIXES:
 

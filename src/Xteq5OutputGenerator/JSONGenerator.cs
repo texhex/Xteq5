@@ -20,6 +20,7 @@ namespace Xteq5
             public Guid ID;
             public string Compilation;
             public Version EngineVersion;
+            public string EngineVersionString;
             public string Username;
             public string Computername;
             public string Text;
@@ -72,6 +73,7 @@ namespace Xteq5
             rep.ID = Report.ID;
             rep.Compilation = Report.CompilationFolder;
             rep.EngineVersion = Report.EngineVersion;
+            rep.EngineVersionString = Report.EngineVersion.ToString();
             rep.Username = Report.UserName;
             rep.Computername = Report.ComputerName;
             rep.Text = Report.UserText;

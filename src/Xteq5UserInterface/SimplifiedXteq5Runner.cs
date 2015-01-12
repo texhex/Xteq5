@@ -173,7 +173,7 @@ namespace Xteq5
             }
             catch (CompilationFolderException cfnfe)
             {
-                //The given compilation folder was not found. Message is as good as it is.
+                //The given compilation folder was not found. 
                 this.FailedMessage = "The selected compilation folder does not exist";
                 this.FailedException = cfnfe;
             }
@@ -183,7 +183,7 @@ namespace Xteq5
                 this.FailedMessage = "A required subfolder of the selected compilation folder does not exist";
                 this.FailedException = csfnfe;
             }
-            catch (PowerShellTestFailedException pstfe)
+            catch (PSTestFailedException pstfe)
             {
                 //The powershell test failed
                 this.FailedMessage = "Testing the PowerShell environment failed. ";

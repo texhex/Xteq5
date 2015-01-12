@@ -25,7 +25,7 @@ namespace Xteq5
         }
 
         /// <summary>
-        /// Returns the content of licenses\license.txt or the error text if the file was not found
+        /// Returns the content of licenses\license.txt or an error text if the file was not found
         /// </summary>
         public static string LicenseTxtContent
         {
@@ -33,17 +33,17 @@ namespace Xteq5
             {
                 string filePath = ApplicationInformation.Instance.ParentFolder + @"licenses\license.txt";
 
-                return File.Exists(filePath) ? File.ReadAllText(filePath, Encoding.Default) : "Unable to load " + filePath;
+                return PathExtension.FileExists(filePath) ? File.ReadAllText(filePath, Encoding.Default) : "Unable to load " + filePath;
             }
         }
+
 
         //MTH: These are static readonly fields BY PURPOSE (not CONST) to avoid that the compiler performs an copy+paste to the assembly of the consumer.
         //See [Const Strings - a very convenient way to shoot yourself in the foot](http://www.stum.de/2009/01/14/const-strings-a-very-convenient-way-to-shoot-yourself-in-the-foot/) by [Michael Stum](http://www.stum.de/)        
 
+        public static readonly string HomepageURL = "http://www.xteq5.com/";
 
         public static readonly string DocumentationURL = "https://github.com/texhex/Xteq5/wiki/";
-
-        public static readonly string HomepageURL = "http://www.xteq5.com/";
 
         public static readonly string HowtoUseURL = "https://github.com/texhex/Xteq5/wiki/How-to-use";
 

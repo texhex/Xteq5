@@ -150,7 +150,7 @@ namespace Xteq5GUI
             ExecuteAndForget.Execute(Xteq5UIConstant.HowtoUseURL);
         }
 
-        
+
         private void menuCmdHelpHomepage_Click(object sender, EventArgs e)
         {
             ExecuteAndForget.Execute(Xteq5UIConstant.HomepageURL);
@@ -237,24 +237,30 @@ namespace Xteq5GUI
 
         }
 
+        private ToolStripMenuItem[] AllFormatMenuEntries()
+        {
+            ToolStripMenuItem[] array = { menuFormatHTML, menuFormatXML, menuFormatJSON };
+            return array;
+        }
+
         private void DisableAllFormatCheckboxes()
         {
-            menuFormatHTML.Checked = false;
-            menuFormatXML.Checked = false;
-            menuFormatJSON.Checked = false;
+            foreach (ToolStripMenuItem item in AllFormatMenuEntries())
+            {
+                item.Checked = false;
+            }
+
         }
 
         private void DisableAllFormatCheckboxes(ToolStripMenuItem DoNotChange)
         {
-            if (menuFormatHTML != DoNotChange)
-                menuFormatHTML.Checked = false;
-
-            if (menuFormatXML != DoNotChange)
-                menuFormatXML.Checked = false;
-
-            if (menuFormatJSON != DoNotChange)
-                menuFormatJSON.Checked = false;
-
+            foreach (ToolStripMenuItem item in AllFormatMenuEntries())
+            {
+                if (item != DoNotChange)
+                {
+                    item.Checked = false;
+                }
+            }
         }
 
         private void menuFormatHTML_Click(object sender, EventArgs e)
