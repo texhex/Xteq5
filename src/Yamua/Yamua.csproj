@@ -78,6 +78,7 @@
     <Compile Include="AlphanumComparator.cs" />
     <Compile Include="ApplicationInformation.cs" />
     <Compile Include="AssemblyInformation.cs" />
+    <Compile Include="BaseException.cs" />
     <Compile Include="EnumerableComparer.cs" />
     <Compile Include="DisposableObject.cs" />
     <Compile Include="ExecuteAndForget.cs" />
