@@ -94,7 +94,7 @@ namespace Xteq5
 
 
         /// <summary>
-        /// TRUE if the Execution (generally) was successful. This does NOT mean that all test were executed successful.
+        /// TRUE if the Execution (generally) was successful. This does NOT mean that all test or assets were executed successful.
         /// </summary>
         public bool ExecutionSuccessful { get; private set; }
 
@@ -117,7 +117,7 @@ namespace Xteq5
         /// Contains the path to the generated report (if any)
         /// </summary>
         public string ReportFilepath { get; private set; }
-
+        
 
         /// <summary>
         /// Generates the report and (if set) the file report
@@ -192,7 +192,7 @@ namespace Xteq5
             catch (TemplateFileNotFoundException tfnfe)
             {
                 //Template file does not exist in folder 
-                this.FailedMessage = "The template file for the report is missing. Please re-run Setup.exe to install it.";
+                this.FailedMessage = "The template file for the report is missing. Please re-run Setup to install it.";
                 this.FailedException = tfnfe;
             }
             catch (Exception exc)
