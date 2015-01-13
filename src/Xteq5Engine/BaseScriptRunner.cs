@@ -18,8 +18,43 @@ namespace Xteq5
     internal abstract class BaseScriptRunner
     {
 
-        protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory)
+        void ReportProgressStarting(IProgress<RunnerProgress> Progress)
         {
+            if (Progress != null)
+            {
+                RunnerProgress rp = new RunnerProgress();
+                rp.Starting = true;
+                Progress.Report(rp);
+            }
+        }
+
+        void ReportProgressEnded(IProgress<RunnerProgress> Progress)
+        {
+            if (Progress != null)
+            {
+                RunnerProgress rp = new RunnerProgress();
+                rp.Ended = true;
+                Progress.Report(rp);
+            }
+
+        }
+        
+        void ReportProgressScript(IProgress<RunnerProgress> Progress, string Filepath)
+        {
+            if (Progress != null)
+            {
+                RunnerProgress rp = new RunnerProgress();                
+                rp.ScriptFilepath = Filepath;
+                rp.ScriptFilename = PathExtension.Filename(Filepath);
+                Progress.Report(rp);
+            }
+        }
+
+
+        protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgress> Progress = null)
+        {
+            //Report that we are about to start
+            ReportProgressStarting(Progress);
 
             string[] allScripts = Directory.GetFiles(ScriptDirectory, Xteq5EngineConstant.ScriptFilePattern);
             NaturalSort.Sort(allScripts);
@@ -33,7 +68,8 @@ namespace Xteq5
 
                 try
                 {
-                    Debug.WriteLine("Executing script " + scriptFilename);
+                    //Report back status
+                    ReportProgressScript(Progress, scriptFilename);
 
                     using (ExecutionResult execResult = await ScriptRunner.RunScriptFileAsync(scriptFilename))
                     {
@@ -93,6 +129,9 @@ namespace Xteq5
 
                 //MTH: End of processing with this file. Next one please!
             }
+
+            //Report status that this entire run has finished
+            ReportProgressEnded(Progress);
         }
 
 

@@ -78,6 +78,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ReportCreationProgress.cs" />
     <Compile Include="SimplifiedXteq5Runner.cs" />
     <Compile Include="Xteq5UIConstant.cs" />
   </ItemGroup>

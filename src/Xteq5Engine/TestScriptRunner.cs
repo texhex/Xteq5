@@ -16,11 +16,11 @@ namespace Xteq5
     {
         List<TestRecord> _results;
 
-        internal async Task<List<TestRecord>> RunAsync(PSScriptRunner ScriptRunner, string TestScriptPath)
+        internal async Task<List<TestRecord>> RunAsync(PSScriptRunner ScriptRunner, string TestScriptPath, IProgress<RunnerProgress> Progress = null)
         {
             _results = new List<TestRecord>();
 
-            await RunInternalAsync(ScriptRunner, TestScriptPath);
+            await RunInternalAsync(ScriptRunner, TestScriptPath, Progress);
 
             return _results;
         }

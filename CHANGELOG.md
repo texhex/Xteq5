@@ -3,6 +3,7 @@
 IMPROVEMENTS:
 
 * Added EngineVersionString to JSON File
+* Added display of currently executed script file to Xteq5GUI (using IProgress)
 
 BUG FIXES:
 

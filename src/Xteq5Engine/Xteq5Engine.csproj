@@ -91,6 +91,7 @@
     <Compile Include="ConclusionEnum.cs" />
     <Compile Include="RecordsStatistics.cs" />
     <Compile Include="Report.cs" />
+    <Compile Include="RunnerProgress.cs" />
     <Compile Include="TestScriptRunner.cs" />
     <Compile Include="Xteq5EngineConstant.cs" />
     <Compile Include="TestRecord.cs" />

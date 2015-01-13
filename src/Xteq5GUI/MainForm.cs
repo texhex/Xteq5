@@ -194,18 +194,33 @@ namespace Xteq5GUI
             }
         }
 
+
         private async void buttonGenerateReport_Click(object sender, EventArgs e)
         {
             SetStatus("Running, please wait...");
 
+            //Disable UI/button to prevent the user to start it again
+            buttonGenerateReport.Enabled = false;
             this.UseWaitCursor = true;
             Application.DoEvents();
 
+            //Create an progress object so we can get updates. 
+            //This will capture the current SyncContext so we can assign an event handler directly without any special handling
+            Progress<RunnerProgress> progressRunner = new Progress<RunnerProgress>();
+            progressRunner.ProgressChanged += RunnerProgressUpdate;
+
+            //Do this also for the report creation
+            Progress<ReportCreationProgress> progressReport = new Progress<ReportCreationProgress>();
+            progressReport.ProgressChanged += ReportProgressUpdate;
+
+
             SimplifiedXteq5Runner simpleRunner = new SimplifiedXteq5Runner(textBoxFolder.Text, textBoxUserText.Text, _outputFormat);
+            bool result = await simpleRunner.RunAsync(progressRunner, progressReport);
 
-            bool result = await simpleRunner.RunAsync();
 
+            //Enable UI again
             this.UseWaitCursor = false;
+            buttonGenerateReport.Enabled = true;
             Application.DoEvents();
 
             if (result == true)
@@ -237,6 +252,43 @@ namespace Xteq5GUI
 
         }
 
+        private void RunnerProgressUpdate(object sender, RunnerProgress Status)
+        {
+            if (Status.Starting)
+            {
+                SetStatus("Preparing...");
+            }
+            else
+            {
+                if (Status.Ended)
+                {
+                    SetStatus("Cleaning up...");
+                }
+                else
+                {
+                    SetStatus("Executing \"" + Status.ScriptFilename + "\"...");
+
+                }
+            }
+        }
+
+        private void ReportProgressUpdate(object sender, ReportCreationProgress Status)
+        {
+            if (Status.Starting)
+            {
+                SetStatus("Creating file...");
+            }
+            else
+            {
+                if (Status.Ended)
+                {
+                    SetStatus("Report created");
+                }
+            }
+        }
+
+
+        #region Output format menu handling
         private ToolStripMenuItem[] AllFormatMenuEntries()
         {
             ToolStripMenuItem[] array = { menuFormatHTML, menuFormatXML, menuFormatJSON };
@@ -280,7 +332,7 @@ namespace Xteq5GUI
             DisableAllFormatCheckboxes(sender as ToolStripMenuItem);
             _outputFormat = OutputFormatEnum.JSON;
         }
-
+        #endregion
 
 
 

@@ -31,7 +31,6 @@ namespace Xteq5CLI
             CMDLineParser parser = new CMDLineParser();
             parser.throwInvalidOptionsException = true;
 
-            //Until further notice, no aliases are supported except for HELP. 
 
             //Add -Help option
             CMDLineParser.Option HelpOption = parser.AddBoolSwitch("-Help", "Displays help");
@@ -39,21 +38,17 @@ namespace Xteq5CLI
 
             //Add -Run option
             CMDLineParser.Option RunOption = parser.AddBoolSwitch("-Run", "Required. Execute all files in compilation path");
-            //RunOption.AddAlias("/Run");
 
             //Add -Path parameter
             CompilationPathOption PathParameter = new CompilationPathOption("-Path", "Compilation path to load scripts from", false);
-            //PathParameter.AddAlias("/Path");
             parser.AddOption(PathParameter);
 
             //Add -Format parameter
             ReportFormatOption FormatParameter = new ReportFormatOption("-Format", "Format of the report that should be generated (HTML, XML, JSON)", false);
-            //FormatParameter.AddAlias("/Format");
             parser.AddOption(FormatParameter);
 
             //Add -Filename parameter
             FilenameOption FilenameParameter = new FilenameOption("-Filename", "Filename of the generated report", false);
-            //FilenameParameter.AddAlias("/Filename");
             parser.AddOption(FilenameParameter);
 
             //Add -Text parameter

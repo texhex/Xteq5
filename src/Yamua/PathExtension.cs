@@ -51,6 +51,16 @@ namespace Yamua
         }
 
         /// <summary>
+        /// Identifical to Path.GetFileName()
+        /// </summary>
+        /// <param name="Filepath">Full path to a file</param>
+        /// <returns>The filename, including extension, from the given path</returns>
+        public static string Filename(string Filepath)
+        {
+            return Path.GetFileName(Filepath);
+        }
+
+        /// <summary>
         /// Identical to Path.Combine(string1, string2)
         /// </summary>
         /// <param name="DirectoryPath"></param>

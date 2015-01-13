@@ -52,7 +52,7 @@ namespace Xteq5
             _userText = "";
             _destFilename = "";
 
-            ClearRunVariables();            
+            ClearRunVariables();
         }
 
 
@@ -76,7 +76,7 @@ namespace Xteq5
         /// <param name="ReportFormat">Format the report should have</param>
         public SimplifiedXteq5Runner(string CompilationPath, string UserText, OutputFormatEnum ReportFormat)
             : this(CompilationPath, UserText)
-        {            
+        {
             _reportFormat = ReportFormat; //This will later on checked by OutputGenerator anyway, so no need to check this here
         }
 
@@ -117,7 +117,7 @@ namespace Xteq5
         /// Contains the path to the generated report (if any)
         /// </summary>
         public string ReportFilepath { get; private set; }
-        
+
 
         /// <summary>
         /// Generates the report and (if set) the file report
@@ -133,8 +133,9 @@ namespace Xteq5
         /// <summary>
         /// Generates the report and (if set) the file report
         /// </summary>
+        /// <param name="RunnerProgress">Report status using this Progress object</param>        
         /// <returns>TRUE if execution was successful</returns>
-        public async Task<bool> RunAsync()
+        public async Task<bool> RunAsync(IProgress<RunnerProgress> RunnerProgress = null, IProgress<ReportCreationProgress> ReportProgress = null)
         {
             ClearRunVariables();
 
@@ -142,14 +143,33 @@ namespace Xteq5
 
             try
             {
-                Xteq5Runner runner = new Xteq5Runner();
-                this.Report = await runner.RunAsync(_compilationPath);
+                //Let Xteq5Runner do it's thing...
+                Xteq5Runner runner = new Xteq5Runner();                                
+                this.Report = await runner.RunAsync(_compilationPath, RunnerProgress);
 
                 this.Report.UserText = _userText;
 
+                //MTH: That a second progress is used here is because I know at least one AV software that gets crazy when an unknown EXE saves an HTML file with <script> tags in it. 
+                //I don't know why, but the report creation takes AGES / A VERY LONG TIME / F**** BAZILLION SECONDS with that POS software installed.                                
                 if (_reportFormat != OutputFormatEnum.Unknown)
                 {
+                    if (ReportProgress != null)
+                    {
+                        ReportCreationProgress status = new ReportCreationProgress();
+                        status.Starting = true;
+                        ReportProgress.Report(status);
+                    }
+
+                    //Generate the report
                     this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, _reportFormat, _destFilename);
+
+                    if (ReportProgress != null)
+                    {
+                        ReportCreationProgress status = new ReportCreationProgress();
+                        status.Ended = true;
+                        ReportProgress.Report(status);
+                    }
+
                 }
 
                 successful = true;
@@ -161,7 +181,7 @@ namespace Xteq5
                 if (fnfe.Message.Contains("System.Management.Automation"))
                 {
                     //We need to explain to the user that this means PowerShell is missing. 
-                    this.FailedMessage = "PowerShell is required, but could not be loaded. Please re-run Setup.exe and follow the provided link to install it.";
+                    this.FailedMessage = "PowerShell is required, but could not be loaded. Please re-run Setup and follow the provided link to install it.";
                 }
                 else
                 {
@@ -179,7 +199,7 @@ namespace Xteq5
             }
             catch (CompilationSubFolderException csfnfe)
             {
-                //A sub folder was not found. Message is as good as it is.
+                //A sub folder was not found. 
                 this.FailedMessage = "A required subfolder of the selected compilation folder does not exist";
                 this.FailedException = csfnfe;
             }

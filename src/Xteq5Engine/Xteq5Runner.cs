@@ -38,7 +38,8 @@ namespace Xteq5
         /// Executes all assets and tests found in CompilationPath asynchronously
         /// </summary>
         /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
-        public async Task<Report> RunAsync(string CompilationPath)
+        /// <param name="Progress">An IProgress implementation to report status to</param>
+        public async Task<Report> RunAsync(string CompilationPath, IProgress<RunnerProgress> Progress = null)
         {
             if (string.IsNullOrWhiteSpace(CompilationPath))
                 throw new ArgumentException("Compilation path is not set");
@@ -89,7 +90,7 @@ namespace Xteq5
 
                 //Now execute all assets
                 AssetScriptRunner assetRunner = new AssetScriptRunner();
-                assets = await assetRunner.Run(psScriptRunnerAssets, assetScriptsPath);
+                assets = await assetRunner.Run(psScriptRunnerAssets, assetScriptsPath, Progress);
             }
 
 
@@ -102,7 +103,7 @@ namespace Xteq5
             using (PSScriptRunner psScriptRunnerTests = new PSScriptRunner(prefs))
             {
                 TestScriptRunner testsRunner = new TestScriptRunner();
-                tests = await testsRunner.RunAsync(psScriptRunnerTests, testScriptsPath);
+                tests = await testsRunner.RunAsync(psScriptRunnerTests, testScriptsPath, Progress);
             }
 
 
@@ -134,7 +135,6 @@ namespace Xteq5
             report.Finish();
             return report;
         }
-
 
         private void CalculateRecordStatistics(Report Report, List<AssetRecord> Assets, List<TestRecord> Tests)
         {
