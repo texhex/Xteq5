@@ -38,17 +38,17 @@ The most recent version can be downloaded from [Releases][_downloads].
 
 ##<a name="docs">Documentation</a>
 
-Please see the [Xteq5 Wiki][_wiki] for [How to use][_wiki_howto] it, creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
+Please see the [Xteq5 Wiki][_wiki] for documentation, including [How to use][_wiki_howto], creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
 
 ##<a name="contribute">Contributions</a>
 
-<!-- https://help.github.com/articles/using-pull-requests/ -->
-
-Constructive contributions are very welcome! 
+Any constructive contribution is very welcome! 
 
 If you encounter a bug, please create a new [issue][_issuenew], describing how to reproduce the bug and we will try to fix it. 
 
-If you have created a script you want us to include, please open a new [issue][_issuenew] (with the label _addscript_) and include a download link to your script. Please make sure that the script implements the recommendations described in the [Wiki][_wiki_newscript].
+In case you have created a script you want us to include, please open a new [issue][_issuenew] (with the label _addscript_) and include a download link to your script. Please make sure that the script implements the recommendations described in the [Wiki][_wiki_newscript].
+
+Pull requests for source code changes or scripts are welcome as well.  
 
 
 ##<a name="copyright">Copyright and License</a>
