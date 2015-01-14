@@ -38,7 +38,7 @@ The most recent version can be downloaded from [Releases][_downloads].
 
 ##<a name="docs">Documentation</a>
 
-Please see the [Xteq5 Wiki][_wiki] for documentation, including [How to use][_wiki_howto], creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
+Please see the [Xteq5 Wiki][_wiki] for documentation. This includes [How to use Xteq5][_wiki_howto], creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
 
 ##<a name="contribute">Contributions</a>
 
