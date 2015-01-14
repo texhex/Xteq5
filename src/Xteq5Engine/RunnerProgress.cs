@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Xteq5
 {
+    public enum RunnerAction
+    {
+        Starting = 1, //The runner is getting ready to be started
+        ScriptRunning = 2, //A script is about to be executed
+        Ended = 4 //The runner has completed the entire execution
+    }
+
     /// <summary>
     /// This class is used to report progress pack from the Xteq5Runner async method
     /// </summary>
@@ -13,16 +20,15 @@ namespace Xteq5
     {
         public RunnerProgress()
         {
-            Starting = false;
-            Ended = false;
+            Action = RunnerAction.Starting;
             ScriptFilename = "";
             ScriptFilepath = "";
         }
 
         /// <summary>
-        /// TRUE if the runner is getting ready to be started
+        /// The action the runner reports
         /// </summary>
-        public bool Starting { get; internal set; }
+        public RunnerAction Action;
 
         /// <summary>
         /// Full file path including path of the script that is about to be executed
@@ -34,10 +40,26 @@ namespace Xteq5
         /// </summary>
         public string ScriptFilename { get; internal set; }
 
-        /// <summary>
-        /// TRUE if the runner has completed the entire execution 
-        /// </summary>
-        public bool Ended { get; internal set; }
+
+        public override string ToString()
+        {
+            switch (this.Action)
+            {
+                case RunnerAction.Starting:
+                    return "Preparing...";
+
+                case RunnerAction.ScriptRunning:
+                    return "Executing \"" + this.ScriptFilename + "\"...";
+
+                case RunnerAction.Ended:
+                    return "Cleaning up...";
+
+                default:
+                    return "Unknown Action!";
+            }
+
+
+        }
 
     }
 }

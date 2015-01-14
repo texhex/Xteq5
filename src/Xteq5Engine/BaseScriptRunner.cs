@@ -23,7 +23,7 @@ namespace Xteq5
             if (Progress != null)
             {
                 RunnerProgress rp = new RunnerProgress();
-                rp.Starting = true;
+                rp.Action = RunnerAction.Starting;
                 Progress.Report(rp);
             }
         }
@@ -33,7 +33,7 @@ namespace Xteq5
             if (Progress != null)
             {
                 RunnerProgress rp = new RunnerProgress();
-                rp.Ended = true;
+                rp.Action = RunnerAction.Ended;
                 Progress.Report(rp);
             }
 
@@ -43,7 +43,8 @@ namespace Xteq5
         {
             if (Progress != null)
             {
-                RunnerProgress rp = new RunnerProgress();                
+                RunnerProgress rp = new RunnerProgress();
+                rp.Action = RunnerAction.ScriptRunning;
                 rp.ScriptFilepath = Filepath;
                 rp.ScriptFilename = PathExtension.Filename(Filepath);
                 Progress.Report(rp);
@@ -129,6 +130,7 @@ namespace Xteq5
 
                 //MTH: End of processing with this file. Next one please!
             }
+
 
             //Report status that this entire run has finished
             ReportProgressEnded(Progress);

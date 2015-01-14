@@ -254,22 +254,7 @@ namespace Xteq5GUI
 
         private void RunnerProgressUpdate(object sender, RunnerProgress Status)
         {
-            if (Status.Starting)
-            {
-                SetStatus("Preparing...");
-            }
-            else
-            {
-                if (Status.Ended)
-                {
-                    SetStatus("Cleaning up...");
-                }
-                else
-                {
-                    SetStatus("Executing \"" + Status.ScriptFilename + "\"...");
-
-                }
-            }
+            SetStatus(Status.ToString());
         }
 
         private void ReportProgressUpdate(object sender, ReportCreationProgress Status)
