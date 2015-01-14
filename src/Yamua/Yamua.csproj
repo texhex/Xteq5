@@ -83,6 +83,7 @@
     <Compile Include="DisposableObject.cs" />
     <Compile Include="EventHandlerExtensions.cs" />
     <Compile Include="ExecuteAndForget.cs" />
+    <Compile Include="ProgressReporter.cs" />
     <Compile Include="PathExtension.cs" />
     <Compile Include="GlobalAtom.cs" />
     <Compile Include="NaturalSort.cs" />

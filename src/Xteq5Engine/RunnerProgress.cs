@@ -10,7 +10,7 @@ namespace Xteq5
     {
         Starting = 1, //The runner is getting ready to be started
         ScriptRunning = 2, //A script is about to be executed
-        Ended = 4 //The runner has completed the entire execution
+        Ended = 4 //The runner has completed
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Xteq5
                     return "Cleaning up...";
 
                 default:
-                    return "Unknown Action!";
+                    return "Unknown Action";
             }
 
 

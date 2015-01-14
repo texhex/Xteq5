@@ -259,17 +259,7 @@ namespace Xteq5GUI
 
         private void ReportProgressUpdate(object sender, ReportCreationProgress Status)
         {
-            if (Status.Starting)
-            {
-                SetStatus("Creating file...");
-            }
-            else
-            {
-                if (Status.Ended)
-                {
-                    SetStatus("Report created");
-                }
-            }
+            SetStatus(Status.ToString());
         }
 
 

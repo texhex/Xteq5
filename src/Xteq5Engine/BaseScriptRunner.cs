@@ -20,35 +20,26 @@ namespace Xteq5
 
         void ReportProgressStarting(IProgress<RunnerProgress> Progress)
         {
-            if (Progress != null)
-            {
-                RunnerProgress rp = new RunnerProgress();
-                rp.Action = RunnerAction.Starting;
-                Progress.Report(rp);
-            }
+            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
+            reporter.Content.Action = RunnerAction.Starting;
+            reporter.Report();
         }
 
         void ReportProgressEnded(IProgress<RunnerProgress> Progress)
         {
-            if (Progress != null)
-            {
-                RunnerProgress rp = new RunnerProgress();
-                rp.Action = RunnerAction.Ended;
-                Progress.Report(rp);
-            }
+            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
+            reporter.Content.Action = RunnerAction.Ended;
+            reporter.Report();
 
         }
-        
+
         void ReportProgressScript(IProgress<RunnerProgress> Progress, string Filepath)
         {
-            if (Progress != null)
-            {
-                RunnerProgress rp = new RunnerProgress();
-                rp.Action = RunnerAction.ScriptRunning;
-                rp.ScriptFilepath = Filepath;
-                rp.ScriptFilename = PathExtension.Filename(Filepath);
-                Progress.Report(rp);
-            }
+            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
+            reporter.Content.Action = RunnerAction.ScriptRunning;
+            reporter.Content.ScriptFilepath = Filepath;
+            reporter.Content.ScriptFilename = PathExtension.Filename(Filepath);
+            reporter.Report();
         }
 
 
@@ -150,7 +141,7 @@ namespace Xteq5
             else
             {
                 string name = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyName);
-                if (string.IsNullOrEmpty(name) == false) 
+                if (string.IsNullOrEmpty(name) == false)
                 {
                     Record.Name = name;
                 }
@@ -166,7 +157,7 @@ namespace Xteq5
                 {
                     //Empty data means DoesNotApply
                     Record.Conclusion = ConclusionEnum.DoesNotApply;
-                    
+
                     ProcessEmptyData(Record, Table);
                 }
                 else

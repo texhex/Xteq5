@@ -81,7 +81,7 @@ namespace Xteq5
         }
 
         /// <summary>
-        /// Executes Xteq5, generates a report in the given format for it and save to the result in the filename provided.
+        /// Executes Xteq5, generates a report in the given format for it and save the result to Filename 
         /// </summary>
         /// <param name="CompilationPath">Path to the compilation folder</param>        
         /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
@@ -123,9 +123,9 @@ namespace Xteq5
         /// Generates the report and (if set) the file report
         /// </summary>
         /// <returns>TRUE if execution was successful</returns>
-        public bool Run()
+        public bool Run(IProgress<RunnerProgress> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
         {
-            Task<bool> task = RunAsync();
+            Task<bool> task = RunAsync(ProgressRunner);
             task.Wait();
             return task.Result;
         }
@@ -133,9 +133,9 @@ namespace Xteq5
         /// <summary>
         /// Generates the report and (if set) the file report
         /// </summary>
-        /// <param name="RunnerProgress">Report status using this Progress object</param>        
+        /// <param name="ProgressRunner">Report status using this Progress object</param>        
         /// <returns>TRUE if execution was successful</returns>
-        public async Task<bool> RunAsync(IProgress<RunnerProgress> RunnerProgress = null, IProgress<ReportCreationProgress> ReportProgress = null)
+        public async Task<bool> RunAsync(IProgress<RunnerProgress> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
         {
             ClearRunVariables();
 
@@ -145,7 +145,7 @@ namespace Xteq5
             {
                 //Let Xteq5Runner do it's thing...
                 Xteq5Runner runner = new Xteq5Runner();                                
-                this.Report = await runner.RunAsync(_compilationPath, RunnerProgress);
+                this.Report = await runner.RunAsync(_compilationPath, ProgressRunner);
 
                 this.Report.UserText = _userText;
 
@@ -153,22 +153,18 @@ namespace Xteq5
                 //I don't know why, but the report creation takes AGES / A VERY LONG TIME / F**** BAZILLION SECONDS with that POS software installed.                                
                 if (_reportFormat != OutputFormatEnum.Unknown)
                 {
-                    if (ReportProgress != null)
-                    {
-                        ReportCreationProgress status = new ReportCreationProgress();
-                        status.Starting = true;
-                        ReportProgress.Report(status);
-                    }
+                    ProgressReporter<ReportCreationProgress> reporterStart = new ProgressReporter<ReportCreationProgress>(ProgressReportCreation);
+                    reporterStart.Content.Action = ReportAction.Starting;
+                    reporterStart.Report();
+
 
                     //Generate the report
                     this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, _reportFormat, _destFilename);
 
-                    if (ReportProgress != null)
-                    {
-                        ReportCreationProgress status = new ReportCreationProgress();
-                        status.Ended = true;
-                        ReportProgress.Report(status);
-                    }
+
+                    ProgressReporter<ReportCreationProgress> reporterEnd = new ProgressReporter<ReportCreationProgress>(ProgressReportCreation);
+                    reporterEnd.Content.Action = ReportAction.Ended;
+                    reporterEnd.Report();
 
                 }
 
