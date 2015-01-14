@@ -1,10 +1,10 @@
-## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+## [Version 2015.01.14](https://github.com/texhex/xteq5/releases/tag/v2015.01.14)
 
 IMPROVEMENTS:
 
 * Added EngineVersionString to JSON File
-* Added status of currently executed script file to Xteq5GUI
-* Added status of currently executed script file to Xteq5CLI 
+* Added display of currently executed script file to Xteq5GUI
+* Added display of currently executed script file to Xteq5CLI 
 
 BUG FIXES:
 
