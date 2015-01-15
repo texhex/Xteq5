@@ -1,3 +1,13 @@
+## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+
+IMPROVEMENTS:
+
+* Add "Less than five errors in system log" test
+
+BUG FIXES:
+
+* Fixed an asset that confused "Uptime" with "Time since boot""
+
 ## [Version 2015.01.14](https://github.com/texhex/xteq5/releases/tag/v2015.01.14)
 
 IMPROVEMENTS:

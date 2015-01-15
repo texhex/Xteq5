@@ -1,5 +1,5 @@
 ﻿# Michael PowerShell eXtension module
-# Version 1.09
+# Version 1.10
 #
 # Copyright © 2010-2015 Michael 'Tex' Hex 
 # Licensed under the Apache License, Version 2.0. 
@@ -286,4 +286,13 @@ Function Test-MPXModuleAvailable {
 
           $oVolume.Volume_DeviceID = $volume.DeviceID          $oVolume.Volume_Name = $volume.VolumeName          $oVolume.Volume_FS = $volume.FileSystem          $oVolume.Volume_Size = $volume.Size      
           write-output $oVolume
-       }        if (-Not ($volumesfound)) {          # If no volumes were found, add the current partion object                    write-output $oPartition       }     }     if (-Not ($bPartitionsFound)) {        #No partions were found, add the current disk object        write-output $oDisk     }     }        }
+       }        if (-Not ($volumesfound)) {          # If no volumes were found, add the current partion object                    write-output $oPartition       }     }     if (-Not ($bPartitionsFound)) {        #No partions were found, add the current disk object        write-output $oDisk     }     }        }Function Get-MPXLastBootupTime {<#
+  .SYNOPSIS
+  Returns the datetime of the last bootup time of this computer
+
+  .PARAMETER 
+  None
+
+  .OUTPUTS
+  Returns a DateTime (Kind = Unspecified) that is the last bootup time of this computer
+#>     Set-StrictMode -Version 2.0 $wmi = Get-WMIObject Win32_OperatingSystem -Property "LastBootupTime"  $lastbootdate=$wmi.ConvertToDateTime($wmi.lastbootuptime) return $lastbootdate}
