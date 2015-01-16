@@ -48,7 +48,7 @@ namespace Yamua
         }
 
         /// <summary>
-        /// Reports content back. Can be used only ONCE if RearmAfterReport is FALSE.
+        /// Reports CONTENT back as progress. Can be used only ONCE if RearmAfterReport is FALSE.
         /// </summary>
         public void Report()
         {
