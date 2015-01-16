@@ -21,8 +21,8 @@ namespace Xteq5
         public RunnerProgress()
         {
             Action = RunnerAction.Starting;
-            ScriptFilename = "";
-            ScriptFilepath = "";
+            ScriptFilename = string.Empty;
+            ScriptFilepath = string.Empty;
         }
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace Xteq5
         public RunnerAction Action;
 
         /// <summary>
-        /// Full file path including path of the script that is about to be executed
+        /// Full file path including path of the script that is about to be executed. Might be empty.
         /// </summary>
         public string ScriptFilepath { get; internal set; }
 
         /// <summary>
-        /// Filename of the script that is about to be executed
+        /// Filename of the script that is about to be executed. Might be empty.
         /// </summary>
         public string ScriptFilename { get; internal set; }
 

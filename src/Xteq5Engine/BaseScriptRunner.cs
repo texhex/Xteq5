@@ -13,40 +13,30 @@ using Yamua;
 namespace Xteq5
 {
     /// <summary>
-    /// Internal class that is used to run a script and process the output of it. 
+    /// Internal class that is used to run the scripts in a folder and process the output of those scripts
     /// </summary>
     internal abstract class BaseScriptRunner
     {
 
-        void ReportProgressStarting(IProgress<RunnerProgress> Progress)
+        ProgressReporter<RunnerProgress> _reporter;
+
+        void ReportProgressScript(string Filepath)
         {
-            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
-            reporter.Content.Action = RunnerAction.Starting;
-            reporter.Report();
+            _reporter.Content.Action = RunnerAction.ScriptRunning;
+            _reporter.Content.ScriptFilepath = Filepath;
+            _reporter.Content.ScriptFilename = PathExtension.Filename(Filepath);
+            _reporter.Report();
         }
-
-        void ReportProgressEnded(IProgress<RunnerProgress> Progress)
-        {
-            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
-            reporter.Content.Action = RunnerAction.Ended;
-            reporter.Report();
-
-        }
-
-        void ReportProgressScript(IProgress<RunnerProgress> Progress, string Filepath)
-        {
-            ProgressReporter<RunnerProgress> reporter = new ProgressReporter<RunnerProgress>(Progress);
-            reporter.Content.Action = RunnerAction.ScriptRunning;
-            reporter.Content.ScriptFilepath = Filepath;
-            reporter.Content.ScriptFilename = PathExtension.Filename(Filepath);
-            reporter.Report();
-        }
-
-
+        
         protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgress> Progress = null)
         {
+            //Assign progress reporter and set it that it can be used after calling Report()
+            _reporter = new ProgressReporter<RunnerProgress>(Progress, RearmAfterReport:true);
+
             //Report that we are about to start
-            ReportProgressStarting(Progress);
+            _reporter.Content.Action = RunnerAction.Starting;
+            _reporter.Report();
+
 
             string[] allScripts = Directory.GetFiles(ScriptDirectory, Xteq5EngineConstant.ScriptFilePattern);
             NaturalSort.Sort(allScripts);
@@ -61,7 +51,7 @@ namespace Xteq5
                 try
                 {
                     //Report back status
-                    ReportProgressScript(Progress, scriptFilename);
+                    ReportProgressScript(scriptFilename);
 
                     using (ExecutionResult execResult = await ScriptRunner.RunScriptFileAsync(scriptFilename))
                     {
@@ -124,7 +114,8 @@ namespace Xteq5
 
 
             //Report status that this entire run has finished
-            ReportProgressEnded(Progress);
+            _reporter.Content.Action = RunnerAction.Ended;
+            _reporter.Report();
         }
 
 
@@ -166,7 +157,7 @@ namespace Xteq5
                     ConclusionEnum conclusion = ConclusionEnumConverter.ParseConclusion(data);
                     if (conclusion == ConclusionEnum.DoesNotApply)
                     {
-                        //The script returned n/a (DoesNotApply), so it can be processed as empty record
+                        //The script returned n/a (DoesNotApply), so it can be processed as an empty record
                         Record.Conclusion = ConclusionEnum.DoesNotApply;
                         ProcessEmptyData(Record, Table);
                     }
@@ -201,6 +192,7 @@ namespace Xteq5
             if (obj != null)
             {
                 string s = obj.ToString().Trim(); //Better be safe than sorry 
+                
                 if (string.IsNullOrWhiteSpace(s))
                 {
                     return string.Empty;
