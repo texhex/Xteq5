@@ -18,7 +18,7 @@ namespace Xteq5
     internal abstract class BaseScriptRunner
     {
 
-        ProgressReporter<RunnerProgress> _reporter;
+        ProgressReporter<RunnerProgressDetail> _reporter;
 
         void ReportProgressScript(string Filepath)
         {
@@ -28,10 +28,10 @@ namespace Xteq5
             _reporter.Report();
         }
         
-        protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgress> Progress = null)
+        protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgressDetail> Progress = null)
         {
             //Assign progress reporter and set it that it can be used after calling Report()
-            _reporter = new ProgressReporter<RunnerProgress>(Progress, RearmAfterReport:true);
+            _reporter = new ProgressReporter<RunnerProgressDetail>(Progress, CreateNewInstanceAfterReport:true);
 
             //Report that we are about to start
             _reporter.Content.Action = RunnerAction.Starting;

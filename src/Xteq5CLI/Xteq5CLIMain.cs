@@ -77,7 +77,7 @@ namespace Xteq5CLI
                 Console.WriteLine();
                 Console.WriteLine("Running, please wait...");
 
-                Progress<RunnerProgress> progressRunner = new Progress<RunnerProgress>();
+                Progress<RunnerProgressDetail> progressRunner = new Progress<RunnerProgressDetail>();
                 progressRunner.ProgressChanged += RunnerProgressUpdate;
 
                 bool result = simpleRunner.Run(progressRunner);
@@ -124,7 +124,7 @@ namespace Xteq5CLI
         }
 
 
-        static void RunnerProgressUpdate(object sender, RunnerProgress Status)
+        static void RunnerProgressUpdate(object sender, RunnerProgressDetail Status)
         {
             Console.WriteLine(Status.ToString());
         }

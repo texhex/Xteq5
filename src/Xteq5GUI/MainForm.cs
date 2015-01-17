@@ -206,7 +206,7 @@ namespace Xteq5GUI
 
             //Create an progress object so we can get updates. 
             //This will capture the current SyncContext so we can assign an event handler directly without any special handling
-            Progress<RunnerProgress> progressRunner = new Progress<RunnerProgress>();
+            Progress<RunnerProgressDetail> progressRunner = new Progress<RunnerProgressDetail>();
             progressRunner.ProgressChanged += RunnerProgressUpdate;
 
             //Do this also for the report creation
@@ -252,7 +252,7 @@ namespace Xteq5GUI
 
         }
 
-        private void RunnerProgressUpdate(object sender, RunnerProgress Status)
+        private void RunnerProgressUpdate(object sender, RunnerProgressDetail Status)
         {
             SetStatus(Status.ToString());
         }

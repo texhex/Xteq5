@@ -15,7 +15,7 @@ namespace Xteq5
     {
         List<AssetRecord> _results;
 
-        internal async Task<List<AssetRecord>> Run(PSScriptRunner ScriptRunner, string AssetScriptPath, IProgress<RunnerProgress> Progress = null)
+        internal async Task<List<AssetRecord>> Run(PSScriptRunner ScriptRunner, string AssetScriptPath, IProgress<RunnerProgressDetail> Progress = null)
         {
             _results = new List<AssetRecord>();
 

@@ -39,7 +39,7 @@ namespace Xteq5
         /// </summary>
         /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
         /// <param name="Progress">An IProgress implementation to report status to</param>
-        public async Task<Report> RunAsync(string CompilationPath, IProgress<RunnerProgress> Progress = null)
+        public async Task<Report> RunAsync(string CompilationPath, IProgress<RunnerProgressDetail> Progress = null)
         {
             if (string.IsNullOrWhiteSpace(CompilationPath))
                 throw new ArgumentException("Compilation path is not set");

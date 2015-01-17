@@ -123,7 +123,7 @@ namespace Xteq5
         /// Generates the report and (if set) the file report
         /// </summary>
         /// <returns>TRUE if execution was successful</returns>
-        public bool Run(IProgress<RunnerProgress> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
+        public bool Run(IProgress<RunnerProgressDetail> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
         {
             Task<bool> task = RunAsync(ProgressRunner);
             task.Wait();
@@ -135,7 +135,7 @@ namespace Xteq5
         /// </summary>
         /// <param name="ProgressRunner">Report status using this Progress object</param>        
         /// <returns>TRUE if execution was successful</returns>
-        public async Task<bool> RunAsync(IProgress<RunnerProgress> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
+        public async Task<bool> RunAsync(IProgress<RunnerProgressDetail> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
         {
             ClearRunVariables();
 

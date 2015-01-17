@@ -16,9 +16,9 @@ namespace Xteq5
     /// <summary>
     /// This class is used to report progress pack from the Xteq5Runner async method
     /// </summary>
-    public class RunnerProgress
+    public class RunnerProgressDetail
     {
-        public RunnerProgress()
+        public RunnerProgressDetail()
         {
             Action = RunnerAction.Starting;
             ScriptFilename = string.Empty;
