@@ -3,6 +3,7 @@
 IMPROVEMENTS:
 
 * Add "Less than five errors in system log" test
+* Added automatic fix when user settings file is broken in Xteq5GUI
 
 BUG FIXES:
 

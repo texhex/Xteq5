@@ -31,7 +31,6 @@ namespace Xteq5CLI
             CMDLineParser parser = new CMDLineParser();
             parser.throwInvalidOptionsException = true;
 
-
             //Add -Help option
             CMDLineParser.Option HelpOption = parser.AddBoolSwitch("-Help", "Displays help");
             HelpOption.AddAlias("/?");
