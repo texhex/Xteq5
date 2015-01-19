@@ -15,6 +15,9 @@ namespace HeadlessPS
     /// </summary>
     public class VariablePlain : IEquatable<VariablePlain> //IEquatable to make sure that objects with the same .Name are considered to be equal (Interface is used by HashSet)
     {
+        //TODO: Reverse the .ctor order so easier onces call complicate ones
+
+
         /// <summary>
         /// Create an empty variable
         /// </summary>
@@ -26,34 +29,34 @@ namespace HeadlessPS
         /// <summary>
         /// Creates a variable with the given name 
         /// </summary>
-        /// <param name="Name">Name of the variable</param>
-        public VariablePlain(string Name)
+        /// <param name="name">Name of the variable</param>
+        public VariablePlain(string name)
         {
-            this.Name = Name;
+            this.Name = name;
         }
 
         /// <summary>
         /// Creates a variable with the given name and value
         /// </summary>
-        /// <param name="Name">Name of the variable</param>
-        /// <param name="Value">Value of the variable</param>
-        public VariablePlain(string Name, Object Value)
+        /// <param name="name">Name of the variable</param>
+        /// <param name="value">Value of the variable</param>
+        public VariablePlain(string name, Object value)
         {
-            this.Name = Name;
-            this.Value = Value;
+            this.Name = name;
+            this.Value = value;
         }
 
         /// <summary>
         /// Creates a read-only variable with the given name and value
         /// </summary>
-        /// <param name="Name">Name of the variable</param>
-        /// <param name="Value">Value of the variable</param>
-        /// <param name="ReadOnly">TRUE of the variable should be read-only</param>
-        public VariablePlain(string Name, Object Value, bool ReadOnly)
+        /// <param name="name">Name of the variable</param>
+        /// <param name="value">Value of the variable</param>
+        /// <param name="readOnly">TRUE of the variable should be read-only</param>
+        public VariablePlain(string name, Object value, bool readOnly)
         {
-            this.Name = Name;
-            this.Value = Value;
-            this.ReadOnly = ReadOnly;
+            this.Name = name;
+            this.Value = value;
+            this.ReadOnly = readOnly;
         }
 
         string _name = "";
@@ -112,9 +115,9 @@ namespace HeadlessPS
                 return false;
         }
 
-        public bool Equals(VariablePlain OtherObject)
+        public bool Equals(VariablePlain otherObject)
         {
-            return (this.Name == OtherObject.Name);
+            return (this.Name == otherObject.Name);
         }
     }
 }

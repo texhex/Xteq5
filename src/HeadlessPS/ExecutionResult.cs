@@ -71,45 +71,45 @@ namespace HeadlessPS
         public HashSet<VariablePlain> Variables { get; private set; }
 
 
-        protected internal ExecutionResult(PowerShell PSInstance, HashSet<VariablePlain> Vars, PSDataCollection<PSObject> PSOutput)
-            : this(PSInstance, Vars, PSOutput, null)
+        protected internal ExecutionResult(PowerShell psInstance, HashSet<VariablePlain> vars, PSDataCollection<PSObject> psOutput)
+            : this(psInstance, vars, psOutput, null)
         {
 
         }
 
-        protected internal ExecutionResult(PowerShell PSInstance, HashSet<VariablePlain> Vars, Exception AdditionalException)
-            : this(PSInstance, Vars, null, AdditionalException)
+        protected internal ExecutionResult(PowerShell psInstance, HashSet<VariablePlain> vars, Exception additionalException)
+            : this(psInstance, vars, null, additionalException)
         {
 
         }
 
 
         //MTH: This is done in a constructor and not a function to make sure the consumer either gets a working instance or no instance (null) at all. 
-        protected internal ExecutionResult(PowerShell PSInstance, HashSet<VariablePlain> Vars, PSDataCollection<PSObject> PSOutput, Exception AdditionalException)
+        protected internal ExecutionResult(PowerShell psInstance, HashSet<VariablePlain> vars, PSDataCollection<PSObject> psOutput, Exception additionalException)
         {
             Successful = false;
             SuccessfulNoError = false;
 
             //It can happen that PSInstance is NULL 
-            if (PSInstance != null)
+            if (psInstance != null)
             {
-                _pipelineState = PSInstance.InvocationStateInfo.State;
+                _pipelineState = psInstance.InvocationStateInfo.State;
 
                 //Check if we have an inner or outer exception
-                if (AdditionalException == null && PSInstance.InvocationStateInfo.Reason == null)
+                if (additionalException == null && psInstance.InvocationStateInfo.Reason == null)
                 {
                     FailedException = null;
                 }
                 else
                 {
                     //At least one excpetion has been detected. The additonal exception is raised by the the call of .EndInvoke() and is therefore considered to be more important.
-                    if (AdditionalException != null)
+                    if (additionalException != null)
                     {
-                        FailedException = AdditionalException;
+                        FailedException = additionalException;
                     }
                     else
                     {
-                        FailedException = PSInstance.InvocationStateInfo.Reason;
+                        FailedException = psInstance.InvocationStateInfo.Reason;
                     }
                 }
 
@@ -119,9 +119,9 @@ namespace HeadlessPS
                 //PSInstance is null - execution can not be successful in this case
                 _pipelineState = PSInvocationState.NotStarted;
 
-                if (AdditionalException != null)
+                if (additionalException != null)
                 {
-                    FailedException = AdditionalException;
+                    FailedException = additionalException;
                 }
                 else
                 {
@@ -135,14 +135,14 @@ namespace HeadlessPS
             if (FailedException == null)
             {
                 //No exception detected, if State is Complete we have a succesful execution.
-                if (PSInstance.InvocationStateInfo.State == PSInvocationState.Completed)
+                if (psInstance.InvocationStateInfo.State == PSInvocationState.Completed)
                 {
                     Successful = true;
 
                     //Now also check the ERROR stream. If there are no error reported, we also have a SuccessfulNoError status
-                    if (PSInstance.Streams.Error != null)
+                    if (psInstance.Streams.Error != null)
                     {
-                        if (PSInstance.Streams.Error.Count == 0)
+                        if (psInstance.Streams.Error.Count == 0)
                         {
                             SuccessfulNoError = true;
                         }
@@ -159,10 +159,10 @@ namespace HeadlessPS
 
             //MTH: Assign the stream collections to our internal properties or create empty one if they are null.
             //This will make using this object easier since the consumer does not need to check if the collections are null.                 
-            StreamOutput = PSOutput ?? new PSDataCollection<PSObject>();
+            StreamOutput = psOutput ?? new PSDataCollection<PSObject>();
 
             //MTH: I didn't created a default value for all the StreamXXX properties here because PSDataCollection implements IDisposable. Therefore this odd looking code. 
-            if (PSInstance == null)
+            if (psInstance == null)
             {
                 //When PS Instance is NULL, set all values to default 
                 StreamError = new PSDataCollection<ErrorRecord>(); //http://msdn.microsoft.com/en-us/library/System.Management.Automation.ErrorRecord%28v=vs.85%29.aspx
@@ -171,22 +171,22 @@ namespace HeadlessPS
                 StreamDebug = new PSDataCollection<DebugRecord>();  //http://msdn.microsoft.com/en-us/library/system.management.automation.debugrecord%28v=vs.85%29.aspx
 
                 //Set the variables to the same collection which was passed in
-                Variables = Vars;
+                Variables = vars;
             }
             else
             {
                 //PSInstance is not null, so we can check the streams
-                StreamError = PSInstance.Streams.Error ?? new PSDataCollection<ErrorRecord>();
-                StreamWarning = PSInstance.Streams.Warning ?? new PSDataCollection<WarningRecord>();
-                StreamVerbose = PSInstance.Streams.Verbose ?? new PSDataCollection<VerboseRecord>();
-                StreamDebug = PSInstance.Streams.Debug ?? new PSDataCollection<DebugRecord>();  
+                StreamError = psInstance.Streams.Error ?? new PSDataCollection<ErrorRecord>();
+                StreamWarning = psInstance.Streams.Warning ?? new PSDataCollection<WarningRecord>();
+                StreamVerbose = psInstance.Streams.Verbose ?? new PSDataCollection<VerboseRecord>();
+                StreamDebug = psInstance.Streams.Debug ?? new PSDataCollection<DebugRecord>();  
 
                 //Return the current value of the Variables that were passed in. 
                 Variables = new HashSet<VariablePlain>();
 
-                if (Vars.Count > 0)
+                if (vars.Count > 0)
                 {
-                    foreach (VariablePlain var in Vars)
+                    foreach (VariablePlain var in vars)
                     {
                         //If the value was marked as ReadOnly, we simply take it from the original hashset because PowerShell can't change it anyway
                         if (var.ReadOnly)
@@ -203,7 +203,7 @@ namespace HeadlessPS
                              * I assume that the second one is the short-circuit version of the first one. Since we only want the value, we use it.
                              */
 
-                            Object value = PSInstance.Runspace.SessionStateProxy.GetVariable(var.Name);
+                            Object value = psInstance.Runspace.SessionStateProxy.GetVariable(var.Name);
                             VariablePlain new_var = new VariablePlain(var.Name, value);
                             Variables.Add(new_var);
                         }
@@ -327,19 +327,19 @@ namespace HeadlessPS
         }
 
 
-        string UniversalStreamRecordCollectionToString(Collection<UniversalStreamRecord> Collection, PSStreamNameEnum Streamname)
+        string UniversalStreamRecordCollectionToString(Collection<UniversalStreamRecord> collection, PSStreamNameEnum streamNameEnum)
         {
-            string streamName = Streamname.ToString().ToUpper();
-            string streamID = ((int)Streamname).ToString();
+            string streamName = streamNameEnum.ToString().ToUpper();
+            string streamID = ((int)streamNameEnum).ToString();
 
             string objectsFoundMessage = string.Format("Objects in stream {0} (Stream ID {1}):", streamName, streamID);
             string noObjectsFoundMessage = string.Format("Nothing in stream {0} (Stream ID {1})", streamName, streamID);
 
-            return UniversalStreamRecordCollectionToString(Collection, objectsFoundMessage, noObjectsFoundMessage);
+            return UniversalStreamRecordCollectionToString(collection, objectsFoundMessage, noObjectsFoundMessage);
         }
 
 
-        string UniversalStreamRecordCollectionToString(Collection<UniversalStreamRecord> Collection, string ObjectsFoundMessage, string NoObjectsFoundMessage)
+        string UniversalStreamRecordCollectionToString(Collection<UniversalStreamRecord> collection, string objectsFoundMessage, string noObjectsFoundMessage)
         {
             /* MTH: The old code was:
              * using (StringWriter baseBuffer = new System.IO.StringWriter()) {
@@ -352,12 +352,12 @@ namespace HeadlessPS
             {
                 indentWriter.Indent = 0;
 
-                if (Collection != null && Collection.Count > 0)
+                if (collection != null && collection.Count > 0)
                 {
-                    indentWriter.WriteLine(ObjectsFoundMessage);
+                    indentWriter.WriteLine(objectsFoundMessage);
                     indentWriter.Indent++;
 
-                    foreach (UniversalStreamRecord unirecord in Collection)
+                    foreach (UniversalStreamRecord unirecord in collection)
                     {
                         indentWriter.WriteLine(unirecord.Message);
                         indentWriter.Indent++;
@@ -433,7 +433,7 @@ namespace HeadlessPS
                 }
                 else
                 {
-                    indentWriter.Write(NoObjectsFoundMessage);
+                    indentWriter.Write(noObjectsFoundMessage);
 
                 }
 

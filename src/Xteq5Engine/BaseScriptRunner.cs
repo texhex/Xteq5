@@ -31,7 +31,7 @@ namespace Xteq5
         protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgressDetail> Progress = null)
         {
             //Assign progress reporter and set it that it can be used after calling Report()
-            _reporter = new ProgressReporter<RunnerProgressDetail>(Progress, CreateNewInstanceAfterReport:true);
+            _reporter = new ProgressReporter<RunnerProgressDetail>(Progress, createNewInstanceAfterReport:true);
 
             //Report that we are about to start
             _reporter.Content.Action = RunnerAction.Starting;

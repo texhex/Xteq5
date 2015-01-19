@@ -184,10 +184,10 @@ namespace HeadlessPS
         /// Executes a script file.
         /// This function can throw an exception if there is a problem with PowerShell or this object itself, but not for any script related error (e.g. Syntax Errors). 
         /// </summary>
-        /// <param name="Filename">Path to script file that will be executed</param>
-        public ExecutionResult RunScriptFile(string Filename)
+        /// <param name="fileName">Path to script file that will be executed</param>
+        public ExecutionResult RunScriptFile(string fileName)
         {
-            Task<ExecutionResult> task = RunScriptFileAsync(Filename);
+            Task<ExecutionResult> task = RunScriptFileAsync(fileName);
             task.Wait();
             return task.Result;
         }
@@ -196,18 +196,18 @@ namespace HeadlessPS
         /// Executes a script file asynchronously.
         /// This function can throw an exception if there is a problem with PowerShell or this object itself, but not for any script related error (e.g. Syntax Errors). 
         /// </summary>
-        /// <param name="Filename">Path to script file that will be executed</param>
-        public async Task<ExecutionResult> RunScriptFileAsync(string Filename)
+        /// <param name="fileName">Path to script file that will be executed</param>
+        public async Task<ExecutionResult> RunScriptFileAsync(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(Filename))
+            if (string.IsNullOrWhiteSpace(fileName))
                 throw new ArgumentException("No PowerShell script file specified");
 
             //MTH: We need to check if the file exists because PowerShell will be happy to accept a non-existing file to be executed and simply assumes that it is an incorrect cmdlet name.
-            if (File.Exists(Filename) == false)
-                throw new FileNotFoundException(string.Format("Script file {0} not found", Filename));
+            if (File.Exists(fileName) == false)
+                throw new FileNotFoundException(string.Format("Script file {0} not found", fileName));
 
             //MTH: Make sure that we have an absolute and not a relative path. In the later case PowerShell wants the script to be dot sourced.
-            FileInfo fi = new FileInfo(Filename);
+            FileInfo fi = new FileInfo(fileName);
 
             //As the filename can contain blank spaces, we add " around it and tell PowerShell to parse it as a command (&), not as a string
             string script = "& \"" + fi.FullName + "\"";
@@ -221,10 +221,10 @@ namespace HeadlessPS
         /// Executes an inline script.
         /// This function can throw an exception if there is a problem with PowerShell or this object itself, but not for any script related error (e.g. Syntax Errors). 
         /// </summary>
-        /// <param name="Script">Inline PowerShell script to be executed</param>
-        public ExecutionResult RunInlineScript(string Script)
+        /// <param name="script">Inline PowerShell script to be executed</param>
+        public ExecutionResult RunInlineScript(string script)
         {
-            Task<ExecutionResult> task = RunInlineScriptAsync(Script);
+            Task<ExecutionResult> task = RunInlineScriptAsync(script);
             task.Wait();
             return task.Result;
         }
@@ -234,10 +234,10 @@ namespace HeadlessPS
         /// Executes an inline script asynchronously. 
         /// This function can throw an exception if there is a problem with PowerShell or this object itself, but not for any script related error (e.g. Syntax Errors). 
         /// </summary>
-        /// <param name="Script">Inline PowerShell script to be executed</param>
-        public async Task<ExecutionResult> RunInlineScriptAsync(string Script)
+        /// <param name="script">Inline PowerShell script to be executed</param>
+        public async Task<ExecutionResult> RunInlineScriptAsync(string script)
         {
-            if (string.IsNullOrWhiteSpace(Script))
+            if (string.IsNullOrWhiteSpace(script))
                 throw new ArgumentException("No PowerShell script specified");
 
             if (_withinRunScriptInline == true)
@@ -272,7 +272,7 @@ namespace HeadlessPS
                     _psInstance = PowerShell.Create(_initialSessionState);
 
                     //I still try to figure out was LocalScope (second parameter) means - http://msdn.microsoft.com/en-us/library/dd182435%28v=vs.85%29.aspx
-                    _psInstance.AddScript(Script); 
+                    _psInstance.AddScript(script); 
 
                     _executionWaitHandle = _psInstance.BeginInvoke();
 

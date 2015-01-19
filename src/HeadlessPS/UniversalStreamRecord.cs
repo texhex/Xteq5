@@ -24,10 +24,10 @@ namespace HeadlessPS
 
         }
 
-        public UniversalStreamRecord(string Message, InvocationInfo InvocationInfo)
+        public UniversalStreamRecord(string message, InvocationInfo invocationInfo)
         {
-            this.Message = Message;
-            this.InvocationInfo = InvocationInfo;
+            this.Message = message;
+            this.InvocationInfo = invocationInfo;
         }
 
         public string Message { get; set; }
@@ -39,58 +39,58 @@ namespace HeadlessPS
 
 
 
-        public static UniversalStreamRecord FromWarningRecord(WarningRecord Record)
+        public static UniversalStreamRecord FromWarningRecord(WarningRecord record)
         {
-            return FromInformationalRecord(Record);
+            return FromInformationalRecord(record);
         }
 
-        public static UniversalStreamRecord FromVerboseRecord(VerboseRecord Record)
+        public static UniversalStreamRecord FromVerboseRecord(VerboseRecord record)
         {
-            return FromInformationalRecord(Record);
+            return FromInformationalRecord(record);
         }
 
-        public static UniversalStreamRecord FromDebugRecord(DebugRecord Record)
+        public static UniversalStreamRecord FromDebugRecord(DebugRecord record)
         {
-            return FromInformationalRecord(Record);
+            return FromInformationalRecord(record);
         }
 
-        public static UniversalStreamRecord FromInformationalRecord(InformationalRecord Record)
+        public static UniversalStreamRecord FromInformationalRecord(InformationalRecord record)
         {
-            return new UniversalStreamRecord(Record.Message, Record.InvocationInfo);
+            return new UniversalStreamRecord(record.Message, record.InvocationInfo);
         }
 
-        public static UniversalStreamRecord FromErrorRecord(ErrorRecord Record)
+        public static UniversalStreamRecord FromErrorRecord(ErrorRecord record)
         {
-            return new UniversalStreamRecord(Record.Exception.ToString(), Record.InvocationInfo);
+            return new UniversalStreamRecord(record.Exception.ToString(), record.InvocationInfo);
         }
 
-        public static UniversalStreamRecord FromPSObject(PSObject PSObj)
+        public static UniversalStreamRecord FromPSObject(PSObject psObj)
         {
-            return UniversalStreamRecord.FromObject(PSObj.BaseObject);
+            return UniversalStreamRecord.FromObject(psObj.BaseObject);
         }
 
-        public static UniversalStreamRecord FromVariablePlain(VariablePlain Variable)
+        public static UniversalStreamRecord FromVariablePlain(VariablePlain variable)
         {
             UniversalStreamRecord usr = new UniversalStreamRecord();
-            usr.Message = "$" + Variable.Name + ": " + ObjectToString(Variable.Value);
+            usr.Message = "$" + variable.Name + ": " + ObjectToString(variable.Value);
             return usr;
         }
 
-        public static UniversalStreamRecord FromObject(Object Obj)
+        public static UniversalStreamRecord FromObject(Object obj)
         {
             UniversalStreamRecord usr = new UniversalStreamRecord();
-            usr.Message = ObjectToString(Obj);
+            usr.Message = ObjectToString(obj);
             return usr;
         }
 
-        private static string ObjectToString(Object Obj)
+        private static string ObjectToString(Object obj)
         {
-            if (Obj != null)
+            if (obj != null)
             {
                 //Check if the result is an IDictionary (e.g. Hashtable). In this case we will return the items within the dictionary                
-                if (Obj is IDictionary)
+                if (obj is IDictionary)
                 {
-                    IDictionary idc = Obj as IDictionary;
+                    IDictionary idc = obj as IDictionary;
 
                     //See [IDictionary to string](http://stackoverflow.com/questions/12197089/idictionary-to-string) by [Daniel Hilgarth](http://blog.fire-development.com/)
                     string entries = idc.Cast<DictionaryEntry>()
@@ -98,19 +98,19 @@ namespace HeadlessPS
                                 (sb, x) => sb.Append(" ").Append(x.Key.ToString()).Append(": ").Append(x.Value).Append(";"),
                                 sb => sb.ToString());
 
-                    return "(" + Obj.GetType().ToString() + ") =>" + entries;
+                    return "(" + obj.GetType().ToString() + ") =>" + entries;
                 }
                 else
                 {
-                    if (Obj is string)
+                    if (obj is string)
                     {
                         //If it's a string, display as is without type description
-                        return Obj.ToString();
+                        return obj.ToString();
                     }
                     else
                     {
                         //"No idea how to display it better" format...
-                        return string.Format("{0} ({1})", Obj.ToString(), Obj.GetType().ToString());
+                        return string.Format("{0} ({1})", obj.ToString(), obj.GetType().ToString());
                     }
                 }
             }
@@ -120,13 +120,13 @@ namespace HeadlessPS
             }
         }
 
-        public static Collection<UniversalStreamRecord> FromInformationalRecordPSCollection<T>(PSDataCollection<T> Collection) where T : InformationalRecord
+        public static Collection<UniversalStreamRecord> FromInformationalRecordPSCollection<T>(PSDataCollection<T> collection) where T : InformationalRecord
         {
             Collection<UniversalStreamRecord> collectionUniversalStreamRecord = new Collection<UniversalStreamRecord>();
 
-            if (Collection != null && Collection.Count > 0)
+            if (collection != null && collection.Count > 0)
             {
-                foreach (InformationalRecord ir in Collection)
+                foreach (InformationalRecord ir in collection)
                 {
                     UniversalStreamRecord record = UniversalStreamRecord.FromInformationalRecord(ir);
                     collectionUniversalStreamRecord.Add(record);
@@ -136,13 +136,13 @@ namespace HeadlessPS
             return collectionUniversalStreamRecord;
         }
 
-        public static Collection<UniversalStreamRecord> FromErrorRecordPSCollection(PSDataCollection<ErrorRecord> Collection)
+        public static Collection<UniversalStreamRecord> FromErrorRecordPSCollection(PSDataCollection<ErrorRecord> collection)
         {
             Collection<UniversalStreamRecord> collectionUniversalStreamRecord = new Collection<UniversalStreamRecord>();
 
-            if (Collection != null && Collection.Count > 0)
+            if (collection != null && collection.Count > 0)
             {
-                foreach (ErrorRecord er in Collection)
+                foreach (ErrorRecord er in collection)
                 {
                     UniversalStreamRecord record = UniversalStreamRecord.FromErrorRecord(er);
                     collectionUniversalStreamRecord.Add(record);
@@ -153,13 +153,13 @@ namespace HeadlessPS
         }
 
 
-        public static Collection<UniversalStreamRecord> FromPSObjectPSCollection(PSDataCollection<PSObject> Collection)
+        public static Collection<UniversalStreamRecord> FromPSObjectPSCollection(PSDataCollection<PSObject> collection)
         {
             Collection<UniversalStreamRecord> collectionUniversalStreamRecord = new Collection<UniversalStreamRecord>();
 
-            if (Collection != null && Collection.Count > 0)
+            if (collection != null && collection.Count > 0)
             {
-                foreach (PSObject psobj in Collection)
+                foreach (PSObject psobj in collection)
                 {
                     UniversalStreamRecord record = UniversalStreamRecord.FromPSObject(psobj);
                     collectionUniversalStreamRecord.Add(record);
@@ -170,15 +170,15 @@ namespace HeadlessPS
         }
 
 
-        public static Collection<UniversalStreamRecord> FromVariablePlainHashSet(HashSet<VariablePlain> Collection, bool IncludeReadOnly=true)
+        public static Collection<UniversalStreamRecord> FromVariablePlainHashSet(HashSet<VariablePlain> collection, bool includeReadOnly=true)
         {
             Collection<UniversalStreamRecord> collectionUniversalStreamRecord = new Collection<UniversalStreamRecord>();
 
-            if (Collection != null && Collection.Count > 0)
+            if (collection != null && collection.Count > 0)
             {
-                foreach (VariablePlain var in Collection)
+                foreach (VariablePlain var in collection)
                 {
-                    if (var.ReadOnly & IncludeReadOnly==false)
+                    if (var.ReadOnly & includeReadOnly==false)
                     {
                         //Do nothing as ReadOnly entries should be ignored
                     }

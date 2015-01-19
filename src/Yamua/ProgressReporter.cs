@@ -1,53 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Yamua
 {
     /// <summary>
-    /// A helper class to report status using the IProgress interface and reporting back a class (ReportedObject).
-    /// The object beeing reported can used only be ONCE. If CreateNewInstanceAfterReport is FALSE (the default), calling Report again will raise an exception.
-    /// If CreateNewInstanceAfterReport is TRUE, a new instance of the reported object will automatically be created after calling Report().
+    /// A helper class to report status using the IProgress interface and reporting back a class (TReported).
+    /// The object beeing reported can used only be ONCE. If createNewInstanceAfterReport is FALSE (the default), calling Report again will raise an exception.
+    /// If createNewInstanceAfterReport is TRUE, a new instance of the reported object will automatically be created after calling Report().
     /// </summary>
-    /// <typeparam name="ReportedObject">The object beeing reported when calling Report()</typeparam>
-    public class ProgressReporter<ReportedObject> where ReportedObject : class, new()
+    /// <typeparam name="TReported">The object beeing reported when calling Report()</typeparam>
+    public class ProgressReporter<TReported> where TReported : class, new()
     {
-        IProgress<ReportedObject> _iProgress;
+        IProgress<TReported> _progress;
 
-        bool _rearmAfterReport;
-
-        /// <summary>
-        /// Provides access to the instance that is beeing reported as the "Progress"
-        /// </summary>
-        public ReportedObject Content { get; private set; }
-
+        bool _createNewInstanceAfterReport;
 
         /// <summary>
-        /// Create an instance of this class, requires the IProgress<Class> implementation that is used to report progress.
+        /// Provides access to the instance that is beeing reported as the "Progress". 
+        /// The setter is private ON PURPOSE to avoid that a caller passes in an already used instance which could result in exactly that bug we are trying to avoid with this class.
         /// </summary>
-        /// <param name="IProgress">IProgress implementation used to report progress</param>
-        public ProgressReporter(IProgress<ReportedObject> IProgress)
+        public TReported Content { get; private set; }
+
+
+        /// <summary>
+        /// Create an instance of this class, requires the IProgress<TReported> implementation that is used to report progress.
+        /// </summary>
+        /// <param name="progress">IProgress implementation used to report progress</param>
+        public ProgressReporter(IProgress<TReported> progress)
+            : this(progress, createNewInstanceAfterReport: false)
         {
-            _iProgress = IProgress;
-            _rearmAfterReport = false;
-            Content = new ReportedObject();
+
         }
 
         /// <summary>
-        /// Create an instance of this class, requires the IProgress<Class> implementation that is used to report progress.
+        /// Create an instance of this class, requires the IProgress<TReported> implementation that is used to report progress.
         /// </summary>
-        /// <param name="IProgress">IProgress implementation used to report progress</param>
-        /// <param name="CreateNewInstanceAfterReport">TRUE if a new instance of Content should automatically be created after Report()</param>
-        public ProgressReporter(IProgress<ReportedObject> IProgress, bool CreateNewInstanceAfterReport)
-            : this(IProgress)
+        /// <param name="progress">IProgress implementation used to report progress</param>
+        /// <param name="createNewInstanceAfterReport">TRUE if a new instance of Content should automatically be created after Report()</param>
+        public ProgressReporter(IProgress<TReported> progress, bool createNewInstanceAfterReport)
         {
-            _rearmAfterReport = CreateNewInstanceAfterReport;
+            _progress = progress;
+            Content = new TReported();
+
+            _createNewInstanceAfterReport = createNewInstanceAfterReport;
         }
 
         /// <summary>
-        /// Reports Content back as progress. Can be used only ONCE if RearmAfterReport is FALSE.
+        /// Reports Content back as progress. Can be used only ONCE if createNewInstanceAfterReport is FALSE.
         /// </summary>
         public void Report()
         {
@@ -56,18 +54,18 @@ namespace Yamua
             //"...it means you can’t modify the progress object after it’s passed to Report. It is an error to keep a single “current progress” object, update it, and repeatedly pass it to Report."
             if (Content != null)
             {
-                if (_iProgress != null)
+                if (_progress != null)
                 {
-                    _iProgress.Report(Content);
+                    _progress.Report(Content);
                 }
 
-                //Set Content to null no matter if we have an actual IProgress or not to make sure that an incorrect use of this class is detected.
+                //Set Content to null no matter if we have _progress or not to make sure that an incorrect use of this class is detected.
                 Content = null;
 
-                //If rearm is set, create a new instance
-                if (_rearmAfterReport)
+                //If requested by the caller, create a new instance
+                if (_createNewInstanceAfterReport)
                 {
-                    Content = new ReportedObject();
+                    Content = new TReported();
                 }
             }
             else

@@ -8,6 +8,7 @@ IMPROVEMENTS:
 BUG FIXES:
 
 * Fixed an asset that confused "Uptime" with "Time since boot""
+* Fixed source code naming convention issues
 
 ## [Version 2015.01.14](https://github.com/texhex/xteq5/releases/tag/v2015.01.14)
 
