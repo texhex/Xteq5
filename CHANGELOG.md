@@ -1,4 +1,4 @@
-## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+## [Version 2015.01.19](https://github.com/texhex/xteq5/releases/tag/v2015.01.19)
 
 IMPROVEMENTS:
 
@@ -8,7 +8,7 @@ IMPROVEMENTS:
 
 BUG FIXES:
 
-* Fixed an asset that confused "Uptime" with "Time since boot""
+* Fixed asset that mistake "Uptime" for "Time since boot"
 * Fixed source code parameter casing issues
 
 ## [Version 2015.01.14](https://github.com/texhex/xteq5/releases/tag/v2015.01.14)
