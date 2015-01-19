@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Yamua;
 
 namespace HeadlessPS
-{    
+{
 
     /// <summary>
     /// A minimalistic object for PowerShell variables. Note that trying to add a new VariablePlain with the same name as an existing entry 
@@ -22,8 +22,8 @@ namespace HeadlessPS
         /// Create an empty variable
         /// </summary>
         public VariablePlain()
+            : this(string.Empty)
         {
-
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace HeadlessPS
         /// </summary>
         /// <param name="name">Name of the variable</param>
         public VariablePlain(string name)
+            : this(name, null)
         {
-            this.Name = name;
         }
 
         /// <summary>
@@ -41,9 +41,8 @@ namespace HeadlessPS
         /// <param name="name">Name of the variable</param>
         /// <param name="value">Value of the variable</param>
         public VariablePlain(string name, Object value)
+            : this(name, value, readOnly: false)
         {
-            this.Name = name;
-            this.Value = value;
         }
 
         /// <summary>
@@ -72,7 +71,7 @@ namespace HeadlessPS
             }
 
             set
-            {                
+            {
                 /* MTH: Only allow A-Z,a-z,0-9 and underscore as variable name.
                  * PowerShell documentation: "Whenever possible, variable names should include only alphanumeric characters and the underscore character (_)."
                  * [about_Variables](http://technet.microsoft.com/en-us/library/hh847734.aspx)                
@@ -80,9 +79,9 @@ namespace HeadlessPS
                 string varname = ASCIIStringFilter.Filter(value, ASCIIStringFilter.CHARS_UPPER_CASE + ASCIIStringFilter.CHARS_LOWER_CASE + ASCIIStringFilter.CHARS_NUMERIC + ASCIIStringFilter.CHAR_UNDERSCORE);
 
                 if (string.IsNullOrWhiteSpace(varname))
-                    throw new ArgumentException(string.Format("Variable named {0} was empty after purifying it.",value));
+                    throw new ArgumentException(string.Format("Variable named {0} was empty after purifying it.", value));
 
-                _name=varname;
+                _name = varname;
 
             }
         }

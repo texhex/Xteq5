@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Yamua.Templates
+namespace Yamua.CodeTemplates
 {
     //From: C# in Depth
     //http://csharpindepth.com/Articles/General/Singleton.aspx

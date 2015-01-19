@@ -15,40 +15,40 @@ namespace Xteq5
     {
         List<AssetRecord> _results;
 
-        internal async Task<List<AssetRecord>> Run(PSScriptRunner ScriptRunner, string AssetScriptPath, IProgress<RunnerProgressDetail> Progress = null)
+        internal async Task<List<AssetRecord>> Run(PSScriptRunner scriptRunner, string assetScriptPath, IProgress<RunnerProgressDetail> progress = null)
         {
             _results = new List<AssetRecord>();
 
-            await RunInternalAsync(ScriptRunner, AssetScriptPath, Progress);
+            await RunInternalAsync(scriptRunner, assetScriptPath, progress);
 
             return _results;
         }
 
-        protected override void ProcessFailure(BaseRecord Record)
+        protected override void ProcessFailure(BaseRecord record)
         {
             //All basic values were set by BaseRunner already, so we simply add it to our list
-            AssetRecord rec = new AssetRecord(Record);
+            AssetRecord rec = new AssetRecord(record);
             _results.Add(rec);
         }
 
-        protected override void ProcessEmptyData(BaseRecord Record, Hashtable Table)
+        protected override void ProcessEmptyData(BaseRecord record, Hashtable table)
         {
             //All basic values were set by BaseRunner already, so we simply add it to our list
-            AssetRecord rec = new AssetRecord(Record);
+            AssetRecord rec = new AssetRecord(record);
             _results.Add(rec);
         }
 
 
-        protected override void ProcessNonEmptyData(BaseRecord Record, Hashtable Table, string DataKeyValue)
+        protected override void ProcessNonEmptyData(BaseRecord record, Hashtable table, string dataKeyValue)
         {
-            AssetRecord assetRecord = new AssetRecord(Record);
+            AssetRecord assetRecord = new AssetRecord(record);
 
             //Data is set = Conclusion.Success
             assetRecord.Conclusion = ConclusionEnum.Success;
-            assetRecord.Data = DataKeyValue;
+            assetRecord.Data = dataKeyValue;
 
             //Check the object that was returned and copy it to .DataNative (if we support the type)
-            object dataObjectFromHashtable = GetObjectFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyData);
+            object dataObjectFromHashtable = GetObjectFromHashtable(table, Xteq5EngineConstant.ReturnedHashtableKeyData);
 
             if (dataObjectFromHashtable is string)
             {

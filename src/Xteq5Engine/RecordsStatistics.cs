@@ -51,10 +51,10 @@ namespace Xteq5
         public int SuccessCount { get; private set; }
 
         
-        internal RecordsStatistics(List<BaseRecord> Records)
+        internal RecordsStatistics(List<BaseRecord> records)
         {
 
-            foreach (BaseRecord rec in Records)
+            foreach (BaseRecord rec in records)
             {
                 Total++;
 

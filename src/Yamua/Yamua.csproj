@@ -83,7 +83,7 @@
     <Compile Include="DisposableObject.cs" />
     <Compile Include="EventHandlerExtensions.cs" />
     <Compile Include="ExecuteAndForget.cs" />
-    <Compile Include="NamingConvention.cs" />
+    <Compile Include="CodeTemplates\NamingConvention.cs" />
     <Compile Include="ProgressReporter.cs" />
     <Compile Include="PathExtension.cs" />
     <Compile Include="GlobalAtom.cs" />
@@ -92,7 +92,7 @@
     <Compile Include="RandomItemNameGenerator.cs" />
     <Compile Include="RandomPersonNameGenerator.cs" />
     <Compile Include="SecurityNeutralMutex.cs" />
-    <Compile Include="Singelton.cs" />
+    <Compile Include="CodeTemplates\Singelton.cs" />
     <Compile Include="StringFilter.cs" />
     <Compile Include="StringTokenizer.cs" />
     <Compile Include="WeakHTMLTag.cs" />

@@ -28,7 +28,6 @@ namespace Yamua
         public ProgressReporter(IProgress<TReported> progress)
             : this(progress, createNewInstanceAfterReport: false)
         {
-
         }
 
         /// <summary>

@@ -16,42 +16,42 @@ namespace Xteq5
     {
         List<TestRecord> _results;
 
-        internal async Task<List<TestRecord>> RunAsync(PSScriptRunner ScriptRunner, string TestScriptPath, IProgress<RunnerProgressDetail> Progress = null)
+        internal async Task<List<TestRecord>> RunAsync(PSScriptRunner scriptRunner, string testScriptsPath, IProgress<RunnerProgressDetail> progress = null)
         {
             _results = new List<TestRecord>();
 
-            await RunInternalAsync(ScriptRunner, TestScriptPath, Progress);
+            await RunInternalAsync(scriptRunner, testScriptsPath, progress);
 
             return _results;
         }
 
 
-        protected override void ProcessFailure(BaseRecord Record)
+        protected override void ProcessFailure(BaseRecord record)
         {
             //All basic values were set by BaseRunner already, so we simply add it to our list
-            TestRecord rec = new TestRecord(Record);
+            TestRecord rec = new TestRecord(record);
             _results.Add(rec);
         }
 
-        protected override void ProcessEmptyData(BaseRecord Record, Hashtable Table)
+        protected override void ProcessEmptyData(BaseRecord record, Hashtable table)
         {
             //Conclusion is already set to .DoesNotApply
-            TestRecord rec = new TestRecord(Record);
+            TestRecord rec = new TestRecord(record);
             _results.Add(rec);
         }
 
-        protected override void ProcessNonEmptyData(BaseRecord Record, Hashtable Table, string DataKeyValue)
+        protected override void ProcessNonEmptyData(BaseRecord record, Hashtable table, string dataKeyValue)
         {
             //The basic values are all set by :base() and it was also validated that the hashtable contains a key ".Data". 
-            TestRecord testRecord = new TestRecord(Record);
+            TestRecord testRecord = new TestRecord(record);
 
             //Data is not NULL and not "", hence we need to check which conclusion the author wanted to report
-            ConclusionEnum conclusion = ConclusionEnumConverter.ParseConclusion(DataKeyValue);
+            ConclusionEnum conclusion = ConclusionEnumConverter.ParseConclusion(dataKeyValue);
 
             if (conclusion == ConclusionEnum.Fatal)
             {
                 //We were not able to parse the value inside .Data
-                testRecord.AddLineToProcessMessages(string.Format("Unable to parse result {0}", DataKeyValue));
+                testRecord.AddLineToProcessMessages(string.Format("Unable to parse result {0}", dataKeyValue));
 
             }
             testRecord.Conclusion = conclusion;

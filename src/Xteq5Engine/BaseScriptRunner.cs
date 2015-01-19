@@ -20,25 +20,25 @@ namespace Xteq5
 
         ProgressReporter<RunnerProgressDetail> _reporter;
 
-        void ReportProgressScript(string Filepath)
+        void ReportProgressScript(string filepath)
         {
             _reporter.Content.Action = RunnerAction.ScriptRunning;
-            _reporter.Content.ScriptFilepath = Filepath;
-            _reporter.Content.ScriptFilename = PathExtension.Filename(Filepath);
+            _reporter.Content.ScriptFilepath = filepath;
+            _reporter.Content.ScriptFilename = PathExtension.Filename(filepath);
             _reporter.Report();
         }
         
-        protected async Task RunInternalAsync(PSScriptRunner ScriptRunner, string ScriptDirectory, IProgress<RunnerProgressDetail> Progress = null)
+        protected async Task RunInternalAsync(PSScriptRunner scriptRunner, string scriptDirectory, IProgress<RunnerProgressDetail> progress = null)
         {
             //Assign progress reporter and set it that it can be used after calling Report()
-            _reporter = new ProgressReporter<RunnerProgressDetail>(Progress, createNewInstanceAfterReport:true);
+            _reporter = new ProgressReporter<RunnerProgressDetail>(progress, createNewInstanceAfterReport:true);
 
             //Report that we are about to start
             _reporter.Content.Action = RunnerAction.Starting;
             _reporter.Report();
 
 
-            string[] allScripts = Directory.GetFiles(ScriptDirectory, Xteq5EngineConstant.ScriptFilePattern);
+            string[] allScripts = Directory.GetFiles(scriptDirectory, Xteq5EngineConstant.ScriptFilePattern);
             NaturalSort.Sort(allScripts);
 
             foreach (string scriptFilename in allScripts)
@@ -53,7 +53,7 @@ namespace Xteq5
                     //Report back status
                     ReportProgressScript(scriptFilename);
 
-                    using (ExecutionResult execResult = await ScriptRunner.RunScriptFileAsync(scriptFilename))
+                    using (ExecutionResult execResult = await scriptRunner.RunScriptFileAsync(scriptFilename))
                     {
                         record.ProcessMessages = execResult.ToString();
 
@@ -119,37 +119,37 @@ namespace Xteq5
         }
 
 
-        void ProcessHashtableOutputInternal(BaseRecord Record, Hashtable Table)
+        void ProcessHashtableOutputInternal(BaseRecord record, Hashtable table)
         {
             //We need a a key "Data" or this is considered to be fatal. The value of this key can still be NULL. 
-            if (Table.ContainsKey(Xteq5EngineConstant.ReturnedHashtableKeyData) == false)
+            if (table.ContainsKey(Xteq5EngineConstant.ReturnedHashtableKeyData) == false)
             {
-                Record.Conclusion = ConclusionEnum.Fatal;
-                Record.AddLineToProcessMessages("Data key missing from returned hashtable");
+                record.Conclusion = ConclusionEnum.Fatal;
+                record.AddLineToProcessMessages("Data key missing from returned hashtable");
 
-                ProcessFailure(Record);
+                ProcessFailure(record);
             }
             else
             {
-                string name = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyName);
+                string name = GetStringFromHashtable(table, Xteq5EngineConstant.ReturnedHashtableKeyName);
                 if (string.IsNullOrEmpty(name) == false)
                 {
-                    Record.Name = name;
+                    record.Name = name;
                 }
 
-                string text = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyText);
+                string text = GetStringFromHashtable(table, Xteq5EngineConstant.ReturnedHashtableKeyText);
                 if (string.IsNullOrEmpty(text) == false)
                 {
-                    Record.Description = text;
+                    record.Description = text;
                 }
 
-                string data = GetStringFromHashtable(Table, Xteq5EngineConstant.ReturnedHashtableKeyData);
+                string data = GetStringFromHashtable(table, Xteq5EngineConstant.ReturnedHashtableKeyData);
                 if (string.IsNullOrEmpty(data))
                 {
                     //Empty data means DoesNotApply
-                    Record.Conclusion = ConclusionEnum.DoesNotApply;
+                    record.Conclusion = ConclusionEnum.DoesNotApply;
 
-                    ProcessEmptyData(Record, Table);
+                    ProcessEmptyData(record, table);
                 }
                 else
                 {
@@ -158,13 +158,13 @@ namespace Xteq5
                     if (conclusion == ConclusionEnum.DoesNotApply)
                     {
                         //The script returned n/a (DoesNotApply), so it can be processed as an empty record
-                        Record.Conclusion = ConclusionEnum.DoesNotApply;
-                        ProcessEmptyData(Record, Table);
+                        record.Conclusion = ConclusionEnum.DoesNotApply;
+                        ProcessEmptyData(record, table);
                     }
                     else
                     {
                         //The result was something else. Let the implementation decide.
-                        ProcessNonEmptyData(Record, Table, data);
+                        ProcessNonEmptyData(record, table, data);
                     }
                 }
 
@@ -173,11 +173,11 @@ namespace Xteq5
         }
 
 
-        protected Object GetObjectFromHashtable(Hashtable Table, string KeyName)
+        protected Object GetObjectFromHashtable(Hashtable table, string keyName)
         {
-            if (Table.ContainsKey(KeyName))
+            if (table.ContainsKey(keyName))
             {
-                return Table[KeyName];
+                return table[keyName];
             }
             else
             {
@@ -185,9 +185,9 @@ namespace Xteq5
             }
         }
 
-        protected string GetStringFromHashtable(Hashtable Table, string KeyName)
+        protected string GetStringFromHashtable(Hashtable table, string keyName)
         {
-            Object obj = GetObjectFromHashtable(Table, KeyName);
+            Object obj = GetObjectFromHashtable(table, keyName);
 
             if (obj != null)
             {
@@ -209,11 +209,11 @@ namespace Xteq5
         }
 
 
-        protected abstract void ProcessFailure(BaseRecord Record);
+        protected abstract void ProcessFailure(BaseRecord record);
 
-        protected abstract void ProcessEmptyData(BaseRecord Record, Hashtable Table);
+        protected abstract void ProcessEmptyData(BaseRecord record, Hashtable table);
 
-        protected abstract void ProcessNonEmptyData(BaseRecord Record, Hashtable Table, string DataKeyValue);
+        protected abstract void ProcessNonEmptyData(BaseRecord record, Hashtable table, string dataKeyValue);
 
 
     }

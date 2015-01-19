@@ -13,7 +13,7 @@ using System.Threading.Tasks;
  * http://msdn.microsoft.com/en-us/library/ms229002%28v=vs.110%29.aspx  
  * 
  */
-namespace Yamua.Template
+namespace Yamua.CodeTemplates
 {
     //Class names should use PascalCasing
     public abstract class NamingConvention<TObject> where TObject : class, new() //Generic types should start with "T"

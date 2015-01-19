@@ -26,10 +26,10 @@ namespace Xteq5
         /// <summary>
         /// Executes all assets and tests found in CompilationPath asynchronously
         /// </summary>
-        /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
-        public Report Run(string CompilationPath)
+        /// <param name="compilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
+        public Report Run(string compilationPath)
         {
-            Task<Report> task = RunAsync(CompilationPath);
+            Task<Report> task = RunAsync(compilationPath);
             task.Wait();
             return task.Result;
         }
@@ -37,15 +37,15 @@ namespace Xteq5
         /// <summary>
         /// Executes all assets and tests found in CompilationPath asynchronously
         /// </summary>
-        /// <param name="CompilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
-        /// <param name="Progress">An IProgress implementation to report status to</param>
-        public async Task<Report> RunAsync(string CompilationPath, IProgress<RunnerProgressDetail> Progress = null)
+        /// <param name="compilationPath">Directory to read data from. Must contain the required subfolders ASSETS, TESTS and MODULES.</param>
+        /// <param name="progress">An IProgress implementation to report status to</param>
+        public async Task<Report> RunAsync(string compilationPath, IProgress<RunnerProgressDetail> progress = null)
         {
-            if (string.IsNullOrWhiteSpace(CompilationPath))
+            if (string.IsNullOrWhiteSpace(compilationPath))
                 throw new ArgumentException("Compilation path is not set");
 
             //Check if all folders are present
-            string rootfolder = PathExtension.FullPath(CompilationPath);
+            string rootfolder = PathExtension.FullPath(compilationPath);
             if (PathExtension.DirectoryExists(rootfolder) == false)
                 throw new CompilationFolderException(rootfolder);
 
@@ -64,7 +64,7 @@ namespace Xteq5
             Report report = new Report();
 
             //Set source folder
-            report.CompilationFolder = CompilationPath;
+            report.CompilationFolder = compilationPath;
 
             //Everything looks fine so far. Let's go. 
             PSScriptRunnerPreferences prefs = new PSScriptRunnerPreferences();
@@ -90,7 +90,7 @@ namespace Xteq5
 
                 //Now execute all assets
                 AssetScriptRunner assetRunner = new AssetScriptRunner();
-                assets = await assetRunner.Run(psScriptRunnerAssets, assetScriptsPath, Progress);
+                assets = await assetRunner.Run(psScriptRunnerAssets, assetScriptsPath, progress);
             }
 
 
@@ -103,7 +103,7 @@ namespace Xteq5
             using (PSScriptRunner psScriptRunnerTests = new PSScriptRunner(prefs))
             {
                 TestScriptRunner testsRunner = new TestScriptRunner();
-                tests = await testsRunner.RunAsync(psScriptRunnerTests, testScriptsPath, Progress);
+                tests = await testsRunner.RunAsync(psScriptRunnerTests, testScriptsPath, progress);
             }
 
 
@@ -136,40 +136,40 @@ namespace Xteq5
             return report;
         }
 
-        private void CalculateRecordStatistics(Report Report, List<AssetRecord> Assets, List<TestRecord> Tests)
+        private void CalculateRecordStatistics(Report report, List<AssetRecord> assets, List<TestRecord> tests)
         {
             List<BaseRecord> assetBaseRecords = new List<BaseRecord>();
-            foreach (AssetRecord asset in Assets)
+            foreach (AssetRecord asset in assets)
             {
                 assetBaseRecords.Add(asset);
             }
-            Report.AssetStatiscs = new RecordsStatistics(assetBaseRecords);
+            report.AssetStatiscs = new RecordsStatistics(assetBaseRecords);
 
             List<BaseRecord> testBaseRecords = new List<BaseRecord>();
-            foreach (TestRecord test in Tests)
+            foreach (TestRecord test in tests)
             {
                 testBaseRecords.Add(test);
             }
-            Report.TestStatiscs = new RecordsStatistics(testBaseRecords);
+            report.TestStatiscs = new RecordsStatistics(testBaseRecords);
 
         }
 
 
-        private void CheckCompilationSubfolder(string SubfolderPath)
+        private void CheckCompilationSubfolder(string subfolderPath)
         {
-            if (PathExtension.DirectoryExists(SubfolderPath) == false)
+            if (PathExtension.DirectoryExists(subfolderPath) == false)
             {
-                throw new CompilationSubFolderException(SubfolderPath);
+                throw new CompilationSubFolderException(subfolderPath);
             }
         }
 
 
-        Hashtable CreateHashtableFromAssetRecords(List<AssetRecord> Assets)
+        Hashtable CreateHashtableFromAssetRecords(List<AssetRecord> assets)
         {
             //Create a case insensitive hashtable
             Hashtable table = System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable();
 
-            foreach (AssetRecord asset in Assets)
+            foreach (AssetRecord asset in assets)
             {
                 //Ignore any asset that is not Successful
                 if (asset.Conclusion == ConclusionEnum.Success)

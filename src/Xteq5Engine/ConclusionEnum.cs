@@ -41,11 +41,11 @@ namespace Xteq5
         /// <summary>
         /// Tries to parse a conclusion as string. Returns FATAL if the string could not be undestood
         /// </summary>
-        /// <param name="ConclusionString">ConclusionEnum as string</param>
+        /// <param name="conclusionString">ConclusionEnum as string</param>
         /// <returns>A ConclusionEnum</returns>
-        public static ConclusionEnum ParseConclusion(string ConclusionString)
+        public static ConclusionEnum ParseConclusion(string conclusionString)
         {
-            string dataLowerCase = ConclusionString.ToLower(CultureInfo.InvariantCulture);
+            string dataLowerCase = conclusionString.ToLower(CultureInfo.InvariantCulture);
 
             switch (dataLowerCase)
             {
@@ -88,11 +88,11 @@ namespace Xteq5
         /// Converts a ConclusioEnum to a human friendly string.
         /// The verb "Humanize" is taken from this great project: [Humanizer](https://github.com/MehdiK/Humanizer)
         /// </summary>
-        /// <param name="Conclusion">Conclusion to retrieve a humanized string for</param>
+        /// <param name="conclusion">Conclusion to retrieve a humanized string for</param>
         /// <returns>The humanized string</returns>
-        public static string ConclusionHumanized(ConclusionEnum Conclusion)
+        public static string ConclusionHumanized(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.Success:
                     return "OK (Success)";
@@ -113,18 +113,18 @@ namespace Xteq5
                     return "Minor";
 
                 default:
-                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", Conclusion.ToString()));
+                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", conclusion.ToString()));
             }
         }
 
         /// <summary>
         /// Returns a sentence that describes the conclusion for a TestRecord.
         /// </summary>
-        /// <param name="Conclusion">Conclusion to return text for</param>
+        /// <param name="conclusion">Conclusion to return text for</param>
         /// <returns>A sentence describing the conclusiong</returns>
-        public static string TestRecordConclusionDescription(ConclusionEnum Conclusion)
+        public static string TestRecordConclusionDescription(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.Success:
                     //Alternative: The test found no issues, your system is operating within established parameters
@@ -149,7 +149,7 @@ namespace Xteq5
                     return "The test found a little irregularity"; 
 
                 default:
-                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", Conclusion.ToString()));
+                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", conclusion.ToString()));
             }
         }
 
@@ -157,11 +157,11 @@ namespace Xteq5
         /// Returns a recommended action for the user, based on the conclusion. 
         /// This exists only for tests, because for assets there is never a recommended action.
         /// </summary>
-        /// <param name="Conclusion">Conclusion to get a recommended action for</param>
+        /// <param name="conclusion">Conclusion to get a recommended action for</param>
         /// <returns>An empty string if no recommended action exist, or the recommended action</returns>
-        public static string TestRecordConclusionRecommendedAction(ConclusionEnum Conclusion)
+        public static string TestRecordConclusionRecommendedAction(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.Success:
                 case ConclusionEnum.DoesNotApply:
@@ -176,18 +176,18 @@ namespace Xteq5
                     return "Investigate and fix the issue when time permits";
 
                 default:
-                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", Conclusion.ToString()));
+                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", conclusion.ToString()));
             }
         }
 
         /// <summary>
         /// Returns a sentence that describes the conclusion for an AssetRecord.
         /// </summary>
-        /// <param name="Conclusion">Conclusion to return a sentence for</param>
+        /// <param name="conclusion">Conclusion to return a sentence for</param>
         /// <returns>A sentence describing the conclusion</returns>
-        public static string AssetRecordConclusionDescription(ConclusionEnum Conclusion)
+        public static string AssetRecordConclusionDescription(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.Success:
                     return "The asset successfully retrieved information"; //Different from TestRecord
@@ -202,10 +202,10 @@ namespace Xteq5
                 case ConclusionEnum.Inconclusive:                
                 case ConclusionEnum.Major:
                 case ConclusionEnum.Minor:
-                    throw new ArgumentException(string.Format("ConclusionEnum {0} is not valid for an AssetRecord", Conclusion.ToString()));
+                    throw new ArgumentException(string.Format("ConclusionEnum {0} is not valid for an AssetRecord", conclusion.ToString()));
 
                 default:
-                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", Conclusion.ToString()));
+                    throw new ArgumentOutOfRangeException(string.Format("Found unknown ConclusionEnum: {0}", conclusion.ToString()));
             }
         }
 

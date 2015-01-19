@@ -16,15 +16,15 @@ namespace Xteq5
         {
         }
 
-        public CompilationFolderException(string CompilationFolder)
-            : base("Compilation folder " + CompilationFolder + " not found")
+        public CompilationFolderException(string compilationFolder)
+            : base("Compilation folder " + compilationFolder + " not found")
         {
 
         }
     }
 
     /// <summary>
-    /// Thrown if the given compilation folder exists, but a required sub folder does not exist
+    /// Thrown if the given compilation folder exists, but a required sub folder is missing
     /// </summary>
     [Serializable]
     public class CompilationSubFolderException : Exception
@@ -33,8 +33,8 @@ namespace Xteq5
         {
         }
 
-        public CompilationSubFolderException(string CompilationSubFolder)
-            : base("Compilation sub folder " + CompilationSubFolder + " not found")
+        public CompilationSubFolderException(string compilationSubFolder)
+            : base("Compilation sub folder " + compilationSubFolder + " not found")
         {
 
         }
