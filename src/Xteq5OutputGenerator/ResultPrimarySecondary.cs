@@ -25,12 +25,12 @@ namespace Xteq5
         /// <summary>
         /// Initalize this class with a record with recommended values for a BaseRecord
         /// </summary>
-        /// <param name="Record"></param>
-        internal ResultPrimarySecondary(BaseRecord Record)
+        /// <param name="record"></param>
+        internal ResultPrimarySecondary(BaseRecord record)
         {
             //Short-circut some values
-            Conclusion = Record.Conclusion;
-            string description = string.IsNullOrWhiteSpace(Record.Description) ? string.Empty : Record.Description;
+            Conclusion = record.Conclusion;
+            string description = string.IsNullOrWhiteSpace(record.Description) ? string.Empty : record.Description;
 
             switch (Conclusion)
             {
@@ -42,12 +42,12 @@ namespace Xteq5
                     //Set Primary to a descriptive text, e.g. Conclusiong==Success -> "OK (Success)"
                     Primary = ConclusionEnumConverter.ConclusionHumanized(Conclusion);
 
-                    if (Record is AssetRecord)
+                    if (record is AssetRecord)
                     {
                         //For an asset that returned SUCCESS, the VALUE the asset has retrieved is the interessting part, hence change primary to the value
                         if (Conclusion == ConclusionEnum.Success)
                         {
-                            Primary = (Record as AssetRecord).Data;
+                            Primary = (record as AssetRecord).Data;
                         }
 
                         //Assign to secondary either the default conclusion description or the one from the script
@@ -66,7 +66,7 @@ namespace Xteq5
                 case ConclusionEnum.Inconclusive:
                 case ConclusionEnum.Major:
                 case ConclusionEnum.Minor:
-                    if (Record is AssetRecord)
+                    if (record is AssetRecord)
                     {
                         Primary = string.IsNullOrEmpty(description) ? ConclusionEnumConverter.ConclusionHumanized(Conclusion) : description;
                         Secondary = ConclusionEnumConverter.AssetRecordConclusionDescription(Conclusion);

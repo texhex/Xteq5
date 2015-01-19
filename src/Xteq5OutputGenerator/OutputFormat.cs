@@ -27,11 +27,11 @@ namespace Xteq5
         /// <summary>
         /// Tries to parse a report format as string. Returns UNKNOWN if the string could not be undestood
         /// </summary>
-        /// <param name="ReportFormat">ReportFormat as string</param>
+        /// <param name="reportFormat">ReportFormat as string</param>
         /// <returns>A ReportFormatEnum</returns>
-        public static OutputFormatEnum ParseReportFormat(string ReportFormat)
+        public static OutputFormatEnum ParseReportFormat(string reportFormat)
         {
-            string dataLowerCase = ReportFormat.ToLower(CultureInfo.InvariantCulture);
+            string dataLowerCase = reportFormat.ToLower(CultureInfo.InvariantCulture);
 
             switch (dataLowerCase)
             {

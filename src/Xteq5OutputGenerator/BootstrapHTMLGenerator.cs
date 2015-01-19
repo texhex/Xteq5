@@ -14,48 +14,48 @@ namespace Xteq5
 
         }
 
-        public override string Generate(Report Report, string TemplateFilepath)
+        public override string Generate(Report report, string templateFilepath)
         {
-            ReadTemplate(TemplateFilepath);
+            ReadTemplate(templateFilepath);
 
-            StartGenerating(Report);
+            StartGenerating(report);
 
             return _content.ToString();
         }
 
-        protected override void ReplaceHeaderValue(string ValueName, string Value)
+        protected override void ReplaceHeaderValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceAssetStatisticValue(string ValueName, string Value)
+        protected override void ReplaceAssetStatisticValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestStatisticValue(string ValueName, string Value)
+        protected override void ReplaceTestStatisticValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceResultText(string ValueName, string Value)
+        protected override void ReplaceResultText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceAssetConclusionText(string ValueName, string Value)
+        protected override void ReplaceAssetConclusionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestConclusionText(string ValueName, string Value)
+        protected override void ReplaceTestConclusionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestRecommendedActionText(string ValueName, string Value)
+        protected override void ReplaceTestRecommendedActionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
         #region Asset details replacement
@@ -64,10 +64,10 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
+        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord asset, BaseRecord baseRec, ResultPrimarySecondary resultPrimSecond)
         {
 
-            sbAssets.AppendLine(CreateTableRow(BaseRec, ResultPrimSecond));
+            sbAssets.AppendLine(CreateTableRow(baseRec, resultPrimSecond));
         }
 
         protected override void EndAssetDetails(StringBuilder sbAssets)
@@ -75,9 +75,9 @@ namespace Xteq5
             //We do not need any footer, it's all in the template file
         }
 
-        protected override void ReplaceAssetList(string ValueName, string AssetList)
+        protected override void ReplaceAssetList(string valueName, string assetList)
         {
-            ReplaceHTMLComment(ValueName, AssetList);
+            ReplaceHTMLComment(valueName, assetList);
         }
 
         #endregion
@@ -91,9 +91,9 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
+        protected override void ProcessTest(StringBuilder sbTests, TestRecord test, BaseRecord baseRec, ResultPrimarySecondary resultPrimSecond)
         {
-            sbTests.AppendLine(CreateTableRow(BaseRec, ResultPrimSecond));
+            sbTests.AppendLine(CreateTableRow(baseRec, resultPrimSecond));
         }
 
         protected override void EndTestDetails(StringBuilder sbTests)
@@ -101,60 +101,60 @@ namespace Xteq5
             //We do not need a footer, it's all in the template file
         }
 
-        protected override void ReplaceTestList(string ValueName, string TestList)
+        protected override void ReplaceTestList(string valueName, string testList)
         {
-            ReplaceHTMLComment(ValueName, TestList);
+            ReplaceHTMLComment(valueName, testList);
         }
 
         #endregion
 
 
 
-        private void Replace(string ValueName, string Value)
+        private void Replace(string valueName, string value)
         {
-            _content.Replace("@@" + ValueName + "@@", Value);
+            _content.Replace("@@" + valueName + "@@", value);
         }
 
-        void ReplaceHTMLComment(string ValueName, string Value)
+        void ReplaceHTMLComment(string valueName, string value)
         {
-            _content.Replace("<!--@@" + ValueName + "@@-->", Value);
+            _content.Replace("<!--@@" + valueName + "@@-->", value);
         }
 
 
 
         //Bootstrap helper function
-        string CreateTableRow(BaseRecord Record, ResultPrimarySecondary PrimarySecondary)
+        string CreateTableRow(BaseRecord record, ResultPrimarySecondary primarySecondary)
         {
             WeakHTMLTag tr = new WeakHTMLTag("tr");
 
             //If the conclusion is MAJOR or FATAL, add a class to the TR so the entire row is colored
-            if ((Record.Conclusion == ConclusionEnum.Major) || (Record.Conclusion == ConclusionEnum.Fatal))
+            if ((record.Conclusion == ConclusionEnum.Major) || (record.Conclusion == ConclusionEnum.Fatal))
             {
-                tr.CSSClass = ConclusionToCSSModifier(Record.Conclusion);
+                tr.CSSClass = ConclusionToCSSModifier(record.Conclusion);
             }
 
             //Add parameter for script details modal
             tr.Attributes["data-toggle"] = "modal";
             tr.Attributes["data-target"] = "#modalDetails";
-            tr.Attributes["data-modal-title"] = WeakHTMLTag.HTMLEncode(Record.ScriptFilename);
-            tr.Attributes["data-modal-content"] = ConvertProcessMessagesToHTML(Record.ProcessMessages);
+            tr.Attributes["data-modal-title"] = WeakHTMLTag.HTMLEncode(record.ScriptFilename);
+            tr.Attributes["data-modal-content"] = ConvertProcessMessagesToHTML(record.ProcessMessages);
 
             //Create <td> for Status
-            string tdStatus = CreateHTMLElement_TdGlyphSpan(Record.Conclusion);
+            string tdStatus = CreateHTMLElement_TdGlyphSpan(record.Conclusion);
 
             //Create <td> for Name and Script file
-            string tdName = CreateHTMLElement_TdTextSmallText(Record.Name, Record.ScriptFilename);
+            string tdName = CreateHTMLElement_TdTextSmallText(record.Name, record.ScriptFilename);
 
-            string tdValue = CreateHTMLElement_TdTextSmallText(PrimarySecondary.Primary, PrimarySecondary.Secondary);
+            string tdValue = CreateHTMLElement_TdTextSmallText(primarySecondary.Primary, primarySecondary.Secondary);
             tr.HTML = tdStatus + tdName + tdValue;
 
             return tr.ToString() + "\r\n";
         }
 
 
-        string ConvertProcessMessagesToHTML(string ProcessMessages)
+        string ConvertProcessMessagesToHTML(string processMessages)
         {
-            string htmlEncoded = WeakHTMLTag.HTMLEncode(ProcessMessages);
+            string htmlEncoded = WeakHTMLTag.HTMLEncode(processMessages);
 
             StringBuilder sb = new StringBuilder(htmlEncoded);
             sb.Replace("\r\n", "<br/>");
@@ -163,48 +163,48 @@ namespace Xteq5
             return sb.ToString();
         }
 
-        string CreateHTMLElement_TdGlyphSpan(ConclusionEnum Conclusion)
+        string CreateHTMLElement_TdGlyphSpan(ConclusionEnum conclusion)
         {
             //<td class="success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
             WeakHTMLTag td = new WeakHTMLTag("td");
 
-            string cssClass = ConclusionToCSSModifier(Conclusion);
+            string cssClass = ConclusionToCSSModifier(conclusion);
             if (string.IsNullOrWhiteSpace(cssClass) == false)
             {
                 td.Attributes["class"] = cssClass;
             }
 
-            td.HTML = CreateHTMLElement_SpanGlyphicon(Conclusion);
+            td.HTML = CreateHTMLElement_SpanGlyphicon(conclusion);
             return td.ToString();
         }
 
-        string CreateHTMLElement_TdTextSmallText(string Text, string SmallText)
+        string CreateHTMLElement_TdTextSmallText(string text, string smallText)
         {
             //<td>NAME<br><small><em>SMALLTEXT</em></small></td>      
-            string smalltext = CreateHTMLElement_EmSmallText(SmallText);
+            string smalltext = CreateHTMLElement_EmSmallText(smallText);
 
             WeakHTMLTag td = new WeakHTMLTag("td");
-            td.Text = Text;
+            td.Text = text;
             td.HTML += "<br/>";
             td.HTML += smalltext;
 
             return td.ToString();
         }
 
-        string CreateHTMLElement_EmSmallText(string Text)
+        string CreateHTMLElement_EmSmallText(string text)
         {
             WeakHTMLTag em = new WeakHTMLTag("em");
-            em.Text = Text;
+            em.Text = text;
 
             WeakHTMLTag small = new WeakHTMLTag("small", em);
 
             return small.ToString();
         }
 
-        string CreateHTMLElement_SpanGlyphicon(ConclusionEnum Conclusion)
+        string CreateHTMLElement_SpanGlyphicon(ConclusionEnum conclusion)
         {
             //<span class="glyphicon glyphicon-ok" aria-hidden="true">
-            string glyphicon = ConclusionToGlyphicon(Conclusion);
+            string glyphicon = ConclusionToGlyphicon(conclusion);
 
             WeakHTMLTag span = new WeakHTMLTag("span");
             span.CSSClass = "glyphicon " + glyphicon;
@@ -212,9 +212,9 @@ namespace Xteq5
             return span.ToString();
         }
 
-        string ConclusionToGlyphicon(ConclusionEnum Conclusion)
+        string ConclusionToGlyphicon(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.DoesNotApply:
                     return "glyphicon-asterisk";
@@ -240,9 +240,9 @@ namespace Xteq5
         }
 
 
-        string ConclusionToCSSModifier(ConclusionEnum Conclusion)
+        string ConclusionToCSSModifier(ConclusionEnum conclusion)
         {
-            switch (Conclusion)
+            switch (conclusion)
             {
                 case ConclusionEnum.DoesNotApply:
                 case ConclusionEnum.Inconclusive:

@@ -63,43 +63,43 @@ namespace Xteq5
         /// <summary>
         /// Generates a JSON formated output report
         /// </summary>
-        /// <param name="Report">The report that should be transfered into JSON</param>
+        /// <param name="report">The report that should be transfered into JSON</param>
         /// <returns>A JSON formated string</returns>
-        public override string Generate(Xteq5.Report Report)
+        public override string Generate(Report report)
         {
             ReportClass rep = new ReportClass();
             rep.IssuesFound = new IssuesFoundClass();
 
-            rep.ID = Report.ID;
-            rep.Compilation = Report.CompilationFolder;
-            rep.EngineVersion = Report.EngineVersion;
-            rep.EngineVersionString = Report.EngineVersion.ToString();
-            rep.Username = Report.UserName;
-            rep.Computername = Report.ComputerName;
-            rep.Text = Report.UserText;
-            rep.StartDateTimeUTC = Report.StartedUTC;
-            rep.EndDateTimeUTC = Report.EndedUTC;
-            rep.RuntimeSeconds = Report.RuntimeSeconds;
+            rep.ID = report.ID;
+            rep.Compilation = report.CompilationFolder;
+            rep.EngineVersion = report.EngineVersion;
+            rep.EngineVersionString = report.EngineVersion.ToString();
+            rep.Username = report.UserName;
+            rep.Computername = report.ComputerName;
+            rep.Text = report.UserText;
+            rep.StartDateTimeUTC = report.StartedUTC;
+            rep.EndDateTimeUTC = report.EndedUTC;
+            rep.RuntimeSeconds = report.RuntimeSeconds;
 
-            rep.IssuesFound.Any = Report.IssuesFound;
-            rep.IssuesFound.Assets = Report.AssetIssuesFound;
-            rep.IssuesFound.Tests = Report.TestIssuesFound;
+            rep.IssuesFound.Any = report.IssuesFound;
+            rep.IssuesFound.Assets = report.AssetIssuesFound;
+            rep.IssuesFound.Tests = report.TestIssuesFound;
 
-            rep.AssetStatistics = Report.AssetStatiscs;
-            rep.TestStatistics = Report.TestStatiscs;
+            rep.AssetStatistics = report.AssetStatiscs;
+            rep.TestStatistics = report.TestStatiscs;
 
             rep.Assets = new List<ItemDetail>();
             rep.Tests = new List<ItemDetail>();
 
             //Loop over all assets
-            foreach (AssetRecord asset in Report.Assets)
+            foreach (AssetRecord asset in report.Assets)
             {
                 BaseRecord baseRec = asset as BaseRecord;
                 rep.Assets.Add(ConvertToItemDetail(baseRec));
             }
 
             //Loop over all tests
-            foreach (TestRecord test in Report.Tests)
+            foreach (TestRecord test in report.Tests)
             {
                 BaseRecord baseRec = test as BaseRecord;
                 rep.Tests.Add(ConvertToItemDetail(baseRec));
@@ -109,15 +109,15 @@ namespace Xteq5
             return JsonConvert.SerializeObject(rep);
         }
 
-        private ItemDetail ConvertToItemDetail(BaseRecord BaseRec)
+        private ItemDetail ConvertToItemDetail(BaseRecord baseRec)
         {
             ItemDetail detail = new ItemDetail();
-            detail.Name = BaseRec.Name;
-            detail.Filename = BaseRec.ScriptFilename;
-            detail.Conclusion = BaseRec.Conclusion;
-            detail.ConclusionString = BaseRec.Conclusion.ToString();
+            detail.Name = baseRec.Name;
+            detail.Filename = baseRec.ScriptFilename;
+            detail.Conclusion = baseRec.Conclusion;
+            detail.ConclusionString = baseRec.Conclusion.ToString();
 
-            ResultPrimarySecondary rps = new ResultPrimarySecondary(BaseRec);
+            ResultPrimarySecondary rps = new ResultPrimarySecondary(baseRec);
 
             ItemResult result = new ItemResult();
             result.Primary = rps.Primary;

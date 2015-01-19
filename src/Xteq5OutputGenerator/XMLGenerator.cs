@@ -13,49 +13,49 @@ namespace Xteq5
         /// <summary>
         /// Generates XML based on the given Xteq5 Report object
         /// </summary>
-        /// <param name="Report">The Report which should be converted to XML</param>
-        /// <param name="TemplateFilepath">Templatefile to be used</param>
+        /// <param name="report">The Report which should be converted to XML</param>
+        /// <param name="templateFilepath">Templatefile to be used</param>
         /// <returns>XML string</returns>
-        public override string Generate(Report Report, string TemplateFilepath)
+        public override string Generate(Report report, string templateFilepath)
         {
-            ReadTemplate(TemplateFilepath);
-            StartGenerating(Report);
+            ReadTemplate(templateFilepath);
+            StartGenerating(report);
             return _content.ToString();
         }
 
-        protected override void ReplaceHeaderValue(string ValueName, string Value)
+        protected override void ReplaceHeaderValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceAssetStatisticValue(string ValueName, string Value)
+        protected override void ReplaceAssetStatisticValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestStatisticValue(string ValueName, string Value)
+        protected override void ReplaceTestStatisticValue(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceResultText(string ValueName, string Value)
+        protected override void ReplaceResultText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceAssetConclusionText(string ValueName, string Value)
+        protected override void ReplaceAssetConclusionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestConclusionText(string ValueName, string Value)
+        protected override void ReplaceTestConclusionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
-        protected override void ReplaceTestRecommendedActionText(string ValueName, string Value)
+        protected override void ReplaceTestRecommendedActionText(string valueName, string value)
         {
-            Replace(ValueName, Value);
+            Replace(valueName, value);
         }
 
         #region Asset details replacement
@@ -64,9 +64,9 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord Asset, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
+        protected override void ProcessAsset(StringBuilder sbAssets, AssetRecord asset, BaseRecord baseRec, ResultPrimarySecondary resultPrimSecond)
         {
-            sbAssets.AppendLine(CreateRecordDetails("Asset", BaseRec, ResultPrimSecond));
+            sbAssets.AppendLine(CreateRecordDetails("Asset", baseRec, resultPrimSecond));
         }
 
         protected override void EndAssetDetails(StringBuilder sbAssets)
@@ -74,9 +74,9 @@ namespace Xteq5
             //We do not need any footer, it's all in the template file
         }
 
-        protected override void ReplaceAssetList(string ValueName, string AssetList)
+        protected override void ReplaceAssetList(string valueName, string assetList)
         {
-            ReplaceXMLComment(ValueName, AssetList);
+            ReplaceXMLComment(valueName, assetList);
         }
 
         #endregion
@@ -90,9 +90,9 @@ namespace Xteq5
             //We do not need any header, it's all in the template file
         }
 
-        protected override void ProcessTest(StringBuilder sbTests, TestRecord Test, BaseRecord BaseRec, ResultPrimarySecondary ResultPrimSecond)
+        protected override void ProcessTest(StringBuilder sbTests, TestRecord test, BaseRecord baseRec, ResultPrimarySecondary resultPrimSecond)
         {
-            sbTests.AppendLine(CreateRecordDetails("Test", BaseRec, ResultPrimSecond));
+            sbTests.AppendLine(CreateRecordDetails("Test", baseRec, resultPrimSecond));
         }
 
         protected override void EndTestDetails(StringBuilder sbTests)
@@ -100,46 +100,46 @@ namespace Xteq5
             //We do not need a footer, it's all in the template file
         }
 
-        protected override void ReplaceTestList(string ValueName, string TestList)
+        protected override void ReplaceTestList(string valueName, string testList)
         {
-            ReplaceXMLComment(ValueName, TestList);
+            ReplaceXMLComment(valueName, testList);
         }
 
         #endregion
 
 
 
-        private void Replace(string ValueName, string Value)
+        private void Replace(string valueName, string value)
         {
-            _content.Replace("@@" + ValueName + "@@", WeakHTMLTag.HTMLEncode(Value));
+            _content.Replace("@@" + valueName + "@@", WeakHTMLTag.HTMLEncode(value));
         }
 
-        void ReplaceXMLComment(string ValueName, string Value)
+        void ReplaceXMLComment(string valueName, string value)
         {
-            _content.Replace("<!--@@" + ValueName + "@@-->", Value);
+            _content.Replace("<!--@@" + valueName + "@@-->", value);
         }
 
-        string CreateRecordDetails(string TagName, BaseRecord Record, ResultPrimarySecondary ResultPrimSecond)
+        string CreateRecordDetails(string tagName, BaseRecord record, ResultPrimarySecondary resultPrimSecond)
         {
             //Yes, this somewhat cheating....
-            WeakHTMLTag tag = new WeakHTMLTag(TagName);
+            WeakHTMLTag tag = new WeakHTMLTag(tagName);
 
             WeakHTMLTag name = new WeakHTMLTag("Name");
-            name.Text = Record.Name;
+            name.Text = record.Name;
 
             WeakHTMLTag filename = new WeakHTMLTag("Filename");
-            filename.Text = Record.ScriptFilename;
+            filename.Text = record.ScriptFilename;
 
             WeakHTMLTag conclusion = new WeakHTMLTag("Conclusion");
-            conclusion.Text = Record.Conclusion.ToString();
+            conclusion.Text = record.Conclusion.ToString();
 
 
             //Create sub tag "result"
             WeakHTMLTag primary = new WeakHTMLTag("Primary");
-            primary.Text = ResultPrimSecond.Primary;
+            primary.Text = resultPrimSecond.Primary;
 
             WeakHTMLTag secondary = new WeakHTMLTag("Secondary");
-            secondary.Text = ResultPrimSecond.Secondary;
+            secondary.Text = resultPrimSecond.Secondary;
 
             WeakHTMLTag result = new WeakHTMLTag("Result");
             result.HTML = primary.ToString() + secondary.ToString();

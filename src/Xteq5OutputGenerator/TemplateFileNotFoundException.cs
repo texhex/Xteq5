@@ -16,8 +16,8 @@ namespace Xteq5
         {
         }
 
-        public TemplateFileNotFoundException(string TemplateFilepath)
-            : base("Template file " + TemplateFilepath + " not found")
+        public TemplateFileNotFoundException(string templateFilepath)
+            : base("Template file " + templateFilepath + " not found")
         {
 
         }

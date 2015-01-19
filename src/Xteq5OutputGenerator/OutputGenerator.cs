@@ -17,30 +17,30 @@ namespace Xteq5
         /// <summary>
         /// Generates a report in the requested format, based on the given Report object. 
         /// </summary>
-        /// <param name="Report">Report to generate output for</param>
-        /// <param name="Format">Format that should be generated</param>
+        /// <param name="report">Report to generate output for</param>
+        /// <param name="format">Format that should be generated</param>
         /// <returns>A string representation (source) of the requested output</returns>
-        public static string GenerateReportOutput(Report Report, OutputFormatEnum Format)
+        public static string GenerateReportOutput(Report report, OutputFormatEnum format)
         {
-            switch (Format)
+            switch (format)
             {
                 case OutputFormatEnum.HTML:
-                    string htmlTemplatePath = PathExtension.Combine(Report.CompilationFolder, "BootstrapTemplate.html");
+                    string htmlTemplatePath = PathExtension.Combine(report.CompilationFolder, "BootstrapTemplate.html");
                     BootstrapHTMLGenerator htmlGenerator = new BootstrapHTMLGenerator();                    
-                    return htmlGenerator.Generate(Report, htmlTemplatePath);
+                    return htmlGenerator.Generate(report, htmlTemplatePath);
 
                 case OutputFormatEnum.XML:
-                    string xmlTemplate = PathExtension.Combine(Report.CompilationFolder, "XMLtemplate.xml");
+                    string xmlTemplate = PathExtension.Combine(report.CompilationFolder, "XMLtemplate.xml");
                     XMLGenerator xmlGenerator = new XMLGenerator();
-                    return xmlGenerator.Generate(Report, xmlTemplate);
+                    return xmlGenerator.Generate(report, xmlTemplate);
 
                 case OutputFormatEnum.JSON:
                     //JSONGenerator does not use a template
                     JSONGenerator jsonGenerator = new JSONGenerator();
-                    return jsonGenerator.Generate(Report);
+                    return jsonGenerator.Generate(report);
 
                 default:
-                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", Format.ToString()));
+                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", format.ToString()));
             }
              
         }
@@ -49,15 +49,15 @@ namespace Xteq5
         /// Generates a report in the requested format, based on the given Report object and save it to a file.
         /// If Filename is empty, a filename in the TEMP folder of the current user will be generated
         /// </summary>
-        /// <param name="Report">Report to generate output for</param>
-        /// <param name="Format">Format that should be generated</param>
-        /// <param name="Format">Filepath to store the result. If empty, a filename will be generated</param>
+        /// <param name="report">Report to generate output for</param>
+        /// <param name="format">Format that should be generated</param>
+        /// <param name="format">Filepath to store the result. If empty, a filename will be generated</param>
         /// <returns>Filepath of the generated and saved output</returns>
-        public static string GenerateReportOutputFile(Report Report, OutputFormatEnum Format, string Filepath)
+        public static string GenerateReportOutputFile(Report report, OutputFormatEnum format, string filePath)
         {
             string fileExtension = "";
 
-            switch (Format)
+            switch (format)
             {
                 case OutputFormatEnum.HTML:
                     fileExtension=".html";
@@ -72,17 +72,17 @@ namespace Xteq5
                     break;
 
                 default:
-                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", Format.ToString()));
+                    throw new ArgumentException(string.Format("OutputFormat {0} is not supported", format.ToString()));
             }
 
-            string source = GenerateReportOutput(Report, Format);
+            string source = GenerateReportOutput(report, format);
 
-            string fullFilename = Filepath;
+            string fullFilename = filePath;
             if (string.IsNullOrWhiteSpace(fullFilename))
             {
                                 
-                string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", Report.EndedUTC); //2014-12-31_1458
-                string guidpart = Report.ID.ToString("N"); //00000000000000000000000000000000
+                string datepart = string.Format("{0:yyyy-MM-dd_HHmm}", report.EndedUTC); //2014-12-31_1458
+                string guidpart = report.ID.ToString("N"); //00000000000000000000000000000000
                 string fileName = "Xteq5_Report_" + datepart + "_" + guidpart + fileExtension;
 
                 string tempPath = Path.GetTempPath();
