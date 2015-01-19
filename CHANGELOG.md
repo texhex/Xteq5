@@ -1,8 +1,18 @@
+## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+
+IMPROVEMENTS:
+
+* None
+
+BUG FIXES:
+
+* None
+
 ## [Version 2015.01.19](https://github.com/texhex/xteq5/releases/tag/v2015.01.19)
 
 IMPROVEMENTS:
 
-* Add "Less than five errors in system log" test
+* Added "Less than five errors in system log" test
 * Added automatic fix when user settings file is broken in Xteq5GUI
 * Added "Conclusion" (int value) and "ConclusionString" (Text) to XML report
 

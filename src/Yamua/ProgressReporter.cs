@@ -25,17 +25,8 @@ namespace Yamua
         /// Create an instance of this class, requires the IProgress<TReported> implementation that is used to report progress.
         /// </summary>
         /// <param name="progress">IProgress implementation used to report progress</param>
-        public ProgressReporter(IProgress<TReported> progress)
-            : this(progress, createNewInstanceAfterReport: false)
-        {
-        }
-
-        /// <summary>
-        /// Create an instance of this class, requires the IProgress<TReported> implementation that is used to report progress.
-        /// </summary>
-        /// <param name="progress">IProgress implementation used to report progress</param>
         /// <param name="createNewInstanceAfterReport">TRUE if a new instance of Content should automatically be created after Report()</param>
-        public ProgressReporter(IProgress<TReported> progress, bool createNewInstanceAfterReport)
+        public ProgressReporter(IProgress<TReported> progress, bool createNewInstanceAfterReport = false)
         {
             _progress = progress;
             Content = new TReported();
