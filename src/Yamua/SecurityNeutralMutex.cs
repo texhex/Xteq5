@@ -10,13 +10,13 @@ namespace Yamua
     public static class SecurityNeutralMutex
     {
         //Original Code: http://rdn-consulting.com/blog/2007/08/20/kernel-object-namespace-and-vista/
-        public static Mutex Create(string Name)
+        public static Mutex Create(string name)
         {
             bool bTrash;
-            return Create(Name, out bTrash);
+            return Create(name, out bTrash);
         }
 
-        public static Mutex Create(string Name, out bool MutexWasCreated)
+        public static Mutex Create(string Name, out bool mutexWasCreated)
         {
             //Always use global scop
             string name = @"Global\" + Name;
@@ -29,10 +29,10 @@ namespace Yamua
 
             sec.AddAccessRule(secRule);
 
-            bool mutexWasCreated;
-            Mutex m = new Mutex(false, name, out mutexWasCreated, sec);
+            bool mutexWasCreatedOut;
+            Mutex m = new Mutex(false, name, out mutexWasCreatedOut, sec);
 
-            MutexWasCreated = mutexWasCreated;
+            mutexWasCreated = mutexWasCreatedOut;
             return m;
         }
     }

@@ -4,11 +4,12 @@ IMPROVEMENTS:
 
 * Add "Less than five errors in system log" test
 * Added automatic fix when user settings file is broken in Xteq5GUI
+* Added "Conclusion" (int value) and "ConclusionString" (Text) to XML report
 
 BUG FIXES:
 
 * Fixed an asset that confused "Uptime" with "Time since boot""
-* Fixed source code naming convention issues
+* Fixed source code parameter casing issues
 
 ## [Version 2015.01.14](https://github.com/texhex/xteq5/releases/tag/v2015.01.14)
 

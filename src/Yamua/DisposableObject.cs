@@ -31,11 +31,11 @@ namespace Yamua
             Dispose(false);
         }
 
-        private void Dispose(bool Disposing)
+        private void Dispose(bool disposing)
         {
             if (!__disposed)
             {
-                if (Disposing)
+                if (disposing)
                 {
                     DisposeManagedResources();
                 }

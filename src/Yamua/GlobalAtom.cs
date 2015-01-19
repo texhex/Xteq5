@@ -14,9 +14,9 @@ namespace Yamua
         {            
         }
 
-        public bool AtomExists(string AtomName)
+        public bool AtomExists(string atomName)
         {
-            ushort Atom = SafeNativeMethods.GlobalFindAtom(AtomName);
+            ushort Atom = SafeNativeMethods.GlobalFindAtom(atomName);
             if (Atom > 0)
             {
                 return true;
@@ -28,9 +28,9 @@ namespace Yamua
 
         }
 
-        public bool DeleteAtom(string AtomName)
+        public bool DeleteAtom(string atomName)
         {
-            ushort Atom = SafeNativeMethods.GlobalFindAtom(AtomName);
+            ushort Atom = SafeNativeMethods.GlobalFindAtom(atomName);
             if (Atom > 0)
             {
                 SafeNativeMethods.GlobalDeleteAtom(Atom);
@@ -43,9 +43,9 @@ namespace Yamua
 
         }
 
-        public void CreateAtom(string AtomName)
+        public void CreateAtom(string atomName)
         {
-            SafeNativeMethods.GlobalAddAtom(AtomName);
+            SafeNativeMethods.GlobalAddAtom(atomName);
 
         }
 

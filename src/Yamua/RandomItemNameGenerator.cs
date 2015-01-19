@@ -83,9 +83,9 @@ namespace Yamua
 
             RandomItemName rpi = new RandomItemName();
 
-            rpi.Prefix=_prefixNameSet[iRandomValuePrefix];
-            rpi.Name=_itemNameSet[iRandomValueName];
-            rpi.Suffix=_suffixNameSet[iRandomValueSuffix];
+            rpi.Prefix = _prefixNameSet[iRandomValuePrefix];
+            rpi.Name = _itemNameSet[iRandomValueName];
+            rpi.Suffix = _suffixNameSet[iRandomValueSuffix];
 
             rpi.Full = rpi.Prefix + " " + rpi.Name + " " + rpi.Suffix;
 
@@ -93,13 +93,13 @@ namespace Yamua
         }
 
 
-        public List<RandomItemName> Generate(int Count)
+        public List<RandomItemName> Generate(int count)
         {
             List<RandomItemName> list = new List<RandomItemName>();
 
             Random rndm = new Random();
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 list.Add(GenerateOne(rndm));
             }
@@ -107,10 +107,11 @@ namespace Yamua
             return list;
         }
 
-        public static List<RandomItemName> StaticGenerate(int Count)
+        public static List<RandomItemName> StaticGenerate(int count)
         {
+            //I'm pretty sure I had a good reason to call this ring_ring....
             RandomItemNameGenerator ring_ring = new RandomItemNameGenerator();
-            return ring_ring.Generate(Count);
+            return ring_ring.Generate(count);
         }
 
 

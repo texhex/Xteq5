@@ -72,41 +72,41 @@ namespace Yamua
         /// <summary>
         /// Creates an empty HTML tag
         /// </summary>
-        /// <param name="TagName">Name of the tag, e.g. td, span, strong etc.</param>
-        public WeakHTMLTag(string TagName)
-            : this(TagName, WeakHTMLContentType.Text, "")
+        /// <param name="tagName">Name of the tag, e.g. td, span, strong etc.</param>
+        public WeakHTMLTag(string tagName)
+            : this(tagName, WeakHTMLContentType.Text, string.Empty)
         {
         }
 
         /// <summary>
         /// Creates an HTML tag with inner text
         /// </summary>
-        /// <param name="TagName">Name of the tag</param>
-        /// <param name="Text">Value this tag encloses. Will automatically be HTML encoded</param>
-        public WeakHTMLTag(string TagName, string Text)
-            : this(TagName, WeakHTMLContentType.Text, Text)
+        /// <param name="tagName">Name of the tag</param>
+        /// <param name="text">Value this tag encloses. Will automatically be HTML encoded</param>
+        public WeakHTMLTag(string tagName, string text)
+            : this(tagName, WeakHTMLContentType.Text, text)
         {
         }
 
         /// <summary>
         /// Creates an HTML tag with text or HTML set
         /// </summary>
-        /// <param name="TagName">Name of the tag</param>
-        /// <param name="Format">Type of string found in DATA. HTML or Text</param>
-        /// <param name="Data">Data to be set, either as HTML or Text</param>
-        public WeakHTMLTag(string TagName, WeakHTMLContentType Format, string Data)
+        /// <param name="tagName">Name of the tag</param>
+        /// <param name="format">Type of string found in DATA. HTML or Text</param>
+        /// <param name="data">Data to be set, either as HTML or Text</param>
+        public WeakHTMLTag(string tagName, WeakHTMLContentType format, string data)
         {
             //XHTML tags should be lowercase
-            _xelem = new XElement(TagName.ToLower());
+            _xelem = new XElement(tagName.ToLower());
             _xelem.Value = GUID_REPLACE;
 
-            if (Format == WeakHTMLContentType.Text)
+            if (format == WeakHTMLContentType.Text)
             {
-                this.Text = Data;
+                this.Text = data;
             }
             else
             {
-                this.HTML = Data;
+                this.HTML = data;
             }
 
             this.Attributes = new WeakHTMLAttributes(_xelem);
@@ -116,12 +116,12 @@ namespace Yamua
         /// <summary>
         /// Creates a new HTML tag that encloses another HTML tag 
         /// </summary>
-        /// <param name="TagName">Name of this tag</param>
-        /// <param name="EnclosedTag">Tag that will enclodes by this tag. Means: <THISTAG><ENCLOSEDTAG></ENCLOSEDTAG></THISTAG>  </param>
-        public WeakHTMLTag(string TagName, WeakHTMLTag EnclosedTag)
-            : this(TagName, WeakHTMLContentType.HTML, EnclosedTag.ToString())
+        /// <param name="tagName">Name of this tag</param>
+        /// <param name="enclosedTag">Tag that will enclodes by this tag. Means: <THISTAG><ENCLOSEDTAG></ENCLOSEDTAG></THISTAG>  </param>
+        public WeakHTMLTag(string tagName, WeakHTMLTag enclosedTag)
+            : this(tagName, WeakHTMLContentType.HTML, enclosedTag.ToString())
         {
-            if (EnclosedTag == null)
+            if (enclosedTag == null)
                 throw new ArgumentNullException();
 
         }
@@ -129,16 +129,16 @@ namespace Yamua
         /// <summary>
         /// Clones an existing HTML tag
         /// </summary>
-        /// <param name="CloneSource">The source WeakHTMLTag that should be cloned</param>
-        public WeakHTMLTag(WeakHTMLTag CloneSource)
+        /// <param name="cloneSource">The source WeakHTMLTag that should be cloned</param>
+        public WeakHTMLTag(WeakHTMLTag cloneSource)
         {
-            if (CloneSource == null)
+            if (cloneSource == null)
                 throw new ArgumentNullException();
 
-            XElement clone = XElement.Parse(CloneSource.BaseXElement.ToString());
+            XElement clone = XElement.Parse(cloneSource.BaseXElement.ToString());
             _xelem = clone; //Value is already set to GUID_REPLACE
 
-            this.HTML = CloneSource.HTML;
+            this.HTML = cloneSource.HTML;
             this.Attributes = new WeakHTMLAttributes(_xelem);
         }
 
@@ -146,24 +146,24 @@ namespace Yamua
         /// <summary>
         /// Creates a clone of a existing WeakHTMLTag and encloses another WeakHTMLTag into it.
         /// </summary>
-        /// <param name="OuterTag">The WeakHTMLTag that used as the outer tag</param>
-        /// <param name="EnclosedTag">The WeakHTMLTag used as the inner (enclosed) tag</param>
-        public WeakHTMLTag(WeakHTMLTag OuterTag, WeakHTMLTag EnclosedTag)
-            : this(OuterTag)
+        /// <param name="outerTag">The WeakHTMLTag that used as the outer tag</param>
+        /// <param name="enclosedTag">The WeakHTMLTag used as the inner (enclosed) tag</param>
+        public WeakHTMLTag(WeakHTMLTag outerTag, WeakHTMLTag enclosedTag)
+            : this(outerTag)
         {
-            if (EnclosedTag == null)
+            if (enclosedTag == null)
                 throw new ArgumentNullException();
 
             //This element is now correctly set to the data in OuterTag
             //If this HTML tag does not have any value, we can use directly EnclosedTag as data
             if (string.IsNullOrWhiteSpace(this.HTML))
             {
-                this.HTML = EnclosedTag.ToString();
+                this.HTML = enclosedTag.ToString();
             }
             else
             {
                 //This HTML tag has a value set, so combine those two
-                this.HTML += EnclosedTag.ToString();
+                this.HTML += enclosedTag.ToString();
             }
 
         }
@@ -238,38 +238,38 @@ namespace Yamua
         /// <summary>
         /// Concats several WeakHTMLTags into one. The first pameter is the outer tag, second tag is enclosed in first tag, third tag is enclosed in second tag and so on. 
         /// </summary>
-        /// <param name="Tags"></param>
+        /// <param name="tags"></param>
         /// <returns></returns>
-        public static WeakHTMLTag Concat(params WeakHTMLTag[] Tags)
+        public static WeakHTMLTag Concat(params WeakHTMLTag[] tags)
         {
             //If we do not have any tag, return an exception
-            if (Tags.Length == 0)
+            if (tags.Length == 0)
             {
                 throw new ArgumentException("At least one WeakHTMLTag to concat is required");
             }
             else
             {
                 //If we only get one item, return it
-                if (Tags.Length == 1)
+                if (tags.Length == 1)
                 {
-                    return Tags[0];
+                    return tags[0];
                 }
                 else
                 {
                     WeakHTMLTag current = null;
 
                     //Loop all objects, starting with the last
-                    for (int i = Tags.Length - 1; i >= 0; i--)
+                    for (int i = tags.Length - 1; i >= 0; i--)
                     {
                         if (current != null)
                         {
-                            WeakHTMLTag temp = new WeakHTMLTag(Tags[i], current);
+                            WeakHTMLTag temp = new WeakHTMLTag(tags[i], current);
                             current = temp;
                         }
                         else
                         {
                             //No current is present so far, use this element
-                            current = Tags[i];
+                            current = tags[i];
                         }
                     }
 
@@ -284,19 +284,19 @@ namespace Yamua
         /// </summary>
         /// <param name="Data">Non HTML encoded string</param>
         /// <returns>HTML encoded string</returns>
-        public static string HTMLEncode(string Data)
+        public static string HTMLEncode(string data)
         {
-            return WebUtility.HtmlEncode(Data);
+            return WebUtility.HtmlEncode(data);
         }
 
         /// <summary>
         /// Returns a decoded HTML string
         /// </summary>
-        /// <param name="Data">HTML encoded string</param>
+        /// <param name="data">HTML encoded string</param>
         /// <returns>Raw text</returns>
-        public static string HTMLDecode(string Data)
+        public static string HTMLDecode(string data)
         {
-            return WebUtility.HtmlDecode(Data);
+            return WebUtility.HtmlDecode(data);
         }
 
     }
@@ -312,18 +312,18 @@ namespace Yamua
 
         XElement _element;
 
-        internal WeakHTMLAttributes(XElement BaseElement)
+        internal WeakHTMLAttributes(XElement baseElement)
         {
-            _element = BaseElement;
+            _element = baseElement;
         }
 
-        public string this[string Name]
+        public string this[string name]
         {
             get
             {
-                if (_element.Attribute(Name) != null)
+                if (_element.Attribute(name) != null)
                 {
-                    return _element.Attribute(Name).Value;
+                    return _element.Attribute(name).Value;
                 }
                 else
                 {
@@ -334,7 +334,7 @@ namespace Yamua
             set
             {
                 string val = WeakHTMLTag.HTMLEncode(value);
-                _element.SetAttributeValue(Name, val);
+                _element.SetAttributeValue(name, val);
             }
         }
 

@@ -40,9 +40,9 @@ namespace Yamua
         /// <param name="min">Minimal result</param>
         /// <param name="max">Maximal result</param>
         /// <returns>Random number</returns>
-        public static int RandomNumber(int Minimal, int Maximal)
+        public static int RandomNumber(int minimal, int maximal)
         {
-            return randomSeed.Next(Minimal, Maximal);
+            return randomSeed.Next(minimal, maximal);
         }
 
         /// <summary>

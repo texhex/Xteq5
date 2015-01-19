@@ -131,7 +131,12 @@ namespace Xteq5
             filename.Text = record.ScriptFilename;
 
             WeakHTMLTag conclusion = new WeakHTMLTag("Conclusion");
-            conclusion.Text = record.Conclusion.ToString();
+            conclusion.Text = ((int)record.Conclusion).ToString();
+
+            WeakHTMLTag conclusionString = new WeakHTMLTag("ConclusionString");
+            conclusionString.Text = record.Conclusion.ToString();
+
+
 
 
             //Create sub tag "result"
@@ -146,7 +151,7 @@ namespace Xteq5
 
 
             //Construct the final XML
-            tag.HTML = name.ToString() + filename.ToString() + conclusion.ToString() + result.ToString();
+            tag.HTML = name.ToString() + filename.ToString() + conclusion.ToString() + conclusionString.ToString() + result.ToString();
 
             return tag.ToString();
         }

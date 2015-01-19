@@ -65,13 +65,13 @@ namespace Yamua
         //
         //http://www.census.gov/genealogy/www/data/1990surnames/
         //
-        static readonly string[] _firstNameMaleSet =new string[] {
+        static readonly string[] _firstNameMaleSet = new string[] {
          "James", "John", "Robert", "Michael", "William", "David", "Richard", "Charles", "Joseph", 
          "Thomas", "Christopher", "Daniel", "Paul", "Mark", "Donald", "George", "Kenneth", 
          "Steven",  "Dirk", "Brian", "Ronald", "Anthony", "Kevin", "Jason", "Matthew", "Gary", 
          "Timothy", "Jose", "Larry", "Jeffrey" 
         };
-        static readonly int _firstNameMaleSetCount = _firstNameMaleSet.GetUpperBound(0)+1;
+        static readonly int _firstNameMaleSetCount = _firstNameMaleSet.GetUpperBound(0) + 1;
 
         static readonly string[] _firstNameFemaleSet = new string[] {
             "Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", 
@@ -79,7 +79,7 @@ namespace Yamua
             "Carol", "Ruth", "Sharon", "Michelle", "Laura", "Sarah", "Kimberly", "Deborah", "Jessica",
             "Shirley", "Cynthia", "Angela", "Melissa"
         };
-        static readonly int _firstNameFemaleSetCount = _firstNameFemaleSet.GetUpperBound(0)+1;
+        static readonly int _firstNameFemaleSetCount = _firstNameFemaleSet.GetUpperBound(0) + 1;
 
         static readonly string[] _lastNameSet = new string[] {
             "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore",
@@ -88,7 +88,7 @@ namespace Yamua
             "Allen", "Young", "Hernandez", "King"
         };
         #endregion
-        static readonly int _lastNameSetCount = _lastNameSet.GetUpperBound(0)+1;
+        static readonly int _lastNameSetCount = _lastNameSet.GetUpperBound(0) + 1;
 
 
         RandomPersonName GenerateOne(Random rndm)
@@ -96,15 +96,15 @@ namespace Yamua
             int iRandomValueMale = rndm.Next(0, _firstNameMaleSetCount);
             int iRandomValueFemale = rndm.Next(0, _firstNameFemaleSetCount);
             int iRandomValueLastName = rndm.Next(0, _lastNameSetCount);
-            
+
             RandomPersonName rpn = new RandomPersonName();
 
             rpn.First = rndm.Next(0, 2) == 0 ? _firstNameMaleSet[iRandomValueMale] : _firstNameFemaleSet[iRandomValueFemale];
             rpn.Last = _lastNameSet[iRandomValueLastName];
-            
+
             rpn.Full = rpn.First + " " + rpn.Last;
             rpn.LastCommaFirst = rpn.Last + ", " + rpn.First;
-            
+
             return rpn;
         }
 
@@ -112,15 +112,15 @@ namespace Yamua
         /// <summary>
         /// Returns a list of RandomPersonName objects.
         /// </summary>
-        /// <param name="Count">Count of names that should be generated</param>
+        /// <param name="count">Count of names that should be generated</param>
         /// <returns>List of RandomPersonName objects</returns>
-        public List<RandomPersonName> Generate(int Count)
+        public List<RandomPersonName> Generate(int count)
         {
-            List<RandomPersonName> list = new List<RandomPersonName>();            
+            List<RandomPersonName> list = new List<RandomPersonName>();
 
             Random rndm = new Random();
 
-            for (int i = 0; i < Count; i++ )
+            for (int i = 0; i < count; i++)
             {
                 list.Add(GenerateOne(rndm));
             }
@@ -131,12 +131,12 @@ namespace Yamua
         /// <summary>
         /// Returns a list of RandomPersonName objects (Static function)
         /// </summary>
-        /// <param name="Count">Count of names that should be generated</param>
+        /// <param name="count">Count of names that should be generated</param>
         /// <returns>List of RandomPersonName objects</returns>
-        public static List<RandomPersonName> StaticGenerate(int Count)
+        public static List<RandomPersonName> StaticGenerate(int count)
         {
             RandomPersonNameGenerator rpng = new RandomPersonNameGenerator();
-            return rpng.Generate(Count);
+            return rpng.Generate(count);
         }
 
 

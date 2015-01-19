@@ -44,52 +44,49 @@ namespace Xteq5
         /// <summary>
         /// Executes Xteq5 without generating a report
         /// </summary>
-        /// <param name="CompilationPath">Path to the compilation folder</param>
-        public SimplifiedXteq5Runner(string CompilationPath)
+        /// <param name="compilationPath">Path to the compilation folder</param>
+        public SimplifiedXteq5Runner(string compilationPath)
+            : this(compilationPath, string.Empty, OutputFormatEnum.HTML, string.Empty)
         {
-            _compilationPath = CompilationPath;
-            _reportFormat = OutputFormatEnum.Unknown;
-            _userText = "";
-            _destFilename = "";
-
-            ClearRunVariables();
         }
 
 
         /// <summary>
         /// Executes Xteq5 and generates a HTML report for it
         /// </summary>
-        /// <param name="CompilationPath">Path to the compilation folder</param>        
-        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
-        public SimplifiedXteq5Runner(string CompilationPath, string UserText)
-            : this(CompilationPath)
+        /// <param name="compilationPath">Path to the compilation folder</param>        
+        /// <param name="userText">Optional text to be added to the generated HTML file</param>        
+        public SimplifiedXteq5Runner(string compilationPath, string userText)
+            : this(compilationPath, userText, OutputFormatEnum.HTML, string.Empty)
         {
-            _userText = UserText;
-            _reportFormat = OutputFormatEnum.HTML;
         }
 
         /// <summary>
         /// Executes Xteq5 and generates a report in the given format for it. 
         /// </summary>
-        /// <param name="CompilationPath">Path to the compilation folder</param>        
-        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
-        /// <param name="ReportFormat">Format the report should have</param>
-        public SimplifiedXteq5Runner(string CompilationPath, string UserText, OutputFormatEnum ReportFormat)
-            : this(CompilationPath, UserText)
-        {
-            _reportFormat = ReportFormat; //This will later on checked by OutputGenerator anyway, so no need to check this here
+        /// <param name="compilationPath">Path to the compilation folder</param>        
+        /// <param name="userText">Optional text to be added to the generated HTML file</param>        
+        /// <param name="format">Format the report should have</param>
+        public SimplifiedXteq5Runner(string compilationPath, string userText, OutputFormatEnum format)
+            : this(compilationPath, userText, format, string.Empty)
+        {            
         }
 
         /// <summary>
         /// Executes Xteq5, generates a report in the given format for it and save the result to Filename 
         /// </summary>
-        /// <param name="CompilationPath">Path to the compilation folder</param>        
-        /// <param name="UserText">Optional text to be added to the generated HTML file</param>        
-        /// <param name="ReportFormat">Format the report should have</param>
-        public SimplifiedXteq5Runner(string CompilationPath, string UserText, OutputFormatEnum ReportFormat, string Filename)
-            : this(CompilationPath, UserText, ReportFormat)
+        /// <param name="compilationPath">Path to the compilation folder</param>        
+        /// <param name="userText">Optional text to be added to the generated HTML file</param>        
+        /// <param name="format">Format the report should have</param>
+        public SimplifiedXteq5Runner(string compilationPath, string userText, OutputFormatEnum format, string fileName)
         {
-            _destFilename = Filename;
+            _compilationPath = compilationPath;
+            _userText = userText;
+            
+            _reportFormat = format; //This will later on checked by OutputGenerator anyway, so no need to check this here
+            _destFilename = fileName;                                              
+
+            ClearRunVariables();
         }
 
 
@@ -123,9 +120,9 @@ namespace Xteq5
         /// Generates the report and (if set) the file report
         /// </summary>
         /// <returns>TRUE if execution was successful</returns>
-        public bool Run(IProgress<RunnerProgressDetail> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
+        public bool Run(IProgress<RunnerProgressDetail> progressRunner = null, IProgress<ReportCreationProgress> progressReportCreation = null)
         {
-            Task<bool> task = RunAsync(ProgressRunner);
+            Task<bool> task = RunAsync(progressRunner);
             task.Wait();
             return task.Result;
         }
@@ -133,9 +130,9 @@ namespace Xteq5
         /// <summary>
         /// Generates the report and (if set) the file report
         /// </summary>
-        /// <param name="ProgressRunner">Report status using this Progress object</param>        
+        /// <param name="progressRunner">Report status using this Progress object</param>        
         /// <returns>TRUE if execution was successful</returns>
-        public async Task<bool> RunAsync(IProgress<RunnerProgressDetail> ProgressRunner = null, IProgress<ReportCreationProgress> ProgressReportCreation = null)
+        public async Task<bool> RunAsync(IProgress<RunnerProgressDetail> progressRunner = null, IProgress<ReportCreationProgress> progressReportCreation = null)
         {
             ClearRunVariables();
 
@@ -144,8 +141,8 @@ namespace Xteq5
             try
             {
                 //Let Xteq5Runner do it's thing...
-                Xteq5Runner runner = new Xteq5Runner();                                
-                this.Report = await runner.RunAsync(_compilationPath, ProgressRunner);
+                Xteq5Runner runner = new Xteq5Runner();
+                this.Report = await runner.RunAsync(_compilationPath, progressRunner);
 
                 this.Report.UserText = _userText;
 
@@ -153,7 +150,7 @@ namespace Xteq5
                 //I don't know why, but the report creation takes AGES / A VERY LONG TIME / F**** BAZILLION SECONDS with that POS software installed.                                
                 if (_reportFormat != OutputFormatEnum.Unknown)
                 {
-                    ProgressReporter<ReportCreationProgress> reporterStart = new ProgressReporter<ReportCreationProgress>(ProgressReportCreation);
+                    ProgressReporter<ReportCreationProgress> reporterStart = new ProgressReporter<ReportCreationProgress>(progressReportCreation);
                     reporterStart.Content.Action = ReportAction.Starting;
                     reporterStart.Report();
 
@@ -162,7 +159,7 @@ namespace Xteq5
                     this.ReportFilepath = OutputGenerator.GenerateReportOutputFile(this.Report, _reportFormat, _destFilename);
 
 
-                    ProgressReporter<ReportCreationProgress> reporterEnd = new ProgressReporter<ReportCreationProgress>(ProgressReportCreation);
+                    ProgressReporter<ReportCreationProgress> reporterEnd = new ProgressReporter<ReportCreationProgress>(progressReportCreation);
                     reporterEnd.Content.Action = ReportAction.Ended;
                     reporterEnd.Report();
 
