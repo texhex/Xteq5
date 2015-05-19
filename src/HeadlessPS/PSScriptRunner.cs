@@ -117,6 +117,7 @@ namespace HeadlessPS
                     currentPosition = "After creating PowerShell runspace";
 
                     currentPosition = "Before addition test";
+                    
                     //MTH: Sorry, couldn't resist. 
                     psTest.AddScript("[int]$AUQLUE=41+1; $AUQLUE");
                     outputCollection = psTest.Invoke();

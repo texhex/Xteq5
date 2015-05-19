@@ -208,6 +208,12 @@ namespace Xteq5
                 this.FailedMessage = "The template file for the report is missing. Please re-run Setup to install it.";
                 this.FailedException = tfnfe;
             }
+            catch (WMITestException wmite)
+            {
+                //WMI Test has failed
+                this.FailedMessage = "The Windows Management Instrumentation (WMI) test failed which indicates WMI needs repair. Please search the internet for REPAIR WMI how to do this.";
+                this.FailedException = wmite;
+            }
             catch (Exception exc)
             {
                 //No idea what happened. Use the message from the exception.

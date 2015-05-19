@@ -1,8 +1,10 @@
-## [Version 2015.xx.xx](https://github.com/texhex/xteq5/releases/tag/v2015.xx.xx)
+## [Version 2015.05.19](https://github.com/texhex/xteq5/releases/tag/v2015.05.19)
 
 IMPROVEMENTS:
 
-* None
+* Removed unnecessary reference in Yamua
+* Added new WMITest class that checks WMI health (by executing a simple query) before executing any Asset or Test 
+* Added one asset and two test for SCCM
 
 BUG FIXES:
 

@@ -1,4 +1,4 @@
-#v1.11
+#v1.12
 #https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
 
@@ -32,7 +32,7 @@ $ErrorActionPreference = 'Stop'$Result = @{Data = "OK"; Name="No changes pen
   $pendingfilerename=$false
   $test = Get-ItemProperty "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager" -Name "PendingFileRenameOperations" -ErrorAction Ignore
   if($test -ne $null) {
-     write-output "Windows Session Manager has PendingFileRenameOperations set"
+     write-output "Windows Session Manager has PendingFileRenameOperations set."
      write-output "Files to be renamed or deleted upon reboot:" 
      write-output $test.PendingFileRenameOperations
      $pendingfilerename=$true

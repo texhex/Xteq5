@@ -17,8 +17,7 @@ namespace Xteq5EngineConsumer
 
             string basepath="";
             basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory();
-            basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory(9);
-
+            //basepath = DebugOnlyHelper.DebugOnlyScriptFolderHelper.TestingScriptDirectory(9);
 
             Task<Report> task = RunEngineAsync(runner, basepath);
 

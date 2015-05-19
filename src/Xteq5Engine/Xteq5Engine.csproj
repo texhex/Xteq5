@@ -69,6 +69,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
@@ -93,6 +94,7 @@
     <Compile Include="Report.cs" />
     <Compile Include="RunnerProgressDetail.cs" />
     <Compile Include="TestScriptRunner.cs" />
+    <Compile Include="WMITest.cs" />
     <Compile Include="Xteq5EngineConstant.cs" />
     <Compile Include="TestRecord.cs" />
     <Compile Include="Xteq5Runner.cs" />

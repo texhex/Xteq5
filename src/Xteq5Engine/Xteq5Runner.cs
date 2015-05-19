@@ -60,6 +60,11 @@ namespace Xteq5
             CheckCompilationSubfolder(modulePath);
 
 
+            //Perform a WMI test to make sure the script are able to access WMI data
+            WMITest wmiTest = new WMITest();
+            wmiTest.Test();
+
+
             //Create the result object
             Report report = new Report();
 
@@ -102,6 +107,8 @@ namespace Xteq5
             List<TestRecord> tests;
             using (PSScriptRunner psScriptRunnerTests = new PSScriptRunner(prefs))
             {
+                //No TestPowerShellEnvironment() here, we should be OK if the first test worked
+
                 TestScriptRunner testsRunner = new TestScriptRunner();
                 tests = await testsRunner.RunAsync(psScriptRunnerTests, testScriptsPath, progress);
             }

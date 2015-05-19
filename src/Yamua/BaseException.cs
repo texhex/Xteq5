@@ -13,17 +13,17 @@ namespace Yamua
         public BaseException()
         { }
 
-        public BaseException(string Message)
-            : base(Message) { }
+        public BaseException(string message)
+            : base(message) { }
 
-        public BaseException(string FormatString, params object[] Args)
-            : base(string.Format(FormatString, Args)) { }
+        public BaseException(string formatString, params object[] args)
+            : base(string.Format(formatString, args)) { }
 
-        public BaseException(string Message, Exception InnerException)
-            : base(Message, InnerException) { }
+        public BaseException(string message, Exception innerException)
+            : base(message, innerException) { }
 
-        public BaseException(string FormatString, Exception InnerException, params object[] Args)
-            : base(string.Format(FormatString, Args), InnerException) { }
+        public BaseException(string formatString, Exception innerException, params object[] args)
+            : base(string.Format(formatString, args), innerException) { }
 
     }
 }
