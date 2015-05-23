@@ -1,4 +1,4 @@
-#v1.04
+#v1.07
 #https://github.com/texhex/xteq5/wiki/_fwLinkScript
 
 
@@ -8,7 +8,7 @@
 #Guard against common code errors
 Set-StrictMode -version 2.0
 
-#Terminate script on errors $ErrorActionPreference = 'Stop'$Result = @{Data = "n/a"; Name="No SCCM restart pending"; Text= "No pending changes by SCCM, that require a restart, have been detected"}#Code from this location: https://gallery.technet.microsoft.com/scriptcenter/Get-PendingReboot-Query-bdb79542# Determine SCCM 2012 Client Reboot Pending Status
+#Terminate script on errors $ErrorActionPreference = 'Stop'$Result = @{Data = "n/a"; Name="No SCCM restart pending"; Text= "SCCM was not detected"}#Code from this location: https://gallery.technet.microsoft.com/scriptcenter/Get-PendingReboot-Query-bdb79542# Determine SCCM 2012 Client Reboot Pending Status
 # To avoid nested 'if' statements and unneeded WMI calls to determine if the CCM_ClientUtilities class exist, setting EA = 0
 $CCMClientSDK = $null
 
@@ -32,13 +32,16 @@ if ($CCMClientSDK)
       
       if ($CCMClientSDK.IsHardRebootPending) {
          $Result.Data="Major"          $Result.Text = "A restart (hard reboot) is required in order to finish an operation"
+      } else {
+ 
+        if ($CCMClientSDK.RebootPending) {
+           $Result.Data="Major"            $Result.Text = "A restart is required in order to finish an operation"
+        } else {
+           $Result.Data="OK"     
+           $Result.Text="No pending changes by SCCM, that require a restart, have been detected"       
+        }
+
       }
-
-      if ($CCMClientSDK.RebootPending) {
-         $Result.Data="Major"          $Result.Text = "A restart is required in order to finish an operation"
-      }
-
-
     }
 
 }
