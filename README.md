@@ -14,18 +14,14 @@ Using Xteq5, you could now write PowerShell scripts that test A, B, C, D and E. 
 
 This procedure can lead to cost savings if you have separated 1st and 2nd level support teams. The 1st level support can check with Xteq5 if the problem is already known and fix it without escalating to 2nd level. This means higher first call resolution rates for 1st level and less tickets for 2nd level. 
 
-<!-- I THINK THIS IS NO LONGER TRUE
-
-**EARLY RELEASE WARNING:** Xteq5 is still under heavy development. Running scripts will work fine, but it does not include a lot of them out of the box. It's nearly useless at this time for "normal" home users, but ready for administrators that plan to utilize it for custom scripts. 
--->
 
 
-##<a name="download">Download</a>
+## <a name="download">Download</a>
 
 The most recent version can be downloaded from [Releases][_downloads].
 
 
-##<a name="sysrequirements">System Requirements</a>
+## <a name="sysrequirements">System Requirements</a>
 
 <!-- These links are also used in /src/setup/_Setup.iss -->
 
@@ -36,11 +32,11 @@ The most recent version can be downloaded from [Releases][_downloads].
 * Download links are provided by Setup.exe if one of the components is not installed
 
 
-##<a name="docs">Documentation</a>
+## <a name="docs">Documentation</a>
 
 Please see the [Xteq5 Wiki][_wiki] for documentation. This includes [How to use Xteq5][_wiki_howto], creating your [own assets or tests][_wiki_customscripts], [customize][_wiki_setup] the installation or utilizing the [command line interface][_wiki_cli].  
 
-##<a name="contribute">Contributions</a>
+## <a name="contribute">Contributions</a>
 
 Any constructive contribution is very welcome! 
 
@@ -51,7 +47,7 @@ In case you have created a script you want us to include, please open a new [iss
 Pull requests for source code changes or scripts are welcome as well.  
 
 
-##<a name="copyright">Copyright and License</a>
+## <a name="copyright">Copyright and License</a>
 
 Copyright © 2010-2015 [Michael Hex][_texhexhomepage] ([@texhex][_texhexgithub]).
 
